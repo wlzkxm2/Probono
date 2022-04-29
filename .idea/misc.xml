@@ -3,12 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/412-23/Documents/GitHub/Probono/app/src/main/res/layout/activity_main.xml" value="0.31666666666666665" />
-        <entry key="..\:/Users/412-23/Documents/GitHub/Probono/app/src/main/res/layout/calender_basic.xml" value="0.1" />
-        <entry key="..\:/Users/412-23/Documents/GitHub/Probono/app/src/main/res/layout/tts_test.xml" value="0.334375" />
+        <entry key="..\:/Users/412-22/Desktop/kjm_project/Probono/app/src/main/res/drawable/ic_tts.xml" value="0.2985" />
         <entry key="..\:/Users/412-22/Desktop/kjm_project/Probono/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/Users/412-22/Desktop/kjm_project/Probono/app/src/main/res/layout/calender_basic.xml" value="0.36614583333333334" />
-        <entry key="..\:/Users/412-22/Desktop/kjm_project/Probono/app/src/main/res/layout/main_basic.xml" value="0.33" />
+        <entry key="..\:/Users/412-22/Desktop/kjm_project/Probono/app/src/main/res/layout/main_basic.xml" value="0.5" />
         <entry key="..\:/Users/412-22/Desktop/kjm_project/Probono/app/src/main/res/layout/setting_main.xml" value="0.17806484295845998" />
       </map>
     </option>
