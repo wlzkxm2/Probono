@@ -62,7 +62,7 @@
             android:background="@drawable/example1"
 
             android:textSize="20dp"
-            android:text="@string/notification"/>
+            android:text="ㅇㅇㅇ"/>
 
         <!--다크모드 스위치이다-->
         <Switch
