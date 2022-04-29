@@ -5,6 +5,9 @@ import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 
+import com.example.calender.calendarSource.SaturdayDecorator;
+import com.example.calender.calendarSource.SundayDecorator;
+import com.prolificinteractive.materialcalendarview.DayViewDecorator;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 
 public class Calender_Basic extends Activity {
@@ -17,6 +20,11 @@ public class Calender_Basic extends Activity {
         setContentView(R.layout.calender_basic);
 
         calender = (MaterialCalendarView) findViewById(R.id.calendarView);
+//        calender.addDecorator(
+//                new SundayDecorator(),
+//                new SaturdayDecorator()
+//        );
 
     }
 }
+

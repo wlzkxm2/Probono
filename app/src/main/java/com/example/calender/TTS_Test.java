@@ -167,7 +167,7 @@ public class TTS_Test extends Activity implements TextToSpeech.OnInitListener {
         @Override
         public void onResults(Bundle bundle) {
             ArrayList<String> matches = bundle.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);	//인식 결과를 담은 ArrayList
-            String originText =  tv_Result.getText().toString();//기존 text
+//            String originText =  tv_Result.getText().toString();//기존 text
 
             //인식 결과
             String newText="";
@@ -175,7 +175,8 @@ public class TTS_Test extends Activity implements TextToSpeech.OnInitListener {
                 newText += matches.get(i);
             }
 
-            tv_Result.setText(originText + newText + " ");	//기존의 text에 인식 결과를 이어붙임
+//            tv_Result.setText(originText + newText + " ");	//기존의 text에 인식 결과를 이어붙임
+            tv_Result.setText(newText + " ");	//기존의 text에 인식 결과를 이어붙임
             //speechRecognizer.startListening(intent);    //녹음버튼을 누를 때까지 계속 녹음해야 하므로 녹음 재개
             StopRecord();
             speakOut();
@@ -201,7 +202,7 @@ public class TTS_Test extends Activity implements TextToSpeech.OnInitListener {
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     private void speakOut(){
         CharSequence text = tv_Result.getText();
-        tts.setPitch((float)1.0); // 음성 톤 높이 지정
+        tts.setPitch((float)1.5); // 음성 톤 높이 지정
         tts.setSpeechRate((float)1.5); // 음성 속도 지정
 
         // 첫 번째 매개변수: 음성 출력을 할 텍스트
