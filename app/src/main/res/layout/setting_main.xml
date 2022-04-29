@@ -1,17 +1,130 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#F2F2F6"
 
+    >
+<!--    -->
     <TextView
-        android:id="@+id/setting"
-        android:layout_width="wrap_content"
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:text="MyPage"
+        android:textSize="30dp"
+        android:textStyle="bold" />
+<!--    -->
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="설정"
-        android:textSize="100px"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="35dp" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:paddingTop="200dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_marginBottom="50dp"
+        android:background="@drawable/example1"
+        >
+
+    </LinearLayout>
+    <!--계정 설정 버튼이다-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/exam"
+        >
+        <!-- 계정 설정 버튼이다-->
+        <Button
+            android:id="@+id/button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+
+            android:textColor="#000000"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:background="@drawable/example1"
+            android:textSize="20dp"
+            android:text="d"/>
+        <!-- 알림 설정 버튼이다-->
+        <Button
+            android:id="@+id/button1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:background="@drawable/example1"
+
+            android:textSize="20dp"
+            android:text="ㅇㅇㅇ"/>
+
+        <!--다크모드 스위치이다-->
+        <Switch
+            android:id="@+id/switch1"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/example1"
+            android:textColor="#000000"
+            android:gravity="center"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:text="dkhgjgjkhdk"
+            android:textSize="20dp"
+            android:paddingTop="10dp"/>
+        <!--언어 설정 버튼이다-->
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginTop="5dp"
+            android:textSize="20dp"
+            android:background="@drawable/example1"
+            android:text="언어 설정"/>
+        <!--쿠폰 입력 버튼이다-->
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginTop="5dp"
+            android:textSize="20dp"
+            android:onClick="showDialog"
+            android:background="@drawable/example1"
+            android:text=""/>
+        <!--문의사항 버튼이다-->
+        <Button
+            android:id="@+id/button4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/example1"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="10dp"
+            android:textSize="20dp"
+            android:text="문의사항"/>
+    </LinearLayout>
+    <!-- 로그아웃 설정 버튼이다-->
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#8F6CB1"
+        android:layout_marginTop="10dp"
+
+        android:text="로그아웃"
+        android:textColor="#F2F2F6"
+        android:textSize="20dp" />
+
+    <!--로그아웃 버튼이다-->
+
+</LinearLayout>
