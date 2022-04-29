@@ -1,6 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="365dp"
+        android:layout_row="0"
+        android:layout_column="0"
+        android:orientation="vertical">
+        <!-- 위쪽 레이아웃 입니다. 캘린더가 들어갈 자리 -->
+
+        <com.prolificinteractive.materialcalendarview.MaterialCalendarView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/calendarView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:mcv_showOtherDates="all"
+            app:mcv_selectionColor="#00F"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="365dp"
+        android:layout_row="1"
+        android:layout_column="0"
+        android:orientation="vertical">
+        <!-- 아래쪽 레이아웃 입니다. 일정이 들어갈 자리 -->
+
+    </LinearLayout>
+</GridLayout>
