@@ -17,8 +17,7 @@ public class Main_basic extends AppCompatActivity {
         Date date = new Date(now); // 현재 시간을 date 형식으로 변환
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         String getTime = dateFormat.format(date);
-        return
-                getTime;
+        return getTime;
     }
 
 
