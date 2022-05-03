@@ -28,19 +28,20 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 switch (v.getId()){
                     case R.id.tts_test:
-                        i = new Intent(getApplicationContext(), TTS_Test.class);
+                        Intent i = new Intent(getApplicationContext(), TTS_Test.class);
                         startActivity(i);
                         break;
 
                     case R.id.calendartestbtn:
-                        i = new Intent(getApplicationContext(), Calender_Basic.class);
-                        startActivity(i);
+                        Intent j = new Intent(getApplicationContext(), Calender_Basic.class);
+                        startActivity(j);
                         break;
                 }
             }
         };
 
         ttsbtn.setOnClickListener(cl);
+        calbtn.setOnClickListener(cl);
 
     }
 }
