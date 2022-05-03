@@ -8,7 +8,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Calender">
+        android:theme="@style/Theme.Calender"
+        android:name=".StaticUidCode.UidCode">
         <activity
             android:name=".MainActivity"
             android:exported="true">
@@ -23,7 +24,6 @@
         <activity
             android:name=".Calender_Basic"
             android:windowSoftInputMode="adjustPan"></activity>
-
 
         <activity android:name=".TTS_Test"/>
 

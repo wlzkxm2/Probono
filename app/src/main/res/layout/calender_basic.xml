@@ -35,7 +35,7 @@
             android:layout_height="wrap_content"
             android:layout_row="0"
             android:layout_column="1"
-            android:text="TextView" />
+            android:text="MonthData_text" />
 
         <TextView
             android:id="@+id/DayData_text"
@@ -43,7 +43,7 @@
             android:layout_height="wrap_content"
             android:layout_row="0"
             android:layout_column="2"
-            android:text="TextView" />
+            android:text="DayData_text" />
 
         <Space
             android:layout_width="30dp"
@@ -97,7 +97,7 @@
             android:layout_height="wrap_content"
             android:layout_row="6"
             android:layout_column="1"
-            android:text="TextView" />
+            android:text="ScaView_text" />
 
     </GridLayout>
 </GridLayout>
