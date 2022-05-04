@@ -12,6 +12,7 @@ import android.widget.TimePicker;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
 import com.example.calender.DataBase.Calender_DB;
@@ -42,12 +43,9 @@ public class Calender_Basic extends Activity  {
 
     private MaterialCalendarView calender;
 
-    TextView months_text, days_text, scaView_text;
-    EditText inputSca_edit;
-
-    Button inputdata_btn;
-
-    TimePicker timePicker;
+    TextView now;
+    RecyclerView recyclerView;
+    List_ItemAdapter list_itemAdapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -60,16 +58,30 @@ public class Calender_Basic extends Activity  {
 
         //<editor-fold desc="기본 뷰 세팅 코드">
         calender = (MaterialCalendarView) findViewById(R.id.calendarView);
+        recyclerView = findViewById(R.id.recycler_view);
+        list_itemAdapter = new List_ItemAdapter();
+        recyclerView.setAdapter(list_itemAdapter);
 
-        months_text = (TextView) findViewById(R.id.MonthData_text);
-        days_text = (TextView) findViewById(R.id.DayData_text);
-        scaView_text = (TextView) findViewById(R.id.ScaView_text);
+        list_itemAdapter.removeAllItem();
 
-        inputSca_edit = (EditText) findViewById(R.id.InputSca_edit);
+        //샘플 데이터 생성
+        for (int i = 0; i < 50; i++) {
 
-        inputdata_btn = (Button) findViewById(R.id.InputData_btn);
+            List_Item list_item = new List_Item();
+            list_item.setTime("14:00" + "-" + i);
+            list_item.setTitle("과제하기" + "-" + i);
+            list_item.setText("그치만 하기 싫은걸" + "-" + i);
 
-        timePicker = (TimePicker) findViewById(R.id.TimeSet_picker);
+            //데이터 등록
+            list_itemAdapter.addItem(list_item);
+        }
+
+        //적용
+        list_itemAdapter.notifyDataSetChanged();
+
+        //애니메이션 실행
+        recyclerView.startLayoutAnimation();
+
         //</editor-fold>
 
         //<editor-fold desc="DB 기본 세팅 코드">
@@ -85,6 +97,7 @@ public class Calender_Basic extends Activity  {
         List<Calender_DB> calender_dbs = calender_dao.getAllData();
         //</editor-fold>
 
+        //<editor-fold desc=" 달력 꾸미기"
         // 캘린더 함수
         // 주말엔 색 다르게 변경
         calender.addDecorators(
@@ -104,6 +117,9 @@ public class Calender_Basic extends Activity  {
                         getResources().getTextArray(R.array.custom_weekdays)
                 )
         );
+        // </editor-fold>
+
+
 //        calender.setOnDateChangedListener(this);
 /*
         calender.setOnDateChangedListener(new OnDateSelectedListener() {
