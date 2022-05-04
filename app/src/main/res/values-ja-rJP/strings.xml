@@ -4,4 +4,6 @@
     <string name="account">ID設定</string>
     <string name="notification">通知設定</string>
     <string name="darkmode">テーマ設定</string>
+    <string name="easymode">イージーモード</string>
+    <string name="normalmode">ノーマルモード</string>
 </resources>
