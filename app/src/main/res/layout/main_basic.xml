@@ -8,7 +8,7 @@
 
 
     <ImageButton
-        android:id="@+id/imageButton2"
+        android:id="@+id/edit_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
@@ -21,7 +21,7 @@
         app:layout_constraintVertical_bias="0.038" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/main_basic_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
@@ -71,7 +71,7 @@
         app:layout_constraintVertical_bias="0.282" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/d_day"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
@@ -111,7 +111,7 @@
         app:layout_constraintVertical_bias="0.35" />
 
     <ImageButton
-        android:id="@+id/imageButton3"
+        android:id="@+id/tts_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
@@ -164,7 +164,7 @@
         app:layout_constraintVertical_bias="0.727" />
 
     <ImageButton
-        android:id="@+id/imageView8"
+        android:id="@+id/add_schedule"
         android:layout_width="45dp"
         android:layout_height="42dp"
         android:src="@drawable/img_add_schedule"

@@ -30,7 +30,7 @@
         </activity>
 
         <activity
-            android:name=".Main_basic"
+            android:name=".Main_Basic"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

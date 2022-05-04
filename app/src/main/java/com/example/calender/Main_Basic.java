@@ -13,11 +13,11 @@ import android.widget.TextView;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class Main_basic extends FragmentActivity {
+public class Main_Basic extends FragmentActivity {
 
     TextView now;
     RecyclerView recyclerView;
-    ItemAdapter itemAdapter;
+    List_ItemAdapter list_itemAdapter;
 
     private String getTime() { //현재 시간 가져오기
         long now = System.currentTimeMillis(); // 현재 시간을 now 변수에 넣음
@@ -37,25 +37,26 @@ public class Main_basic extends FragmentActivity {
 
         recyclerView = findViewById(R.id.recycler_view);
 
-        itemAdapter = new ItemAdapter();
-        recyclerView.setAdapter(itemAdapter);
+        list_itemAdapter = new List_ItemAdapter();
+        recyclerView.setAdapter(list_itemAdapter);
 
         //화면 클리어
-        itemAdapter.removeAllItem();
+        list_itemAdapter.removeAllItem();
 
         //샘플 데이터 생성
         for(int i = 0; i < 50; i++){
 
-            Item item = new Item();
-            item.setTitle("title"+i);
-            item.setDescription("description" + i);
+            List_Item list_item = new List_Item();
+            list_item.setTime("14:00"+"-"+i);
+            list_item.setTitle("과제하기" + "-"+i);
+            list_item.setText("그치만 하기 싫은걸" + "-"+i);
 
             //데이터 등록
-            itemAdapter.addItem(item);
+            list_itemAdapter.addItem(list_item);
         }
 
         //적용
-        itemAdapter.notifyDataSetChanged();
+        list_itemAdapter.notifyDataSetChanged();
 
         //애니메이션 실행
         recyclerView.startLayoutAnimation();
