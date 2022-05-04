@@ -27,4 +27,5 @@
     </string-array>
     <string name="account">Account Setting</string>
     <string name="notification">Notification Setting</string>
+    <string name="darkmode">DarkMode Setting</string>
 </resources>

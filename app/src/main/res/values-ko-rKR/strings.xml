@@ -3,4 +3,5 @@
     <string name="app_name">Calender</string>
     <string name="account">계정설정</string>
     <string name="notification">알림설정</string>
+    <string name="darkmode">다크모드 설정</string>
 </resources>
