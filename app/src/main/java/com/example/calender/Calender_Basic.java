@@ -9,11 +9,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import androidx.room.Room;
 
 import com.example.calender.DataBase.Calender_DB;
@@ -28,10 +26,8 @@ import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 import com.prolificinteractive.materialcalendarview.format.ArrayWeekDayFormatter;
 import com.prolificinteractive.materialcalendarview.format.MonthArrayTitleFormatter;
 
-import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
-import java.time.temporal.TemporalAccessor;
 import java.util.List;
 
 // 리스트를 구성하는 소스
@@ -297,6 +293,10 @@ public class Calender_Basic extends Activity  {
                 _month[0] = month;
                 _year[0] = year;
 
+                ((UidCode) getApplication()).setStatic_year(_year[0]);
+                ((UidCode) getApplication()).setStatic_month(_month[0]);
+                ((UidCode) getApplication()).setStatic_day(_day[0]);
+
                 String week = new SimpleDateFormat("EE").format(date.getCalendar().getTime());
 
                 month_t = year + "년 " + month + "월 " + day + "일";
@@ -334,16 +334,18 @@ public class Calender_Basic extends Activity  {
 
                 int hour = 0, minute = 0;
                 String time_ = "";
-                String log = "";
+                String log = "";        // 년월일
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
                     hour = timePicker.getHour();
                     minute = timePicker.getMinute();
                 }
 
                 time_ = Integer.toString(hour) + Integer.toString(minute);
-                log = Integer.toString(_year[0]) + "년 " +
-                        Integer.toString(_month[0]) + "월 " +
-                        Integer.toString(_day[0]) + "일";
+                log = Integer.toString(((UidCode) getApplication()).getStatic_year()) + "년 " +
+                        Integer.toString(((UidCode) getApplication()).getStatic_month()) + "월 " +
+                        Integer.toString(((UidCode) getApplication()).getStatic_day()) + "일";
+
+
 
                 Log.v(TAG,  time_ + " /");
                 Log.v(TAG, log);
