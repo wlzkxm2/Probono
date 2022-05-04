@@ -25,7 +25,16 @@
             android:name=".Calender_Basic"
             android:windowSoftInputMode="adjustPan"></activity>
 
-        <activity android:name=".TTS_Test"/>
+
+        <activity
+            android:name=".TTS_Test"
+            android:exported="true">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
         <activity
             android:name=".Main_basic"

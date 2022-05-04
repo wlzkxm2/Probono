@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Calender</string>
+    <string name="account">ID設定</string>
+    <string name="notification">通知設定</string>
+</resources>
