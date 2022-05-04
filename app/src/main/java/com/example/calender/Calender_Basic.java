@@ -171,6 +171,7 @@ public class Calender_Basic extends Activity  {
                 int hour = 0, minute = 0;
                 int year, month, day;
                 int time_;
+                int uid = ((UidCode) getApplication()).getUserCode();
 
                 String log = "";        // 년월일
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
@@ -185,9 +186,11 @@ public class Calender_Basic extends Activity  {
                 time_ = (hour*100) + minute;
 
                 Log.v(TAG,  time_ + " /");
-                Log.v(TAG, log);
+//                Log.v(TAG, log);
 
-                calender_db.setUid(((UidCode) getApplication()).getUserCode());
+
+
+                calender_db.setUid(uid+1);
                 calender_db.set_years(year);
                 calender_db.set_month(month);
                 calender_db.set_day(day);
