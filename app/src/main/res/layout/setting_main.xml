@@ -31,27 +31,44 @@
 
         <ImageView
             android:id="@+id/imageView5"
-            android:layout_width="156dp"
+            android:layout_width="150dp"
             android:layout_height="300dp"
             android:layout_alignBottom="@+id/imageView7"
             android:layout_alignParentStart="true"
-            android:layout_marginStart="29dp"
+            android:layout_marginStart="30dp"
             android:layout_marginBottom="66dp"
             app:srcCompat="@drawable/unknown" />
 
         <ImageView
             android:id="@+id/imageView6"
             android:layout_width="150dp"
-            android:layout_height="299dp"
+            android:layout_height="300dp"
             android:layout_alignBottom="@+id/imageView7"
             android:layout_alignParentEnd="true"
-            android:layout_marginEnd="24dp"
-            android:layout_marginBottom="71dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginBottom="66dp"
             app:srcCompat="@drawable/unknown_1" />
+
+        <RadioButton
+            android:id="@+id/radioButton2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="RadioButton"
+            android:translationX="50dp"
+            android:translationY="340dp" />
+
+        <RadioButton
+            android:id="@+id/radioButton3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="RadioButton"
+            android:translationX="230dp"
+            android:translationY="340dp" />
 
     </RelativeLayout>
 
 <!--    설정 버튼 화면 쪽이다-->
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
