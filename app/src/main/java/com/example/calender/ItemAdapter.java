@@ -1,6 +1,5 @@
 package com.example.calender;
 
-import android.content.ClipData;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,9 +11,12 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.calender.Item;
+import com.example.calender.R;
+
 import java.util.ArrayList;
 
-public class Schedule_List_Anim extends RecyclerView.Adapter<Schedule_List_Anim.ViewHolder>{
+public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder>{
 
     ArrayList<Item> items = new ArrayList<Item>();
 
