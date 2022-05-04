@@ -9,8 +9,8 @@ import org.jetbrains.annotations.NotNull;
 // 엔티티
 @Entity
 public class Calender_DB {
+
     @PrimaryKey // pk
-    @NotNull
     public int uid;
 
     @ColumnInfo(name = "FirstInputData")
@@ -37,6 +37,8 @@ public class Calender_DB {
 
 
 //<editor-fold desc="DB Getter & Setter">
+
+
 
     public int getUid() {
         return uid;

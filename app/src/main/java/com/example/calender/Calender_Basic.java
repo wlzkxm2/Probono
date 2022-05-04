@@ -105,7 +105,7 @@ public class Calender_Basic extends Activity  {
                 )
         );
 //        calender.setOnDateChangedListener(this);
-
+/*
         calender.setOnDateChangedListener(new OnDateSelectedListener() {
             @Override
             public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
@@ -202,6 +202,7 @@ public class Calender_Basic extends Activity  {
 
             }
         });
+        */
     }
 }
 
