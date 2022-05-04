@@ -30,171 +30,9 @@ import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
-// 리스트를 구성하는 소스
-class scheduleNode{
-    private int schedule_time;
-    private String schedule_title;       // 데이터 저장변수
-    private String schedule_subtitle;
-
-    public scheduleNode link;       // 다르노드를 참조할 링크노드
-
-    public scheduleNode(){
-        this.schedule_time = 0;
-        this.schedule_title = null;
-    }
-
-    public scheduleNode(int time, String title, String subtitle){
-        this.schedule_time = time;
-        this.schedule_title = title;
-        this.schedule_subtitle = subtitle;
-        this.link = null;
-    }
-
-    public scheduleNode(int time, String title, String subtitle, scheduleNode link){
-        this.schedule_time = time;
-        this.schedule_title = title;
-        this.schedule_subtitle = subtitle;
-        this.link = link;
-    }
-
-    
-
-    public int getData(){
-//        String timeSet = Integer.toString(schedule_time);
-        return this.schedule_time;
-    }
-
-    public String getTitle(){
-        return this.schedule_title;
-    }
-
-    public String getsubTitle(){
-        return this.schedule_subtitle;
-    }
-
-
-}
 
 public class Calender_Basic extends Activity  {
 
-    private scheduleNode head;  // scheduleNode 타입의 인스턴수 변수
-
-    public Calender_Basic() {
-        head = null;
-    }
-
-    // Node 중간에 삽입
-    public void insert_schedule_title(scheduleNode preNode,
-                                      int time,
-                                      String title,
-                                      String subtitle) {
-        scheduleNode newNode = new scheduleNode(time, title, subtitle);    // 새로운 노드생성
-        newNode.link = preNode.link;        // preNode.link는 preNode의 노드 참조
-        // preNode 가 newNode 를 가르키고 Newnode는 preNode의 다음노드 가르킴
-        preNode.link = newNode;
-    }
-
-    // 노드 마지막에 삽입
-    public void insert_schedule_title(int time, String title, String subtitle) {
-        scheduleNode newNode = new scheduleNode(time, title, subtitle);
-
-        if (head == null) {
-            // head 노드가 null일때 head 참조
-            this.head = newNode;
-        } else {
-            // head노드가 null 이 아닐때 다음 노드 참조
-            scheduleNode tempNode = head;
-
-            /*temp 노드의 다음이 null이 아닐때까지 다음 노드 참조
-            while문이 모두 실행되면 tempNode는 가장 마지막 노드 참조
-            */
-            while (tempNode.link != null) {
-                tempNode = tempNode.link;
-            }
-
-            tempNode.link = newNode;
-        }
-    }
-
-    // Node 중간 삭제
-    public void deleteNode(int time) {
-//        String times = Integer.toString(time);
-        scheduleNode preNode = head;
-        scheduleNode tempNode = head.link;
-
-        // 데이터가 preNode의 데이터와 일치하는 경우
-        if (time == preNode.getData()) {
-            head = preNode.link;
-            preNode.link = null;
-        } else {
-            while (tempNode != null) {
-                if (time == tempNode.getData()) {
-                    if (tempNode.link == null) {
-                        preNode = null;
-                    } else {
-                        preNode.link = tempNode.link;
-                        tempNode.link = null;
-                    }
-                    break;
-                } else {
-                    preNode = tempNode;
-                    tempNode = tempNode.link;
-                }
-            }
-        }
-    }
-
-    public void deleteNode() {
-        scheduleNode preNode;
-        scheduleNode tempNode;
-
-        // head 노드가 null이면 모든 노드가 삭제됫음을 확인
-        if (head == null) {
-            return;
-        }
-
-        // head 의 링크가 하나일경우 노드와에 연결을 끊음
-        if (head.link == null) {
-            head = null;
-        } else {
-            // head가 가르키는 영역을 preNode
-            preNode = head;
-            // head 다음 영역을 tempNode로 성정
-            tempNode = head.link;
-
-            // tempNode의 다음이 없을떄
-            while (tempNode.link != null) {
-                // preNode를 tempNode로 바꿈
-                preNode = tempNode;
-                tempNode = tempNode.link;
-            }
-
-            preNode.link = null;
-        }
-    }
-
-    public scheduleNode searchNode(int time) {
-        scheduleNode currentNode = this.head;
-
-        while (currentNode != null) {
-            if (time == currentNode.getData()) {
-                return currentNode;
-            } else {
-                currentNode = currentNode.link;
-            }
-        }
-        return currentNode;
-    }
-
-    public void printList() {
-        scheduleNode currentNode = this.head;
-
-        while (currentNode != null) {
-            Log.v(TAG, Integer.toString(currentNode.getData()) + "시 "
-                    + currentNode.getTitle() + " : 일정 "
-                    + currentNode.getsubTitle() + " : 메모");
-        }
-    }
 
     public Calender_Dao calender_dao;
 
@@ -215,8 +53,6 @@ public class Calender_Basic extends Activity  {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.calender_basic);
-
-        scheduleNode schedulenode = new scheduleNode();
 
         final int[] _day = {0};
         final int[] _month = {0};
@@ -333,32 +169,33 @@ public class Calender_Basic extends Activity  {
                 Calender_DB calender_db = new Calender_DB();
 
                 int hour = 0, minute = 0;
-                String time_ = "";
+                int year, month, day;
+                int time_;
+
                 String log = "";        // 년월일
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
                     hour = timePicker.getHour();
                     minute = timePicker.getMinute();
                 }
 
-                time_ = Integer.toString(hour) + Integer.toString(minute);
-                log = Integer.toString(((UidCode) getApplication()).getStatic_year()) + "년 " +
-                        Integer.toString(((UidCode) getApplication()).getStatic_month()) + "월 " +
-                        Integer.toString(((UidCode) getApplication()).getStatic_day()) + "일";
-
-
+                // 전역 변수에 저장된 변수를 불러오기
+                year = ((UidCode) getApplication()).getStatic_year();
+                month = ((UidCode) getApplication()).getStatic_month();
+                day = ((UidCode) getApplication()).getStatic_day();
+                time_ = (hour*100) + minute;
 
                 Log.v(TAG,  time_ + " /");
                 Log.v(TAG, log);
 
-//                calender_db.setUid(((UidCode) getApplication()).getUserCode());
-//                calender_db.set_years(0);
-//                calender_db.set_month(0);
-//                calender_db.set_day(0);
-//                calender_db.set_day(0000);
-//                calender_db.set_firstData(true);
-//                calender_db.set_titles(null);
-//                calender_db.set_subtitle(null);
-//                calender_dao.insertAll(calender_db);
+                calender_db.setUid(((UidCode) getApplication()).getUserCode());
+                calender_db.set_years(year);
+                calender_db.set_month(month);
+                calender_db.set_day(day);
+                calender_db.set_time(time_);
+                calender_db.set_firstData(false);
+                calender_db.set_titles(inputSca_edit.getText().toString());
+                calender_db.set_subtitle(null);
+                calender_dao.insertAll(calender_db);
 
             }
         });
