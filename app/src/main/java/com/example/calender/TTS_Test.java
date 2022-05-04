@@ -2,6 +2,7 @@ package com.example.calender;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
@@ -12,6 +13,7 @@ import android.speech.SpeechRecognizer;
 import android.speech.tts.TextToSpeech;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -39,10 +41,11 @@ public class TTS_Test extends Activity implements TextToSpeech.OnInitListener {
     boolean recording = false;  //현재 녹음중인지 여부
     private Disposable disposable;
     private TextToSpeech tts;
-    Button btn_TTS, btn_STT;
+    Button btn_TTS, btn_STT, btn_Dialog;
     EditText text;
     TextView tv_Result;
     View.OnClickListener click;
+    Dialog dialog;
 
 
     @Override
@@ -55,6 +58,7 @@ public class TTS_Test extends Activity implements TextToSpeech.OnInitListener {
         tts = new TextToSpeech(this, this);
         btn_TTS = findViewById(R.id.btn_TTS);
         btn_STT = findViewById(R.id.btn_STT);
+        btn_Dialog = findViewById(R.id.btn_dialog);
         text = findViewById(R.id.editText);
         tv_Result = findViewById(R.id.tv_Result);
 
@@ -64,6 +68,11 @@ public class TTS_Test extends Activity implements TextToSpeech.OnInitListener {
         intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
         intent.putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE, getPackageName());
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "ko-KR");   //한국어
+
+        dialog =  new Dialog(TTS_Test.this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE); // 타이틀 제거
+        dialog.setContentView(R.layout.dialog_test);
+
 
 
         click = new View.OnClickListener() {
@@ -83,6 +92,8 @@ public class TTS_Test extends Activity implements TextToSpeech.OnInitListener {
                     case R.id.btn_TTS:
                         speakOut();
                         break;
+                    case R.id.btn_dialog:
+                        showDialog();
                     default:
                         break;
                 }
@@ -90,6 +101,7 @@ public class TTS_Test extends Activity implements TextToSpeech.OnInitListener {
         };
         btn_TTS.setOnClickListener(click);
         btn_STT.setOnClickListener(click);
+        btn_Dialog.setOnClickListener(click);
     }
 
 
@@ -239,7 +251,27 @@ public class TTS_Test extends Activity implements TextToSpeech.OnInitListener {
         }
     }
 
+    public void showDialog() {
+       dialog.show();
+       Button btn_Save = dialog.findViewById(R.id.btn_Save);
 
+       btn_Save.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               //기능추가
+            dialog.dismiss();
+           }
+
+       });
+      Button btn_Back = dialog.findViewById(R.id.btn_Back);
+       btn_Back.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               dialog.dismiss();
+           }
+       });
+
+    }
 
     void CheckPermission() {
         //안드로이드 버전이 6.0 이상

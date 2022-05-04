@@ -1,34 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
 <GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_row="0"
-        android:layout_column="0"
-        android:orientation="vertical">
-        <!-- 위쪽 레이아웃 입니다. 캘린더가 들어갈 자리 -->
+        android:layout_height="match_parent">
 
-        <com.prolificinteractive.materialcalendarview.MaterialCalendarView
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/calendarView"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:mcv_showOtherDates="all"
-            app:mcv_selectionColor="#00F"
-            />
+            android:orientation="vertical">
+            <!-- 위쪽 레이아웃 입니다. 캘린더가 들어갈 자리 -->
 
-    </LinearLayout>
+            <com.prolificinteractive.materialcalendarview.MaterialCalendarView
+                android:id="@+id/calendarView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:mcv_selectionColor="#00F"
+                app:mcv_showOtherDates="all">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_row="1"
-        android:layout_column="0"
-        android:orientation="vertical">
-        <!-- 아래쪽 레이아웃 입니다. 일정이 들어갈 자리 -->
+            </com.prolificinteractive.materialcalendarview.MaterialCalendarView>
 
-    </LinearLayout>
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <GridLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/MonthData_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_row="0"
+                        android:layout_column="1"
+                        android:text="MonthData_text" />
+
+                    <TextView
+                        android:id="@+id/DayData_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_row="0"
+                        android:layout_column="2"
+                        android:text="DayData_text" />
+
+                    <Space
+                        android:layout_width="30dp"
+                        android:layout_height="20dp"
+                        android:layout_row="1"
+                        android:layout_column="0" />
+
+                    <EditText
+                        android:id="@+id/InputSca_edit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_row="2"
+                        android:layout_column="1"
+                        android:ems="10"
+                        android:hint="무엇을 할 예정인가요?"
+                        android:inputType="textPersonName" />
+
+                    <Button
+                        android:id="@+id/InputData_btn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_row="2"
+                        android:layout_column="3"
+                        android:text="확인" />
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_row="4"
+                        android:layout_column="1"
+                        android:text="입력되어 있는 일정" />
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_row="3"
+                        android:layout_column="2" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_row="5"
+                        android:layout_column="1" />
+
+                    <TextView
+                        android:id="@+id/ScaView_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_row="6"
+                        android:layout_column="1"
+                        android:text="ScaView_text" />
+
+                    <TimePicker
+                        android:id="@+id/TimeSet_picker"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_row="1"
+                        android:layout_column="1"
+                        android:timePickerMode="spinner" />
+
+                </GridLayout>
+            </ScrollView>
+
+        </LinearLayout>
+    </ScrollView>
+
 </GridLayout>

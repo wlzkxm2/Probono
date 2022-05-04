@@ -1,5 +1,6 @@
 package com.example.calender;
 
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
@@ -44,12 +45,12 @@ public class Main_Basic extends FragmentActivity {
         list_itemAdapter.removeAllItem();
 
         //샘플 데이터 생성
-        for(int i = 0; i < 50; i++){
+        for (int i = 0; i < 50; i++) {
 
             List_Item list_item = new List_Item();
-            list_item.setTime("14:00"+"-"+i);
-            list_item.setTitle("과제하기" + "-"+i);
-            list_item.setText("그치만 하기 싫은걸" + "-"+i);
+            list_item.setTime("14:00" + "-" + i);
+            list_item.setTitle("과제하기" + "-" + i);
+            list_item.setText("그치만 하기 싫은걸" + "-" + i);
 
             //데이터 등록
             list_itemAdapter.addItem(list_item);
@@ -61,5 +62,4 @@ public class Main_Basic extends FragmentActivity {
         //애니메이션 실행
         recyclerView.startLayoutAnimation();
     }
-
 }
