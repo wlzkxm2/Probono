@@ -138,6 +138,7 @@ public class Calender_Basic extends Activity implements OnDateSelectedListener{
 
         month_t = year + "년 " + month + "월 " + day + "일";
         week_t = week;
+        // 테스트 추가
 
         months_text.setText(month_t);
         days_text.setText(week_t);

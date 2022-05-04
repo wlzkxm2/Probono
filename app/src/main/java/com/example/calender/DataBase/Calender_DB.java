@@ -4,30 +4,36 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import org.jetbrains.annotations.NotNull;
+
 // 엔티티
 @Entity
 public class Calender_DB {
-    @PrimaryKey // pk 
+    @PrimaryKey // pk
+    @NotNull
     public int uid;
 
     @ColumnInfo(name = "FirstInputData")
     public boolean _firstData;
     
     // ColumnInfo 를 통해서 DB내부 엔티티 이름을 따로 설정
+    @ColumnInfo(name = "years")
+    public int _years;
+
     @ColumnInfo(name = "months")
     public int _month;
     
     @ColumnInfo(name = "days")
     public int _day;
 
-    @ColumnInfo(name = "years")
-    public int _years;
+    @ColumnInfo(name = "times")
+    public int _time;
     
     @ColumnInfo(name = "datas")
     public String _data;
 
 
-    //<editor-fold desc="DB Getter & Setter">
+//<editor-fold desc="DB Getter & Setter">
 
     public int getUid() {
         return uid;
@@ -75,6 +81,14 @@ public class Calender_DB {
 
     public void set_data(String _data) {
         this._data = _data;
+    }
+
+    public int get_time() {
+        return _time;
+    }
+
+    public void set_time(int _time) {
+        this._time = _time;
     }
 
     //</editor-fold desc="DB Getter & Setter">
