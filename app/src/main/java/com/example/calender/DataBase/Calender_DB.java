@@ -9,8 +9,8 @@ import org.jetbrains.annotations.NotNull;
 // 엔티티
 @Entity
 public class Calender_DB {
+
     @PrimaryKey // pk
-    @NotNull
     public int uid;
 
     @ColumnInfo(name = "FirstInputData")
@@ -29,11 +29,16 @@ public class Calender_DB {
     @ColumnInfo(name = "times")
     public int _time;
     
-    @ColumnInfo(name = "datas")
-    public String _data;
+    @ColumnInfo(name = "Titles")
+    public String _titles;
+
+    @ColumnInfo(name = "Subtitles")
+    public String _subtitle;
 
 
 //<editor-fold desc="DB Getter & Setter">
+
+
 
     public int getUid() {
         return uid;
@@ -75,20 +80,28 @@ public class Calender_DB {
         this._years = _years;
     }
 
-    public String get_data() {
-        return _data;
-    }
-
-    public void set_data(String _data) {
-        this._data = _data;
-    }
-
     public int get_time() {
         return _time;
     }
 
     public void set_time(int _time) {
         this._time = _time;
+    }
+
+    public String get_titles() {
+        return _titles;
+    }
+
+    public void set_titles(String _titles) {
+        this._titles = _titles;
+    }
+
+    public String get_subtitle() {
+        return _subtitle;
+    }
+
+    public void set_subtitle(String _subtitle) {
+        this._subtitle = _subtitle;
     }
 
     //</editor-fold desc="DB Getter & Setter">
