@@ -28,8 +28,9 @@
 
         <activity
 
-            android:name=".Main_Basic"
+            android:name=".Main_Basic"/>
 
+        <activity
             android:name=".TTS_Test"
 
             android:exported="true">
