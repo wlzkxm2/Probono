@@ -27,7 +27,11 @@
 
 
         <activity
+
+            android:name=".Main_Basic"
+
             android:name=".TTS_Test"
+
             android:exported="true">
 
             <intent-filter>
