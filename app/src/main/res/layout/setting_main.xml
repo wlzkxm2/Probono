@@ -9,25 +9,45 @@
 
     >
 <!--    -->
+    <!--   이지모드 설정 쪽이다-->
+
     <TextView
         android:id="@+id/textView"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="50dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
         android:text="MyPage"
         android:textSize="30dp"
         android:textStyle="bold" />
-<!--   이지모드 설정 쪽이다-->
+
     <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="409dp">
 
         <ImageView
             android:id="@+id/imageView7"
             android:layout_width="match_parent"
             android:layout_height="400dp"
             app:srcCompat="@drawable/example1" />
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="156dp"
+            android:layout_height="300dp"
+            android:layout_alignBottom="@+id/imageView7"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="29dp"
+            android:layout_marginBottom="66dp"
+            app:srcCompat="@drawable/unknown" />
+
+        <ImageView
+            android:id="@+id/imageView6"
+            android:layout_width="150dp"
+            android:layout_height="299dp"
+            android:layout_alignBottom="@+id/imageView7"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="71dp"
+            app:srcCompat="@drawable/unknown_1" />
 
     </RelativeLayout>
 
