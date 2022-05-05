@@ -10,6 +10,7 @@ public class UidCode extends Application {
     private int static_month;
     private int static_day;
     private int time;
+    private String week;
 
     public int getStatic_year() {
         return static_year;
@@ -49,4 +50,13 @@ public class UidCode extends Application {
     public void setUserCode(int userCode) {
         UserCode = userCode;
     }
+
+    public String getWeek() {
+        return week;
+    }
+
+    public void setWeek(String week) {
+        this.week = week;
+    }
+
 }
