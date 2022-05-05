@@ -16,6 +16,9 @@ public interface Calender_Dao {
     @Query("select * from calender_db where UserIDCode in (:userIds)")
     List<Calender_DB> loadAllDataByIDs(int[] userIds);
 
+    @Query("select * from calender_db where years = (:Years) and months = (:Months) and days = (:Days)")
+    List<Calender_DB> loadAllDataByYears(int Years, int Months, int Days);
+
     // 데이터 삽입
     @Insert
     void insertAll(Calender_DB calender_db);

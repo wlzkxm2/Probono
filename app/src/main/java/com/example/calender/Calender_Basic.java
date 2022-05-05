@@ -1,17 +1,12 @@
 package com.example.calender;
 
 import android.app.Activity;
-import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.TimePicker;
+import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
@@ -26,6 +21,8 @@ import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 import com.prolificinteractive.materialcalendarview.format.ArrayWeekDayFormatter;
 import com.prolificinteractive.materialcalendarview.format.MonthArrayTitleFormatter;
+
+import org.jetbrains.annotations.Nullable;
 
 import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
@@ -46,6 +43,7 @@ public class Calender_Basic extends Activity  {
     TextView now;
     RecyclerView recyclerView;
     List_ItemAdapter list_itemAdapter;
+    Button addcal_btn;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -55,6 +53,8 @@ public class Calender_Basic extends Activity  {
         final int[] _day = {0};
         final int[] _month = {0};
         final int[] _year = {0};
+
+        addcal_btn = (Button) findViewById(R.id.Addcal_btn);
 
         //<editor-fold desc="기본 뷰 세팅 코드">
         calender = (MaterialCalendarView) findViewById(R.id.calendarView);
@@ -76,30 +76,6 @@ public class Calender_Basic extends Activity  {
 
         List<Calender_DB> calender_dbs = calender_dao.getAllData();
         //</editor-fold>
-
-
-
-        //샘플 데이터 생성
-        for (int i = 0; i < 50; i++) {
-
-            List_Item list_item = new List_Item();
-            list_item.setTime("14:00" + "-" + i);
-            list_item.setTitle("과제하기" + "-" + i);
-            list_item.setText("그치만 하기 싫은걸" + "-" + i);
-
-            //데이터 등록
-            list_itemAdapter.addItem(list_item);
-        }
-
-        //적용
-        list_itemAdapter.notifyDataSetChanged();
-
-        //애니메이션 실행
-        recyclerView.startLayoutAnimation();
-
-        //</editor-fold>
-
-
 
         //<editor-fold desc=" 달력 꾸미기"
         // 캘린더 함수
@@ -123,6 +99,63 @@ public class Calender_Basic extends Activity  {
         );
         // </editor-fold>
 
+        calender.setOnDateChangedListener(new OnDateSelectedListener() {
+            @Override
+            public void onDateSelected(MaterialCalendarView materialCalendarView, CalendarDay date, boolean b) {
+                Calender_Basic schedulenode = new Calender_Basic();
+
+                String month_t = "",
+                        week_t = "",
+                        title = "",
+                        subtitle = "",
+                        outputData = "";
+
+                int time = 0000;
+
+                //<editor-fold desc="누른 일자를 구하는 함수">
+                final int day = date.getDay();
+                final int month = date.getMonth();
+                final int year = date.getYear();
+                String week = new SimpleDateFormat("EE").format(date.getCalendar().getTime());
+
+                month_t = year + "년 " + month + "월 " + day + "일";
+                week_t = week;
+                _day[0] = day;
+                _month[0] = month+1;
+                _year[0] = year;
+
+                // <editor-fold desc="일자 데이터를 전역변수에 전송">
+                ((UidCode) getApplication()).setStatic_year(_year[0]);
+                ((UidCode) getApplication()).setStatic_month(_month[0]);
+                ((UidCode) getApplication()).setStatic_day(_day[0]);
+                ((UidCode) getApplication()).setWeek(week);
+                // </editor-fold>
+
+                List<Calender_DB> calender_like_years = calender_dao.loadAllDataByYears(_year[0], _month[0], _day[0]);
+                Toast.makeText(getApplication(), _year[0] + "-" + _month[0] + "-" + _day[0], Toast.LENGTH_SHORT).show();
+
+                for (int i = 0; i < calender_like_years.size(); i++) {
+                    List_Item calList = new List_Item();
+                    calList.setTime(Integer.toString(calender_like_years.get(i).get_time()));
+                    calList.setTitle(calender_like_years.get(i).get_titles());
+                    calList.setTitle(calender_like_years.get(i).get_subtitle());
+
+                    list_itemAdapter.addItem(calList);
+                }
+                list_itemAdapter.notifyDataSetChanged();
+                recyclerView.startLayoutAnimation();
+
+            }
+        });
+
+        addcal_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                inputdata();
+            }
+        });
+        list_itemAdapter.notifyDataSetChanged();
+        recyclerView.startLayoutAnimation();
 
 //        calender.setOnDateChangedListener(this);
 /*
@@ -224,47 +257,23 @@ public class Calender_Basic extends Activity  {
         });
         */
     }
-}
 
-//    @Override
-//    public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
-//        List<Calender_DB> cheakDB = calender_dao.getAllData();  // 데이터를 저장하기 위해 저장된 모든 데이터 출력
-//        scheduleNode schedulenode = new scheduleNode();
-//
-//        String month_t = "";
-//        String week_t = "";
-//
-//        String title = "";
-//        String subtitle = "";
-//        int time = 0000;
-//
-//        //<editor-fold desc="누른 일자를 구하는 함수">
-//        final int day = date.getDay();
-//        final int month = date.getMonth();
-//        final int year = date.getYear();
-//        String week = new SimpleDateFormat("EE").format(date.getCalendar().getTime());
-//
-//        month_t = year + "년 " + month + "월 " + day + "일";
-//        week_t = week;
-//        //</editor-fold>
-//
-//        for (int i = 0; i <cheakDB.size(); i++) {
-//            if (cheakDB.get(i)._firstData == false){
-//                if (cheakDB.get(i)._years == year
-//                        && cheakDB.get(i)._month == month
-//                        && cheakDB.get(i)._day == day){
-//                    title = cheakDB.get(i).get_titles();
-//                    subtitle = cheakDB.get(i).get_subtitle();
-//                    time = cheakDB.get(i).get_time();
-//
-//                    schedulenode.
-//
-//                }
-//            }
-//        }
-//
-//        months_text.setText(month_t);
-//        days_text.setText(week_t);
-//    }
-//}
+    public void inputdata(){
+        // 데이터베이스에 최초 데이터 출력
+
+        for (int i = 0; i < 10; i++) {
+            Calender_DB calender_db = new Calender_DB();
+            calender_db.setUid(((UidCode) getApplication()).getUserCode());
+            calender_db.set_years(2022);
+            calender_db.set_month(5);
+            calender_db.set_day(6);
+            calender_db.set_time(10 + i);
+            calender_db.set_firstData(true);
+            calender_db.set_titles(Integer.toString(i));
+            calender_db.set_subtitle(Integer.toString(i) + " " + Integer.toString(i));
+            calender_dao.insertAll(calender_db);
+        }
+
+    }
+}
 
