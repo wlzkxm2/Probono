@@ -54,6 +54,8 @@ public class Calender_Basic extends Activity  {
         final int[] _month = {0};
         final int[] _year = {0};
 
+        final int[] appData = {0};
+
         addcal_btn = (Button) findViewById(R.id.Addcal_btn);
 
         //<editor-fold desc="기본 뷰 세팅 코드">
@@ -132,7 +134,10 @@ public class Calender_Basic extends Activity  {
                 // </editor-fold>
 
                 List<Calender_DB> calender_like_years = calender_dao.loadAllDataByYears(_year[0], _month[0], _day[0]);
+                appData[0] = calender_like_years.size();
                 Toast.makeText(getApplication(), _year[0] + "-" + _month[0] + "-" + _day[0], Toast.LENGTH_SHORT).show();
+
+                list_itemAdapter.removeAllItem();
 
                 for (int i = 0; i < calender_like_years.size(); i++) {
                     List_Item calList = new List_Item();
