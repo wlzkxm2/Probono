@@ -13,7 +13,7 @@ public interface Calender_Dao {
     @Query("select * from calender_db")
     List<Calender_DB> getAllData();
 
-    @Query("select * from calender_db where uid in (:userIds)")
+    @Query("select * from calender_db where UserIDCode in (:userIds)")
     List<Calender_DB> loadAllDataByIDs(int[] userIds);
 
     // 데이터 삽입

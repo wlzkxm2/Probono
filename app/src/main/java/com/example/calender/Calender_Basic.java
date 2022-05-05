@@ -64,6 +64,21 @@ public class Calender_Basic extends Activity  {
 
         list_itemAdapter.removeAllItem();
 
+        //<editor-fold desc="DB 기본 세팅 코드">
+
+        // 캘린더 데이터베이스 정의
+        Calender_DBSet dbController = Room.databaseBuilder(getApplicationContext(), Calender_DBSet.class, "CalenderDB")
+                .fallbackToDestructiveMigration()
+                .allowMainThreadQueries()
+                .build();
+
+        calender_dao = dbController.calender_dao();
+
+        List<Calender_DB> calender_dbs = calender_dao.getAllData();
+        //</editor-fold>
+
+
+
         //샘플 데이터 생성
         for (int i = 0; i < 50; i++) {
 
@@ -84,18 +99,7 @@ public class Calender_Basic extends Activity  {
 
         //</editor-fold>
 
-        //<editor-fold desc="DB 기본 세팅 코드">
 
-        // 캘린더 데이터베이스 정의
-        Calender_DBSet dbController = Room.databaseBuilder(getApplicationContext(), Calender_DBSet.class, "CalenderDB")
-                .fallbackToDestructiveMigration()
-                .allowMainThreadQueries()
-                .build();
-
-        calender_dao = dbController.calender_dao();
-
-        List<Calender_DB> calender_dbs = calender_dao.getAllData();
-        //</editor-fold>
 
         //<editor-fold desc=" 달력 꾸미기"
         // 캘린더 함수

@@ -10,25 +10,28 @@ import org.jetbrains.annotations.NotNull;
 @Entity
 public class Calender_DB {
 
-    @PrimaryKey // pk
+    @PrimaryKey(autoGenerate = true) // pk
+    public int num;
+
+    @ColumnInfo(name = "UserIDCode")
     public int uid;
 
     @ColumnInfo(name = "FirstInputData")
     public boolean _firstData;
-    
+
     // ColumnInfo 를 통해서 DB내부 엔티티 이름을 따로 설정
     @ColumnInfo(name = "years")
     public int _years;
 
     @ColumnInfo(name = "months")
     public int _month;
-    
+
     @ColumnInfo(name = "days")
     public int _day;
 
     @ColumnInfo(name = "times")
     public int _time;
-    
+
     @ColumnInfo(name = "Titles")
     public String _titles;
 
@@ -39,6 +42,13 @@ public class Calender_DB {
 //<editor-fold desc="DB Getter & Setter">
 
 
+    public int getNum() {
+        return num;
+    }
+
+    public void setNum(int num) {
+        this.num = num;
+    }
 
     public int getUid() {
         return uid;
