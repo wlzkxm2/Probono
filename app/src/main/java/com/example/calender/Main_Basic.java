@@ -5,16 +5,27 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class Main_Basic extends FragmentActivity {
+public class Main_Basic extends FragmentActivity  implements View.OnClickListener{
+    //플로팅 버튼
+    private Context mContext;
+    private FloatingActionButton floating_main, floating_edit, floating_voice;
+    private Animation floating_open, floating_close;
+    private boolean isFabOpen = false;
 
     TextView now;
     RecyclerView recyclerView;
@@ -33,8 +44,24 @@ public class Main_Basic extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_basic);
 
+        //플로팅 버튼
+        mContext = getApplicationContext();
+
+        floating_open = AnimationUtils.loadAnimation(mContext, R.anim.floating_open);
+        floating_close = AnimationUtils.loadAnimation(mContext, R.anim.floating_close);
+
+        floating_main = (FloatingActionButton) findViewById(R.id.floating_main);
+        floating_edit = (FloatingActionButton) findViewById(R.id.floating_edit);
+        floating_voice = (FloatingActionButton) findViewById(R.id.floating_voice);
+
+        floating_main.setOnClickListener(this);
+        floating_edit.setOnClickListener(this);
+        floating_voice.setOnClickListener(this);
+
+        //현재 시간
         now = (TextView) findViewById(R.id.main_basic_now);
         now.setText(getTime());
+
 
         recyclerView = findViewById(R.id.recycler_view);
 
@@ -62,4 +89,42 @@ public class Main_Basic extends FragmentActivity {
         //애니메이션 실행
         recyclerView.startLayoutAnimation();
     }
+
+    //플로팅버튼 스위치
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.floating_main:
+                toggleFab();
+                break;
+            case R.id.floating_edit:
+                toggleFab();
+                Toast.makeText(this, "일정 상세 등록 팝업", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.floating_voice:
+                toggleFab();
+                Toast.makeText(this, "일정 음성 등록 팝업", Toast.LENGTH_SHORT).show();
+                break;
+        }
+    }
+
+    //플로팅버튼 동작
+    private void toggleFab() {
+        if (isFabOpen) {
+            floating_main.setImageResource(R.drawable.ic_more);
+            floating_edit.startAnimation(floating_close);
+            floating_voice.startAnimation(floating_close);
+            floating_edit.setClickable(false);
+            floating_voice.setClickable(false);
+            isFabOpen = false;
+        } else {
+            floating_main.setImageResource(R.drawable.ic_close);
+            floating_edit.startAnimation(floating_open);
+            floating_voice.startAnimation(floating_open);
+            floating_edit.setClickable(true);
+            floating_voice.setClickable(true);
+            isFabOpen = true;
+        }
+    }
 }
+
