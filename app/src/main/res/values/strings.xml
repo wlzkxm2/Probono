@@ -30,4 +30,5 @@
     <string name="darkmode">DarkMode Setting</string>
     <string name="easymode">EasyMode</string>
     <string name="normalmode">NormalMode</string>
+    <string name="name_setting">Change Name</string>
 </resources>

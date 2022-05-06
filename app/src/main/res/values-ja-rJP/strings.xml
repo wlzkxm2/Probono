@@ -6,4 +6,5 @@
     <string name="darkmode">テーマ設定</string>
     <string name="easymode">イージーモード</string>
     <string name="normalmode">ノーマルモード</string>
+    <string name="name_setting">ニックネーム変更</string>
 </resources>

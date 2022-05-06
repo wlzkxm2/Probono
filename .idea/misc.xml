@@ -11,7 +11,8 @@
         <entry key="app/src/main/res/drawable/exam.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/example1.xml" value="0.113" />
         <entry key="app/src/main/res/layout/darkmode.xml" value="0.38035961272475793" />
-        <entry key="app/src/main/res/layout/setting_main.xml" value="0.2671272167261097" />
+        <entry key="app/src/main/res/layout/setting_account.xml" value="0.6786280314127604" />
+        <entry key="app/src/main/res/layout/setting_main.xml" value="0.33" />
       </map>
     </option>
   </component>

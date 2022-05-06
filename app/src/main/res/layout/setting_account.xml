@@ -8,7 +8,7 @@
     android:background="#F2F2F6"
 
     >
-<!--    -->
+    <!--    -->
     <!--   이지모드 설정 쪽이다-->
 
     <TextView
@@ -19,55 +19,7 @@
         android:textSize="30dp"
         android:textStyle="bold" />
 
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="409dp">
-
-        <ImageView
-            android:id="@+id/imageView7"
-            android:layout_width="match_parent"
-            android:layout_height="400dp"
-            app:srcCompat="@drawable/example1" />
-
-        <ImageView
-            android:id="@+id/imageView5"
-            android:layout_width="150dp"
-            android:layout_height="300dp"
-            android:layout_alignBottom="@+id/imageView7"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="30dp"
-            android:layout_marginBottom="66dp"
-            app:srcCompat="@drawable/unknown" />
-
-        <ImageView
-            android:id="@+id/imageView6"
-            android:layout_width="150dp"
-            android:layout_height="300dp"
-            android:layout_alignBottom="@+id/imageView7"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="30dp"
-            android:layout_marginBottom="66dp"
-            app:srcCompat="@drawable/unknown_1" />
-
-        <RadioButton
-            android:id="@+id/radioButton2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/normalmode"
-            android:translationX="50dp"
-            android:translationY="340dp" />
-
-        <RadioButton
-            android:id="@+id/radioButton3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/easymode"
-            android:translationX="230dp"
-            android:translationY="340dp" />
-
-    </RelativeLayout>
-
-<!--    설정 버튼 화면 쪽이다-->
+    <!--    설정 버튼 화면 쪽이다-->
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -114,16 +66,6 @@
         <!--문의사항 버튼이다-->
     </LinearLayout>
     <!-- 로그아웃 설정 버튼이다-->
-    <Button
-        android:id="@+id/button5"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:backgroundTint="#8F6CB1"
-        android:layout_marginTop="10dp"
-
-        android:text="로그아웃"
-        android:textColor="#F2F2F6"
-        android:textSize="20dp" />
 
     <!--로그아웃 버튼이다-->
 
