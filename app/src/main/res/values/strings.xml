@@ -31,4 +31,8 @@
     <string name="easymode">EasyMode</string>
     <string name="normalmode">NormalMode</string>
     <string name="name_setting">Change Name</string>
+    <string name="lightmode">LightMode</string>
+    <string name="back">Back</string>
+    <string name="Darkmode">DarkMode</string>
+    <string name="birthday">Change Birth</string>
 </resources>

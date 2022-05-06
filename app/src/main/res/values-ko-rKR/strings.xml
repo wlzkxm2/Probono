@@ -7,4 +7,8 @@
     <string name="easymode">이지모드</string>
     <string name="normalmode">일반모드</string>
     <string name="name_setting">이름 바꾸기</string>
+    <string name="lightmode">라이트 모드</string>
+    <string name="back">돌아가기</string>
+    <string name="Darkmode">다크모드</string>
+    <string name="birthday">생일 변경</string>
 </resources>
