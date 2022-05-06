@@ -3,4 +3,13 @@
     <string name="app_name">Calender</string>
     <string name="account">계정설정</string>
     <string name="notification">알림설정</string>
+    <string name="darkmode">다크모드 설정</string>
+    <string name="easymode">이지모드</string>
+    <string name="normalmode">일반모드</string>
+    <string name="name_setting">이름 바꾸기</string>
+    <string name="lightmode">라이트 모드</string>
+    <string name="back">돌아가기</string>
+    <string name="Darkmode">다크모드</string>
+    <string name="birthday">생일 변경</string>
+    <string name="notification_all">알림</string>
 </resources>

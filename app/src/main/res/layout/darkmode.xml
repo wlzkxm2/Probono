@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#f2f2f6">
+
+    <TextView
+        android:id="@+id/setting_dark"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="다크모드 설정"
+        android:textSize="50dp"
+        android:textAlignment="center"
+        android:layout_marginTop="50dp"
+       />
+
+    <Button
+        android:id="@+id/light_btn"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:text="@string/Darkmode"
+        android:textColor="#000000"
+        android:textSize="30dp"
+        android:layout_marginTop="100dp"
+        />
+
+    <Button
+        android:id="@+id/dark_btn"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:textColor="#000000"
+        android:text="@string/lightmode"
+        android:textSize="30dp"
+        />
+    <Button
+        android:id="@+id/dark_back"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:textColor="#000000"
+        android:text="@string/back"
+        android:textSize="30dp"
+        />
+</LinearLayout>

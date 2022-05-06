@@ -3,4 +3,13 @@
     <string name="app_name">Calender</string>
     <string name="account">ID設定</string>
     <string name="notification">通知設定</string>
+    <string name="darkmode">テーマ設定</string>
+    <string name="easymode">イージーモード</string>
+    <string name="normalmode">ノーマルモード</string>
+    <string name="name_setting">ニックネーム変更</string>
+    <string name="lightmode">ライトモード</string>
+    <string name="back">帰り</string>
+    <string name="Darkmode">テーマ設定</string>
+    <string name="birthday">誕生日変更</string>
+    <string name="notification_all">お知らせ</string>
 </resources>
