@@ -12,4 +12,5 @@
     <string name="Darkmode">テーマ設定</string>
     <string name="birthday">誕生日変更</string>
     <string name="notification_all">お知らせ</string>
+    <string name="hello_blank_fragment">1Hello blank fragment</string>
 </resources>

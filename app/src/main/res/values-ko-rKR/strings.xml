@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Calender</string>
-    <string name="account">계정설정</string>
     <string name="notification">알림설정</string>
     <string name="darkmode">다크모드 설정</string>
     <string name="easymode">이지모드</string>
@@ -12,4 +11,6 @@
     <string name="Darkmode">다크모드</string>
     <string name="birthday">생일 변경</string>
     <string name="notification_all">알림</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="account">계정</string>
 </resources>
