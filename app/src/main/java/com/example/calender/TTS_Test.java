@@ -25,6 +25,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.example.calender.addschedule.AddSchedule;
 import com.jakewharton.rxbinding4.widget.RxTextView;
 
 import java.util.ArrayList;
@@ -93,7 +94,10 @@ public class TTS_Test extends Activity implements TextToSpeech.OnInitListener {
                         speakOut();
                         break;
                     case R.id.btn_dialog:
-                        showDialog();
+//                        showDialog();
+                        Intent intent = new Intent(getApplicationContext(), AddSchedule.class);
+                        startActivity(intent);
+                        break;
                     default:
                         break;
                 }
@@ -251,27 +255,28 @@ public class TTS_Test extends Activity implements TextToSpeech.OnInitListener {
         }
     }
 
-    public void showDialog() {
-       dialog.show();
-       Button btn_Save = dialog.findViewById(R.id.btn_Save);
-
-       btn_Save.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View v) {
-               //기능추가
-            dialog.dismiss();
-           }
-
-       });
-      Button btn_Back = dialog.findViewById(R.id.btn_Back);
-       btn_Back.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View v) {
-               dialog.dismiss();
-           }
-       });
-
-    }
+//    public void showDialog() {
+//       dialog.show();
+//       Button btn_Save = dialog.findViewById(R.id.btn_Save);
+//
+//
+//       btn_Save.setOnClickListener(new View.OnClickListener() {
+//           @Override
+//           public void onClick(View v) {
+//               //기능추가
+//            dialog.dismiss();
+//           }
+//
+//       });
+//      Button btn_Back = dialog.findViewById(R.id.btn_Back);
+//       btn_Back.setOnClickListener(new View.OnClickListener() {
+//           @Override
+//           public void onClick(View v) {
+//               dialog.dismiss();
+//           }
+//       });
+//
+//    }
 
     void CheckPermission() {
         //안드로이드 버전이 6.0 이상

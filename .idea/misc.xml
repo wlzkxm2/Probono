@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+
         <entry key="..\:/05. github/Probono/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/05. github/Probono/app/src/main/res/layout/calender_basic.xml" value="0.25" />
         <entry key="..\:/05. github/Probono/app/src/main/res/layout/dialog_test.xml" value="0.36614583333333334" />
@@ -12,13 +13,27 @@
         <entry key="..\:/Users/412-22/Desktop/kjm_project/Probono/app/src/main/res/layout/calender_basic.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/412-22/Desktop/kjm_project/Probono/app/src/main/res/layout/main_basic.xml" value="0.5" />
         <entry key="..\:/Users/412-22/Desktop/kjm_project/Probono/app/src/main/res/layout/setting_main.xml" value="0.17806484295845998" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.2028985507246377" />
+        <entry key="app/src/main/res/layout/add_schedule.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/calender_basic.xml" value="0.2028985507246377" />
+        <entry key="app/src/main/res/layout/dialog_test.xml" value="0.23143115942028986" />
+        <entry key="app/src/main/res/layout/list_child.xml" value="0.2006340579710145" />
+        <entry key="app/src/main/res/layout/list_header.xml" value="0.2105978260869565" />
+        <entry key="app/src/main/res/layout/tts_test.xml" value="0.23143115942028986" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.13697916666666668" />
+      </ProjectState>
+    </option>
   </component>
 </project>
