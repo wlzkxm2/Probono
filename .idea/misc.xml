@@ -10,9 +10,10 @@
         <entry key="..\:/Users/412-22/Desktop/kjm_project/Probono/app/src/main/res/layout/setting_main.xml" value="0.17806484295845998" />
         <entry key="app/src/main/res/drawable/exam.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/example1.xml" value="0.113" />
-        <entry key="app/src/main/res/layout/darkmode.xml" value="0.19815673828125002" />
+        <entry key="app/src/main/res/layout/darkmode.xml" value="0.33" />
         <entry key="app/src/main/res/layout/setting_account.xml" value="0.6786280314127604" />
         <entry key="app/src/main/res/layout/setting_main.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/setting_notification.xml" value="0.31666666666666665" />
       </map>
     </option>
   </component>

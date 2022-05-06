@@ -15,7 +15,7 @@
         android:id="@+id/setting_account"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:text="@string/account"
+        android:text="@string/notification"
         android:textSize="30dp"
         android:textAlignment="center"
         android:layout_marginTop="50dp"
@@ -30,18 +30,16 @@
         android:orientation="vertical"
         android:layout_marginTop="100dp">
         <!-- 계정 설정 버튼이다-->
-        <Button
-            android:id="@+id/namebtn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="5dp"
-            android:background="@drawable/example1"
-            android:text="@string/name_setting"
-            android:textColor="#000000"
-            android:textSize="20dp" />
         <!-- 알림 설정 버튼이다-->
+        <Switch
+            android:id="@+id/switch1"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/exam"
+            android:textSize="30dp"
+            android:textAlignment="center"
+            android:text="@string/notification_all" />
+
         <Button
             android:id="@+id/birthbtn"
             android:layout_width="match_parent"

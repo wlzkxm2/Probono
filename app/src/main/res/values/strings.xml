@@ -35,4 +35,5 @@
     <string name="back">Back</string>
     <string name="Darkmode">DarkMode</string>
     <string name="birthday">Change Birth</string>
+    <string name="notification_all">Notifications</string>
 </resources>

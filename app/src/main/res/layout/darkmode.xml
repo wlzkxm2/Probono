@@ -7,7 +7,7 @@
     android:background="#f2f2f6">
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/setting_dark"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="다크모드 설정"
