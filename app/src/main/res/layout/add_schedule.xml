@@ -24,7 +24,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="264dp"
+        android:layout_marginTop="60dp"
         android:layout_marginEnd="16dp"
         android:ems="10"
         android:hint="메모"
@@ -33,7 +33,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/startDate" />
+        app:layout_constraintTop_toBottomOf="@+id/startTime" />
 
     <Button
         android:id="@+id/btn_positive"
@@ -60,12 +60,12 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <CheckBox
-        android:id="@+id/repeatCheck"
+        android:id="@+id/allDayCheck"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="24dp"
-        android:text="반복일정"
+        android:text="하루종일"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_Title" />
@@ -81,7 +81,7 @@
         android:clickable="true"
         android:focusable="true"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/repeatCheck" />
+        app:layout_constraintTop_toBottomOf="@+id/allDayCheck" />
 
     <TextView
         android:id="@+id/endDate"
@@ -94,7 +94,7 @@
         android:clickable="true"
         android:focusable="true"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/repeatCheck" />
+        app:layout_constraintTop_toBottomOf="@+id/allDayCheck" />
 
     <TextView
         android:id="@+id/startTime"

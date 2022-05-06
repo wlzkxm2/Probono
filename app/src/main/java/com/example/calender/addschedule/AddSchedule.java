@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.calender.R;
+import com.example.calender.StaticUidCode.UidCode;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -31,7 +32,7 @@ public class AddSchedule extends Activity {
 
     Button btn_save, btn_back;
     EditText et_title,et_memo;
-    CheckBox repeatCheck;
+    CheckBox allDayCheck;
     View.OnClickListener cl;
     TextView startDate, endDate, startTime, endTime;
     int startYears,startMonths,startDays, endYears,endMonths,endDays;
@@ -51,9 +52,9 @@ public class AddSchedule extends Activity {
         endDate = findViewById(R.id.endDate);
         startTime = findViewById(R.id.startTime);
         endTime = findViewById(R.id.endTime);
-        repeatCheck = (CheckBox) findViewById(R.id.repeatCheck);
+        allDayCheck = (CheckBox) findViewById(R.id.allDayCheck);
 //        TextView booltest = findViewById(R.id.booltest);
-
+//      TODO 초기 시간값 설정해주기 : start time = 00:00 / end time = 23:59
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM월 dd일 (E)요일",Locale.KOREA);
 
         Date date = new Date();
@@ -76,9 +77,18 @@ public class AddSchedule extends Activity {
 //                        intent.putExtra("",et_memo.getText().toString());
                         String title = et_title.getText().toString();
                         String subtitle = et_memo.getText().toString();
-                        boolean scheduleLoof = repeatCheck.isChecked();
+                        boolean scheduleLoof = allDayCheck.isChecked();
 
 //                        booltest.setText(String.valueOf(scheduleLoof));
+                        break;
+                    case R.id.allDayCheck:
+                        if (allDayCheck.isChecked()){
+                            startTime.setVisibility(View.GONE);
+                            endTime.setVisibility(View.GONE);
+                        }else{
+                            startTime.setVisibility(View.VISIBLE);
+                            endTime.setVisibility(View.VISIBLE);
+                        }
                         break;
                     case R.id.startDate:
                         showStartDate();
@@ -103,6 +113,7 @@ public class AddSchedule extends Activity {
         endDate.setOnClickListener(cl);
         startTime.setOnClickListener(cl);
         endTime.setOnClickListener(cl);
+        allDayCheck.setOnClickListener(cl);
 
     }
 
@@ -112,7 +123,7 @@ public class AddSchedule extends Activity {
             public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                 startTime.setText(hourOfDay + "시" + minute + "분");
             }
-        },8,10,true);
+        },0,0,true);
         timePickerDialog.show();
     }
 
@@ -122,10 +133,10 @@ public class AddSchedule extends Activity {
             public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                 endTime.setText(hourOfDay + "시" + minute + "분");
             }
-        },8,10,true);
+        },23,59,true);
         timePickerDialog.show();
     }
-
+//TODO endDate 가 StartDate보다 이전 날짜일 경우 startDate = endDate 구현하기
     public void showEndDate() {
         DatePickerDialog datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
             @Override
@@ -136,7 +147,7 @@ public class AddSchedule extends Activity {
                 endDays = dayOfMonth;
                 endDate.setText(year + "년 " + (month + 1)+ "월 " + dayOfMonth + "일 ");
             }
-        },2022,01,01);
+        },((UidCode) getApplication()).getStatic_year(),((UidCode) getApplication()).getStatic_month(),((UidCode) getApplication()).getStatic_day());
         datePickerDialog.show();
     }
 
@@ -149,7 +160,7 @@ public class AddSchedule extends Activity {
                 startDays = dayOfMonth;
                 startDate.setText(year + "년 " + (month + 1)+ "월 " + dayOfMonth + "일 ");
             }
-        },2022,01,01);
+        },((UidCode) getApplication()).getStatic_year(),((UidCode) getApplication()).getStatic_month(),((UidCode) getApplication()).getStatic_day());
         datePickerDialog.show();
     }
 
