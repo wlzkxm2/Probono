@@ -1,37 +1,31 @@
 package com.example.calender;
 
 
-import static android.content.ContentValues.TAG;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.MotionEventCompat;
-import androidx.fragment.app.FragmentActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class Main_Basic extends FragmentActivity implements View.OnClickListener{
+public class Main_Basic_Frag extends Fragment implements View.OnClickListener {
+
     //플로팅 버튼
     private Context mContext;
     private FloatingActionButton floating_main, floating_edit, floating_voice;
@@ -58,62 +52,47 @@ public class Main_Basic extends FragmentActivity implements View.OnClickListener
         return getTime;
     }
 
-//    @Override 테스트용
-//    public boolean onTouchEvent(MotionEvent event) {
-//        int action= MotionEventCompat.getActionMasked(event);
-//        int i=0;
-//        switch (action){
-//            case (MotionEvent.ACTION_UP) :
-//                Log.d("Basic","Up " + i);
-//                i++;
-//                return true;
-//
-//            case (MotionEvent.ACTION_MOVE):
-//                Log.d("Basic","Move " + i);
-//                i++;
-//                return true;
-//
-//            default:
-//                return super.onTouchEvent(event);
-//        }
-//    }
 
+    public static Main_Basic_Frag newInstance() {
+        Main_Basic_Frag Main_Basic = new Main_Basic_Frag();
+        return Main_Basic;
+    }
+
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.main_basic);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.main_basic, container, false);
 
-        fade_in = AnimationUtils.loadAnimation(getApplicationContext(),
+        // 현재 시간
+        now = view.findViewById(R.id.main_basic_now);
+        now.setText(getTime());
+
+        fade_in = AnimationUtils.loadAnimation(getActivity().getApplicationContext(),
                 R.anim.fade_in);
 
-        fade_out = AnimationUtils.loadAnimation(getApplicationContext(),
+        fade_out = AnimationUtils.loadAnimation(getActivity().getApplicationContext(),
                 R.anim.fade_out);
 
         //리스트 밑 일정 등록 버튼
-        add_schedule = (ImageButton) findViewById(R.id.add_schedule);
-        add_schedule_txt = (TextView) findViewById(R.id.add_schedule_txt);
-        add_schedule_dot = (ImageView) findViewById(R.id.add_schedule_dot);
+        add_schedule = view.findViewById(R.id.add_schedule);
+        add_schedule_txt = view.findViewById(R.id.add_schedule_txt);
+        add_schedule_dot = view.findViewById(R.id.add_schedule_dot);
 
         //플로팅 버튼
-        mContext = getApplicationContext();
+        mContext = getActivity().getApplicationContext();
 
         floating_open = AnimationUtils.loadAnimation(mContext, R.anim.floating_open);
         floating_close = AnimationUtils.loadAnimation(mContext, R.anim.floating_close);
 
-        floating_main = (FloatingActionButton) findViewById(R.id.floating_main);
-        floating_edit = (FloatingActionButton) findViewById(R.id.floating_edit);
-        floating_voice = (FloatingActionButton) findViewById(R.id.floating_voice);
+        floating_main = view.findViewById(R.id.floating_main);
+        floating_edit = view.findViewById(R.id.floating_edit);
+        floating_voice = view.findViewById(R.id.floating_voice);
 
         floating_main.setOnClickListener(this);
         floating_edit.setOnClickListener(this);
         floating_voice.setOnClickListener(this);
 
-        //현재 시간
-        now = (TextView) findViewById(R.id.main_basic_now);
-        now.setText(getTime());
-
-
-        recyclerView = findViewById(R.id.recycler_view);
+        recyclerView = view.findViewById(R.id.recycler_view);
 
         list_itemAdapter = new List_ItemAdapter();
         recyclerView.setAdapter(list_itemAdapter);
@@ -161,6 +140,7 @@ public class Main_Basic extends FragmentActivity implements View.OnClickListener
                 }
             }
         });
+        return view;
     }
 
     //플로팅버튼 스위치
@@ -172,11 +152,13 @@ public class Main_Basic extends FragmentActivity implements View.OnClickListener
                 break;
             case R.id.floating_edit:
                 toggleFab();
-                Toast.makeText(this, "일정 상세 등록 팝업", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(this, "일정 상세 등록 팝업", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(),"일정 상세 등록 팝업",Toast.LENGTH_SHORT).show();
                 break;
             case R.id.floating_voice:
                 toggleFab();
-                Toast.makeText(this, "일정 음성 등록 팝업", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(this, "일정 음성 등록 팝업", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(),"일정 음성 등록 팝업",Toast.LENGTH_SHORT).show();
                 break;
         }
     }
@@ -199,7 +181,24 @@ public class Main_Basic extends FragmentActivity implements View.OnClickListener
             isFabOpen = true;
         }
     }
-    }
+}
 
-
-
+//    @Override
+//    public void onClick(View view) {
+//        if (isFabOpen) {
+//            floating_main.setImageResource(R.drawable.ic_more);
+//            floating_edit.startAnimation(floating_close);
+//            floating_voice.startAnimation(floating_close);
+//            floating_edit.setClickable(false);
+//            floating_voice.setClickable(false);
+//            isFabOpen = false;
+//        } else {
+//            floating_main.setImageResource(R.drawable.ic_close);
+//            floating_edit.startAnimation(floating_open);
+//            floating_voice.startAnimation(floating_open);
+//            floating_edit.setClickable(true);
+//            floating_voice.setClickable(true);
+//            isFabOpen = true;
+//        }
+//    }
+//}

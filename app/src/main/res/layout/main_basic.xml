@@ -128,7 +128,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="220dp"
+        android:layout_height="260dp"
         android:layoutAnimation="@anim/item_layout_animation"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -136,48 +136,34 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.502" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@color/black"
-        android:text="네비게이션자리"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.567" />
 
     <ImageView
         android:id="@+id/add_schedule_dot"
         android:layout_width="16dp"
         android:layout_height="65dp"
         android:src="@drawable/img_dot_dot_dot"
-        app:layout_constraintBottom_toBottomOf="@+id/textView3"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.727"
-        android:visibility="invisible"/>
+        app:layout_constraintVertical_bias="0.805" />
 
     <ImageButton
         android:id="@+id/add_schedule"
         android:layout_width="45dp"
         android:layout_height="42dp"
+        android:background="@android:color/transparent"
+        android:scaleType="fitCenter"
         android:src="@drawable/img_add_schedule"
-        app:layout_constraintBottom_toBottomOf="@+id/textView3"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.818"
-        android:background="@android:color/transparent"
-        android:scaleType="fitCenter"
-        android:visibility="invisible"/>
+        app:layout_constraintVertical_bias="0.883" />
 
     <TextView
         android:id="@+id/add_schedule_txt"
@@ -187,14 +173,14 @@
         android:text="일정을 추가해보세요!"
         android:textColor="#5A88FF"
         android:textSize="10sp"
+        android:visibility="invisible"
         app:drawableTint="#8A5858"
-        app:layout_constraintBottom_toBottomOf="@+id/textView3"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.853"
-        android:visibility="invisible"/>
+        app:layout_constraintVertical_bias="0.93" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floating_edit"
@@ -203,53 +189,53 @@
         android:backgroundTint="#5A88FF"
         android:clickable="true"
         android:src="@drawable/ic_edit_line"
-        app:tint="@android:color/white"
+        android:visibility="invisible"
         app:borderWidth="0dp"
+        app:fabSize="normal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/recycler_view"
         app:layout_constraintHorizontal_bias="0.926"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.68"
-        app:fabSize="normal"
-        android:visibility="invisible"/>
+        app:layout_constraintVertical_bias="0.729"
+        app:tint="@android:color/white" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floating_voice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="#5A88FF"
-        app:tint="@android:color/white"
         android:clickable="true"
         android:src="@drawable/ic_mic"
+        android:visibility="invisible"
         app:borderWidth="0dp"
+        app:fabSize="normal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/recycler_view"
         app:layout_constraintHorizontal_bias="0.926"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.774"
-        app:fabSize="normal"
-        android:visibility="invisible"/>
+        app:layout_constraintVertical_bias="0.831"
+        app:tint="@android:color/white" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floating_main"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:clickable="true"
         android:backgroundTint="@color/white"
+        android:clickable="true"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_more"
         android:tint="#5A88FF"
-        app:tint="@null"
+        app:borderWidth="3dp"
+        app:fabSize="normal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/recycler_view"
         app:layout_constraintHorizontal_bias="0.926"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.86"
-        android:scaleType="fitCenter"
-        android:src="@drawable/ic_more"
-        app:borderWidth="3dp"
-        app:fabSize="normal"/>
+        app:layout_constraintVertical_bias="0.936"
+        app:tint="@null" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
