@@ -47,8 +47,6 @@
         </activity>
 
         <activity
-                  android:name=".Main_basic"</activity>
-        <activity
             android:name=".TTS_Test"
             android:exported="true">
 
