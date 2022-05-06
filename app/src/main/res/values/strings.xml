@@ -25,4 +25,6 @@
         <item>11월</item>
         <item>12월</item>
     </string-array>
+    <string name="account">Account Setting</string>
+    <string name="notification">Notification Setting</string>
 </resources>

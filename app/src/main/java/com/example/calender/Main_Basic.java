@@ -1,0 +1,130 @@
+package com.example.calender;
+
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentActivity;
+import androidx.recyclerview.widget.RecyclerView;
+
+import android.content.Context;
+import android.os.Bundle;
+import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+public class Main_Basic extends FragmentActivity  implements View.OnClickListener{
+    //플로팅 버튼
+    private Context mContext;
+    private FloatingActionButton floating_main, floating_edit, floating_voice;
+    private Animation floating_open, floating_close;
+    private boolean isFabOpen = false;
+
+    TextView now;
+    RecyclerView recyclerView;
+    List_ItemAdapter list_itemAdapter;
+
+    private String getTime() { //현재 시간 가져오기
+        long now = System.currentTimeMillis(); // 현재 시간을 now 변수에 넣음
+        Date date = new Date(now); // 현재 시간을 date 형식으로 변환
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MM월 dd일 hh시 mm분");
+        String getTime = dateFormat.format(date);
+        return getTime;
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.main_basic);
+
+        //플로팅 버튼
+        mContext = getApplicationContext();
+
+        floating_open = AnimationUtils.loadAnimation(mContext, R.anim.floating_open);
+        floating_close = AnimationUtils.loadAnimation(mContext, R.anim.floating_close);
+
+        floating_main = (FloatingActionButton) findViewById(R.id.floating_main);
+        floating_edit = (FloatingActionButton) findViewById(R.id.floating_edit);
+        floating_voice = (FloatingActionButton) findViewById(R.id.floating_voice);
+
+        floating_main.setOnClickListener(this);
+        floating_edit.setOnClickListener(this);
+        floating_voice.setOnClickListener(this);
+
+        //현재 시간
+        now = (TextView) findViewById(R.id.main_basic_now);
+        now.setText(getTime());
+
+
+        recyclerView = findViewById(R.id.recycler_view);
+
+        list_itemAdapter = new List_ItemAdapter();
+        recyclerView.setAdapter(list_itemAdapter);
+
+        //화면 클리어
+        list_itemAdapter.removeAllItem();
+
+        //샘플 데이터 생성
+        for (int i = 0; i < 50; i++) {
+
+            List_Item list_item = new List_Item();
+            list_item.setTime("14:00" + "-" + i);
+            list_item.setTitle("과제하기" + "-" + i);
+            list_item.setText("그치만 하기 싫은걸" + "-" + i);
+
+            //데이터 등록
+            list_itemAdapter.addItem(list_item);
+        }
+
+        //적용
+        list_itemAdapter.notifyDataSetChanged();
+
+        //애니메이션 실행
+        recyclerView.startLayoutAnimation();
+    }
+
+    //플로팅버튼 스위치
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.floating_main:
+                toggleFab();
+                break;
+            case R.id.floating_edit:
+                toggleFab();
+                Toast.makeText(this, "일정 상세 등록 팝업", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.floating_voice:
+                toggleFab();
+                Toast.makeText(this, "일정 음성 등록 팝업", Toast.LENGTH_SHORT).show();
+                break;
+        }
+    }
+
+    //플로팅버튼 동작
+    private void toggleFab() {
+        if (isFabOpen) {
+            floating_main.setImageResource(R.drawable.ic_more);
+            floating_edit.startAnimation(floating_close);
+            floating_voice.startAnimation(floating_close);
+            floating_edit.setClickable(false);
+            floating_voice.setClickable(false);
+            isFabOpen = false;
+        } else {
+            floating_main.setImageResource(R.drawable.ic_close);
+            floating_edit.startAnimation(floating_open);
+            floating_voice.startAnimation(floating_open);
+            floating_edit.setClickable(true);
+            floating_voice.setClickable(true);
+            isFabOpen = true;
+        }
+    }
+}
+

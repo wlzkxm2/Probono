@@ -28,7 +28,7 @@
 
 
         <activity
-            android:name=".TTS_Test"
+            android:name=".Main_Basic"
             android:exported="true">
 
             <intent-filter>
@@ -47,8 +47,11 @@
         </activity>
 
         <activity
-            android:name=".Main_basic"
+                  android:name=".Main_basic"</activity>
+        <activity
+            android:name=".TTS_Test"
             android:exported="true">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
