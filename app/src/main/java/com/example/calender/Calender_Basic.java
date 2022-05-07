@@ -2,6 +2,7 @@ package com.example.calender;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -49,6 +50,8 @@ public class Calender_Basic extends Activity  {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.calender_basic);
+
+        Log.v("Frag", "온크리에이트 뷰ㅇ입니다.");
 
         final int[] _day = {0};
         final int[] _month = {0};

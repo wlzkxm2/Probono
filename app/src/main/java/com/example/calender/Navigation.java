@@ -54,7 +54,7 @@ public class Navigation extends AppCompatActivity {
 
             }
             else {
-                fragment = new Setting_Main();
+//                fragment = new Setting_main();
             }
 
             fragmentTransaction.add(R.id.content_layout, fragment, tag);

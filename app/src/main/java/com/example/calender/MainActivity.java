@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
 
                     case R.id.calendartestbtn:
-                        Intent j = new Intent(getApplicationContext(), Calender_Basic.class);
+                        Intent j = new Intent(getApplicationContext(), Main_Basic.class);
                         startActivity(j);
                         break;
                 }

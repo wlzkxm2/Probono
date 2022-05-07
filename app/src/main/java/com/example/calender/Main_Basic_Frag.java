@@ -26,6 +26,8 @@ import java.util.Date;
 
 public class Main_Basic_Frag extends Fragment implements View.OnClickListener {
 
+    Main_Basic mainbasic;       // 프래그럼트 매니저가 있음
+
     //플로팅 버튼
     private Context mContext;
     private FloatingActionButton floating_main, floating_edit, floating_voice;
@@ -34,7 +36,7 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener {
 
     ImageView add_schedule_dot;
     ImageButton add_schedule;
-    TextView now, add_schedule_txt;
+    TextView now, add_schedule_txt, maintitle_txt, mainDday_txt;
     RecyclerView recyclerView, mRecyclerView;
     List_ItemAdapter list_itemAdapter;
     int listDB=10;
@@ -66,6 +68,9 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener {
         // 현재 시간
         now = view.findViewById(R.id.main_basic_now);
         now.setText(getTime());
+
+        maintitle_txt = (TextView) view.findViewById(R.id.main_basic_title);
+        maintitle_txt.setText("MainBasic_Fragment 입니다.");
 
         fade_in = AnimationUtils.loadAnimation(getActivity().getApplicationContext(),
                 R.anim.fade_in);

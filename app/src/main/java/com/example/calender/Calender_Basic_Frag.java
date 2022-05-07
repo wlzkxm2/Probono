@@ -2,6 +2,7 @@ package com.example.calender;
 
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +22,8 @@ public class Calender_Basic_Frag extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.calender_basic, container, false);
+        Log.v("Frag", "Frag 뷰입니다");
+
         return view;
     }
 

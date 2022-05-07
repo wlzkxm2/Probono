@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     android:foregroundTint="#5C2727"
     tools:context=".Main_Basic">
 
@@ -25,7 +26,7 @@
         android:id="@+id/main_basic_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:text="main_basic_title"
         android:textColor="@color/black"
         android:textSize="48dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -75,7 +76,7 @@
         android:id="@+id/d_day"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:text="d_day"
         android:textColor="@color/black"
         android:textSize="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -88,6 +89,7 @@
         android:id="@+id/main_basic_now"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="#FFFFFF"
         android:text="TextView"
         android:textColor="@color/black"
         android:textSize="18dp"

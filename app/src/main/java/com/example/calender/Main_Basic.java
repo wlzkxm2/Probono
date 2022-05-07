@@ -31,6 +31,49 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+public class Main_Basic extends FragmentActivity{
+
+    Main_Basic_Frag mainbasic_frag; // 프래그먼트 호출을 위한 객체 생성
+    Calender_Basic_Frag calenderbasic_frag;
+
+    Button btntest1, btntest2;      // 프래그먼트 전환을 위한 버튼
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.maintestlayout);        // 레이아웃 재세팅후 이부분 수정바랍니다
+        Log.v("Frag", "Main_Basic 실행");
+
+        mainbasic_frag = new Main_Basic_Frag(); // 객체 할당
+        calenderbasic_frag = new Calender_Basic_Frag();
+
+        btntest1 = (Button) findViewById(R.id.test_btn01);
+        btntest2 = (Button) findViewById(R.id.test_btn02);
+
+        btntest1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_main, mainbasic_frag)
+                        .commit();
+                // maintestlayout 에 있는 fragment_main 이라는 프래그먼트뷰에
+                // 이름으로 그 이름 프래그먼트에 해당 프래그먼트 호출;
+            }
+        });
+
+        btntest2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_main, calenderbasic_frag)
+                        .commit();
+            }
+        });
+
+    }
+}
+
+/*
 public class Main_Basic extends FragmentActivity implements View.OnClickListener{
     //플로팅 버튼
     private Context mContext;
@@ -203,3 +246,4 @@ public class Main_Basic extends FragmentActivity implements View.OnClickListener
 
 
 
+*/
