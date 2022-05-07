@@ -9,6 +9,7 @@
 
     <Button
         android:id="@+id/tts_test"
+        style="@android:style/Widget.Holo.Light.Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Button"
@@ -17,6 +18,7 @@
 
     <Button
         android:id="@+id/calendartestbtn"
+        style="@android:style/Widget.Holo.Light.Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Button" />
