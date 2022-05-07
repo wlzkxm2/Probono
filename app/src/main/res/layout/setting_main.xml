@@ -53,7 +53,7 @@
             app:srcCompat="@drawable/unknown_1" />
 
         <RadioButton
-            android:id="@+id/radioButton2"
+            android:id="@+id/normalbtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/normalmode"
@@ -61,7 +61,7 @@
             android:translationY="340dp" />
 
         <RadioButton
-            android:id="@+id/radioButton3"
+            android:id="@+id/easybtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/easymode"
@@ -72,48 +72,55 @@
 
 <!--    설정 버튼 화면 쪽이다-->
 
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="180dp"
         android:orientation="vertical"
         android:background="@drawable/exam"
+        android:padding="5dp"
         >
+
         <!-- 계정 설정 버튼이다-->
+        <!-- 알림 설정 버튼이다-->
+
         <Button
-            android:id="@+id/account_btn"
+            android:id="@+id/button2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:textColor="#000000"
-            android:layout_marginStart="5dp"
-            android:layout_marginEnd="5dp"
+            android:layout_marginTop="5dp"
             android:background="@drawable/example1"
+            android:drawableLeft="@drawable/ic_user_line"
+            android:text="@string/account"
+            android:textAlignment="textStart"
             android:textSize="20dp"
-            android:text="@string/account"/>
-        <!-- 알림 설정 버튼이다-->
+            android:textColor="#000000" />
+
         <Button
             android:id="@+id/notification_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:textColor="#000000"
-            android:layout_marginStart="5dp"
-            android:layout_marginEnd="5dp"
+            android:layout_marginTop="5dp"
             android:background="@drawable/example1"
-            android:textSize="20dp"
-            android:text="@string/notification"/>
+            android:drawableLeft="@drawable/ic_notification_line" r
+            android:text="@string/notification"
+            android:textAlignment="textStart"
+            android:textColor="#000000"
+            android:textSize="20dp" />
         <!--언어 설정 버튼이다-->
         <Button
             android:id="@+id/darkmode_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:layout_marginEnd="5dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             android:textColor="#000000"
             android:textSize="20dp"
             android:background="@drawable/example1"
+            android:drawableLeft="@drawable/ic_contrast_2_line"
+            android:textAlignment="textStart"
             android:text="@string/darkmode"/>
+
         <!--쿠폰 입력 버튼이다-->
         <!--문의사항 버튼이다-->
     </LinearLayout>
