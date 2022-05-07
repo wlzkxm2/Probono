@@ -57,7 +57,7 @@ public class Calender_Basic extends Activity  {
         final int[] _month = {0};
         final int[] _year = {0};
 
-        final int[] appData = {0};
+        final int[] appData = {0}; // ??
 
         addcal_btn = (Button) findViewById(R.id.Addcal_btn);
 
@@ -283,5 +283,7 @@ public class Calender_Basic extends Activity  {
         }
 
     }
+
+
 }
 
