@@ -30,7 +30,7 @@ public class Setting_main extends AppCompatActivity {
         rbtn1=(RadioButton) findViewById(R.id.normalbtn);
         rbtn2=(RadioButton) findViewById(R.id.easybtn);
 
-        btn1.setOnClickListener(new View.OnClickListener() {
+        /*btn1.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
@@ -53,6 +53,6 @@ public class Setting_main extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), Setting_dark.class);
                 startActivity(intent);
             }
-        });//버튼이 눌렸을때 해당 클래스로 가는 명령어이다
+        });//버튼이 눌렸을때 해당 클래스로 가는 명령어이다 */
     }
 }
