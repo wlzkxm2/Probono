@@ -80,7 +80,7 @@
         >
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/account_settingbtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
@@ -92,7 +92,7 @@
             android:textColor="#000000" />
 
         <Button
-            android:id="@+id/notification_btn"
+            android:id="@+id/notificationsetting_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
@@ -104,7 +104,7 @@
             android:textSize="20sp" />
         <!--언어 설정 버튼이다-->
         <Button
-            android:id="@+id/darkmode_btn"
+            android:id="@+id/darkmodesetting_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
