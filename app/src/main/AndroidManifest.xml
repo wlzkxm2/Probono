@@ -65,7 +65,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".Setting_dark"/>
-        <activity android:name=".Setting_account"/>
         <activity android:name=".Setting_main"/>
 
 
