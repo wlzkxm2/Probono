@@ -49,7 +49,7 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener {
     private String getTime() { //현재 시간 가져오기
         long now = System.currentTimeMillis(); // 현재 시간을 now 변수에 넣음
         Date date = new Date(now); // 현재 시간을 date 형식으로 변환
-        SimpleDateFormat dateFormat = new SimpleDateFormat("MM월 dd일 hh시 mm분");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("M월 d일 h시 m분");
         String getTime = dateFormat.format(date);
         return getTime;
     }
