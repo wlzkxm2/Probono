@@ -1,42 +1,21 @@
 package com.example.calender;
 
 
-import static android.content.ContentValues.TAG;
-
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.MotionEventCompat;
 import androidx.fragment.app.FragmentActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class Main_Basic extends FragmentActivity{
 
     Main_Basic_Frag mainbasic_frag; // 프래그먼트 호출을 위한 객체 생성
     Calender_Basic_Frag calenderbasic_frag;
+    Setting_dark setting_dark;
 
-    Button btntest1, btntest2;      // 프래그먼트 전환을 위한 버튼
+    Button btntest1, btntest2, setting_btn;      // 프래그먼트 전환을 위한 버튼
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -46,9 +25,11 @@ public class Main_Basic extends FragmentActivity{
 
         mainbasic_frag = new Main_Basic_Frag(); // 객체 할당
         calenderbasic_frag = new Calender_Basic_Frag();
+        setting_dark = new Setting_dark();
 
         btntest1 = (Button) findViewById(R.id.test_btn01);
         btntest2 = (Button) findViewById(R.id.test_btn02);
+        setting_btn = (Button) findViewById(R.id.Setting_btn);
 
         btntest1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,6 +51,14 @@ public class Main_Basic extends FragmentActivity{
             }
         });
 
+        setting_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_main, setting_dark)
+                        .commit();
+            }
+        });
     }
 }
 

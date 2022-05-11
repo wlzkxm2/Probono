@@ -31,6 +31,14 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="test_btn02" />
+
+            <Button
+                android:id="@+id/Setting_btn"
+                style="@android:style/Widget.Button.Inset"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="setting_btn" />
         </LinearLayout>
 
         <fragment

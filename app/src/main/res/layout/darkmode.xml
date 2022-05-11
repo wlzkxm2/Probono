@@ -20,7 +20,7 @@
         android:id="@+id/light_btn"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:text="@string/Darkmode"
+        android:text="@string/lightmode"
         android:textColor="#000000"
         android:textSize="30dp"
         android:layout_marginTop="100dp"
@@ -31,7 +31,7 @@
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:textColor="#000000"
-        android:text="@string/lightmode"
+        android:text="@string/Darkmode"
         android:textSize="30dp"
         />
     <Button
