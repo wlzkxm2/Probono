@@ -5,22 +5,16 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.room.Room;
 
 import com.example.calender.DataBase.Calender_DB;
 import com.example.calender.DataBase.Calender_DBSet;
 import com.example.calender.DataBase.Calender_Dao;
 import com.example.calender.StaticUidCode.UidCode;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.List;
 
@@ -67,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
 
                     case R.id.calendartestbtn:
-                        Intent j = new Intent(getApplicationContext(), Main_Basic.class);
+                        Intent j = new Intent(getApplicationContext(), Navigation.class);
                         startActivity(j);
                         break;
                 }
