@@ -9,6 +9,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Calender"
         android:name=".StaticUidCode.UidCode">
+
+        <!-- 제일먼저 실행되는 액티비티 -->
         <activity
             android:name=".MainActivity"
             android:exported="true">
@@ -72,7 +74,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-<!--        <activity android:name=".Setting_dark"/>-->
+        <activity android:name=".Setting_dark"/>
         <activity android:name=".Setting_main"/>
 
 
