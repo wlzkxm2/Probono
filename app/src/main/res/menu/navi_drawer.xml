@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/item_info"
+        android:title="계정 설정"
+        android:icon="@drawable/ic_calender"/>
+    <item
+        android:id="@+id/item_report"
+        android:title="달력 크게 보기"
+        android:icon="@drawable/ic_calender" />
+    <item
+        android:id="@+id/item_setting"
+        android:title="게임"
+        android:icon="@drawable/ic_calender" />
+    <item
+        android:id="@+id/item_notice"
+        android:title="고객센터"
+        android:icon="@drawable/ic_calender" />
+    <item
+        android:id="@+id/item_service_center"
+        android:title="설정"
+        android:icon="@drawable/ic_calender" />
+
+</menu>
