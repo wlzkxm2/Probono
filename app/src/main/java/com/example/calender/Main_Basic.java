@@ -79,7 +79,7 @@ public class Main_Basic extends FragmentActivity implements View.OnClickListener
 
     int lastVisibleItemPositions;
     int itemTotalCounts;
-
+//
     Animation fade_in,fade_out;
 
     private String getTime() { //현재 시간 가져오기
