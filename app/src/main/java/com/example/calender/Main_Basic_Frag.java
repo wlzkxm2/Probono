@@ -1,7 +1,10 @@
 package com.example.calender;
 
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,9 +19,11 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.calender.addschedule.Custom_STT;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.text.SimpleDateFormat;
@@ -163,6 +168,8 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener {
             case R.id.floating_voice:
                 toggleFab();
 //                Toast.makeText(this, "일정 음성 등록 팝업", Toast.LENGTH_SHORT).show();
+                Custom_STT custom_stt = new Custom_STT(getActivity());
+                custom_stt.show();
                 Toast.makeText(getActivity(),"일정 음성 등록 팝업",Toast.LENGTH_SHORT).show();
                 break;
         }

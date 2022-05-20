@@ -1,14 +1,19 @@
 package com.example.calender;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.room.Room;
 
 import com.example.calender.DataBase.Calender_DB;
@@ -29,10 +34,14 @@ public class MainActivity extends AppCompatActivity {
 
     View.OnClickListener cl;
 
+    final int PERMISSION = 1;	//permission 변수
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        CheckPermission();
 
         //<editor-fold desc="DB 기본 세팅 코드">
 
@@ -114,5 +123,20 @@ public class MainActivity extends AppCompatActivity {
         }
         //</editor-fold>
 
+    }
+
+    void CheckPermission() {
+        //안드로이드 버전이 6.0 이상
+        if ( Build.VERSION.SDK_INT >= 23 ){
+            Log.d("haan","버전 체크");
+            //인터넷이나 녹음 권한이 없으면 권한 요청
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.INTERNET) == PackageManager.PERMISSION_DENIED
+                    || ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_DENIED ) {
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.INTERNET,
+                                Manifest.permission.RECORD_AUDIO},PERMISSION);
+                                Log.d("haan","권한 체크");
+            }
+        }
     }
 }

@@ -47,6 +47,7 @@ public class TTS_Test extends Activity implements TextToSpeech.OnInitListener {
     TextView tv_Result;
     View.OnClickListener click;
     Dialog dialog;
+    String getPakage;
 
 
     @Override
@@ -63,16 +64,15 @@ public class TTS_Test extends Activity implements TextToSpeech.OnInitListener {
         text = findViewById(R.id.editText);
         tv_Result = findViewById(R.id.tv_Result);
 
+        getPakage = getPackageName();
+
 
         observeTextWatcher(text);
 
         intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
-        intent.putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE, getPackageName());
+//        intent.putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE, getPackageName());
+        intent.putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE, getPakage);
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "ko-KR");   //한국어
-
-        dialog =  new Dialog(TTS_Test.this);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE); // 타이틀 제거
-        dialog.setContentView(R.layout.dialog_test);
 
 
 
@@ -157,7 +157,7 @@ public class TTS_Test extends Activity implements TextToSpeech.OnInitListener {
                     message = "네트웍 타임아웃";
                     break;
                 case SpeechRecognizer.ERROR_NO_MATCH:
-                    //message = "찾을 수 없음";
+                    message = "찾을 수 없음";
                     //녹음을 오래하거나 speechRecognizer.stopListening()을 호출하면 발생하는 에러
                     //speechRecognizer를 다시 생성하여 녹음 재개
                     if (recording)
