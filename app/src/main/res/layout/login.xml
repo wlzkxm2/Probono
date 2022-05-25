@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#f2f2f6">
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+         />
+    <!--이메일 쪽이다-->
+    <TextView
+        android:id="@+id/aii"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="10dp"
+        android:text="이메일" />
+
+    <EditText
+        android:id="@+id/email-kan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:ems="10"
+        android:textColorHint="#AAAAAA"
+        android:hint="이메일을 입력해 주세요."
+        android:inputType="textEmailAddress"
+        android:text="" />
+    <!--비밀번호 쪽이다-->
+    <TextView
+        android:id="@+id/pas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:paddingStart="10dp"
+        android:text="비밀번호" />
+
+    <EditText
+        android:id="@+id/password_kan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:inputType="textPassword"
+
+        android:textColorHint="#AAAAAA"
+        android:textColor="#000000"
+        android:ems="10"
+        android:hint="비밀번호를 입력해 주세요."
+        />
+    <!--회원가입 버튼이다-->
+    <Button
+        android:id="@+id/register_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#000000"
+        android:textSize="20dp"
+        android:text="회원가입하기"
+        android:background="@drawable/exam"/>
+    <!--로그인 버튼이다-->
+    <Button
+        android:id="@+id/login_btn"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#FFFFFF"
+        android:background="@drawable/exam"
+        android:textColor="#000000"
+        android:textSize="20dp"
+        android:text="로그인" />
+</LinearLayout>

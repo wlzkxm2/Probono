@@ -39,30 +39,33 @@
             android:textSize="30dp"
             android:textAlignment="center"
             android:text="@string/notification_all" />
+        <Switch
+            android:id="@+id/switch2"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/exam"
+            android:textSize="30dp"
+            android:textAlignment="center"
+            android:text="방해금지모드" />
+        <Switch
+            android:id="@+id/switch3"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/exam"
+            android:textSize="30dp"
+            android:textAlignment="center"
+            android:text="알림설정" />
+        <Switch
+            android:id="@+id/switch4"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/exam"
+            android:textSize="30dp"
+            android:textAlignment="center"
+            android:text="@string/notification_all" />
 
-        <Button
-            android:id="@+id/birthbtn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="5dp"
-            android:background="@drawable/example1"
-            android:text="@string/birthday"
-            android:textColor="#000000"
-            android:textSize="20dp" />
+
         <!--언어 설정 버튼이다-->
-        <Button
-            android:id="@+id/accountback"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="5dp"
-            android:background="@drawable/example1"
-            android:text="@string/back"
-            android:textColor="#000000"
-            android:textSize="20dp" />
         <!--쿠폰 입력 버튼이다-->
         <!--문의사항 버튼이다-->
     </LinearLayout>
