@@ -3,12 +3,16 @@ package com.example.calender.addschedule;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.speech.RecognitionListener;
 import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,13 +26,16 @@ import java.util.ArrayList;
 public class Custom_STT extends Dialog {
 
     Context context;
-    Button btn_save;
+    Button btn_save, btn_restart;
     Switch sw_auto;
     TextView tv_stt;
     View.OnClickListener cl;
     Intent intent;
     SpeechRecognizer speechRecognizer;
-    boolean recording = false;  //현재 녹음중인지 여부
+    boolean recording = false;  //현재 녹음중인지
+    String newText="";
+    String STT_Result;
+    LinearLayout sttBackground;
 
 
 
@@ -42,41 +49,76 @@ public class Custom_STT extends Dialog {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dialog_stt);
 
+        sttBackground = findViewById(R.id.sttBackground);
         tv_stt = findViewById(R.id.stt_text);
         btn_save = findViewById(R.id.btn_Save);
+        btn_restart = findViewById(R.id.btn_Restart);
         sw_auto = findViewById(R.id.sw_auto);
+        sw_auto.setChecked(false);
 
         // RecognizerIntent 객체 생성
         intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
         intent.putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE,context.getPackageName());
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE,"ko-KR");
 
-        if(recording == false) {
-            StartRecord();
-            Toast.makeText(context, "음성인식을 시작합니다.", Toast.LENGTH_SHORT).show();
-        }else if(recording == true){
-            StopRecord();
-        }
+
+        Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    if(recording == false) {
+                        StartRecord();
+                        Toast.makeText(context, "음성인식을 시작합니다.", Toast.LENGTH_SHORT).show();
+                    }else if(recording == true){
+                        StopRecord();
+                    }
+                }
+            },1500);
+
 
         cl = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 switch (v.getId()){
-                    case R.id.btn_Save:
+                    case R.id.sw_auto:
                         if(sw_auto.isChecked()){
-                            //여기다가 음성인식결과 저장해주세요.
-                            dismiss();
+                            btn_save.setVisibility(View.INVISIBLE);
+                            btn_restart.setVisibility(View.INVISIBLE);
                         }else{
-                            //저장할지 물어보기
+                            btn_save.setVisibility(View.VISIBLE);
+                            btn_restart.setVisibility(View.VISIBLE);
                         }
+                        break;
+                    case R.id.btn_Restart:
+                        StopRecord();
+                        tv_stt.setText(null);
+                        Handler handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                if(recording == false) {
+                                    StartRecord();
+                                    Toast.makeText(context, "음성인식을 시작합니다.", Toast.LENGTH_SHORT).show();
+                                }else if(recording == true){
+                                    StopRecord();
+                                }
+                            }
+                        },1000);
+                        break;
+                    case R.id.btn_Save:
+                        //TODO newText에 있는 값 DB로 보내기
+                        dismiss();
+                        break;
                 }
             }
         };
         btn_save.setOnClickListener(cl);
-
-
+        btn_restart.setOnClickListener(cl);
+        sw_auto.setOnClickListener(cl);
 
     }
+
+
 
     RecognitionListener listener = new RecognitionListener() {
         @Override
@@ -103,8 +145,20 @@ public class Custom_STT extends Dialog {
         public void onEndOfSpeech() {
             //사용자가 말을 멈추면 호출
             //인식 결과에 따라 onError나 onResults가 호출됨
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    if(sw_auto.isChecked()){
+                        StopRecord();
+                        //TODO newText에 있는 값 DB로 보내기
+                        dismiss();
+                    }else{
+                        StopRecord();
+                    }
+                }
+            },1500);
 
-            StopRecord();
         }
 
         @Override
@@ -144,7 +198,7 @@ public class Custom_STT extends Dialog {
                     message = "말하는 시간초과";
                     break;
                 default:
-                    message = "알 수 없는 오류임";
+                    message = "알 수 없는 오류";
                     break;
             }
             Toast.makeText(context, "에러가 발생하였습니다. : " + message, Toast.LENGTH_SHORT).show();
@@ -156,12 +210,13 @@ public class Custom_STT extends Dialog {
             ArrayList<String> matches = bundle.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);	//인식 결과를 담은 ArrayList
 
             //인식 결과
-            String newText="";
+
             for (int i = 0; i < matches.size() ; i++) {
                 newText += matches.get(i);
             }
 
             tv_stt.setText(newText + " ");	//기존의 text에 인식 결과를 이어붙임
+            Log.d("HSH",""+ newText);
             //speechRecognizer.startListening(intent);    //녹음버튼을 누를 때까지 계속 녹음해야 하므로 녹음 재개
             StopRecord();
 
@@ -182,6 +237,7 @@ public class Custom_STT extends Dialog {
 
     void StartRecord() {
         recording = true;
+        sttBackground.setBackgroundColor(Color.parseColor("#57E06B"));
         speechRecognizer=SpeechRecognizer.createSpeechRecognizer(context);
         speechRecognizer.setRecognitionListener(listener);
         speechRecognizer.startListening(intent);
@@ -191,6 +247,7 @@ public class Custom_STT extends Dialog {
     //녹음 중지
     void StopRecord() {
         recording = false;
+        sttBackground.setBackgroundColor(Color.parseColor("#FF5232"));
         speechRecognizer.stopListening();   //녹음 중지
         Toast.makeText(context, "음성 기록을 중지합니다.", Toast.LENGTH_SHORT).show();
     }
