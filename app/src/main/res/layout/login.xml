@@ -6,13 +6,6 @@
     android:orientation="vertical"
     android:background="#f2f2f6">
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="50dp"
-         />
     <!--이메일 쪽이다-->
     <TextView
         android:id="@+id/aii"
@@ -22,7 +15,7 @@
         android:text="이메일" />
 
     <EditText
-        android:id="@+id/email-kan"
+        android:id="@+id/emailkan"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"

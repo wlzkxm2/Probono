@@ -51,14 +51,14 @@ public class Main_Basic extends FragmentActivity{
             }
         });
 
-        setting_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.fragment_main, setting_dark)
-                        .commit();
-            }
-        });
+//        setting_btn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                getSupportFragmentManager().beginTransaction()
+//                        .replace(R.id.fragment_main, setting_dark)
+//                        .commit();
+//            }
+//        });
     }
 }
 
