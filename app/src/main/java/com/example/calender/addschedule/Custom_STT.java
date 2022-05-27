@@ -37,8 +37,6 @@ public class Custom_STT extends Dialog {
     String STT_Result;
     LinearLayout sttBackground;
 
-
-
     public Custom_STT(@NonNull Context context) {
         super(context);
         this.context = context;
@@ -218,6 +216,7 @@ public class Custom_STT extends Dialog {
             tv_stt.setText(newText + " ");	//기존의 text에 인식 결과를 이어붙임
             Log.d("HSH",""+ newText);
             //speechRecognizer.startListening(intent);    //녹음버튼을 누를 때까지 계속 녹음해야 하므로 녹음 재개
+            handle_message();
             StopRecord();
 
 
@@ -238,6 +237,7 @@ public class Custom_STT extends Dialog {
     void StartRecord() {
         recording = true;
         sttBackground.setBackgroundColor(Color.parseColor("#57E06B"));
+        newText = "";
         speechRecognizer=SpeechRecognizer.createSpeechRecognizer(context);
         speechRecognizer.setRecognitionListener(listener);
         speechRecognizer.startListening(intent);
@@ -250,5 +250,17 @@ public class Custom_STT extends Dialog {
         sttBackground.setBackgroundColor(Color.parseColor("#FF5232"));
         speechRecognizer.stopListening();   //녹음 중지
         Toast.makeText(context, "음성 기록을 중지합니다.", Toast.LENGTH_SHORT).show();
+    }
+
+    void handle_message() {
+//        String extractInteger = newText.replaceAll("[^0~9]","");
+        String extractInteger = "";
+        for(int i =0; i< newText.length(); i++){
+            char ch = newText.charAt(i);
+            if(48 <= ch && ch <=57){
+                extractInteger +=ch;
+            }
+        }
+        Log.d("HSH","" + extractInteger);
     }
 }
