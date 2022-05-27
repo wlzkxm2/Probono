@@ -25,52 +25,70 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="253dp"
+        android:layout_height="wrap_content"
         android:background="@drawable/exam"
         android:orientation="vertical"
-        android:layout_marginTop="100dp">
+        android:layout_marginTop="100dp"
+        >
         <!-- 계정 설정 버튼이다-->
         <!-- 알림 설정 버튼이다-->
-        <Switch
+        <com.google.android.material.switchmaterial.SwitchMaterial
             android:id="@+id/switch1"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:background="@drawable/exam"
-            android:textSize="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:background="@drawable/example1"
+            android:textSize="30sp"
             android:textAlignment="center"
             android:text="@string/notification_all" />
-        <Switch
+        <com.google.android.material.switchmaterial.SwitchMaterial
             android:id="@+id/switch2"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:background="@drawable/exam"
-            android:textSize="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:background="@drawable/example1"
+            android:textSize="30sp"
             android:textAlignment="center"
             android:text="방해금지모드" />
-        <Switch
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
             android:id="@+id/switch3"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:background="@drawable/exam"
-            android:textSize="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:background="@drawable/example1"
+            android:textSize="30sp"
             android:textAlignment="center"
             android:text="알림설정" />
-        <Switch
+        <com.google.android.material.switchmaterial.SwitchMaterial
             android:id="@+id/switch4"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:background="@drawable/exam"
-            android:textSize="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:background="@drawable/example1"
+            android:textSize="30sp"
             android:textAlignment="center"
             android:text="@string/notification_all" />
 
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginTop="10dp"
+            android:text="Back"
+            android:textColor="#000000"
+            android:background="@drawable/example1"
+            android:textSize="25sp"/>
 
-        <!--언어 설정 버튼이다-->
-        <!--쿠폰 입력 버튼이다-->
-        <!--문의사항 버튼이다-->
     </LinearLayout>
-    <!-- 로그아웃 설정 버튼이다-->
-
-    <!--로그아웃 버튼이다-->
-
 </LinearLayout>
