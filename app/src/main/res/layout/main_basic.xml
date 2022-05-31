@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#FFFFFF"
     android:foregroundTint="#5C2727"
-    tools:context=".Main_Basic">
+    tools:context=".Main_Basic.Main_Basic">
 
 
     <ImageButton

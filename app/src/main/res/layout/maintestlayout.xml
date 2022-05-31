@@ -43,7 +43,7 @@
 
         <fragment
             android:id="@+id/fragment_main"
-            android:name="com.example.calender.Main_Basic_Frag"
+            android:name="com.example.calender.Main_Basic.Main_Basic_Frag"
             android:layout_width="match_parent"
             android:layout_height="match_parent"></fragment>
     </LinearLayout>

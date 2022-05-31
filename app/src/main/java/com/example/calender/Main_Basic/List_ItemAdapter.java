@@ -1,4 +1,4 @@
-package com.example.calender;
+package com.example.calender.Main_Basic;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,11 +10,11 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-import com.example.calender.List_Item;
+
 import com.example.calender.R;
 import java.util.ArrayList;
 
-public class List_ItemAdapter_Easy extends RecyclerView.Adapter<List_ItemAdapter_Easy.ViewHolder>{
+public class List_ItemAdapter extends RecyclerView.Adapter<List_ItemAdapter.ViewHolder>{
 
     ArrayList<List_Item> listItems = new ArrayList<List_Item>();
 
@@ -29,7 +29,7 @@ public class List_ItemAdapter_Easy extends RecyclerView.Adapter<List_ItemAdapter
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
 
         LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
-        View itemView = inflater.inflate(R.layout.item_layout_easy, viewGroup, false);
+        View itemView = inflater.inflate(R.layout.item_layout, viewGroup, false);
 
         context = viewGroup.getContext();
 
@@ -68,18 +68,21 @@ public class List_ItemAdapter_Easy extends RecyclerView.Adapter<List_ItemAdapter
 
         TextView time;
         TextView title;
+        TextView text;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             time = itemView.findViewById(R.id.schedule_time);
             title = itemView.findViewById(R.id.schedule_title);
+            text = itemView.findViewById(R.id.schedule_text);
         }
 
         public void setItem(List_Item item){
 
             time.setText(item.getTime());
             title.setText(item.getTitle());
+            text.setText(item.getText());
         }
     }
 }

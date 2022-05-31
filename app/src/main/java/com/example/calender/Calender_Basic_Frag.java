@@ -1,7 +1,6 @@
 package com.example.calender;
 
 
-import android.nfc.Tag;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -20,13 +19,12 @@ import androidx.room.Room;
 import com.example.calender.DataBase.Calender_DB;
 import com.example.calender.DataBase.Calender_DBSet;
 import com.example.calender.DataBase.Calender_Dao;
+import com.example.calender.Main_Basic.List_Item;
+import com.example.calender.Main_Basic.List_ItemAdapter;
 import com.example.calender.StaticUidCode.UidCode;
-import com.example.calender.calendarSource.SaturdayDecorator;
-import com.example.calender.calendarSource.SundayDecorator;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
-import com.prolificinteractive.materialcalendarview.format.MonthArrayTitleFormatter;
 
 import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
