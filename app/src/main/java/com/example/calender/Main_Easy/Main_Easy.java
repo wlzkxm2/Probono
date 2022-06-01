@@ -1,6 +1,7 @@
 package com.example.calender.Main_Easy;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -25,12 +26,16 @@ import org.jetbrains.annotations.Nullable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class Main_Easy extends AppCompatActivity {
 
     //싱글 어댑터
     private ArrayList<Main_Easy_Calendar_Day> days = new ArrayList<>();
     private Single_Adapter singleAdapter;
+    private int checkedPosition = -1;
+    private Timer mTimer;
 
     Main_Easy_Calendar_Adapter main_easy_calendar_adapter;
     Toolbar toolbar;
@@ -41,7 +46,7 @@ public class Main_Easy extends AppCompatActivity {
 
     int listDB = 10;
     private List_ItemAdapter_Easy list_itemAdapter_easy;
-    TextView now, month;
+    TextView now, month, dday, dday_text;
     ImageButton next, previous;
     View.OnClickListener cl;
     String str, c;
@@ -49,13 +54,47 @@ public class Main_Easy extends AppCompatActivity {
     String year = getYear();
     String today=getToday();
 
-    private String getTime() { //현재 시간 가져오기
-        long now = System.currentTimeMillis(); // 현재 시간을 now 변수에 넣음
-        Date date = new Date(now); // 현재 시간을 date 형식으로 변환
-        SimpleDateFormat dateFormat = new SimpleDateFormat("h시 m분");
-        String getTime = dateFormat.format(date);
-        return getTime;
+    // 현재 시간 실시간으로 구해오기
+
+    private Handler mHandler = new Handler();
+
+    private Runnable mUpdateTimeTask = new Runnable() {
+        public void run() {
+
+            Date rightNow = new Date();
+            SimpleDateFormat formatter = new SimpleDateFormat(
+                    "h시 m분");
+            String dateString = formatter.format(rightNow);
+            now.setText(dateString);
+
+        }
+    };
+
+    class MainTimerTask extends TimerTask {
+        public void run() {
+            mHandler.post(mUpdateTimeTask);
+        }
     }
+    @Override
+    protected void onDestroy() {
+        mTimer.cancel();
+        super.onDestroy();
+    }
+
+    @Override
+    protected void onPause() {
+        mTimer.cancel();
+        super.onPause();
+    }
+
+    @Override
+    protected void onResume() {
+        MainTimerTask timerTask = new MainTimerTask();
+        mTimer.schedule(timerTask, 500, 3000);
+        super.onResume();
+    }
+
+    // onResume 까지 현재 시간 실시간으로 구해오기
 
     private String getMonth() { //현재 월 가져오기
         long now = System.currentTimeMillis(); // 현재 시간을 now 변수에 넣음
@@ -84,6 +123,7 @@ public class Main_Easy extends AppCompatActivity {
     }
 
     private void getDay() {
+        days = new ArrayList<>();
         // 현재 월과 일치할 경우
         // 1,3,5,7,8,10,12월
         if (month.getText().toString().equals(jan) || month.getText().toString().equals(mar)
@@ -91,33 +131,49 @@ public class Main_Easy extends AppCompatActivity {
                 || month.getText().toString().equals(aus) || month.getText().toString().equals(oct)
                 || month.getText().toString().equals(dec)) {   //31일까지 표시
             for (int i = 1; i <= 31; i++) {
-                str = i + "";
-                main_easy_calendar_adapter.setArrayData(str);
+                Main_Easy_Calendar_Day day = new Main_Easy_Calendar_Day();
+                day.setDay(""+i);
+                days.add(day);
+                singleAdapter.SetMain_Easy_Calendar_Day(days);
+//                str = i + "";
+//                main_easy_calendar_adapter.setArrayData(str);
             }
         } else if (month.getText().toString().equals(feb)) // 2월인 경우 윤년 계산
         {
             if (Integer.parseInt(year) % 4 == 0) // 현재 년도를 4로 나눠서 0이 되면 윤년
             {   // 29일까지 표시
                 for (int i = 1; i <= 29; i++) {
-                    str = i + "";
-                    main_easy_calendar_adapter.setArrayData(str);
+                    Main_Easy_Calendar_Day day = new Main_Easy_Calendar_Day();
+                    day.setDay(""+i);
+                    days.add(day);
+                    singleAdapter.SetMain_Easy_Calendar_Day(days);
+//                    str = i + "";
+//                    main_easy_calendar_adapter.setArrayData(str);
                 }
             } else // 윤년이 아니면
             {   // 28일까지 표시
                 for (int i = 1; i <= 28; i++) {
-                    str = i + "";
-                    main_easy_calendar_adapter.setArrayData(str);
+                    Main_Easy_Calendar_Day day = new Main_Easy_Calendar_Day();
+                    day.setDay(""+i);
+                    days.add(day);
+                    singleAdapter.SetMain_Easy_Calendar_Day(days);
+//                    str = i + "";
+//                    main_easy_calendar_adapter.setArrayData(str);
                 }
             }
         } else // 나머지 4,6,9,11월
         {   // 30일까지 표시
             for (int i = 1; i <= 30; i++) {
-                str = i + "";
-                main_easy_calendar_adapter.setArrayData(str);
+                Main_Easy_Calendar_Day day = new Main_Easy_Calendar_Day();
+                day.setDay(""+i);
+                days.add(day);
+                singleAdapter.SetMain_Easy_Calendar_Day(days);
+//                str = i + "";
+//                main_easy_calendar_adapter.setArrayData(str);
             }
         }
 
-        calendar_recyclerView.setAdapter(main_easy_calendar_adapter);
+        calendar_recyclerView.setAdapter(singleAdapter);
     }
 
 
@@ -130,10 +186,20 @@ public class Main_Easy extends AppCompatActivity {
         previous = (ImageButton) findViewById(R.id.main_easy_previous);
 
         now = (TextView) findViewById(R.id.main_easy_now);
-        now.setText(getTime());
+//        now.setText(getTime()); // 현재 시간
+        MainTimerTask timerTask = new MainTimerTask();
+        mTimer = new Timer();
+        mTimer.schedule(timerTask, 500, 1000);
 
         month = (TextView) findViewById(R.id.main_easy_month);
         month.setText(getMonth()); // 현재 월 month에 저장. month.getText().toString()으로 현재 월 스트링 타입으로 쓸 수 있음
+
+        dday = (TextView) findViewById(R.id.main_easy_dday);
+        dday_text = (TextView) findViewById(R.id.main_easy_dday_text);
+
+        // 디데이
+        dday.setText("디데이");
+        dday_text.setText("디데이 내용");
 
         cl = new View.OnClickListener() {
             @Override
@@ -174,16 +240,18 @@ public class Main_Easy extends AppCompatActivity {
         previous.setOnClickListener(cl);
 
         calendar_recyclerView = (RecyclerView)findViewById(R.id.recycler_view_easy_calendar_day);
-        calendar_recyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false)) ; // 가로 스크롤
+        calendar_recyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false)); // 가로 스크롤
 
         //싱글 어댑터
         singleAdapter = new Single_Adapter(this,days);
-        calendar_recyclerView.setAdapter(singleAdapter);
-
         main_easy_calendar_adapter = new Main_Easy_Calendar_Adapter();
-        calendar_recyclerView.scrollToPosition(Integer.parseInt(today)-1); // 첫 실행시 오늘날짜 기준으로 보여줌
         getDay();
+        LinearLayoutManager layoutManager = (LinearLayoutManager) calendar_recyclerView.getLayoutManager();
+        layoutManager.scrollToPositionWithOffset(Integer.parseInt(today)-1, 270);
 
+
+
+            // 드로어
 //        toolbar = (Toolbar)findViewById(R.id.toolbar);
 //        setSupportActionBar(toolbar);
 //        getSupportActionBar().setTitle("");

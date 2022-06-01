@@ -3,6 +3,7 @@ package com.example.calender.Main_Basic;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,17 +20,20 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.calender.Main_Easy.Main_Easy;
 import com.example.calender.R;
 import com.example.calender.addschedule.Custom_STT;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class Main_Basic_Frag extends Fragment implements View.OnClickListener {
 
     Main_Basic mainbasic;       // 프래그럼트 매니저가 있음
-
+    private Timer mTimer;
     //플로팅 버튼
     private Context mContext;
     private FloatingActionButton floating_main, floating_edit, floating_voice;
@@ -48,13 +52,47 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener {
 
     Animation fade_in,fade_out;
 
-    private String getTime() { //현재 시간 가져오기
-        long now = System.currentTimeMillis(); // 현재 시간을 now 변수에 넣음
-        Date date = new Date(now); // 현재 시간을 date 형식으로 변환
-        SimpleDateFormat dateFormat = new SimpleDateFormat("M월 d일 h시 m분");
-        String getTime = dateFormat.format(date);
-        return getTime;
+    // 현재 시간 실시간으로 구해오기
+
+    private Handler mHandler = new Handler();
+
+    private Runnable mUpdateTimeTask = new Runnable() {
+        public void run() {
+
+            Date rightNow = new Date();
+            SimpleDateFormat formatter = new SimpleDateFormat(
+                    "M월 d일 h시 m분");
+            String dateString = formatter.format(rightNow);
+            now.setText(dateString);
+
+        }
+    };
+
+    class MainTimerTask extends TimerTask {
+        public void run() {
+            mHandler.post(mUpdateTimeTask);
+        }
     }
+    @Override
+    public void onDestroy() {
+        mTimer.cancel();
+        super.onDestroy();
+    }
+
+    @Override
+    public void onPause() {
+        mTimer.cancel();
+        super.onPause();
+    }
+
+    @Override
+    public void onResume() {
+        MainTimerTask timerTask = new MainTimerTask();
+        mTimer.schedule(timerTask, 500, 3000);
+        super.onResume();
+    }
+
+    // onResume 까지 현재 시간 실시간으로 구해오기
 
 
     public static Main_Basic_Frag newInstance() {
@@ -69,7 +107,10 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener {
 
         // 현재 시간
         now = view.findViewById(R.id.main_basic_now);
-        now.setText(getTime());
+//        now.setText(getTime());
+        Main_Basic_Frag.MainTimerTask timerTask = new Main_Basic_Frag.MainTimerTask();
+        mTimer = new Timer();
+        mTimer.schedule(timerTask, 500, 1000);
 
         maintitle_txt = (TextView) view.findViewById(R.id.main_basic_title);
         maintitle_txt.setText("MainBasic_Fragment 입니다.");

@@ -5,20 +5,36 @@ import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.calender.R;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Single_Adapter extends RecyclerView.Adapter<Single_Adapter.Single_Adapter_ViewHolder> {
 
+    private ArrayList<String> arrayList;
     private Context context;
     private ArrayList<Main_Easy_Calendar_Day> days;
-    private int checkedPosition = 0; // -1 : 아무런 선택도 없는 상태. 0 : 첫번째 아이템 자리
+    private int checkedPosition = Integer.parseInt(getToday())-1;
+
+    // -1 : 아무런 선택도 없는 상태. 0 : 첫번째 아이템 자리
+
+    private String getToday() { //오늘 날짜 가져오기
+        long now = System.currentTimeMillis();
+        Date date = new Date(now);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("d");
+        String getToday = dateFormat.format(date);
+
+        return getToday;
+    }
 
     public Single_Adapter(Context context, ArrayList<Main_Easy_Calendar_Day> days){
         this.context = context;
@@ -52,29 +68,36 @@ public class Single_Adapter extends RecyclerView.Adapter<Single_Adapter.Single_A
     class Single_Adapter_ViewHolder extends RecyclerView.ViewHolder{
 
         private TextView day;
+        private ImageView img;
 
         public Single_Adapter_ViewHolder(@NonNull View itemView) {
             super(itemView);
             day = itemView.findViewById(R.id.easy_calendar_day);
+            img = itemView.findViewById(R.id.imageView);
+
+
         }
 
         void bind(final Main_Easy_Calendar_Day main_easy_calendar_day){
             if (checkedPosition == -1)
             {
-                day.setTextColor(Color.BLUE);
+                day.setTextColor(Color.BLACK);
+                img.setVisibility(View.GONE);
             } else
             {
                 if (checkedPosition == getAdapterPosition())
                 {
-                    day.setTextColor(Color.RED);
+                    img.setVisibility(View.VISIBLE);
                 } else
-                    day.setTextColor(Color.GREEN);
+                    day.setTextColor(Color.BLACK);
+                    img.setVisibility(View.GONE);
             }
             day.setText(main_easy_calendar_day.getDay());
-            day.setOnClickListener(new View.OnClickListener() {
+            itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    day.setVisibility(View.VISIBLE);
+                    day.setTextColor(Color.WHITE);
+                    img.setVisibility(View.VISIBLE);
                     if(checkedPosition != getAdapterPosition())
                     {
                         notifyItemChanged(checkedPosition);
@@ -85,13 +108,7 @@ public class Single_Adapter extends RecyclerView.Adapter<Single_Adapter.Single_A
         }
     }
 
-    public Main_Easy_Calendar_Day getSelected(){
-        if (checkedPosition != -1)
-        {
-            return days.get(checkedPosition);
-        }
-        return null;
-    }
+
 
 
 }
