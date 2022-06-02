@@ -41,7 +41,7 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener {
     private boolean isFabOpen = false;
 
     ImageView add_schedule_dot;
-    ImageButton add_schedule;
+    ImageButton add_schedule, edit_title;
     TextView now, add_schedule_txt, maintitle_txt, mainDday_txt;
     RecyclerView recyclerView, mRecyclerView;
     List_ItemAdapter list_itemAdapter;
@@ -51,6 +51,8 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener {
     int itemTotalCounts;
 
     Animation fade_in,fade_out;
+
+    View.OnClickListener cl;
 
     // 현재 시간 실시간으로 구해오기
 
@@ -104,6 +106,17 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.main_basic, container, false);
+
+        edit_title = (ImageButton) view.findViewById(R.id.edit_button);
+        cl = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                switch (v.getId()){
+                    case R.id.edit_button:
+
+                }
+            }
+        };
 
         // 현재 시간
         now = view.findViewById(R.id.main_basic_now);
