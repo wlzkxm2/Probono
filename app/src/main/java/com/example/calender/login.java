@@ -11,16 +11,16 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class login extends AppCompatActivity {
     Button loginbtn,registerbtn;
-    EditText idkan,passkan;
+    EditText id_edit, pass_edit;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
         //알림 설정 레이아웃을 표시해준다
         loginbtn = (Button) findViewById(R.id.login_btn);
-        registerbtn = (Button) findViewById(R.id.register_btn);
-        idkan=(EditText)findViewById(R.id.emailkan);
-        passkan=(EditText)findViewById(R.id.password_kan);
+        registerbtn = (Button) findViewById(R.id.Register_Btn);
+        id_edit =(EditText)findViewById(R.id.emailkan);
+        pass_edit =(EditText)findViewById(R.id.password_kan);
         loginbtn.setOnClickListener(new View.OnClickListener() {
 
             @Override

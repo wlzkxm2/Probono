@@ -57,7 +57,7 @@
         />
     <!--회원가입 버튼이다-->
     <Button
-        android:id="@+id/register_btn"
+        android:id="@+id/Register_Btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="#000000"

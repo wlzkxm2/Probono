@@ -9,6 +9,8 @@
         <entry key="..\:/05. github/Probono/app/src/main/res/layout/dialog_test.xml" value="0.36614583333333334" />
         <entry key="..\:/05. github/Probono/app/src/main/res/layout/main_basic.xml" value="0.2520833333333333" />
         <entry key="..\:/05. github/Probono/app/src/main/res/layout/maintestlayout.xml" value="0.1" />
+        <entry key="..\:/AndroidStudio/Probono/app/src/main/res/layout/login.xml" value="0.17274569402228976" />
+        <entry key="..\:/AndroidStudio/Probono/app/src/main/res/layout/login_register.xml" value="0.25277777777777777" />
         <entry key="..\:/GithubDocument/Probono/app/src/main/res/layout/calender_basic.xml" value="0.4010416666666667" />
         <entry key="..\:/Users/412-22/Desktop/kjm_project/Probono/app/src/main/res/drawable/ic_tts.xml" value="0.2985" />
         <entry key="..\:/Users/412-22/Desktop/kjm_project/Probono/app/src/main/res/layout/activity_main.xml" value="0.33" />
@@ -23,29 +25,25 @@
         <entry key="..\:/Users/hmlee/Documents/GitHub/Probono/app/src/main/res/drawable/ic_tts.xml" value="0.363" />
         <entry key="..\:/Users/hmlee/Documents/GitHub/Probono/app/src/main/res/drawable/user_line.xml" value="0.2815" />
         <entry key="..\:/Users/hmlee/Documents/GitHub/Probono/app/src/main/res/layout/darkmode.xml" value="0.3578125" />
-        <entry key="..\:/Users/hmlee/Documents/GitHub/Probono/app/src/main/res/layout/login.xml" value="0.2504528985507246" />
         <entry key="..\:/Users/hmlee/Documents/GitHub/Probono/app/src/main/res/layout/setting_account.xml" value="0.14473684210526316" />
         <entry key="..\:/Users/hmlee/Documents/GitHub/Probono/app/src/main/res/layout/setting_main.xml" value="0.3578125" />
-        <entry key="..\:/Users/hmlee/Documents/GitHub/Probono/app/src/main/res/layout/setting_notification.xml" value="0.2504528985507246" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.2028985507246377" />
         <entry key="app/src/main/res/layout/add_schedule.xml" value="0.25" />
         <entry key="app/src/main/res/layout/calender_basic.xml" value="0.2028985507246377" />
         <entry key="app/src/main/res/layout/darkmode.xml" value="0.1381340579710145" />
         <entry key="app/src/main/res/layout/dialog_background_round.xml" value="0.14719202898550723" />
-        <entry key="app/src/main/res/layout/dialog_stt.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/dialog_stt.xml" value="0.5" />
         <entry key="app/src/main/res/layout/dialog_test.xml" value="0.23143115942028986" />
         <entry key="app/src/main/res/layout/list_child.xml" value="0.2006340579710145" />
         <entry key="app/src/main/res/layout/list_header.xml" value="0.2105978260869565" />
-        <entry key="app/src/main/res/layout/login.xml" value="0.24265289306640622" />
-        <entry key="app/src/main/res/layout/login_register.xml" value="0.29002466616423234" />
         <entry key="app/src/main/res/layout/main_basic.xml" value="0.22080199329565603" />
         <entry key="app/src/main/res/layout/main_easy.xml" value="0.15070921985815602" />
         <entry key="app/src/main/res/layout/maintestlayout.xml" value="0.1952991452991453" />
         <entry key="app/src/main/res/layout/navi_header.xml" value="0.15070921985815602" />
         <entry key="app/src/main/res/layout/navigation.xml" value="0.15070921985815602" />
-        <entry key="app/src/main/res/layout/setting_account.xml" value="0.39042784778784356" />
-        <entry key="app/src/main/res/layout/setting_main.xml" value="0.23143115942028986" />
-        <entry key="app/src/main/res/layout/setting_notification.xml" value="0.526752921030031" />
+        <entry key="app/src/main/res/layout/setting_account.xml" value="0.15070921985815602" />
+        <entry key="app/src/main/res/layout/setting_main.xml" value="0.1381340579710145" />
+        <entry key="app/src/main/res/layout/setting_notification.xml" value="0.15070921985815602" />
         <entry key="app/src/main/res/layout/tts_test.xml" value="0.23143115942028986" />
       </map>
     </option>
@@ -59,7 +57,7 @@
   <component name="VisualizationToolProject">
     <option name="state">
       <ProjectState>
-        <option name="scale" value="0.13697916666666668" />
+        <option name="scale" value="0.25277777777777777" />
       </ProjectState>
     </option>
   </component>
