@@ -2,6 +2,7 @@ package com.example.calender.Main_Basic;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -17,6 +18,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -102,21 +104,44 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener {
         return Main_Basic;
     }
 
+//    // 타이틀 변경 이미지버튼
+//    public void Edit_Popup(View v){
+//        //데이터 담아서 팝업(액티비티) 호출
+//        Intent intent = new Intent(getActivity(), Title_Popup.class);
+//        startActivityForResult(intent, 1);
+//    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1) {
+            if (resultCode == getActivity().RESULT_OK) {
+                //데이터 받기
+                String result = data.getStringExtra("result");
+                maintitle_txt.setText(result);
+            }
+        }
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.main_basic, container, false);
 
         edit_title = (ImageButton) view.findViewById(R.id.edit_button);
+        edit_title.setOnClickListener(this);
         cl = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 switch (v.getId()){
                     case R.id.edit_button:
-
+                        Intent intent = new Intent(getActivity(), Title_Popup.class);
+                        startActivityForResult(intent, 1);
+                        break;
                 }
             }
         };
+        edit_title.setOnClickListener(cl);
 
         // 현재 시간
         now = view.findViewById(R.id.main_basic_now);
@@ -126,7 +151,7 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener {
         mTimer.schedule(timerTask, 500, 1000);
 
         maintitle_txt = (TextView) view.findViewById(R.id.main_basic_title);
-        maintitle_txt.setText("MainBasic_Fragment 입니다.");
+        maintitle_txt.setText("Title을 설정해주세요");
 
         fade_in = AnimationUtils.loadAnimation(getActivity().getApplicationContext(),
                 R.anim.fade_in);
