@@ -160,11 +160,33 @@
         android:ems="10"
 
         android:textColorHint="#AAAAAA"
-        android:hint="상세주소를를 입력해 주세요."
+        android:hint="상세주소를 입력해 주세요."
         android:inputType="date"
         android:clickable="true"
         android:focusable="false"
         android:text="" />
+    <!--우편번호소쪽이다-->
+    <TextView
+        android:id="@+id/woopyo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="우편번호" />
+    <!--상세주소 입력칸이다-->
+    <EditText
+        android:id="@+id/editText_postnumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:ems="10"
+
+        android:textColorHint="#AAAAAA"
+        android:hint="우편번호를 입력해 주세요."
+        android:inputType="date"
+        android:clickable="true"
+        android:focusable="false"
+        android:text="" />
+    <!--가입완료 버튼이다-->
     <!--가입완료 버튼이다-->
     <Button
         android:id="@+id/gaip"
