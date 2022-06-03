@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.calender.Main_Basic.Main_Basic_Frag;
+import com.example.calender.setting.Setting_main;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import io.reactivex.rxjava3.annotations.NonNull;

@@ -1,4 +1,4 @@
-package com.example.calender;
+package com.example.calender.setting;
 
 import android.content.DialogInterface;
 import android.content.Intent;

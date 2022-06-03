@@ -45,21 +45,21 @@
             android:layout_marginStart="50dp"
             android:layout_marginTop="45dp"
             android:layout_marginBottom="85dp"
-            android:background="@drawable/edge"
+            android:background="#ffffff"
             android:scaleType="fitCenter"
             app:srcCompat="@drawable/unknown" />
 
         <ImageButton
             android:id="@+id/easybtn"
-            android:layout_width="133dp"
-            android:layout_height="268dp"
+            android:layout_width="150dp"
+            android:layout_height="279dp"
             android:layout_alignBottom="@+id/imageView7"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:layout_marginTop="45dp"
-            android:layout_marginEnd="25dp"
-            android:layout_marginBottom="87dp"
-            android:background="#ffffff"
+            android:layout_marginEnd="36dp"
+            android:layout_marginBottom="76dp"
+            android:background="@drawable/edge"
             android:scaleType="fitCenter"
             app:srcCompat="@drawable/unknown_1" />
 
@@ -80,7 +80,7 @@
 
     </RelativeLayout>
 
-<!--    설정 버튼 화면 쪽이다-->
+    <!--    설정 버튼 화면 쪽이다-->
 
 
 
