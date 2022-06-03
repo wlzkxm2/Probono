@@ -22,6 +22,10 @@ import androidx.annotation.NonNull;
 import com.example.calender.R;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.regex.Pattern;
+
+import javax.xml.transform.Result;
 
 public class Custom_STT extends Dialog {
 
@@ -217,6 +221,7 @@ public class Custom_STT extends Dialog {
             Log.d("HSH",""+ newText);
             //speechRecognizer.startListening(intent);    //녹음버튼을 누를 때까지 계속 녹음해야 하므로 녹음 재개
             handle_message();
+            hangle_message();
             StopRecord();
 
 
@@ -252,7 +257,7 @@ public class Custom_STT extends Dialog {
         Toast.makeText(context, "음성 기록을 중지합니다.", Toast.LENGTH_SHORT).show();
     }
 
-    void handle_message() {
+    void handle_message() { // 음성인식 문장에서 숫자만 분리
 //        String extractInteger = newText.replaceAll("[^0~9]","");
         String extractInteger = "";
         for(int i =0; i< newText.length(); i++){
@@ -262,5 +267,23 @@ public class Custom_STT extends Dialog {
             }
         }
         Log.d("HSH","" + extractInteger);
+    }
+
+    void hangle_message(){
+        int MonthCheck = newText.indexOf("달");
+        int MonthCheck2 = newText.indexOf("월");
+        int WeakCheck = newText.indexOf("주");
+        int DayCheck = newText.indexOf("일");
+        String M = newText.substring(0,MonthCheck+1);
+        String M2 = newText.substring(0,MonthCheck2+1);
+        String W = newText.substring(0,WeakCheck+1);
+        String D = newText.substring(0,DayCheck+1);
+
+        if(M == "다음 주"){
+
+        }else if(M == "이번 주"){
+
+        }
+        //Log.d("HSH","추출 값 : " + W);
     }
 }
