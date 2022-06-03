@@ -120,7 +120,6 @@
         android:hint="나이를 입력해 주세요."
         android:inputType="date"
         android:clickable="true"
-        android:focusable="false"
         android:text="" />
 
     <!--주소 쪽이다-->
@@ -142,7 +141,6 @@
         android:hint="주소를 입력해 주세요."
         android:inputType="date"
         android:clickable="true"
-        android:focusable="false"
         android:text="" />
     <!--상제주소쪽이다-->
     <TextView
@@ -163,7 +161,6 @@
         android:hint="상세주소를 입력해 주세요."
         android:inputType="date"
         android:clickable="true"
-        android:focusable="false"
         android:text="" />
     <!--우편번호소쪽이다-->
     <TextView
@@ -184,7 +181,6 @@
         android:hint="우편번호를 입력해 주세요."
         android:inputType="date"
         android:clickable="true"
-        android:focusable="false"
         android:text="" />
     <!--가입완료 버튼이다-->
     <!--가입완료 버튼이다-->
