@@ -11,6 +11,7 @@
         android:layout_height="50dp"
         android:background="#00FFFFFF"
         app:tint="#8F6CB1" />
+
     <!--회원가입 쪽이다-->
     <TextView
         android:id="@+id/userreg"
@@ -23,16 +24,16 @@
         android:layout_marginBottom="15dp"
         android:text="회원가입" />
 
-
+<!--아이디 쪽이다-->
     <TextView
         android:id="@+id/aidi"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:text="이메일" />
-
+<!--회원가입 입력칸이다-->
     <EditText
-        android:id="@+id/id_kan"
+        android:id="@+id/editText_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
@@ -41,6 +42,7 @@
         android:hint="아이디를 입력해 주세요."
         android:inputType="textPersonName"
         android:text="" />
+
     <!--비밀번호 쪽이다-->
     <TextView
         android:id="@+id/bimilbunho"
@@ -49,6 +51,7 @@
         android:layout_marginStart="10dp"
         android:text="비밀번호" />
 
+<!--비밀번호 등록칸이다-->
     <EditText
         android:id="@+id/editText_usrpw"
         android:layout_width="match_parent"
@@ -59,6 +62,7 @@
         android:hint="비밀번호를 입력해 주세요."
         android:inputType="textPersonName"
         android:text="" />
+<!-- 비밀번호 확인-->
     <TextView
         android:id="@+id/bimilbunho_re"
         android:layout_width="match_parent"
@@ -66,6 +70,7 @@
         android:layout_marginStart="10dp"
         android:text="비밀번호 확인" />
 
+<!--비밀번호 재확인 입력칸이다-->
     <EditText
         android:id="@+id/editText_usrpw_re"
         android:layout_width="match_parent"
@@ -76,16 +81,17 @@
         android:hint="비밀번호를 다시 입력해 주세요."
         android:inputType="textPersonName"
         android:text="" />
-    <!--이름 쪽이다-->
+
+    <!--이메일 쪽이다-->
     <TextView
-        android:id="@+id/nam3"
+        android:id="@+id/email_im"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:text="이름" />
-
+        android:text="이메일" />
+<!--이메일 입력칸이다-->
     <EditText
-        android:id="@+id/editText_usrname"
+        android:id="@+id/editText_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
@@ -95,29 +101,70 @@
         android:inputType="textPersonName"
         android:text="" />
 
-
+<!--나이쪽이다-->
     <TextView
-        android:id="@+id/userpassre"
+        android:id="@+id/nai"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:text="생일" />
-    <!--비밀번호 확인 쪽이다-->
+        android:text="나이" />
+    <!--나이 입력칸이다-->
     <EditText
-        android:id="@+id/editText_usrbirth"
+        android:id="@+id/editText_age"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
         android:ems="10"
 
         android:textColorHint="#AAAAAA"
-        android:hint="생일을 입력해 주세요."
+        android:hint="나이를 입력해 주세요."
         android:inputType="date"
         android:clickable="true"
         android:focusable="false"
         android:text="" />
-    <!--비밀번호 확인 쪽이다-->
 
+    <!--주소 쪽이다-->
+    <TextView
+        android:id="@+id/juso"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="주소" />
+    <!--주소 입력칸이다-->
+    <EditText
+        android:id="@+id/editText_adrees"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:ems="10"
+
+        android:textColorHint="#AAAAAA"
+        android:hint="주소를 입력해 주세요."
+        android:inputType="date"
+        android:clickable="true"
+        android:focusable="false"
+        android:text="" />
+    <!--상제주소쪽이다-->
+    <TextView
+        android:id="@+id/sangsejuso"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="상세주소" />
+    <!--상세주소 입력칸이다-->
+    <EditText
+        android:id="@+id/editText_adrees_re"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:ems="10"
+
+        android:textColorHint="#AAAAAA"
+        android:hint="상세주소를를 입력해 주세요."
+        android:inputType="date"
+        android:clickable="true"
+        android:focusable="false"
+        android:text="" />
     <!--가입완료 버튼이다-->
     <Button
         android:id="@+id/gaip"
