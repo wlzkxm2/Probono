@@ -103,7 +103,7 @@
 
     <!--가입완료 버튼이다-->
     <Button
-        android:id="@+id/userbutton8"
+        android:id="@+id/gaip"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/exam"

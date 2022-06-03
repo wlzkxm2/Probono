@@ -36,7 +36,7 @@ public class Setting_main extends Fragment {
 
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), Setting_account.class);
+                Intent intent = new Intent(getActivity(), login.class);
                 startActivity(intent);
             }
         });

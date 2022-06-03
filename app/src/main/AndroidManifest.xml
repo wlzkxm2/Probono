@@ -83,6 +83,9 @@
         <activity android:name=".Setting_main"/>
         <activity android:name=".Setting_account"/>
         <activity android:name=".Setting_notification"/>
+        <activity android:name=".login_register"/>
+        <activity android:name=".login"/>
+
 
 
     </application>
