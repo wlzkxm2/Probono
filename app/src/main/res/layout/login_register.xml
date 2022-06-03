@@ -30,7 +30,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:text="이메일" />
+        android:text="아이디" />
 <!--회원가입 입력칸이다-->
     <EditText
         android:id="@+id/editText_id"
