@@ -40,7 +40,7 @@
         android:ems="10"
         android:textColorHint="#AAAAAA"
         android:hint="아이디를 입력해 주세요."
-        android:inputType="textPersonName"
+        android:inputType="text"
         android:text="" />
 
     <!--비밀번호 쪽이다-->
@@ -60,7 +60,7 @@
         android:ems="10"
         android:textColorHint="#AAAAAA"
         android:hint="비밀번호를 입력해 주세요."
-        android:inputType="textPersonName"
+        android:inputType="textPassword"
         android:text="" />
 <!-- 비밀번호 확인-->
     <TextView
@@ -79,7 +79,7 @@
         android:ems="10"
         android:textColorHint="#AAAAAA"
         android:hint="비밀번호를 다시 입력해 주세요."
-        android:inputType="textPersonName"
+        android:inputType="textPassword"
         android:text="" />
 
     <!--이메일 쪽이다-->
@@ -97,8 +97,8 @@
         android:layout_marginBottom="20dp"
         android:ems="10"
         android:textColorHint="#AAAAAA"
-        android:hint="이름을 입력해 주세요."
-        android:inputType="textPersonName"
+        android:hint="이메일을 입력해 주세요."
+        android:inputType="textEmailAddress"
         android:text="" />
 
 <!--나이쪽이다-->
@@ -118,8 +118,7 @@
 
         android:textColorHint="#AAAAAA"
         android:hint="나이를 입력해 주세요."
-        android:inputType="date"
-        android:clickable="true"
+        android:inputType="number"
         android:text="" />
 
     <!--주소 쪽이다-->
@@ -179,8 +178,7 @@
 
         android:textColorHint="#AAAAAA"
         android:hint="우편번호를 입력해 주세요."
-        android:inputType="date"
-        android:clickable="true"
+        android:inputType="number"
         android:text="" />
     <!--가입완료 버튼이다-->
     <!--가입완료 버튼이다-->
