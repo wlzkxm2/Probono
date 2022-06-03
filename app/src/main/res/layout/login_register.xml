@@ -30,10 +30,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:text="아이디" />
+        android:text="아이ㅎ" />
 <!--회원가입 입력칸이다-->
     <EditText
-        android:id="@+id/editText_id"
+        android:id="@+id/editText_ID"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
@@ -53,7 +53,7 @@
 
 <!--비밀번호 등록칸이다-->
     <EditText
-        android:id="@+id/editText_usrpw"
+        android:id="@+id/editText_userpw"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
@@ -130,7 +130,7 @@
         android:text="주소" />
     <!--주소 입력칸이다-->
     <EditText
-        android:id="@+id/editText_adrees"
+        android:id="@+id/editText_address"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
@@ -150,7 +150,7 @@
         android:text="상세주소" />
     <!--상세주소 입력칸이다-->
     <EditText
-        android:id="@+id/editText_adrees_re"
+        android:id="@+id/editText_detailaddress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
@@ -170,7 +170,7 @@
         android:text="우편번호" />
     <!--상세주소 입력칸이다-->
     <EditText
-        android:id="@+id/editText_postnumber"
+        android:id="@+id/editText_Zipcode"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
@@ -183,7 +183,7 @@
     <!--가입완료 버튼이다-->
     <!--가입완료 버튼이다-->
     <Button
-        android:id="@+id/gaip"
+        android:id="@+id/userIDCheck_Btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/exam"
