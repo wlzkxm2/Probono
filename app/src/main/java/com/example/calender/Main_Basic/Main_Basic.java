@@ -11,7 +11,7 @@ import android.widget.Button;
 
 import com.example.calender.Calender_Basic_Frag;
 import com.example.calender.R;
-import com.example.calender.Setting_dark;
+import com.example.calender.setting.Setting_dark;
 
 public class Main_Basic extends FragmentActivity{
 
