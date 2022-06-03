@@ -94,43 +94,64 @@ public class login_register extends FragmentActivity implements View.OnClickList
     }
 //    유저의 회원가입을 실행하는 부분
     public void userRegister() {
+
+
         try{
-            // 아이디 체크가 false 라면 아이디 중복검사가 필요함
-            if(!IdCheck) 
-                Toast.makeText(this, "아이디 중복검사를 해주세요", Toast.LENGTH_SHORT).show();
-            
-                // 패스워드가 두개 전부 제대로 입력이 됫다면 true 아니면 false
-            if(user_pwd.equals(user_pwdre))
-                PWCheck = true;
-            else
-                PWCheck = false;
 
-            if(IdCheck){
-                if(PWCheck){
-                    
-                    // 유저 객체 생성후 데이터 삽입
-                    userInfo newUser = new userInfo();
-                    newUser.userId = user_id.getText().toString();
-                    newUser.userpw = user_pwd.getText().toString();
-                    newUser.useremail = user_email.getText().toString();
-                    newUser.userage = user_age.getText().toString();
-                    newUser.useraddress = user_address.getText().toString();
-                    newUser.userdetailaddress = user_detailaddress.getText().toString();
-                    newUser.userzipcode = user_zipcode.getText().toString();
+            userInfo newUser = new userInfo();
+            newUser.userId = user_id.getText().toString();
+            newUser.userpw = user_pwd.getText().toString();
+            newUser.useremail = user_email.getText().toString();
+            newUser.userage = user_age.getText().toString();
+            newUser.useraddress = user_address.getText().toString();
+            newUser.userdetailaddress = user_detailaddress.getText().toString();
+            newUser.userzipcode = user_zipcode.getText().toString();
 
-                    login_register.registerTask register_task = new login_register.registerTask();
+            login_register.registerTask register_task = new login_register.registerTask();
 
-                    String result = register_task.execute(newUser.userId,
-                            newUser.userpw,
-                            newUser.useremail,
-                            newUser.userage,
-                            newUser.useraddress,
-                            newUser.userdetailaddress,
-                            newUser.userzipcode).get();     // 서버가 전송한 값을 String 값으로
-
-                }
-
-            }
+            String result = register_task.execute(newUser.userId,
+                    newUser.userpw,
+                    newUser.useremail,
+                    newUser.userage,
+                    newUser.useraddress,
+                    newUser.userdetailaddress,
+                    newUser.userzipcode).get();     // 서버가 전송한 값을 String 값으로
+//            // 아이디 체크가 false 라면 아이디 중복검사가 필요함
+//            if(!IdCheck)
+//                Toast.makeText(this, "아이디 중복검사를 해주세요", Toast.LENGTH_SHORT).show();
+//
+//                // 패스워드가 두개 전부 제대로 입력이 됫다면 true 아니면 false
+//            if(user_pwd.equals(user_pwdre))
+//                PWCheck = true;
+//            else
+//                PWCheck = false;
+//
+//            if(IdCheck){
+//                if(PWCheck){
+//
+//                    // 유저 객체 생성후 데이터 삽입
+//                    userInfo newUser = new userInfo();
+//                    newUser.userId = user_id.getText().toString();
+//                    newUser.userpw = user_pwd.getText().toString();
+//                    newUser.useremail = user_email.getText().toString();
+//                    newUser.userage = user_age.getText().toString();
+//                    newUser.useraddress = user_address.getText().toString();
+//                    newUser.userdetailaddress = user_detailaddress.getText().toString();
+//                    newUser.userzipcode = user_zipcode.getText().toString();
+//
+//                    login_register.registerTask register_task = new login_register.registerTask();
+//
+//                    String result = register_task.execute(newUser.userId,
+//                            newUser.userpw,
+//                            newUser.useremail,
+//                            newUser.userage,
+//                            newUser.useraddress,
+//                            newUser.userdetailaddress,
+//                            newUser.userzipcode).get();     // 서버가 전송한 값을 String 값으로
+//
+//                }
+//
+//            }
 
 
         }catch (Exception e){

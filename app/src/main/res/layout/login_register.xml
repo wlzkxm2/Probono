@@ -123,7 +123,6 @@
                 android:clickable="true"
 
                 android:ems="10"
-                android:focusable="false"
                 android:hint="나이를 입력해 주세요."
                 android:inputType="date"
                 android:text=""
@@ -143,7 +142,6 @@
                 android:clickable="true"
 
                 android:ems="10"
-                android:focusable="false"
                 android:hint="주소를 입력해 주세요."
                 android:inputType="date"
                 android:text=""
@@ -163,7 +161,6 @@
                 android:clickable="true"
 
                 android:ems="10"
-                android:focusable="false"
                 android:hint="상세주소를 입력해 주세요."
                 android:inputType="date"
                 android:text=""
@@ -183,7 +180,6 @@
                 android:clickable="true"
 
                 android:ems="10"
-                android:focusable="false"
                 android:hint="우편번호를 입력해 주세요."
                 android:inputType="date"
                 android:text=""
