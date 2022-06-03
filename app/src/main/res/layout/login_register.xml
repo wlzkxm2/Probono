@@ -23,27 +23,27 @@
         android:layout_marginBottom="15dp"
         android:text="회원가입" />
 
-    <!--비밀번호 쪽이다-->
+
     <TextView
-        android:id="@+id/usereeeeema"
+        android:id="@+id/aidi"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:text="이메일" />
 
     <EditText
-        android:id="@+id/editText_usrmail"
+        android:id="@+id/id_kan"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
         android:ems="10"
         android:textColorHint="#AAAAAA"
-        android:hint="이메일을 입력해 주세요."
+        android:hint="아이디를 입력해 주세요."
         android:inputType="textPersonName"
         android:text="" />
     <!--비밀번호 쪽이다-->
     <TextView
-        android:id="@+id/userpass"
+        android:id="@+id/bimilbunho"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
@@ -57,6 +57,23 @@
         android:ems="10"
         android:textColorHint="#AAAAAA"
         android:hint="비밀번호를 입력해 주세요."
+        android:inputType="textPersonName"
+        android:text="" />
+    <TextView
+        android:id="@+id/bimilbunho_re"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="비밀번호 확인" />
+
+    <EditText
+        android:id="@+id/editText_usrpw_re"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:ems="10"
+        android:textColorHint="#AAAAAA"
+        android:hint="비밀번호를 다시 입력해 주세요."
         android:inputType="textPersonName"
         android:text="" />
     <!--이름 쪽이다-->
