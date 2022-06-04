@@ -40,7 +40,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:text="아이디" />
+                android:text="*아이디" />
             <!--회원가입 입력칸이다-->
             <EditText
                 android:id="@+id/editText_ID"
@@ -54,6 +54,13 @@
                 android:textColorHint="#AAAAAA" />
 
             <!--비밀번호 쪽이다-->
+            <TextView
+                android:id="@+id/Text_IDCheck"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="아이디 중복검사를 해주세요"
+                android:textColor="#FF0000" />
+
             <Button
                 android:id="@+id/userIDCheck_Btn"
                 style="@android:style/Widget.Material.Button"
@@ -66,7 +73,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:text="비밀번호" />
+                android:text="*비밀번호" />
 
             <!--비밀번호 등록칸이다-->
             <EditText
@@ -84,7 +91,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:text="비밀번호 확인" />
+                android:text="*비밀번호 확인" />
 
             <!--비밀번호 재확인 입력칸이다-->
             <EditText
@@ -103,7 +110,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:text="이메일" />
+                android:text="*이메일" />
             <!--이메일 입력칸이다-->
 
             <!--나이쪽이다-->
@@ -144,7 +151,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:text="나이" />
+                android:text="*나이" />
             <!--나이 입력칸이다-->
             <EditText
                 android:id="@+id/editText_age"
@@ -174,7 +181,6 @@
 
                 android:ems="10"
                 android:hint="주소를 입력해 주세요."
-                android:inputType="date"
                 android:text=""
                 android:textColorHint="#AAAAAA" />
             <!--상제주소쪽이다-->
@@ -189,7 +195,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
-                android:clickable="true"
 
                 android:ems="10"
                 android:hint="상세주소를 입력해 주세요."
