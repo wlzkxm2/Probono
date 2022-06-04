@@ -27,7 +27,7 @@ public class login extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), Main_Basic.class);
+                Intent intent = new Intent(getApplicationContext(), Navigation.class);
                 startActivity(intent);
             }
         });//버튼을 누르면 메인화면으로 가는 명령어
