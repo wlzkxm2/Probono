@@ -89,12 +89,12 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener {
         super.onPause();
     }
 
-    @Override
-    public void onResume() {
-        MainTimerTask timerTask = new MainTimerTask();
-        mTimer.schedule(timerTask, 500, 3000);
-        super.onResume();
-    }
+//    @Override
+//    public void onResume() {
+//        MainTimerTask timerTask = new MainTimerTask();
+//        mTimer.schedule(timerTask, 500, 3000);
+//        super.onResume();
+//    }
 
     // onResume 까지 현재 시간 실시간으로 구해오기
 

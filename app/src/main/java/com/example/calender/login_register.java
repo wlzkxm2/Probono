@@ -22,7 +22,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class login_register extends FragmentActivity implements View.OnClickListener{
+public class login_register extends FragmentActivity {
 
     EditText user_id,
             user_pwd, user_pwdre,
@@ -37,6 +37,8 @@ public class login_register extends FragmentActivity implements View.OnClickList
 
     Boolean IdCheck = true,
             PWCheck = true;
+
+    View.OnClickListener btnbranch;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState){
@@ -57,29 +59,30 @@ public class login_register extends FragmentActivity implements View.OnClickList
         user_detailaddress = (EditText) findViewById(R.id.editText_detailaddress);
         user_zipcode = (EditText) findViewById(R.id.editText_Zipcode);
 
-        userIDCheck_btn.setOnClickListener(this);
-        register_btn.setOnClickListener(this);
+        btnbranch = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                switch (view.getId()){
+                    case R.id.userIDCheck_Btn:
+                        userIdCheck();
+                        break;
+
+                    case R.id.Register_Btn:
+                        Log.v("error", "회원가입");
+                        userRegister();
+                        break;
+
+                }
+            }
+        };
+
+        userIDCheck_btn.setOnClickListener(btnbranch);
+        register_btn.setOnClickListener(btnbranch);
 
 //         btn9 = (Button) findViewById(R.id.button9);
 //        btn7.setOnClickListener(new View.OnClickListener() {
     }
 
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()){
-            case R.id.userIDCheck_Btn:
-                userIdCheck();
-                break;
-                
-            case R.id.Register_Btn:
-                Log.v("error", "회원가입");
-                userRegister();
-                break;
-
-        }
-    }
-    
-    
     // 유저의 아이디를 중복확인 하는 부분
     public void userIdCheck(){
         
