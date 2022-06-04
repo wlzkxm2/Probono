@@ -9,6 +9,8 @@ import android.widget.EditText;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.calender.Main_Basic.Main_Basic;
+
 public class login extends AppCompatActivity {
     Button loginbtn,registerbtn;
     EditText id_edit, pass_edit;
@@ -25,7 +27,7 @@ public class login extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                Intent intent = new Intent(getApplicationContext(), Main_Basic.class);
                 startActivity(intent);
             }
         });//버튼을 누르면 메인화면으로 가는 명령어
@@ -33,8 +35,8 @@ public class login extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), login_register.class);
-                startActivity(intent);
+                Intent intent2 = new Intent(getApplicationContext(), login_register.class);
+                startActivity(intent2);
             }
         });//버튼을 누르면 메인화면으로 가는 명령어
     }

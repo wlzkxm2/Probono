@@ -3,6 +3,7 @@ package com.example.calender;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Debug;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -25,7 +26,7 @@ public class login_register extends FragmentActivity implements View.OnClickList
 
     EditText user_id,
             user_pwd, user_pwdre,
-            user_email,
+            user_email, user_lastemail,
             user_age,
             user_address, user_detailaddress,
             user_zipcode;
@@ -50,6 +51,7 @@ public class login_register extends FragmentActivity implements View.OnClickList
         user_pwd = (EditText) findViewById(R.id.editText_userpw);
         user_pwdre = (EditText) findViewById(R.id.editText_usrpw_re);
         user_email = (EditText) findViewById(R.id.editText_email);
+        user_lastemail = (EditText) findViewById(R.id.editText_lastemail);
         user_age = (EditText) findViewById(R.id.editText_age);
         user_address = (EditText) findViewById(R.id.editText_address);
         user_detailaddress = (EditText) findViewById(R.id.editText_detailaddress);
@@ -70,8 +72,10 @@ public class login_register extends FragmentActivity implements View.OnClickList
                 break;
                 
             case R.id.Register_Btn:
+                Log.v("error", "회원가입");
                 userRegister();
                 break;
+
         }
     }
     
@@ -87,6 +91,7 @@ public class login_register extends FragmentActivity implements View.OnClickList
         String userId;
         String userpw;
         String useremail;
+        String userlastemail;
         String userage;
         String useraddress;
         String userdetailaddress;
@@ -102,10 +107,12 @@ public class login_register extends FragmentActivity implements View.OnClickList
             newUser.userId = user_id.getText().toString();
             newUser.userpw = user_pwd.getText().toString();
             newUser.useremail = user_email.getText().toString();
+            newUser.userlastemail = user_lastemail.getText().toString();
             newUser.userage = user_age.getText().toString();
             newUser.useraddress = user_address.getText().toString();
             newUser.userdetailaddress = user_detailaddress.getText().toString();
             newUser.userzipcode = user_zipcode.getText().toString();
+            System.out.println(newUser.useremail);
 
             login_register.registerTask register_task = new login_register.registerTask();
 
@@ -177,10 +184,11 @@ public class login_register extends FragmentActivity implements View.OnClickList
                 sendMsg = "id=" + strings[0]
                         + "&pw=" + strings[1]
                         + "&email" + strings[2]
-                        + "&age=" + strings[3]
-                        + "&address=" + strings[4]
-                        + "&detailaddress=" + strings[5]
-                        + "&zipcode=" + strings[6]; // GET방식으로 작성해 POST로 보냄 ex) "id=admin&pwd=1234";
+                        + "&lastemail" + strings[3]
+                        + "&age=" + strings[4]
+                        + "&address=" + strings[5]
+                        + "&detailaddress=" + strings[6]
+                        + "&zipcode=" + strings[7]; // GET방식으로 작성해 POST로 보냄 ex) "id=admin&pwd=1234";
                 osw.write(sendMsg);                           // OutputStreamWriter에 담아 전송
                 osw.flush();
 

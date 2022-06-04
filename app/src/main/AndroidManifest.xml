@@ -5,7 +5,14 @@
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.RECORD_AUDIO"/>
 
+    <!--    데이터베이스를 백업 추출 하기 위해 필요한 읽기쓰기 권한-->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
     <application
+        android:requestLegacyExternalStorage="true"
+        android:usesCleartextTraffic="true"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -32,7 +39,7 @@
             android:windowSoftInputMode="adjustPan"></activity>
 
         <activity
-            android:name=".Main_Basic"
+            android:name=".Main_Basic.Main_Basic"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -51,7 +58,7 @@
 
 
         <activity
-            android:name=".Main_Easy"
+            android:name=".Main_Easy.Main_Easy"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
