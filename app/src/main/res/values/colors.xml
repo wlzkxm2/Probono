@@ -9,4 +9,20 @@
     <color name="white">#FFFFFFFF</color>
     <color name="red">#FF5232</color>
     <color name="green">#57E06B</color>
+
+
+<!--    프로파일을 위한 컬러-->
+
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <!--colors for profile-->
+    <color name="profilePrimaryDark">#FF3B30</color>
+    <color name="profileAccentColor">#F7F7F7</color>
+    <color name="whiteTextColor">#fff</color>
+    <color name="profileBackground">#fff</color>
+    <color name="blackTextColor">#000</color>
+    <color name="profileEditTextColor">#707070</color>
+
 </resources>

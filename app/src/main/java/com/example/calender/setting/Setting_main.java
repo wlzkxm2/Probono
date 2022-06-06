@@ -3,6 +3,7 @@ package com.example.calender.setting;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.room.Room;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,12 +13,23 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
+import com.example.calender.DataBase.Calender_DBSet;
+import com.example.calender.DataBase.Calender_Dao;
+import com.example.calender.DataBase.UserDB;
+import com.example.calender.DataBase.User_Dao;
 import com.example.calender.R;
+import com.example.calender.UserProfile;
 import com.example.calender.login;
+
+import java.util.List;
 
 
 public class Setting_main extends Fragment {
+
+    Calender_Dao calender_dao;
+    User_Dao user_dao;
 
     Setting_account settingaccount_frag; // 프래그먼트 호출을 위한 객체 생성
     Setting_notification settingnotification_frag;
@@ -38,6 +50,14 @@ public class Setting_main extends Fragment {
         im1=view.findViewById(R.id.normalbtn);
         im2=view.findViewById(R.id.easybtn);
 
+        Calender_DBSet dbController = Room.databaseBuilder(getActivity().getApplicationContext(), Calender_DBSet.class, "CalenderDB")
+                .fallbackToDestructiveMigration()
+                .allowMainThreadQueries()
+                .build();
+
+        calender_dao = dbController.calender_dao();
+        user_dao = dbController.user_dao();
+
 
         im2.setOnClickListener(new View.OnClickListener() {
 
@@ -51,8 +71,19 @@ public class Setting_main extends Fragment {
 
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), login.class);
-                startActivity(intent);
+
+                List<UserDB> userdata = user_dao.getAllData();
+
+                // 유저 DB를 불러온 다음에 데이터를 읽어와서 null 이면 로그인 페이지로 아니면 마이프로필로 이동ㅅ
+                if(userdata.get(0).getId() == null){
+                    Intent intent = new Intent(getActivity(), login.class);
+                    startActivity(intent);
+
+                }else{
+                    Intent userprofile = new Intent(getActivity(), UserProfile.class);
+                    startActivity(userprofile);
+                    Log.v("login", "동작함");
+                }
             }
         });
 

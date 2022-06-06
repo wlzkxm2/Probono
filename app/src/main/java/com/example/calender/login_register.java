@@ -184,9 +184,21 @@ public class login_register extends FragmentActivity {
                     Log.v("error", "이메일 뒷부분 비어있음");
                 else if (newUser.userage.isEmpty())
                     Log.v("error", "나이 비어있음");
-                else
+                else if (newUser.userpw.length() < 5)
+                    Log.v("error", "비밀번호 길이가 안맞음");
+                else{
                     registerC = true;
-                
+                    if(newUser.useraddress.isEmpty())
+                        newUser.useraddress = "nothing";
+
+                    if(newUser.userdetailaddress.isEmpty())
+                        newUser.userdetailaddress = "nothing";
+
+                    if(newUser.userzipcode.isEmpty())
+                        newUser.userzipcode = "nothing";
+
+                }
+
                 if(registerC){
                     // 아이디 삽입을 위한 객체 생성
                     login_register.registerTask register_task = new login_register.registerTask();
@@ -200,9 +212,8 @@ public class login_register extends FragmentActivity {
                             newUser.useraddress,
                             newUser.userdetailaddress,
                             newUser.userzipcode).get();     // 서버가 전송한 값을 String 값으로
-                    
                 } else
-                    Toast.makeText(this, "필수 입력란이 비어있습니다. 다시 입력해주세요", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "필수 입력란이 비어있거나 비밀번호를 6자 이상으로 해주세요.", Toast.LENGTH_SHORT).show();
                 
             }
 
@@ -210,6 +221,9 @@ public class login_register extends FragmentActivity {
 
         }catch (Exception e){
             
+        }finally {
+            Toast.makeText(this, "회원가입 완료", Toast.LENGTH_SHORT).show();
+            finish();
         }
     }
 

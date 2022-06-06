@@ -19,12 +19,15 @@ import androidx.room.Room;
 import com.example.calender.DataBase.Calender_DB;
 import com.example.calender.DataBase.Calender_DBSet;
 import com.example.calender.DataBase.Calender_Dao;
+import com.example.calender.DataBase.UserDB;
+import com.example.calender.DataBase.User_Dao;
 import com.example.calender.StaticUidCode.UidCode;
 
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     Calender_Dao calender_dao;
+    User_Dao user_dao;
 
     private  static final String TAG = "MainActivity";
 
@@ -52,8 +55,12 @@ public class MainActivity extends AppCompatActivity {
                 .build();
 
         calender_dao = dbController.calender_dao();
+        user_dao = dbController.user_dao();
 
-        List<Calender_DB> calender_dbs = calender_dao.getAllData();
+//        List<Calender_DB> calender_dbs = calender_dao.getAllData();
+//        List<UserDB> userdb = user_dao.getAllData();        // 유저 데이터베이스
+
+
         //</editor-fold>
 
         ttsbtn = findViewById(R.id.tts_test);
@@ -105,6 +112,10 @@ public class MainActivity extends AppCompatActivity {
             calender_db.set_titles(null);
             calender_db.set_subtitle(null);
             calender_dao.insertAll(calender_db);
+
+            // 로그인한 사용자의 정보를 받기위한 데이터값
+            UserDB userDB = new UserDB(null, null, null, null, null, "00000", 0);
+            user_dao.insertAll(userDB);
 
             SharedPreferences.Editor editor = pref.edit();
             editor.putBoolean("isFirst", true);

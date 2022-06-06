@@ -16,8 +16,8 @@
         android:layout_marginTop="100dp"
         android:textSize="50dp"
         android:text="CALANDER" />
+
     <TextView
-        android:id="@+id/aii"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="200dp"
@@ -25,7 +25,7 @@
         android:text="이메일" />
 
     <EditText
-        android:id="@+id/emailkan"
+        android:id="@+id/UserID_Edit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
@@ -36,7 +36,6 @@
         android:text="" />
     <!--비밀번호 쪽이다-->
     <TextView
-        android:id="@+id/pas"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
@@ -44,7 +43,7 @@
         android:text="비밀번호" />
 
     <EditText
-        android:id="@+id/password_kan"
+        android:id="@+id/UserPW_Edit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"

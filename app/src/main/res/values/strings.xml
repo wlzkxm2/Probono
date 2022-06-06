@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">Calender</string>
 
+    <string name="title_activity_profile">Profile</string>
+    <string name="action_settings">Settings</string>
+
     <string-array name="custom_weekdays">
         <item>일</item>
         <item>월</item>
