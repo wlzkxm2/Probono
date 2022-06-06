@@ -31,10 +31,6 @@ public class Setting_main extends Fragment {
     Calender_Dao calender_dao;
     User_Dao user_dao;
 
-    Setting_account settingaccount_frag; // 프래그먼트 호출을 위한 객체 생성
-    Setting_notification settingnotification_frag;
-    Setting_dark settingdark_frag;
-
     Button btntest1, btntest2, button3;      // 프래그먼트 전환을 위한 버튼
     ImageButton im1,im2;
 
