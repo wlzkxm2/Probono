@@ -14,6 +14,7 @@ import androidx.room.Room;
 import com.example.calender.DataBase.Calender_DBSet;
 import com.example.calender.DataBase.Calender_Dao;
 import com.example.calender.DataBase.UserDB;
+import com.example.calender.DataBase.User_DBset;
 import com.example.calender.DataBase.User_Dao;
 import com.example.calender.Main_Easy.Main_Easy;
 import com.example.calender.Navigation;
@@ -48,8 +49,13 @@ public class Setting_main_easy extends AppCompatActivity {
                 .allowMainThreadQueries()
                 .build();
 
+        User_DBset userdbController = Room.databaseBuilder(getApplicationContext(), User_DBset.class, "UserInfoDB")
+                .fallbackToDestructiveMigration()
+                .allowMainThreadQueries()
+                .build();
+
         calender_dao = dbController.calender_dao();
-        user_dao = dbController.user_dao();
+        user_dao = userdbController.user_dao();
 
 
         im1.setOnClickListener(new View.OnClickListener() {

@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.example.calender.DataBase.Calender_DBSet;
 import com.example.calender.DataBase.Calender_Dao;
 import com.example.calender.DataBase.UserDB;
+import com.example.calender.DataBase.User_DBset;
 import com.example.calender.DataBase.User_Dao;
 import com.example.calender.R;
 import com.example.calender.UserProfile;
@@ -51,8 +52,13 @@ public class Setting_main extends Fragment {
                 .allowMainThreadQueries()
                 .build();
 
+        User_DBset userdbController = Room.databaseBuilder(getActivity().getApplicationContext(), User_DBset.class, "UserInfoDB")
+                .fallbackToDestructiveMigration()
+                .allowMainThreadQueries()
+                .build();
+
         calender_dao = dbController.calender_dao();
-        user_dao = dbController.user_dao();
+        user_dao = userdbController.user_dao();
 
 
         im2.setOnClickListener(new View.OnClickListener() {

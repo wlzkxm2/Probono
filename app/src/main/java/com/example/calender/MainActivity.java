@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -20,6 +21,7 @@ import com.example.calender.DataBase.Calender_DB;
 import com.example.calender.DataBase.Calender_DBSet;
 import com.example.calender.DataBase.Calender_Dao;
 import com.example.calender.DataBase.UserDB;
+import com.example.calender.DataBase.User_DBset;
 import com.example.calender.DataBase.User_Dao;
 import com.example.calender.StaticUidCode.UidCode;
 
@@ -45,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         CheckPermission();
+        CheckStoragePermission();
 
         //<editor-fold desc="DB 기본 세팅 코드">
 
@@ -54,8 +57,13 @@ public class MainActivity extends AppCompatActivity {
                 .allowMainThreadQueries()
                 .build();
 
+        User_DBset userdbController = Room.databaseBuilder(getApplicationContext(), User_DBset.class, "UserInfoDB")
+                .fallbackToDestructiveMigration()
+                .allowMainThreadQueries()
+                .build();
+
         calender_dao = dbController.calender_dao();
-        user_dao = dbController.user_dao();
+        user_dao = userdbController.user_dao();
 
 //        List<Calender_DB> calender_dbs = calender_dao.getAllData();
 //        List<UserDB> userdb = user_dao.getAllData();        // 유저 데이터베이스
@@ -147,6 +155,22 @@ public class MainActivity extends AppCompatActivity {
                         new String[]{Manifest.permission.INTERNET,
                                 Manifest.permission.RECORD_AUDIO},PERMISSION);
                                 Log.d("haan","권한 체크");
+            }
+        }
+
+
+    }
+
+    void CheckStoragePermission(){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if(checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED
+                    || checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                if(shouldShowRequestPermissionRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+                    Toast.makeText(this, "외부 저장소 사용을 위해 읽기/쓰기 필요", Toast.LENGTH_SHORT).show();
+                }
+
+                requestPermissions(new String[]
+                        {Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.READ_EXTERNAL_STORAGE}, 2);
             }
         }
     }

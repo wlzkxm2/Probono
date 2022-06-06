@@ -1,8 +1,13 @@
 package com.example.calender;
 
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.PowerManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -17,17 +22,27 @@ import com.example.calender.DataBase.Calender_DB;
 import com.example.calender.DataBase.Calender_DBSet;
 import com.example.calender.DataBase.Calender_Dao;
 import com.example.calender.DataBase.UserDB;
+import com.example.calender.DataBase.User_DBset;
 import com.example.calender.DataBase.User_Dao;
 
+import java.io.BufferedInputStream;
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
+
+import ir.androidexception.roomdatabasebackupandrestore.Backup;
+import ir.androidexception.roomdatabasebackupandrestore.Restore;
 
 public class login extends AppCompatActivity {
     Calender_Dao calender_dao;
@@ -45,8 +60,13 @@ public class login extends AppCompatActivity {
                 .allowMainThreadQueries()
                 .build();
 
+        User_DBset userdbController = Room.databaseBuilder(getApplicationContext(), User_DBset.class, "UserInfoDB")
+                .fallbackToDestructiveMigration()
+                .allowMainThreadQueries()
+                .build();
+
         calender_dao = dbController.calender_dao();
-        user_dao = dbController.user_dao();
+        user_dao = userdbController.user_dao();
 
 //        List<Calender_DB> calender_dbs = calender_dao.getAllData();
 //        List<UserDB> userdb = user_dao.getAllData();        // 유저 데이터베이스
@@ -144,6 +164,7 @@ public class login extends AppCompatActivity {
         }
 
     }
+
 
     class LoginTask extends AsyncTask<String, Void, String> {
         String sendMsg, receiveMsg;
