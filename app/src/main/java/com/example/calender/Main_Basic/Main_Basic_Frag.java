@@ -2,6 +2,7 @@ package com.example.calender.Main_Basic;
 
 
 import android.app.AlertDialog;
+import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -13,6 +14,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -32,11 +35,24 @@ import com.example.calender.addschedule.Custom_STT;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class Main_Basic_Frag extends Fragment implements View.OnClickListener {
+
+    // 디데이 변수
+    int dateEndY, dateEndM, dateEndD;
+    int ddayValue = 0;
+
+    // 현재 날짜를 알기 위해 사용
+    Calendar calendar;
+    int currentYear, currentMonth, currentDay;
+
+    // Millisecond 형태의 하루(24 시간)
+    private final int ONE_DAY = 24 * 60 * 60 * 1000;
 
     Context context;
     Main_Basic mainbasic;       // 프래그럼트 매니저가 있음
@@ -49,8 +65,8 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener {
 
     ImageView add_schedule_dot;
     ImageButton add_schedule, edit_title;
-    TextView now, add_schedule_txt, maintitle_txt, d_day;
-    RecyclerView recyclerView, mRecyclerView;
+    TextView now, add_schedule_txt, maintitle_txt, d_day, d_day_text;
+    RecyclerView recyclerView;
     List_ItemAdapter list_itemAdapter;
     int listDB=10;
 
@@ -94,14 +110,76 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener {
         super.onPause();
     }
 
-//    @Override
-//    public void onResume() {
-//        MainTimerTask timerTask = new MainTimerTask();
-//        mTimer.schedule(timerTask, 500, 3000);
-//        super.onResume();
-//    }
+    // DatePickerDialog띄우기, 종료일 저장, 기존에 입력한 값이 있으면 해당 데이터 설정후 띄우기
+    private DatePickerDialog.OnDateSetListener endDateSetListener = new DatePickerDialog.OnDateSetListener() {
+        @Override
+        public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+//            edit_endDateBtn.setText(year + "년 " + (monthOfYear + 1) + "월 " + dayOfMonth + "일");
+            ddayValue = ddayResult_int(dateEndY, dateEndM, dateEndD);
+            d_day.setText(getDday(year, monthOfYear, dayOfMonth));
+        }
+    };
 
-    // onResume 까지 현재 시간 실시간으로 구해오기
+    // 설정한 디데이 year, mMonthOfYear : 설정한 디데이 MonthOfYear, mDayOfMonth : 설정한 디데이 DayOfMonth
+    private String getDday(int mYear, int mMonthOfYear, int mDayOfMonth) {
+        // D-day 설정
+        final Calendar ddayCalendar = Calendar.getInstance();
+        ddayCalendar.set(mYear, mMonthOfYear, mDayOfMonth);
+
+        // D-day 를 구하기 위해 millisecond 으로 환산하여 d-day 에서 today 의 차를 구한다.
+        final long dday = ddayCalendar.getTimeInMillis() / ONE_DAY;
+        final long today = Calendar.getInstance().getTimeInMillis() / ONE_DAY;
+        long result = dday - today;
+
+        // 출력 시 d-day 에 맞게 표시
+        String strFormat;
+        if (result > 0) {
+            strFormat = "D-%d";
+        } else if (result == 0) {
+            strFormat = "Today!";
+        } else {
+            result *= -1;
+            strFormat = "D+%d";
+        }
+
+        final String strCount = (String.format(strFormat, result));
+        return strCount;
+    }
+
+    // 디데이 값 계산
+    public int onCalculatorDate (int dateEndY, int dateEndM, int dateEndD) {
+        try {
+            Calendar today = Calendar.getInstance(); //현재 오늘 날짜
+            Calendar dday = Calendar.getInstance();
+
+            //시작일, 종료일 데이터 저장
+            Calendar calendar = Calendar.getInstance();
+            int cyear = calendar.get(Calendar.YEAR);
+            int cmonth = (calendar.get(Calendar.MONTH) + 1);
+            int cday = calendar.get(Calendar.DAY_OF_MONTH);
+
+            today.set(cyear, cmonth, cday);
+            dday.set(dateEndY, dateEndM, dateEndD);// D-day의 날짜를 입력합니다.
+
+            long day = dday.getTimeInMillis() / 86400000;
+            // 각각 날의 시간 값을 얻어온 다음
+            //( 1일의 값(86400000 = 24시간 * 60분 * 60초 * 1000(1초값) ) )
+
+            long tday = today.getTimeInMillis() / 86400000;
+            long count = tday - day; // 오늘 날짜에서 dday 날짜를 빼주게 됩니다.
+            return (int) count; // 날짜는 하루 + 시켜줘야합니다.
+        } catch (Exception e) {
+            e.printStackTrace();
+            return -1;
+        }
+    }
+
+    // 디데이 값 계산한 결과값 출력
+    public int ddayResult_int(int dateEndY, int dateEndM, int dateEndD) {
+        int result = 0;
+        result = onCalculatorDate(dateEndY, dateEndM, dateEndD);
+        return result;
+    }
 
 
     public static Main_Basic_Frag newInstance() {
@@ -114,16 +192,27 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.main_basic, container, false);
 
+
+        //시작일, 종료일 데이터 저장
+        calendar = Calendar.getInstance();
+        currentYear = calendar.get(Calendar.YEAR);
+        currentMonth = (calendar.get(Calendar.MONTH));
+        currentDay = calendar.get(Calendar.DAY_OF_MONTH);
+
+        //한국어 설정 (ex: date picker)
+        Locale.setDefault(Locale.KOREAN);
+
         // 디데이 다이얼로그
         d_day = (TextView) view.findViewById(R.id.main_easy_dday);
+        d_day_text = (TextView) view.findViewById(R.id.main_easy_dday_text);
         d_day.setOnClickListener(this);
-        d_day.setText("D-day를 설정해주세요");
+        d_day_text.setOnClickListener(this);
 
         // 타이틀 다이얼로그
         edit_title = (ImageButton) view.findViewById(R.id.edit_button);
         edit_title.setOnClickListener(this);
         maintitle_txt = (TextView) view.findViewById(R.id.main_basic_title);
-        maintitle_txt.setText("Title을 설정해주세요");
+        maintitle_txt.setText("Title을 설정해주세요"); // 초기 제목
 
         // 현재 시간
         now = view.findViewById(R.id.main_basic_now);
@@ -162,19 +251,27 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener {
         list_itemAdapter = new List_ItemAdapter();
         recyclerView.setAdapter(list_itemAdapter);
 
+        d_day.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new DatePickerDialog(getActivity(), endDateSetListener, (currentYear), (currentMonth), currentDay).show();
+//                DatePickerDialog.Builder dialog = new DatePickerDialog.Builder(new ContextThemeWrapper(getActivity(), R.style.AlertDialogTheme));
+            }
+        });
+
         //화면 클리어
         list_itemAdapter.removeAllItem();
 
+        // -------------------------------------------------------- DB 데이터 넣는곳
         //샘플 데이터 생성
         for (int i = 0; i < listDB; i++) {
             List_Item list_item = new List_Item();
-            list_item.setTime("14:00" + "-" + i);
-            list_item.setTitle("과제하기" + "-" + i);
-            list_item.setText("그치만 하기 싫은걸" + "-" + i);
+            list_item.setTime("14:00" + "-" + i); // 시간
+            list_item.setTitle("과제하기" + "-" + i); // 일정 제목
+            list_item.setText("그치만 하기 싫은걸" + "-" + i); // 일정 내용
             //데이터 등록
             list_itemAdapter.addItem(list_item);
         }
-
         //적용
         list_itemAdapter.notifyDataSetChanged();
 
@@ -229,21 +326,27 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener {
                 break;
         }
 
+        // -------------------------------------------------------- DB 데이터 넣는곳
+        // 로그인 후, 타이틀 제목 변경한 내용 DB에 넣어놔야 함
+        // String타입으로 받으면 될듯
+
         // 타이틀 제목 변경 다이얼
         if(v.equals(edit_title)){
             final EditText edit_title = new EditText(this.getActivity());
             AlertDialog.Builder dialog = new AlertDialog.Builder(new ContextThemeWrapper(getActivity(), R.style.AlertDialogTheme));
-            dialog.setTitle("제목을 입력해주세요");
-            dialog.setView(edit_title);
-            edit_title.setText(maintitle_txt.getText());
-            // OK 버튼 이벤트
+            dialog.setTitle("제목을 입력해주세요"); // 다이얼 제목
+            dialog.setView(edit_title); // 제목 입력하는 에딧 텍스트 표시. 여기에 입력한 내용 DB에 들어가야함
+            edit_title.setText(maintitle_txt.getText()); // 위 표시한 에딧 내용에 현재 적용되있는 제목 넣어놓음(처음이라면 초기 제목)
+
+            // 완료 버튼
             dialog.setPositiveButton("완료", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int which) {
                     String getTitle = edit_title.getText().toString();
                     maintitle_txt.setText(getTitle);
                 }
             });
-            // Cancel 버튼 이벤트
+
+            // 취소 버튼
             dialog.setNegativeButton("취소",new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int which) {
                     dialog.cancel();
@@ -252,26 +355,34 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener {
             dialog.show();
         }
 
+        // -------------------------------------------------------- DB 데이터 넣는곳
+        // ---------------------------- 미완성
         // D-day 변경 다이얼
-        if(v.equals(d_day)){
-            final EditText edit_dday = new EditText(this.getActivity());
+
+
+
+
+        // 내용
+        if(v.equals(d_day_text)){
+//            final EditText edit_dday = new EditText(this.getActivity());
             final EditText edit_dday_text = new EditText(this.getActivity());
             AlertDialog.Builder dialog = new AlertDialog.Builder(new ContextThemeWrapper(getActivity(), R.style.AlertDialogTheme));
             dialog.setTitle("D-day를 설정해주세요");
-            dialog.setView(edit_dday);
             dialog.setView(edit_dday_text);
-            edit_dday.setText("날짜"); // D-day 날짜
-            edit_dday_text.setText(d_day.getText()); // D-day 내용
+            dialog.setView(edit_dday_text);
+//            edit_dday.setText("날짜"); // D-day 날짜
+            edit_dday_text.setText(d_day_text.getText()); // D-day 내용
 
-            // OK 버튼 이벤트
+            // 완료 버튼
             dialog.setPositiveButton("완료", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int which) {
-                    String getDday = edit_dday.getText().toString();
+//                    String getDday = edit_dday.getText().toString();
                     String getText = edit_dday_text.getText().toString();
-                    d_day.setText(getDday+"  |  "+getText);
+                    d_day_text.setText(getText);
                 }
             });
-            // Cancel 버튼 이벤트
+
+            // 취소 버튼
             dialog.setNegativeButton("취소",new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int which) {
                     dialog.cancel();

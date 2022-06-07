@@ -27,7 +27,11 @@
         <entry key="..\:/Users/412-22/Desktop/kjm_project/Probono/app/src/main/res/layout/calender_basic.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/412-22/Desktop/kjm_project/Probono/app/src/main/res/layout/main_basic.xml" value="0.5" />
         <entry key="..\:/Users/412-22/Desktop/kjm_project/Probono/app/src/main/res/layout/setting_main.xml" value="0.17806484295845998" />
-        <entry key="..\:/Users/K/Desktop/probono/app/src/main/res/layout/main_basic.xml" value="0.2629193109700816" />
+        <entry key="..\:/Users/K/Desktop/probono/app/src/main/res/layout/calendar_easy.xml" value="0.1464688675302967" />
+        <entry key="..\:/Users/K/Desktop/probono/app/src/main/res/layout/calender_basic.xml" value="0.14688675302966986" />
+        <entry key="..\:/Users/K/Desktop/probono/app/src/main/res/layout/dday.xml" value="0.14688675302966986" />
+        <entry key="..\:/Users/K/Desktop/probono/app/src/main/res/layout/main_basic.xml" value="0.33" />
+        <entry key="..\:/Users/K/Desktop/probono/app/src/main/res/layout/main_easy.xml" value="0.14688675302966986" />
         <entry key="..\:/Users/K/Desktop/probono/app/src/main/res/layout/navigation.xml" value="0.1" />
         <entry key="..\:/Users/K/Desktop/probono/app/src/main/res/menu/navi_menu.xml" value="0.30055579307396324" />
         <entry key="..\:/Users/hmlee/Documents/GitHub/Probono/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.363" />
@@ -69,7 +73,7 @@
   <component name="VisualizationToolProject">
     <option name="state">
       <ProjectState>
-        <option name="scale" value="0.25277777777777777" />
+        <option name="scale" value="0.33" />
       </ProjectState>
     </option>
   </component>

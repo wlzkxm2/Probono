@@ -271,11 +271,13 @@ public class Main_Easy extends AppCompatActivity {
 
         //화면 클리어
         list_itemAdapter_easy.removeAllItem();
+
+        // -------------------------------------------------------- DB 데이터 넣는곳
         //샘플 데이터 생성
         for (int i = 0; i < listDB; i++) {
             List_Item list_item = new List_Item();
-            list_item.setTime("14:00" + "-" + i);
-            list_item.setTitle("과제하기" + "-" + i);
+            list_item.setTime("14:00" + "-" + i); // 일정 시간
+            list_item.setTitle("과제하기" + "-" + i); // 일정 제목
             //데이터 등록
             list_itemAdapter_easy.addItem(list_item);
         }
