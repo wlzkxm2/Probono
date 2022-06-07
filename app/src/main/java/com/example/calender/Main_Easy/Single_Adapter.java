@@ -2,6 +2,7 @@ package com.example.calender.Main_Easy;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -76,6 +77,8 @@ public class Single_Adapter extends RecyclerView.Adapter<Single_Adapter.Single_A
             img = itemView.findViewById(R.id.imageView);
 
 
+
+
         }
 
         void bind(final Main_Easy_Calendar_Day main_easy_calendar_day){
@@ -103,6 +106,15 @@ public class Single_Adapter extends RecyclerView.Adapter<Single_Adapter.Single_A
                         notifyItemChanged(checkedPosition);
                         checkedPosition = getAdapterPosition();
                     }
+
+                    // 클릭한 일자 출력
+                    // 일자 데이터베이스 데이터를 찾는데 사용됨
+                    int days = getAdapterPosition() + 1;
+                    if (days != RecyclerView.NO_POSITION) {
+                        Log.v("maineasy", "pos If : " + days);
+                    }
+
+                    Log.v("maineasy", "pos getadapter Position : " + days);
                 }
             });
         }

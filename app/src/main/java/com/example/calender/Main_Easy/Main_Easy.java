@@ -2,6 +2,7 @@ package com.example.calender.Main_Easy;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -173,6 +174,8 @@ public class Main_Easy extends AppCompatActivity {
             }
         }
 
+        int dayslen = days.size();
+        Log.v("maineasy", Integer.toString(dayslen));
         calendar_recyclerView.setAdapter(singleAdapter);
     }
 
