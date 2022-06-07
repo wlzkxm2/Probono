@@ -91,11 +91,16 @@ public class AddSchedule extends Activity {
                             saveEndTime = 2359;
                         }
 
+                        
+                        // 그대로 데이터베이스에 연동하면됨
+                        // for 시작날~끝난날까지 DB삽입
                         Log.d("MyTag",String.valueOf(saveStartYears) + "년" + String.valueOf(saveStartMonths) + "월" + String.valueOf(saveStartDays) + "일");
                         Log.d("MyTag",String.valueOf(saveEndYears) + "년" + String.valueOf(saveEndMonths) + "월" + String.valueOf(saveEndDays) + "일");
                         Log.d("MyTag",saveStartTime + " 부터 " +saveEndTime + " 까지");
                         Log.d("MyTag",title + " / " +subtitle);
 
+                        
+                        
                         break;
                     case R.id.allDayCheck:
                         if (allDayCheck.isChecked()){
