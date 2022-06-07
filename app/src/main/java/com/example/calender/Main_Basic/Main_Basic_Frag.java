@@ -1,15 +1,19 @@
 package com.example.calender.Main_Basic;
 
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -34,6 +38,7 @@ import java.util.TimerTask;
 
 public class Main_Basic_Frag extends Fragment implements View.OnClickListener {
 
+    Context context;
     Main_Basic mainbasic;       // 프래그럼트 매니저가 있음
     private Timer mTimer;
     //플로팅 버튼
@@ -44,7 +49,7 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener {
 
     ImageView add_schedule_dot;
     ImageButton add_schedule, edit_title;
-    TextView now, add_schedule_txt, maintitle_txt, mainDday_txt;
+    TextView now, add_schedule_txt, maintitle_txt, d_day;
     RecyclerView recyclerView, mRecyclerView;
     List_ItemAdapter list_itemAdapter;
     int listDB=10;
@@ -104,44 +109,21 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener {
         return Main_Basic;
     }
 
-//    // 타이틀 변경 이미지버튼
-//    public void Edit_Popup(View v){
-//        //데이터 담아서 팝업(액티비티) 호출
-//        Intent intent = new Intent(getActivity(), Title_Popup.class);
-//        startActivityForResult(intent, 1);
-//    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 1) {
-            if (resultCode == getActivity().RESULT_OK) {
-                //데이터 받기
-                String result = data.getStringExtra("result");
-                maintitle_txt.setText(result);
-            }
-        }
-    }
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.main_basic, container, false);
 
+        // 디데이 다이얼로그
+        d_day = (TextView) view.findViewById(R.id.main_easy_dday);
+        d_day.setOnClickListener(this);
+        d_day.setText("D-day를 설정해주세요");
+
+        // 타이틀 다이얼로그
         edit_title = (ImageButton) view.findViewById(R.id.edit_button);
         edit_title.setOnClickListener(this);
-        cl = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                switch (v.getId()){
-                    case R.id.edit_button:
-                        Intent intent = new Intent(getActivity(), Title_Popup.class);
-                        startActivityForResult(intent, 1);
-                        break;
-                }
-            }
-        };
-        edit_title.setOnClickListener(cl);
+        maintitle_txt = (TextView) view.findViewById(R.id.main_basic_title);
+        maintitle_txt.setText("Title을 설정해주세요");
 
         // 현재 시간
         now = view.findViewById(R.id.main_basic_now);
@@ -149,9 +131,6 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener {
         Main_Basic_Frag.MainTimerTask timerTask = new Main_Basic_Frag.MainTimerTask();
         mTimer = new Timer();
         mTimer.schedule(timerTask, 500, 1000);
-
-        maintitle_txt = (TextView) view.findViewById(R.id.main_basic_title);
-        maintitle_txt.setText("Title을 설정해주세요");
 
         fade_in = AnimationUtils.loadAnimation(getActivity().getApplicationContext(),
                 R.anim.fade_in);
@@ -208,7 +187,7 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener {
 
                 lastVisibleItemPositions = ((LinearLayoutManager) recyclerView.getLayoutManager()).findLastCompletelyVisibleItemPosition();
                 itemTotalCounts = recyclerView.getAdapter().getItemCount()-1;
-                if (lastVisibleItemPositions == itemTotalCounts) {
+                if (lastVisibleItemPositions == itemTotalCounts) { // 마지막 아이템 자리일때
 //                    add_schedule.setVisibility(View.VISIBLE); //화면에 보이게 한다.
 //                    add_schedule_dot.setVisibility(View.VISIBLE); //화면에 보이게 한다.
 //                    add_schedule_txt.setVisibility(View.VISIBLE); //화면에 보이게 한다.
@@ -219,9 +198,9 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener {
                     add_schedule.setVisibility(View.INVISIBLE); //화면에 안보이게 한다.
                     add_schedule_dot.setVisibility(View.INVISIBLE); //화면에 안보이게 한다.
                     add_schedule_txt.setVisibility(View.INVISIBLE); //화면에 안보이게 한다.
-//                    add_schedule.startAnimation(fade_out);
-//                    add_schedule_dot.startAnimation(fade_out);
-//                    add_schedule_txt.startAnimation(fade_out);
+                    add_schedule.startAnimation(fade_out);
+                    add_schedule_dot.startAnimation(fade_out);
+                    add_schedule_txt.startAnimation(fade_out);
 
                 }
             }
@@ -249,6 +228,58 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener {
 //                Toast.makeText(getActivity(),"일정 음성 등록 팝업",Toast.LENGTH_SHORT).show();
                 break;
         }
+
+        // 타이틀 제목 변경 다이얼
+        if(v.equals(edit_title)){
+            final EditText edit_title = new EditText(this.getActivity());
+            AlertDialog.Builder dialog = new AlertDialog.Builder(new ContextThemeWrapper(getActivity(), R.style.AlertDialogTheme));
+            dialog.setTitle("제목을 입력해주세요");
+            dialog.setView(edit_title);
+            edit_title.setText(maintitle_txt.getText());
+            // OK 버튼 이벤트
+            dialog.setPositiveButton("완료", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int which) {
+                    String getTitle = edit_title.getText().toString();
+                    maintitle_txt.setText(getTitle);
+                }
+            });
+            // Cancel 버튼 이벤트
+            dialog.setNegativeButton("취소",new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.cancel();
+                }
+            });
+            dialog.show();
+        }
+
+        // D-day 변경 다이얼
+        if(v.equals(d_day)){
+            final EditText edit_dday = new EditText(this.getActivity());
+            final EditText edit_dday_text = new EditText(this.getActivity());
+            AlertDialog.Builder dialog = new AlertDialog.Builder(new ContextThemeWrapper(getActivity(), R.style.AlertDialogTheme));
+            dialog.setTitle("D-day를 설정해주세요");
+            dialog.setView(edit_dday);
+            dialog.setView(edit_dday_text);
+            edit_dday.setText("날짜"); // D-day 날짜
+            edit_dday_text.setText(d_day.getText()); // D-day 내용
+
+            // OK 버튼 이벤트
+            dialog.setPositiveButton("완료", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int which) {
+                    String getDday = edit_dday.getText().toString();
+                    String getText = edit_dday_text.getText().toString();
+                    d_day.setText(getDday+"  |  "+getText);
+                }
+            });
+            // Cancel 버튼 이벤트
+            dialog.setNegativeButton("취소",new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.cancel();
+                }
+            });
+            dialog.show();
+        }
+
     }
 
     //플로팅버튼 동작

@@ -12,7 +12,7 @@
         style="@android:style/Widget.Holo.Light.Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button"
+        android:text="tts 테스트"
         tools:layout_editor_absoluteX="214dp"
         tools:layout_editor_absoluteY="167dp" />
 
@@ -21,7 +21,14 @@
         style="@android:style/Widget.Holo.Light.Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button" />
+        android:text="기본모드" />
+
+    <Button
+        android:id="@+id/calendar_easy_testbtn"
+        style="@android:style/Widget.Holo.Light.Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="이지모드" />
 
 
 
