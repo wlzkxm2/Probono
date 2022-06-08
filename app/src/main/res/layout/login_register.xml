@@ -146,12 +146,31 @@
                     android:hint="이메일 뒷부분"
                     android:inputType="textPersonName" />
             </LinearLayout>
+            <!--나이 입력칸이다-->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="이름" />
+
+            <EditText
+                android:id="@+id/editText_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:ems="10"
+
+                android:hint="이름을 입력해 주세요."
+                android:inputType="number"
+                android:text=""
+                android:textColorHint="#AAAAAA" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:text="*전화번호" />
-            <!--나이 입력칸이다-->
+
             <EditText
                 android:id="@+id/editText_phonenumber"
                 android:layout_width="match_parent"
@@ -164,24 +183,8 @@
                 android:text=""
                 android:textColorHint="#AAAAAA" />
 <!--이름 칸이다-->
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:text="이름" />
 
             <!--나이 입력칸이다-->
-            <EditText
-                android:id="@+id/editText_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:ems="10"
-
-                android:hint="이름을 입력해 주세요."
-                android:inputType="number"
-                android:text=""
-                android:textColorHint="#AAAAAA" />
 
             <TextView
                 android:layout_width="match_parent"

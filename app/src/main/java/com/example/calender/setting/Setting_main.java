@@ -13,7 +13,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.Toast;
 
 import com.example.calender.DataBase.Calender_DBSet;
 import com.example.calender.DataBase.Calender_Dao;
@@ -32,8 +31,8 @@ public class Setting_main extends Fragment {
     Calender_Dao calender_dao;
     User_Dao user_dao;
 
-    Button btntest1, btntest2, button3;      // 프래그먼트 전환을 위한 버튼
-    ImageButton im1,im2;
+    Button userAccountSet_btn, noficationSet_btn, appThemeSet_btn;      // 프래그먼트 전환을 위한 버튼
+    ImageButton defaultTheme, easyTheme;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -41,11 +40,11 @@ public class Setting_main extends Fragment {
         Log.v("Frag", "설정화면 실행");
 
 
-        btntest1 = view.findViewById(R.id.account_settingbtn);
-        btntest2 = view.findViewById(R.id.notificationsetting_btn);
-        button3 = view.findViewById(R.id.darkmodesetting_btn);
-        im1=view.findViewById(R.id.normalbtn);
-        im2=view.findViewById(R.id.easybtn);
+        userAccountSet_btn = view.findViewById(R.id.account_settingbtn);
+        noficationSet_btn = view.findViewById(R.id.notificationsetting_btn);
+        appThemeSet_btn = view.findViewById(R.id.darkmodesetting_btn);
+        defaultTheme =view.findViewById(R.id.normalbtn);
+        easyTheme =view.findViewById(R.id.easybtn);
 
         Calender_DBSet dbController = Room.databaseBuilder(getActivity().getApplicationContext(), Calender_DBSet.class, "CalenderDB")
                 .fallbackToDestructiveMigration()
@@ -61,7 +60,7 @@ public class Setting_main extends Fragment {
         user_dao = userdbController.user_dao();
 
 
-        im2.setOnClickListener(new View.OnClickListener() {
+        easyTheme.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
@@ -69,7 +68,9 @@ public class Setting_main extends Fragment {
                 startActivity(intent);
             }
         });
-        btntest1.setOnClickListener(new View.OnClickListener() {
+        
+        // 유저 어카운트를 눌렀을때 생기는 이벤트
+        userAccountSet_btn.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
@@ -89,7 +90,7 @@ public class Setting_main extends Fragment {
             }
         });
 
-        btntest2.setOnClickListener(new View.OnClickListener() {
+        noficationSet_btn.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
@@ -98,7 +99,7 @@ public class Setting_main extends Fragment {
             }
         });
 
-        button3.setOnClickListener(new View.OnClickListener() {
+        appThemeSet_btn.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {

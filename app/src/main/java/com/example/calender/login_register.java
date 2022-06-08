@@ -30,6 +30,7 @@ public class login_register extends FragmentActivity {
     EditText user_id,
             user_pwd, user_pwdre,
             user_email, user_lastemail,
+            user_name, user_phonenumber,
             user_age,
             user_address, user_detailaddress,
             user_zipcode;
@@ -57,6 +58,8 @@ public class login_register extends FragmentActivity {
         user_pwdre = (EditText) findViewById(R.id.editText_usrpw_re);
         user_email = (EditText) findViewById(R.id.editText_email);
         user_lastemail = (EditText) findViewById(R.id.editText_lastemail);
+        user_name = (EditText) findViewById(R.id.editText_name);
+        user_phonenumber = (EditText) findViewById(R.id.editText_phonenumber);
         user_age = (EditText) findViewById(R.id.editText_age);
         user_address = (EditText) findViewById(R.id.editText_address);
         user_detailaddress = (EditText) findViewById(R.id.editText_detailaddress);
@@ -126,6 +129,8 @@ public class login_register extends FragmentActivity {
         String userpw;
         String useremail;
         String userlastemail;
+        String username;
+        String userphonenumber;
         String userage;
         String useraddress;
         String userdetailaddress;
@@ -139,6 +144,8 @@ public class login_register extends FragmentActivity {
                     + " / useremail = " + useremail
                     + " / userlastemail = " + userlastemail
                     + " / userlastemail = " + userlastemail
+                    + " / username = " + username
+                    + " / userphonenumber = " + userphonenumber
                     + " / userage = " + userage
                     + " / useraddress = " + useraddress
                     + " / userdetailaddress = " + userdetailaddress
@@ -161,6 +168,8 @@ public class login_register extends FragmentActivity {
             newUser.userpw = user_pwd.getText().toString();
             newUser.useremail = user_email.getText().toString();
             newUser.userlastemail = user_lastemail.getText().toString();
+            newUser.username = user_name.getText().toString();
+            newUser.username = user_phonenumber.getText().toString();
             newUser.userage = user_age.getText().toString();
             newUser.useraddress = user_address.getText().toString();
             newUser.userdetailaddress = user_detailaddress.getText().toString();
@@ -208,6 +217,8 @@ public class login_register extends FragmentActivity {
                             newUser.userpw,
                             newUser.useremail,
                             newUser.userlastemail,
+                            newUser.username,
+                            newUser.userphonenumber,
                             newUser.userage,
                             newUser.useraddress,
                             newUser.userdetailaddress,
@@ -246,10 +257,12 @@ public class login_register extends FragmentActivity {
                         + "&pw=" + strings[1]
                         + "&email=" + strings[2]
                         + "&lastemail=" + strings[3]
-                        + "&age=" + strings[4]
-                        + "&address=" + strings[5]
-                        + "&detailaddress=" + strings[6]
-                        + "&zipcode=" + strings[7]; // GET방식으로 작성해 POST로 보냄 ex) "id=admin&pwd=1234";
+                        + "&name=" + strings[4]
+                        + "&phonenumber=" + strings[5]
+                        + "&age=" + strings[6]
+                        + "&address=" + strings[7]
+                        + "&detailaddress=" + strings[8]
+                        + "&zipcode=" + strings[9]; // GET방식으로 작성해 POST로 보냄 ex) "id=admin&pwd=1234";
                 osw.write(sendMsg);                           // OutputStreamWriter에 담아 전송
                 osw.flush();
 
