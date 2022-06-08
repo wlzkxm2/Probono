@@ -149,7 +149,7 @@ public class Calender_Basic_Frag extends Fragment {
 
                 for (int i = 0; i < calender_like_data.size(); i++) {
                     List_Item calList = new List_Item();
-                    calList.setTime(Integer.toString(calender_like_data.get(i).get_time()));
+                    calList.setTime(Integer.toString(calender_like_data.get(i).getStart_time()));
                     calList.setTitle(calender_like_data.get(i).get_titles());
                     calList.setText(calender_like_data.get(i).get_subtitle());
 

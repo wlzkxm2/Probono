@@ -20,17 +20,29 @@ public class Calender_DB {
     public boolean _firstData;
 
     // ColumnInfo 를 통해서 DB내부 엔티티 이름을 따로 설정
-    @ColumnInfo(name = "years")
-    public int _years;
+    @ColumnInfo(name = "start_years")
+    public int start_years;
 
-    @ColumnInfo(name = "months")
-    public int _month;
+    @ColumnInfo(name = "start_months")
+    public int start_month;
 
-    @ColumnInfo(name = "days")
-    public int _day;
+    @ColumnInfo(name = "start_days")
+    public int start_day;
 
-    @ColumnInfo(name = "times")
-    public int _time;
+    @ColumnInfo(name = "start_times")
+    public int start_time;
+
+    @ColumnInfo(name = "end_years")
+    public int end_years;
+
+    @ColumnInfo(name = "end_months")
+    public int end_month;
+
+    @ColumnInfo(name = "end_days")
+    public int end_day;
+
+    @ColumnInfo(name = "end_times")
+    public int end_time;
 
     @ColumnInfo(name = "Titles")
     public String _titles;
@@ -40,7 +52,6 @@ public class Calender_DB {
 
 
 //<editor-fold desc="DB Getter & Setter">
-
 
     public int getNum() {
         return num;
@@ -66,36 +77,68 @@ public class Calender_DB {
         this._firstData = _firstData;
     }
 
-    public int get_month() {
-        return _month;
+    public int getStart_years() {
+        return start_years;
     }
 
-    public void set_month(int _month) {
-        this._month = _month;
+    public void setStart_years(int start_years) {
+        this.start_years = start_years;
     }
 
-    public int get_day() {
-        return _day;
+    public int getStart_month() {
+        return start_month;
     }
 
-    public void set_day(int _day) {
-        this._day = _day;
+    public void setStart_month(int start_month) {
+        this.start_month = start_month;
     }
 
-    public int get_years() {
-        return _years;
+    public int getStart_day() {
+        return start_day;
     }
 
-    public void set_years(int _years) {
-        this._years = _years;
+    public void setStart_day(int start_day) {
+        this.start_day = start_day;
     }
 
-    public int get_time() {
-        return _time;
+    public int getStart_time() {
+        return start_time;
     }
 
-    public void set_time(int _time) {
-        this._time = _time;
+    public void setStart_time(int start_time) {
+        this.start_time = start_time;
+    }
+
+    public int getEnd_years() {
+        return end_years;
+    }
+
+    public void setEnd_years(int end_years) {
+        this.end_years = end_years;
+    }
+
+    public int getEnd_month() {
+        return end_month;
+    }
+
+    public void setEnd_month(int end_month) {
+        this.end_month = end_month;
+    }
+
+    public int getEnd_day() {
+        return end_day;
+    }
+
+    public void setEnd_day(int end_day) {
+        this.end_day = end_day;
+    }
+
+    public int getEnd_time() {
+        return end_time;
+    }
+
+    public void setEnd_time(int end_time) {
+        this.end_time = end_time;
     }
 
     public String get_titles() {
@@ -113,6 +156,7 @@ public class Calender_DB {
     public void set_subtitle(String _subtitle) {
         this._subtitle = _subtitle;
     }
+
 
     //</editor-fold desc="DB Getter & Setter">
 

@@ -16,7 +16,9 @@ public interface Calender_Dao {
     @Query("select * from calender_db where UserIDCode in (:userIds)")
     List<Calender_DB> loadAllDataByIDs(int[] userIds);
 
-    @Query("select * from calender_db where years = (:Years) and months = (:Months) and days = (:Days)")
+    @Query("select * from calender_db where start_years <= (:Years) or end_years >= (:Years) " +
+            "and start_months <= (:Months) or end_months >= (:Months) " +
+            "and start_days = (:Days) or end_days = (:Days)")
     List<Calender_DB> loadAllDataByYears(int Years, int Months, int Days);
 
     // 데이터 삽입

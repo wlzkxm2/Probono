@@ -34,9 +34,6 @@
         </activity>
 
         <!-- 캘린더 엑티비티 -->
-        <activity
-            android:name=".Calender_Basic"
-            android:windowSoftInputMode="adjustPan"></activity>
 
         <activity
             android:name=".Main_Basic.Main_Basic"

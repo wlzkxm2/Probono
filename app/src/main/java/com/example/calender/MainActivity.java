@@ -112,10 +112,14 @@ public class MainActivity extends AppCompatActivity {
             // 데이터베이스에 최초 데이터 출력
             Calender_DB calender_db = new Calender_DB();
             calender_db.setUid(uid);
-            calender_db.set_years(0);
-            calender_db.set_month(0);
-            calender_db.set_day(0);
-            calender_db.set_day(0000);
+            calender_db.setStart_years(0);
+            calender_db.setStart_month(0);
+            calender_db.setStart_day(0);
+            calender_db.setStart_day(0000);
+            calender_db.setEnd_years(0);
+            calender_db.setEnd_month(0);
+            calender_db.setEnd_day(0);
+            calender_db.setEnd_day(0000);
             calender_db.set_firstData(true);
             calender_db.set_titles(null);
             calender_db.set_subtitle(null);
