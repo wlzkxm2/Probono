@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.app.ActivityCompat;
@@ -24,6 +25,7 @@ import com.example.calender.DataBase.Calender_Dao;
 import com.example.calender.DataBase.UserDB;
 import com.example.calender.DataBase.User_DBset;
 import com.example.calender.DataBase.User_Dao;
+import com.example.calender.Permission.Permission;
 import com.example.calender.Main_Easy.Main_Easy;
 import com.example.calender.StaticUidCode.UidCode;
 
@@ -35,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
 
     private  static final String TAG = "MainActivity";
 
-    Button ttsbtn, calbtn,easybtn;
+    Button ttsbtn, calbtn;
 
     Intent i;
 
@@ -43,13 +45,15 @@ public class MainActivity extends AppCompatActivity {
 
     final int PERMISSION = 1;	//permission 변수
 
+    private Permission permission;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        CheckPermission();
-        CheckStoragePermission();
+        permissionCheck();
+
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         //<editor-fold desc="DB 기본 세팅 코드">
 
@@ -103,7 +107,6 @@ public class MainActivity extends AppCompatActivity {
 
         ttsbtn.setOnClickListener(cl);
         calbtn.setOnClickListener(cl);
-        easybtn.setOnClickListener(cl);
 
         //<editor-fold desc="앱 최초 실행시 유저 기본 코드를 제공한 후 데이터베이스에 삽입">
         SharedPreferences pref = getSharedPreferences("isFirstStart", Activity.MODE_PRIVATE);
@@ -132,6 +135,9 @@ public class MainActivity extends AppCompatActivity {
             calender_db.set_firstData(true);
             calender_db.set_titles(null);
             calender_db.set_subtitle(null);
+            calender_db.set_mainActTitle(null);
+            calender_db.set_mainActTime(0);
+            calender_db.set_mainActDTitle(null);
             calender_dao.insertAll(calender_db);
 
             // 로그인한 사용자의 정보를 받기위한 데이터값
@@ -157,34 +163,26 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    void CheckPermission() {
-        //안드로이드 버전이 6.0 이상
-        if ( Build.VERSION.SDK_INT >= 23 ){
-            Log.d("haan","버전 체크");
-            //인터넷이나 녹음 권한이 없으면 권한 요청
-            if (ContextCompat.checkSelfPermission(this, Manifest.permission.INTERNET) == PackageManager.PERMISSION_DENIED
-                    || ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_DENIED ) {
-                ActivityCompat.requestPermissions(this,
-                        new String[]{Manifest.permission.INTERNET,
-                                Manifest.permission.RECORD_AUDIO},PERMISSION);
-                                Log.d("haan","권한 체크");
-            }
-        }
+    void permissionCheck() {
+        // PermissionSupport.java 클래스 객체 생성
+        permission = new Permission(this, this);
 
-
-    }
-
-    void CheckStoragePermission(){
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if(checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED
-                    || checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-                if(shouldShowRequestPermissionRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-                    Toast.makeText(this, "외부 저장소 사용을 위해 읽기/쓰기 필요", Toast.LENGTH_SHORT).show();
-                }
-
-                requestPermissions(new String[]
-                        {Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.READ_EXTERNAL_STORAGE}, 2);
-            }
+        // 권한 체크 후 리턴이 false로 들어오면
+        if (!permission.checkPermission()){
+            //권한 요청
+            permission.requestPermission();
         }
     }
+    // Request Permission에 대한 결과 값 받아와
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        //여기서도 리턴이 false로 들어온다면 (사용자가 권한 허용 거부)
+        if (!permission.permissionResult(requestCode, permissions, grantResults)) {
+            // 다시 permission 요청
+            permission.requestPermission();
+        }
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
+
+
 }

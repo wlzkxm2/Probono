@@ -30,6 +30,7 @@ public class UserDB {
     @ColumnInfo(name = "userAge")
     public int age;
 
+
     public UserDB(String id, String pw,
                   String address, String addressDetail, String zipcode,
                   String email, int age){
@@ -100,4 +101,5 @@ public class UserDB {
     public void setAge(int age) {
         this.age = age;
     }
+
 }

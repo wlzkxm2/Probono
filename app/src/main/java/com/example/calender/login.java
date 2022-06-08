@@ -147,7 +147,7 @@ public class login extends AppCompatActivity {
                     userDatas.get(3).toString(),                        // address detail
                     userDatas.get(4).toString(),                        // zipcode
                     userDatas.get(5).toString(),                        // email
-                    Integer.parseInt(userDatas.get(6).toString())       // age
+                    Integer.parseInt(userDatas.get(6).toString())      // age
             );
 
             user_dao.update(1, userDatas.get(0).toString(),   // ID
@@ -156,7 +156,8 @@ public class login extends AppCompatActivity {
                     userDatas.get(3).toString(),                        // address detail
                     userDatas.get(4).toString(),                        // zipcode
                     userDatas.get(5).toString(),                        // email
-                    Integer.parseInt(userDatas.get(6).toString()));
+                    Integer.parseInt(userDatas.get(6).toString())
+            );     // age
 //        String findresults = userData.substring(FO+1, LO);
             finish();
         }catch (Exception e){

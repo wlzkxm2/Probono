@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,7 +29,11 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.Room;
 
+import com.example.calender.DataBase.Calender_DB;
+import com.example.calender.DataBase.Calender_DBSet;
+import com.example.calender.DataBase.Calender_Dao;
 import com.example.calender.Main_Easy.Main_Easy;
 import com.example.calender.R;
 import com.example.calender.addschedule.Custom_STT;
@@ -37,11 +42,17 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class Main_Basic_Frag extends Fragment implements View.OnClickListener {
+
+    Calender_Dao calender_dao;
+    long dbinputTime = 0;
+    String dbinputTitle = "";
+    String dbinputDtitle = "";
 
     // 디데이 변수
     int dateEndY, dateEndM, dateEndD;
@@ -123,13 +134,36 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener {
     // 설정한 디데이 year, mMonthOfYear : 설정한 디데이 MonthOfYear, mDayOfMonth : 설정한 디데이 DayOfMonth
     private String getDday(int mYear, int mMonthOfYear, int mDayOfMonth) {
         // D-day 설정
-        final Calendar ddayCalendar = Calendar.getInstance();
-        ddayCalendar.set(mYear, mMonthOfYear, mDayOfMonth);
+        List<Calender_DB> mainactDB = calender_dao.loadMainData(1);
+        long result = 0;
 
-        // D-day 를 구하기 위해 millisecond 으로 환산하여 d-day 에서 today 의 차를 구한다.
-        final long dday = ddayCalendar.getTimeInMillis() / ONE_DAY;
-        final long today = Calendar.getInstance().getTimeInMillis() / ONE_DAY;
-        long result = dday - today;
+//        db에 만약 시간 데이터가 없다면
+        if(mainactDB.get(0).get_mainActTime() == 0){
+            final Calendar ddayCalendar = Calendar.getInstance();
+            ddayCalendar.set(mYear, mMonthOfYear, mDayOfMonth);
+
+
+            // D-day 를 구하기 위해 millisecond 으로 환산하여 d-day 에서 today 의 차를 구한다.
+            final long dday = ddayCalendar.getTimeInMillis() / ONE_DAY;
+            final long today = Calendar.getInstance().getTimeInMillis() / ONE_DAY;
+
+            // 현재 시간을 출력
+            Log.v("MainDays", "dday : " + dday + "\n" + "today : " + today);
+            result = dday - today;
+
+            // db에 지정한 시간 데이터를 저장
+            calender_dao.MainActDayupdate(1, dday);
+        } else{
+            // db에 만약 시간데이터가 있다면
+            final Calendar ddayCalendar = Calendar.getInstance();
+            ddayCalendar.set(mYear, mMonthOfYear, mDayOfMonth);
+
+            final long dday = mainactDB.get(0).get_mainActTime();
+            final long today = Calendar.getInstance().getTimeInMillis() / ONE_DAY;
+            Log.v("MainDays", "dday : " + dday + "\n" + "today : " + today);
+            result = dday - today;
+        }
+
 
         // 출력 시 d-day 에 맞게 표시
         String strFormat;
@@ -192,6 +226,15 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.main_basic, container, false);
 
+        Calender_DBSet dbController = Room.databaseBuilder(getActivity().getApplicationContext(), Calender_DBSet.class, "CalenderDB")
+                .fallbackToDestructiveMigration()
+                .allowMainThreadQueries()
+                .build();
+
+        calender_dao = dbController.calender_dao();
+
+        // 메인 DB호출
+        List<Calender_DB> Maindata = calender_dao.loadMainData(1);
 
         //시작일, 종료일 데이터 저장
         calendar = Calendar.getInstance();
@@ -203,8 +246,14 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener {
         Locale.setDefault(Locale.KOREAN);
 
         // 디데이 다이얼로그
-        d_day = (TextView) view.findViewById(R.id.main_basic_dday);
-        d_day_text = (TextView) view.findViewById(R.id.main_basic_dday_text);
+        d_day = (TextView) view.findViewById(R.id.main_easy_dday);
+        d_day_text = (TextView) view.findViewById(R.id.main_easy_dday_text);
+
+        if(Maindata.get(0).get_mainActDTitle() == null)
+            d_day_text.setText("디데이 목표를 설정해 주세요");
+        else
+            d_day_text.setText(Maindata.get(0)._mainActDTitle);
+
         d_day.setOnClickListener(this);
         d_day_text.setOnClickListener(this);
 
@@ -212,7 +261,12 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener {
         edit_title = (ImageButton) view.findViewById(R.id.edit_button);
         edit_title.setOnClickListener(this);
         maintitle_txt = (TextView) view.findViewById(R.id.main_basic_title);
-        maintitle_txt.setText("Title을 설정해주세요"); // 초기 제목
+
+        if(Maindata.get(0).get_mainActTitle() == null){
+            maintitle_txt.setText("Title을 설정해주세요"); // 초기 제목
+        }else
+            maintitle_txt.setText(Maindata.get(0).get_mainActTitle());
+
 
         // 현재 시간
         now = view.findViewById(R.id.main_basic_now);
@@ -255,6 +309,7 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener {
             @Override
             public void onClick(View v) {
                 new DatePickerDialog(getActivity(), endDateSetListener, (currentYear), (currentMonth), currentDay).show();
+//                DatePickerDialog.Builder dialog = new DatePickerDialog.Builder(new ContextThemeWrapper(getActivity(), R.style.AlertDialogTheme));
             }
         });
 
@@ -342,6 +397,7 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener {
                 public void onClick(DialogInterface dialog, int which) {
                     String getTitle = edit_title.getText().toString();
                     maintitle_txt.setText(getTitle);
+                    calender_dao.MainActTitleupdate(1, getTitle);
                 }
             });
 
@@ -378,6 +434,8 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener {
 //                    String getDday = edit_dday.getText().toString();
                     String getText = edit_dday_text.getText().toString();
                     d_day_text.setText(getText);
+                    // 데이터베이스에 입력한 값을 업데이트
+                    calender_dao.MainActDtitleupdate(1, getText);
                 }
             });
 

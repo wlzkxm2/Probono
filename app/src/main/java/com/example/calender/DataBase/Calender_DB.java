@@ -50,6 +50,14 @@ public class Calender_DB {
     @ColumnInfo(name = "Subtitles")
     public String _subtitle;
 
+    @ColumnInfo(name = "MainActTitle")
+    public String _mainActTitle;
+
+    @ColumnInfo(name = "MainActDay")
+    public long _mainActTime;
+
+    @ColumnInfo(name = "MainActDTitle")
+    public String _mainActDTitle;
 
 //<editor-fold desc="DB Getter & Setter">
 
@@ -155,6 +163,30 @@ public class Calender_DB {
 
     public void set_subtitle(String _subtitle) {
         this._subtitle = _subtitle;
+    }
+
+    public String get_mainActTitle() {
+        return _mainActTitle;
+    }
+
+    public void set_mainActTitle(String _mainActTitle) {
+        this._mainActTitle = _mainActTitle;
+    }
+
+    public long get_mainActTime() {
+        return _mainActTime;
+    }
+
+    public void set_mainActTime(long _mainActTime) {
+        this._mainActTime = _mainActTime;
+    }
+
+    public String get_mainActDTitle() {
+        return _mainActDTitle;
+    }
+
+    public void set_mainActDTitle(String _mainActDTitle) {
+        this._mainActDTitle = _mainActDTitle;
     }
 
 
