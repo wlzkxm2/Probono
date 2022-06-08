@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.room.Room;
@@ -48,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
 
         CheckPermission();
         CheckStoragePermission();
-
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         //<editor-fold desc="DB 기본 세팅 코드">
 
         // 캘린더 데이터베이스 정의
