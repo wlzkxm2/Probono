@@ -58,51 +58,49 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.128"
-        app:srcCompat="@drawable/img_easy_line" />
+        app:srcCompat="@drawable/img_easy_line" /><![CDATA[
+
+
+
+    toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.3"
+        app:srcCompat="@drawable/img_ddaybar" />
+
+
+
+    ]]>
 
     <TextView
         android:id="@+id/main_easy_dday_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="180dp"
         android:gravity="left"
-        android:text="중간고사"
+        android:text="디데이"
         android:textColor="@color/black"
-        android:textSize="24dp"
-        android:textStyle="bold"
+        android:textSize="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.054"
-        app:layout_constraintStart_toEndOf="@+id/imageView9"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/main_easy_dday"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.298" />
+        app:layout_constraintVertical_bias="0.287" />
 
     <TextView
         android:id="@+id/main_easy_dday"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="D-4"
+        android:layout_marginStart="104dp"
+        android:gravity="left"
+        android:text="D-1"
         android:textColor="@color/black"
-        android:textSize="24dp"
+        android:textSize="50dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/imageView9"
-        app:layout_constraintHorizontal_bias="0.925"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.298" />
-
-    <ImageView
-        android:id="@+id/imageView9"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.422"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.3"
-        app:srcCompat="@drawable/img_ddaybar" />
+        app:layout_constraintVertical_bias="0.287" />
 
     <ImageView
         android:id="@+id/imageView10"

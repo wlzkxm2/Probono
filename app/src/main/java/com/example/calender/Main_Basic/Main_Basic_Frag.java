@@ -203,8 +203,8 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener {
         Locale.setDefault(Locale.KOREAN);
 
         // 디데이 다이얼로그
-        d_day = (TextView) view.findViewById(R.id.main_easy_dday);
-        d_day_text = (TextView) view.findViewById(R.id.main_easy_dday_text);
+        d_day = (TextView) view.findViewById(R.id.main_basic_dday);
+        d_day_text = (TextView) view.findViewById(R.id.main_basic_dday_text);
         d_day.setOnClickListener(this);
         d_day_text.setOnClickListener(this);
 
@@ -255,7 +255,6 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener {
             @Override
             public void onClick(View v) {
                 new DatePickerDialog(getActivity(), endDateSetListener, (currentYear), (currentMonth), currentDay).show();
-//                DatePickerDialog.Builder dialog = new DatePickerDialog.Builder(new ContextThemeWrapper(getActivity(), R.style.AlertDialogTheme));
             }
         });
 

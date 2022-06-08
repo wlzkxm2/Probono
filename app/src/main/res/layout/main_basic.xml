@@ -92,7 +92,7 @@
 <!--        app:layout_constraintVertical_bias="0.223" />-->
 
     <TextView
-        android:id="@+id/main_easy_dday"
+        android:id="@+id/main_basic_dday"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="120dp"
@@ -107,7 +107,7 @@
         app:layout_constraintVertical_bias="0.223" />
 
     <TextView
-        android:id="@+id/main_easy_dday_text"
+        android:id="@+id/main_basic_dday_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="180dp"
@@ -117,7 +117,7 @@
         android:textSize="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/main_easy_dday"
+        app:layout_constraintStart_toEndOf="@+id/main_basic_dday"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.223" />
 
