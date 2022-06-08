@@ -24,9 +24,17 @@
         <entry key="..\:/GithubDocument/Probono/app/src/main/res/layout/calender_basic.xml" value="0.4010416666666667" />
         <entry key="..\:/Users/412-22/Desktop/kjm_project/Probono/app/src/main/res/drawable/ic_tts.xml" value="0.2985" />
         <entry key="..\:/Users/412-22/Desktop/kjm_project/Probono/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/Users/412-22/Desktop/kjm_project/Probono/app/src/main/res/layout/app_bar_main.xml" value="0.3016304347826087" />
         <entry key="..\:/Users/412-22/Desktop/kjm_project/Probono/app/src/main/res/layout/calender_basic.xml" value="0.36614583333333334" />
+        <entry key="..\:/Users/412-22/Desktop/kjm_project/Probono/app/src/main/res/layout/content_main.xml" value="0.3016304347826087" />
+        <entry key="..\:/Users/412-22/Desktop/kjm_project/Probono/app/src/main/res/layout/item_layout_easy.xml" value="0.17806484295845998" />
         <entry key="..\:/Users/412-22/Desktop/kjm_project/Probono/app/src/main/res/layout/main_basic.xml" value="0.5" />
+        <entry key="..\:/Users/412-22/Desktop/kjm_project/Probono/app/src/main/res/layout/main_easy.xml" value="0.3016304347826087" />
+        <entry key="..\:/Users/412-22/Desktop/kjm_project/Probono/app/src/main/res/layout/main_easy_drawer.xml" value="0.5" />
+        <entry key="..\:/Users/412-22/Desktop/kjm_project/Probono/app/src/main/res/layout/navi_header.xml" value="0.3016304347826087" />
         <entry key="..\:/Users/412-22/Desktop/kjm_project/Probono/app/src/main/res/layout/setting_main.xml" value="0.17806484295845998" />
+        <entry key="..\:/Users/412-22/Desktop/kjm_project/Probono/app/src/main/res/menu/navi_drawer.xml" value="0.36614583333333334" />
+        <entry key="..\:/Users/412-22/Desktop/kjm_project/Probono/app/src/main/res/menu/navi_menu.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/K/Desktop/probono/app/src/main/res/layout/calendar_easy.xml" value="0.1464688675302967" />
         <entry key="..\:/Users/K/Desktop/probono/app/src/main/res/layout/calender_basic.xml" value="0.14688675302966986" />
         <entry key="..\:/Users/K/Desktop/probono/app/src/main/res/layout/dday.xml" value="0.14688675302966986" />
@@ -50,8 +58,7 @@
         <entry key="app/src/main/res/layout/dialog_test.xml" value="0.23143115942028986" />
         <entry key="app/src/main/res/layout/list_child.xml" value="0.2006340579710145" />
         <entry key="app/src/main/res/layout/list_header.xml" value="0.2105978260869565" />
-        <entry key="app/src/main/res/layout/login.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/login_register.xml" value="0.26853485107421876" />
+        <entry key="app/src/main/res/layout/login_register.xml" value="0.1" />
         <entry key="app/src/main/res/layout/main_basic.xml" value="0.22080199329565603" />
         <entry key="app/src/main/res/layout/main_easy.xml" value="0.15070921985815602" />
         <entry key="app/src/main/res/layout/maintestlayout.xml" value="0.1952991452991453" />
@@ -62,7 +69,6 @@
         <entry key="app/src/main/res/layout/setting_main_easy.xml" value="0.1952991452991453" />
         <entry key="app/src/main/res/layout/setting_notification.xml" value="0.15070921985815602" />
         <entry key="app/src/main/res/layout/tts_test.xml" value="0.23143115942028986" />
-        <entry key="app/src/main/res/menu/navi_drawer.xml" value="0.15925925925925927" />
       </map>
     </option>
   </component>

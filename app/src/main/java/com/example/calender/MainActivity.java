@@ -24,6 +24,7 @@ import com.example.calender.DataBase.Calender_Dao;
 import com.example.calender.DataBase.UserDB;
 import com.example.calender.DataBase.User_DBset;
 import com.example.calender.DataBase.User_Dao;
+import com.example.calender.Main_Easy.Main_Easy;
 import com.example.calender.StaticUidCode.UidCode;
 
 import java.util.List;
@@ -34,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
     private  static final String TAG = "MainActivity";
 
-    Button ttsbtn, calbtn;
+    Button ttsbtn, calbtn,easybtn;
 
     Intent i;
 
@@ -74,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
 
         ttsbtn = findViewById(R.id.tts_test);
         calbtn = findViewById(R.id.calendartestbtn);
+        easybtn = findViewById(R.id.calendar_easy_testbtn);
 
         //<editor-fold desc="메인 엑티비티 버튼 스위치 문">
         cl = new View.OnClickListener() {
@@ -89,6 +91,11 @@ public class MainActivity extends AppCompatActivity {
                         Intent j = new Intent(getApplicationContext(), Navigation.class);
                         startActivity(j);
                         break;
+
+                    case R.id.calendar_easy_testbtn:
+                        Intent k = new Intent(getApplicationContext(), Main_Easy.class);
+                        startActivity(k);
+                        break;
                 }
             }
         };
@@ -96,6 +103,7 @@ public class MainActivity extends AppCompatActivity {
 
         ttsbtn.setOnClickListener(cl);
         calbtn.setOnClickListener(cl);
+        easybtn.setOnClickListener(cl);
 
         //<editor-fold desc="앱 최초 실행시 유저 기본 코드를 제공한 후 데이터베이스에 삽입">
         SharedPreferences pref = getSharedPreferences("isFirstStart", Activity.MODE_PRIVATE);

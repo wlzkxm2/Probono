@@ -16,6 +16,7 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
@@ -58,8 +59,8 @@ public class Main_Easy extends AppCompatActivity {
     private Timer mTimer;
 
     Main_Easy_Calendar_Adapter main_easy_calendar_adapter;
-    Toolbar toolbar;
-    DrawerLayout drawerLayout;
+    private DrawerLayout drawerLayout;
+    private View drawerView;
     NavigationView navigationView;
     RecyclerView recyclerView, calendar_recyclerView;
     String jan = "1", feb = "2", mar = "3", apr = "4", may = "5", jun = "6", jul = "7", aus = "8", sep = "9", oct = "10", nov = "1", dec = "12";
@@ -380,8 +381,14 @@ public class Main_Easy extends AppCompatActivity {
         layoutManager.scrollToPositionWithOffset(Integer.parseInt(today)-1, 270);
 
 
+//            // 드로어
 
-            // 드로어
+
+//        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+//        drawerView = (View) findViewById(R.id.drawerView);
+//        drawerLayout.setDrawerListener(listener);
+
+
 //        toolbar = (Toolbar)findViewById(R.id.toolbar);
 //        setSupportActionBar(toolbar);
 //        getSupportActionBar().setTitle("");
@@ -414,6 +421,24 @@ public class Main_Easy extends AppCompatActivity {
 
 
     }
+
+    DrawerLayout.DrawerListener listener = new DrawerLayout.DrawerListener() {
+        @Override
+        public void onDrawerSlide(@NonNull View drawerView, float slideOffset) {
+        }
+
+        @Override
+        public void onDrawerOpened(@NonNull View drawerView) {
+        }
+
+        @Override
+        public void onDrawerClosed(@NonNull View drawerView) {
+        }
+
+        @Override
+        public void onDrawerStateChanged(int newState) {
+        }
+    };
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

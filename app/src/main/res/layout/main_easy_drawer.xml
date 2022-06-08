@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="280dp"
+    android:layout_height="match_parent"
+    android:layout_gravity="start"
+    android:id="@+id/drawerView"
+    android:background="#5559b4">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:background="#5A88FF">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="어서오고"
+            android:textSize="14dp"
+            android:textColor="#ffffff"
+            android:layout_marginTop="60dp"
+            android:layout_centerHorizontal="true">
+        </TextView>
+
+        <ImageView
+            android:id="@+id/main_easy_user_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="45dp"
+            android:src="@drawable/ic_launcher_foreground"></ImageView>
+
+        <TextView
+            android:id="@+id/main_easy_user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="94dp"
+            android:layout_marginTop="80dp"
+            android:text="김진민 님"
+            android:textColor="#ffffff"
+            android:textSize="26dp"></TextView>
+
+        <TextView
+            android:id="@+id/main_easy_user_adress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="130dp"
+            android:text="wlsalsdla1@g.shingu.ac.kr"
+            android:textColor="#ffffff"
+            android:textSize="14dp"></TextView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="200dp"
+            android:background="#80ffffff"></LinearLayout>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="228dp"
+            android:layout_marginLeft="20dp">
+        </ImageView>
+
+        <TextView
+            android:id="@+id/main_easy_adress_setting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="44dp"
+            android:layout_marginTop="228dp"
+            android:onClick="OnClick"
+            android:text="계정 설정"
+            android:textColor="#ffffff"></TextView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#80ffffff"
+            android:layout_marginTop="270dp">
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="298dp"
+            android:layout_marginLeft="20dp">
+        </ImageView>
+
+        <TextView
+            android:id="@+id/main_easy_calendar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="44dp"
+            android:layout_marginTop="298dp"
+            android:onClick="OnClick"
+            android:text="달력 크게 보기"
+            android:textColor="#ffffff"></TextView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="340dp"
+            android:background="#80ffffff"></LinearLayout>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="368dp"
+            android:layout_marginLeft="20dp">
+        </ImageView>
+
+        <TextView
+            android:id="@+id/main_easy_game"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="44dp"
+            android:layout_marginTop="368dp"
+            android:onClick="OnClick"
+            android:text="게임"
+            android:textColor="#ffffff"></TextView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#80ffffff"
+            android:layout_marginTop="410dp">
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="438dp"
+            android:layout_marginLeft="20dp">
+        </ImageView>
+
+        <TextView
+            android:id="@+id/main_easy_setting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="44dp"
+            android:layout_marginTop="438dp"
+            android:onClick="OnClick"
+            android:text="설정"
+            android:textColor="#ffffff"></TextView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="480dp"
+            android:background="#80ffffff"></LinearLayout>
+
+        <TextView
+            android:id="@+id/main_easy_user_logout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="500dp"
+            android:onClick="OnClick"
+            android:text="로그아웃"
+            android:textColor="#ffffff"
+            android:textSize="15dp"></TextView>
+
+    </RelativeLayout>
+
+</LinearLayout>

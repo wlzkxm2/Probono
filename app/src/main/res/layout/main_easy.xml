@@ -5,6 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+<!--    <androidx.drawerlayout.widget.DrawerLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:id="@+id/drawer_layout">-->
+<!--        -->
+<!--    </androidx.drawerlayout.widget.DrawerLayout>-->
 
     <ImageButton
         android:id="@+id/main_easy_previous"
@@ -194,7 +200,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.037" />
 
-    <!--    <androidx.drawerlayout.widget.DrawerLayout-->
+<!--        <androidx.drawerlayout.widget.DrawerLayout-->
 <!--        android:layout_width="match_parent"-->
 <!--        android:layout_height="match_parent"-->
 <!--        android:id="@+id/drawer_layout">-->
@@ -202,16 +208,13 @@
 <!--        <RelativeLayout-->
 <!--            android:layout_width="wrap_content"-->
 <!--            android:layout_height="wrap_content">-->
-
 <!--            <androidx.appcompat.widget.Toolbar-->
 <!--                android:id="@+id/toolbar"-->
 <!--                android:layout_width="match_parent"-->
 <!--                android:layout_height="wrap_content">-->
-
 <!--            </androidx.appcompat.widget.Toolbar>-->
 
 <!--        </RelativeLayout>-->
-
 <!--        <com.google.android.material.navigation.NavigationView-->
 <!--            android:id="@+id/navigation_view"-->
 <!--            android:layout_width="match_parent"-->
@@ -221,5 +224,8 @@
 <!--            app:headerLayout="@layout/navi_header"-->
 <!--            app:menu="@menu/navi_drawer" />-->
 <!--    </androidx.drawerlayout.widget.DrawerLayout>-->
+
+    <include layout="@layout/main_easy_drawer"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
