@@ -30,19 +30,21 @@ public class Setting_main_easy extends AppCompatActivity {
     Calender_Dao calender_dao;
     User_Dao user_dao;
 
-    Button btntest1, btntest2, button3;      // 프래그먼트 전환을 위한 버튼
-    ImageButton im1,im2;
+    Button accountbtn, notibtn, darkbtn;      // 프래그먼트 전환을 위한 버튼
+    ImageButton im1,im2,backbtn;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.setting_main_easy);
         //알림 설정 레이아웃을 표시
-        btntest1 = (Button) findViewById(R.id.account_settingbtn);
-        btntest2 = (Button) findViewById(R.id.notificationsetting_btn);
-        button3 = (Button) findViewById(R.id.darkmodesetting_btn);
+        accountbtn = (Button) findViewById(R.id.account_settingbtn);
+        notibtn = (Button) findViewById(R.id.notificationsetting_btn);
+        darkbtn = (Button) findViewById(R.id.darkmodesetting_btn);
         im1=(ImageButton) findViewById(R.id.normalbtn);
         im2=(ImageButton) findViewById(R.id.backbutton);
+        backbtn=(ImageButton)findViewById(R.id.backbutton);
+
 
         Calender_DBSet dbController = Room.databaseBuilder(getApplicationContext(), Calender_DBSet.class, "CalenderDB")
                 .fallbackToDestructiveMigration()
@@ -57,27 +59,28 @@ public class Setting_main_easy extends AppCompatActivity {
         calender_dao = dbController.calender_dao();
         user_dao = userdbController.user_dao();
 
-
-        im1.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), Navigation.class);
-                startActivity(intent);
-            }
-        });
-        im2.setOnClickListener(new View.OnClickListener() {
+        backbtn.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), Main_Easy.class);
                 startActivity(intent);
             }
-            public void onBackPressed() {
-                //super.onBackPressed();
-            }
         });
-        btntest1.setOnClickListener(new View.OnClickListener() {
+
+        cl = new View.OnClickListener() {  //노말모드를 적용했을때 인텐트를 종료 시킨다
+            @Override
+            public void onClick(View view) {
+                switch (view.getId()) {
+                    case R.id.normalbtn:
+                        finish();
+                        break;
+                }
+            }
+        };
+        im1.setOnClickListener(cl);
+
+        accountbtn.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
@@ -97,7 +100,7 @@ public class Setting_main_easy extends AppCompatActivity {
             }
         });
 
-        btntest2.setOnClickListener(new View.OnClickListener() {
+        notibtn.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
@@ -106,7 +109,7 @@ public class Setting_main_easy extends AppCompatActivity {
             }
         });
 
-        button3.setOnClickListener(new View.OnClickListener() {
+        darkbtn.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {

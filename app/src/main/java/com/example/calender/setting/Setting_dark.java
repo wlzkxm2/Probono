@@ -10,8 +10,9 @@ import com.example.calender.ThemeUtil;
 
 public class Setting_dark extends AppCompatActivity {
     public static final String TAG = "Setting_dark";
-    Button mod_btn, mod_btn1;
+    Button mod_btn, mod_btn1,darkback;
     String themeColor;
+    View.OnClickListener cl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,5 +40,19 @@ public class Setting_dark extends AppCompatActivity {
                 ThemeUtil.modSave(getApplicationContext(), themeColor);
             }
         });
+        darkback = (Button) findViewById(R.id.dark_back);
+
+
+        cl = new View.OnClickListener() {  //뒤로가기 버튼 누르면 화면 종료되도록 설정
+            @Override
+            public void onClick(View view) {
+                switch (view.getId()) {
+                    case R.id.dark_back:
+                        finish();
+                        break;
+                }
+            }
+        };
+        darkback.setOnClickListener(cl);
     }
 }
