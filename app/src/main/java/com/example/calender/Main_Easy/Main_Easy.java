@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.ContextThemeWrapper;
+import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -68,7 +69,7 @@ public class Main_Easy extends AppCompatActivity {
     int listDB = 10;
     private List_ItemAdapter_Easy list_itemAdapter_easy;
     TextView now, month, dday, dday_text,d_day,d_day_text;
-    ImageButton next, previous;
+    ImageButton next, previous, drawer_btn;
     View.OnClickListener cl;
     String str, c;
     int a, b;
@@ -277,6 +278,12 @@ public class Main_Easy extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_easy);
 
+        // 드로어 버튼
+        drawer_btn = (ImageButton) findViewById(R.id.main_easy_drawer_btn);
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawerView = (View) findViewById(R.id.drawerView);
+        drawerLayout.setDrawerListener(listener);
+
         //시작일, 종료일 데이터 저장
         calendar = Calendar.getInstance();
         currentYear = calendar.get(Calendar.YEAR);
@@ -362,6 +369,12 @@ public class Main_Easy extends AppCompatActivity {
                             });
                             dialog.show();
                             break;
+                    case R.id.main_easy_drawer_btn: // 드로어 버튼
+                        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout) ;
+                        if (!drawer.isDrawerOpen(Gravity.LEFT)) {
+                            drawer.openDrawer(Gravity.LEFT) ;
+                        }
+                        break;
                         }
                 }
         };
@@ -369,6 +382,7 @@ public class Main_Easy extends AppCompatActivity {
         previous.setOnClickListener(cl);
         d_day.setOnClickListener(cl);
         d_day_text.setOnClickListener(cl);
+        drawer_btn.setOnClickListener(cl);
 
         calendar_recyclerView = (RecyclerView)findViewById(R.id.recycler_view_easy_calendar_day);
         calendar_recyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false)); // 가로 스크롤
@@ -380,24 +394,6 @@ public class Main_Easy extends AppCompatActivity {
         LinearLayoutManager layoutManager = (LinearLayoutManager) calendar_recyclerView.getLayoutManager();
         layoutManager.scrollToPositionWithOffset(Integer.parseInt(today)-1, 270);
 
-
-//            // 드로어
-
-
-//        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-//        drawerView = (View) findViewById(R.id.drawerView);
-//        drawerLayout.setDrawerListener(listener);
-
-
-//        toolbar = (Toolbar)findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
-//        getSupportActionBar().setTitle("");
-//
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(true); // 왼쪽 상단 버튼 만들기
-//        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_menu); //왼쪽 상단 버튼 아이콘 지정
-//
-//        drawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
-//        navigationView = (NavigationView)findViewById(R.id.navigation_view);
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view_easy);
         list_itemAdapter_easy = new List_ItemAdapter_Easy();
