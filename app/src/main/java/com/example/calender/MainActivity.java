@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
 
         ttsbtn = findViewById(R.id.tts_test);
         calbtn = findViewById(R.id.calendartestbtn);
-        easybtn = findViewById(R.id.calendar_easy_testbtn);
+//        easybtn = findViewById(R.id.calendar_easy_testbtn);
 
         //<editor-fold desc="메인 엑티비티 버튼 스위치 문">
         cl = new View.OnClickListener() {
