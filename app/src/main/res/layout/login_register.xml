@@ -40,7 +40,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:text="*아이디" />
+                android:text="@string/ID" />
             <!--회원가입 입력칸이다-->
             <EditText
                 android:id="@+id/editText_ID"
@@ -48,7 +48,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
                 android:ems="10"
-                android:hint="아이디를 입력해 주세요."
+                android:hint="@string/ID_insert"
                 android:inputType="text"
                 android:text=""
                 android:textColorHint="#AAAAAA" />
@@ -58,7 +58,7 @@
                 android:id="@+id/Text_IDCheck"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="아이디 중복검사를 해주세요"
+                android:text="@string/id_duplicate"
                 android:textColor="#FF0000" />
 
             <Button
@@ -66,14 +66,14 @@
                 style="@android:style/Widget.Material.Button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="아이디 중복검사"
+                android:text="@string/id_duplicate_check"
                 android:textColor="#000000" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:text="*비밀번호" />
+                android:text="@string/Password" />
 
             <!--비밀번호 등록칸이다-->
             <EditText
@@ -82,7 +82,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
                 android:ems="10"
-                android:hint="비밀번호를 입력해 주세요."
+                android:hint="@string/Password_insert"
                 android:inputType="textPassword"
                 android:text=""
                 android:textColorHint="#AAAAAA" />
@@ -91,7 +91,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:text="*비밀번호 확인" />
+                android:text="@string/Password_re" />
 
             <!--비밀번호 재확인 입력칸이다-->
             <EditText
@@ -100,7 +100,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
                 android:ems="10"
-                android:hint="비밀번호를 다시 입력해 주세요."
+                android:hint="@string/Password_re_insert"
                 android:inputType="textPassword"
                 android:text=""
                 android:textColorHint="#AAAAAA" />
@@ -110,7 +110,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:text="*이메일" />
+                android:text="@string/Email" />
             <!--이메일 입력칸이다-->
 
             <!--나이쪽이다-->
@@ -125,7 +125,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="20dp"
                     android:ems="10"
-                    android:hint="이메일을 입력해 주세요."
+                    android:hint="@string/Email_insert"
                     android:inputType="textEmailAddress"
                     android:text=""
                     android:textColorHint="#AAAAAA" />
@@ -143,7 +143,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:ems="10"
-                    android:hint="이메일 뒷부분"
+                    android:hint="@string/email_back"
                     android:inputType="textPersonName" />
             </LinearLayout>
             <!--나이 입력칸이다-->
@@ -151,7 +151,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:text="이름" />
+                android:text="@string/name" />
 
             <EditText
                 android:id="@+id/editText_name"
@@ -160,7 +160,7 @@
                 android:layout_marginBottom="20dp"
                 android:ems="10"
 
-                android:hint="이름을 입력해 주세요."
+                android:hint="@string/name_insert"
                 android:inputType="number"
                 android:text=""
                 android:textColorHint="#AAAAAA" />
@@ -169,7 +169,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:text="*전화번호" />
+                android:text="@string/phonenumber" />
 
             <EditText
                 android:id="@+id/editText_phonenumber"
@@ -178,7 +178,7 @@
                 android:layout_marginBottom="20dp"
                 android:ems="10"
 
-                android:hint="전화번호를 입력해 주세요."
+                android:hint="@string/phonenumber_insert"
                 android:inputType="number"
                 android:text=""
                 android:textColorHint="#AAAAAA" />
@@ -190,7 +190,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:text="*나이" />
+                android:text="@string/age" />
             <!--나이 입력칸이다-->
             <EditText
                 android:id="@+id/editText_age"
@@ -199,7 +199,7 @@
                 android:layout_marginBottom="20dp"
                 android:ems="10"
 
-                android:hint="나이를 입력해 주세요."
+                android:hint="@string/age_insert"
                 android:inputType="number"
                 android:text=""
                 android:textColorHint="#AAAAAA" />
@@ -209,7 +209,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:text="주소" />
+                android:text="@string/address" />
             <!--주소 입력칸이다-->
             <EditText
                 android:id="@+id/editText_address"
@@ -219,7 +219,7 @@
                 android:clickable="true"
 
                 android:ems="10"
-                android:hint="주소를 입력해 주세요."
+                android:hint="@string/address_isnert"
                 android:text=""
                 android:textColorHint="#AAAAAA" />
             <!--상제주소쪽이다-->
@@ -227,7 +227,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:text="상세주소" />
+                android:text="@string/address_detail" />
             <!--상세주소 입력칸이다-->
             <EditText
                 android:id="@+id/editText_detailaddress"
@@ -236,7 +236,7 @@
                 android:layout_marginBottom="20dp"
 
                 android:ems="10"
-                android:hint="상세주소를 입력해 주세요."
+                android:hint="@string/address_detail_insert"
                 android:inputType="date"
                 android:text=""
                 android:textColorHint="#AAAAAA" />
@@ -245,7 +245,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:text="우편번호" />
+                android:text="@string/ZIP" />
             <!--상세주소 입력칸이다-->
             <EditText
                 android:id="@+id/editText_Zipcode"
@@ -254,7 +254,7 @@
                 android:layout_marginBottom="20dp"
                 android:ems="10"
 
-                android:hint="우편번호를 입력해 주세요."
+                android:hint="@string/ZIP_INSERT"
                 android:inputType="number"
                 android:text=""
                 android:textColorHint="#AAAAAA" />

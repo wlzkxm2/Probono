@@ -10,8 +10,9 @@
     >
     <ImageButton
         android:id="@+id/backbutton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:paddingTop="10dp"
         android:src="@drawable/arrow_left_line"
         android:background="#f2f2f6"
         />
@@ -74,7 +75,7 @@
             android:layout_marginStart="4dp"
             android:layout_marginEnd="12dp"
             android:layout_marginBottom="9dp"
-            android:text="현재 적용중인 모드:노말 모드"
+            android:text="@string/current_easy"
             android:textAlignment="center"
             android:textSize="30sp" />
 

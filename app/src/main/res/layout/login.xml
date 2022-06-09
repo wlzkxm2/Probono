@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="200dp"
         android:paddingStart="10dp"
-        android:text="이메일" />
+        android:text="@string/Email" />
 
     <EditText
         android:id="@+id/UserID_Edit"
@@ -31,7 +31,7 @@
         android:layout_marginBottom="20dp"
         android:ems="10"
         android:textColorHint="#AAAAAA"
-        android:hint="이메일을 입력해 주세요."
+        android:hint="@string/Email_insert"
         android:inputType="textEmailAddress"
         android:text="" />
     <!--비밀번호 쪽이다-->
@@ -40,7 +40,7 @@
         android:layout_height="wrap_content"
 
         android:paddingStart="10dp"
-        android:text="비밀번호" />
+        android:text="@string/Password" />
 
     <EditText
         android:id="@+id/UserPW_Edit"
@@ -52,7 +52,7 @@
         android:textColorHint="#AAAAAA"
         android:textColor="#000000"
         android:ems="10"
-        android:hint="비밀번호를 입력해 주세요."
+        android:hint="@string/Password_insert"
         />
     <!--회원가입 버튼이다-->
     <Button
@@ -61,7 +61,7 @@
         android:layout_height="wrap_content"
         android:textColor="#000000"
         android:textSize="20dp"
-        android:text="회원가입하기"
+        android:text="@string/Register"
         android:background="@drawable/exam"/>
     <!--로그인 버튼이다-->
     <Button
@@ -73,7 +73,7 @@
         android:background="@drawable/exam"
         android:textColor="#000000"
         android:textSize="20dp"
-        android:text="로그인" />
+        android:text="@string/Login" />
 
 
 </LinearLayout>

@@ -53,30 +53,7 @@
             android:background="@drawable/example1"
             android:textSize="30sp"
             android:textAlignment="center"
-            android:text="방해금지모드" />
-
-        <com.google.android.material.switchmaterial.SwitchMaterial
-            android:id="@+id/switch3"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginStart="5dp"
-            android:layout_marginEnd="5dp"
-            android:background="@drawable/example1"
-            android:textSize="30sp"
-            android:textAlignment="center"
-            android:text="알림설정" />
-        <com.google.android.material.switchmaterial.SwitchMaterial
-            android:id="@+id/switch4"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginStart="5dp"
-            android:layout_marginEnd="5dp"
-            android:background="@drawable/example1"
-            android:textSize="30sp"
-            android:textAlignment="center"
-            android:text="@string/notification_all" />
+            android:text="@string/Donotdisturb" />
 
         <Button
             android:id="@+id/back_noti"
