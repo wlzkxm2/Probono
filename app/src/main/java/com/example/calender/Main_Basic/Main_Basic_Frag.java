@@ -137,32 +137,23 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener {
         List<Calender_DB> mainactDB = calender_dao.loadMainData(1);
         long result = 0;
 
-//        db에 만약 시간 데이터가 없다면
-        if(mainactDB.get(0).get_mainActTime() == 0){
-            final Calendar ddayCalendar = Calendar.getInstance();
-            ddayCalendar.set(mYear, mMonthOfYear, mDayOfMonth);
+
+        final Calendar ddayCalendar = Calendar.getInstance();
+        ddayCalendar.set(mYear, mMonthOfYear, mDayOfMonth);
 
 
-            // D-day 를 구하기 위해 millisecond 으로 환산하여 d-day 에서 today 의 차를 구한다.
-            final long dday = ddayCalendar.getTimeInMillis() / ONE_DAY;
-            final long today = Calendar.getInstance().getTimeInMillis() / ONE_DAY;
+        // D-day 를 구하기 위해 millisecond 으로 환산하여 d-day 에서 today 의 차를 구한다.
+        final long dday = ddayCalendar.getTimeInMillis() / ONE_DAY;
+        final long today = Calendar.getInstance().getTimeInMillis() / ONE_DAY;
 
-            // 현재 시간을 출력
-            Log.v("MainDays", "dday : " + dday + "\n" + "today : " + today);
-            result = dday - today;
+        calender_dao.MainActDayupdate(1, dday);
+        // 현재 시간을 출력
+        Log.v("MainDays", "dday : " + dday + "\n" + "today : " + today);
+        result = dday - today;
 
-            // db에 지정한 시간 데이터를 저장
-            calender_dao.MainActDayupdate(1, dday);
-        } else{
-            // db에 만약 시간데이터가 있다면
-            final Calendar ddayCalendar = Calendar.getInstance();
-            ddayCalendar.set(mYear, mMonthOfYear, mDayOfMonth);
+        // db에 지정한 시간 데이터를 저장
+        calender_dao.MainActDayupdate(1, dday);
 
-            final long dday = mainactDB.get(0).get_mainActTime();
-            final long today = Calendar.getInstance().getTimeInMillis() / ONE_DAY;
-            Log.v("MainDays", "dday : " + dday + "\n" + "today : " + today);
-            result = dday - today;
-        }
 
 
         // 출력 시 d-day 에 맞게 표시
@@ -246,8 +237,8 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener {
         Locale.setDefault(Locale.KOREAN);
 
         // 디데이 다이얼로그
-        d_day = (TextView) view.findViewById(R.id.main_easy_dday);
-        d_day_text = (TextView) view.findViewById(R.id.main_easy_dday_text);
+        d_day = (TextView) view.findViewById(R.id.main_basic_dday);
+        d_day_text = (TextView) view.findViewById(R.id.main_basic_dday_text);
 
         if(Maindata.get(0).get_mainActDTitle() == null)
             d_day_text.setText("디데이 목표를 설정해 주세요");
@@ -304,6 +295,8 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener {
 
         list_itemAdapter = new List_ItemAdapter();
         recyclerView.setAdapter(list_itemAdapter);
+
+        D_dayfirsySet();
 
         d_day.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -467,6 +460,32 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener {
             floating_voice.setClickable(true);
             isFabOpen = true;
         }
+    }
+
+    void D_dayfirsySet(){
+        List<Calender_DB> mainactDB = calender_dao.loadMainData(1);
+        // db에 만약 시간데이터가 있다면
+        final Calendar ddayCalendar = Calendar.getInstance();
+
+        final long dday = mainactDB.get(0).get_mainActTime();
+        final long today = Calendar.getInstance().getTimeInMillis() / ONE_DAY;
+        Log.v("MainDays", "dday : " + dday + "\n" + "today : " + today);
+        long result = dday - today;
+
+        String strFormat;
+        if (result > 0) {
+            strFormat = "D-%d";
+        } else if (result == 0) {
+            strFormat = "Today!";
+        } else {
+            result *= -1;
+            strFormat = "D+%d";
+        }
+
+        final String strCount = (String.format(strFormat, result));
+        Log.v("MainDays", strCount);
+
+        d_day.setText(strCount);
     }
 }
 
