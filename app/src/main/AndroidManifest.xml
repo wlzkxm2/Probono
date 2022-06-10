@@ -45,13 +45,23 @@
         </activity>
 
         <activity
-            android:name=".Main_Basic.Title_Popup"
+            android:name=".Calendar_Easy.Calendar_Easy"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+
+<!--        <activity-->
+<!--            android:name=".Main_Basic.Title_Popup"-->
+<!--            android:exported="true">-->
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
+<!--        </activity>-->
 
 
         <activity

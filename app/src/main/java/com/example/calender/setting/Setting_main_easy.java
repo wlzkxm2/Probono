@@ -73,7 +73,13 @@ public class Setting_main_easy extends AppCompatActivity {
             public void onClick(View view) {
                 switch (view.getId()) {
                     case R.id.normalbtn:
-                        finish();
+                        // 액티비티에서 프래그먼트로 데이터 넘기는 코드
+
+
+
+                        Intent intent = new Intent(getApplicationContext(), Navigation.class);
+                        startActivity(intent);
+//                        finish();
                         break;
                 }
             }

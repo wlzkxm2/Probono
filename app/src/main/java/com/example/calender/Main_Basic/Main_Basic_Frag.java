@@ -57,12 +57,6 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener {
     String dbinputTitle = "";
     String dbinputDtitle = "";
 
-    // 데이터베이스 내부를 출력하기 위한 데이터
-    int _year;
-    int _month;
-    int _day;
-    int appData;
-
     // 디데이 변수
     int dateEndY, dateEndM, dateEndD;
     int ddayValue = 0;
@@ -321,52 +315,14 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener {
 
         // -------------------------------------------------------- DB 데이터 넣는곳
         //샘플 데이터 생성
-//        for (int i = 0; i < listDB; i++) {
-//            List_Item list_item = new List_Item();
-//            list_item.setTime("14:00" + "-" + i); // 시간
-//            list_item.setTitle("과제하기" + "-" + i); // 일정 제목
-//            list_item.setText("그치만 하기 싫은걸" + "-" + i); // 일정 내용
-//            //데이터 등록
-//            list_itemAdapter.addItem(list_item);
-//        }
-
-        Date currentTime = Calendar.getInstance().getTime();
-        SimpleDateFormat yearFormat = new SimpleDateFormat("yyyy", Locale.getDefault());
-        SimpleDateFormat monthFormat = new SimpleDateFormat("MM", Locale.getDefault());
-        SimpleDateFormat dayFormat = new SimpleDateFormat("dd", Locale.getDefault());
-        _year = Integer.parseInt(yearFormat.format(currentTime));
-        _month = Integer.parseInt(monthFormat.format(currentTime));
-        _day = Integer.parseInt(dayFormat.format(currentTime));
-        Log.v("Mainyear", "MainYears : " + _year + _month + _day);
-
-        List<Calender_DB> calender_like_data = calender_dao.loadAllDataByYears(
-                _year,
-                _month,
-                _day
-        );
-        appData = calender_like_data.size();
-
-        Toast.makeText(getActivity().getApplication(), _year + "-" + _month + "-" + _day, Toast.LENGTH_SHORT).show();
-
-        Log.v("HSH", Integer.toString(((UidCode) getActivity().getApplication()).getStatic_day()));
-
-        list_itemAdapter.removeAllItem();
-
-        for (int i = 0; i < calender_like_data.size(); i++) {
-            List_Item calList = new List_Item();
-            String time = String.format("%04d", calender_like_data.get(i).getStart_time());
-            String endtime = String.format("%04d", calender_like_data.get(i).getEnd_time());
-
-            calList.setTime(time.substring(0,2) + " : " + time.substring(2) + " ~\n"
-                    + endtime.substring(0,2) + " : " + endtime.substring(2));
-            calList.setTitle(calender_like_data.get(i).get_titles());
-            calList.setText(calender_like_data.get(i).get_subtitle());
-
-            list_itemAdapter.addItem(calList);
+        for (int i = 0; i < listDB; i++) {
+            List_Item list_item = new List_Item();
+            list_item.setTime("14:00" + "-" + i); // 시간
+            list_item.setTitle("과제하기" + "-" + i); // 일정 제목
+            list_item.setText("그치만 하기 싫은걸" + "-" + i); // 일정 내용
+            //데이터 등록
+            list_itemAdapter.addItem(list_item);
         }
-        list_itemAdapter.notifyDataSetChanged();
-        recyclerView.startLayoutAnimation();
-
         //적용
         list_itemAdapter.notifyDataSetChanged();
 
@@ -557,7 +513,7 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener {
         //boolean 으로 년 뒤 T/F 체크해서 개월 / 월 / 달 조건문 돌리기 why? : (년뒤 뒤부터, 월까지) 추출해야하니까
         int y = 0;
         boolean checkYearWord;
-        String saveYearData, saveMonthData, saveDaysData;
+        String saveYearData;
 
         if (data.indexOf("년 뒤") > -1) {
             checkYearWord = true;
@@ -574,12 +530,7 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener {
         }else{ // 현재 년도 반환
             Date currentTime = Calendar.getInstance().getTime();
             SimpleDateFormat yearFormat = new SimpleDateFormat("yyyy", Locale.getDefault());
-            SimpleDateFormat monthFormat = new SimpleDateFormat("MM", Locale.getDefault());
-            SimpleDateFormat dayFormat = new SimpleDateFormat("dd", Locale.getDefault());
             saveYearData = yearFormat.format(currentTime);
-            saveMonthData = monthFormat.format(currentTime);
-            saveDaysData = dayFormat.format(currentTime);
-            Log.v("Mainyear", "MainYears : " + saveYearData + saveMonthData + saveDaysData);
         }
 
         if(data.indexOf("개월" ) > -1) {

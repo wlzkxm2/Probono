@@ -17,47 +17,46 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    <ImageButton
-        android:id="@+id/main_easy_drawer_btn"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:background="@android:color/transparent"
-        android:scaleType="fitCenter"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.015"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.034"
-        app:srcCompat="@drawable/ic_menu" />
+        <ImageButton
+            android:id="@+id/main_easy_drawer_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.041"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.052"
+            app:srcCompat="@drawable/ic_menu" />
 
-    <ImageButton
-        android:id="@+id/main_easy_next"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
-        android:src="@drawable/ic_right_arrow"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.955"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.069" />
+        <ImageButton
+            android:id="@+id/main_easy_next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_right_arrow"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.732"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.054" />
 
-    <ImageButton
-        android:id="@+id/main_easy_previous"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
-        android:src="@drawable/ic_left_arrow"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.044"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.069" />
+        <ImageButton
+            android:id="@+id/main_easy_previous"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_left_arrow"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.316"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.054" />
 
-    <TextView
+        <TextView
         android:id="@+id/main_easy_month"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -385,7 +384,191 @@
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-        <include layout="@layout/main_easy_drawer" />
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="280dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="left"
+        android:id="@+id/drawerView"
+        android:background="#5559b4">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:background="#5A88FF">
+
+            <TextView
+                android:id="@+id/main_easy_drawer_welcome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="안녕하세요"
+                android:textSize="14dp"
+                android:textColor="#ffffff"
+                android:layout_marginTop="60dp"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="left">
+            </TextView>
+
+            <ImageView
+                android:id="@+id/main_easy_user_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="0dp"
+                android:layout_marginTop="45dp"
+                android:src="@drawable/ic_launcher_foreground"
+                android:layout_gravity="left"/>
+
+            <TextView
+                android:id="@+id/main_easy_user_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="94dp"
+                android:layout_marginTop="80dp"
+                android:text="김진민 님"
+                android:textColor="#ffffff"
+                android:textSize="26dp"
+                android:layout_gravity="left"/>
+
+            <ImageView
+                android:id="@+id/main_easy_user_img_nogin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginLeft="0dp"
+                android:layout_marginTop="45dp"
+                android:src="@drawable/ic_launcher_foreground" />
+
+            <TextView
+                android:id="@+id/main_easy_user_name_nogin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="94dp"
+                android:layout_marginTop="80dp"
+                android:text="로그인해주세요"
+                android:textColor="#ffffff"
+                android:textSize="26dp"
+                android:layout_gravity="left"/>
+
+            <TextView
+                android:id="@+id/main_easy_user_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="130dp"
+                android:text="wlsalsdla1@g.shingu.ac.kr"
+                android:textColor="#ffffff"
+                android:textSize="14dp"
+                android:layout_gravity="left"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="200dp"
+                android:background="#80ffffff"
+                android:layout_gravity="left"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="228dp"
+                android:layout_marginLeft="20dp"
+                android:layout_gravity="left"/>
+
+            <TextView
+                android:id="@+id/main_easy_user_setting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginLeft="44dp"
+                android:layout_marginTop="228dp"
+                android:onClick="OnClick"
+                android:text="계정 설정"
+                android:textColor="#ffffff" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#80ffffff"
+                android:layout_marginTop="270dp"
+                android:layout_gravity="left"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="298dp"
+                android:layout_marginLeft="20dp"
+                android:layout_gravity="left"/>
+
+            <TextView
+                android:id="@+id/main_easy_calendar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="44dp"
+                android:layout_marginTop="298dp"
+                android:onClick="OnClick"
+                android:text="달력 크게 보기"
+                android:textColor="#ffffff"
+                android:layout_gravity="left"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="340dp"
+                android:background="#80ffffff"
+                android:layout_gravity="left"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="368dp"
+                android:layout_marginLeft="20dp"
+                android:layout_gravity="left"/>
+
+            <TextView
+                android:id="@+id/main_easy_game"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="44dp"
+                android:layout_marginTop="368dp"
+                android:text="게임"
+                android:textColor="#ffffff"
+                android:layout_gravity="left"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#80ffffff"
+                android:layout_marginTop="410dp"
+                android:layout_gravity="left"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="438dp"
+                android:layout_marginLeft="20dp"
+                android:layout_gravity="left"/>
+
+            <TextView
+                android:id="@+id/main_easy_setting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginLeft="44dp"
+                android:layout_marginTop="438dp"
+                android:onClick="OnClick"
+                android:text="설정"
+                android:textColor="#ffffff" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="480dp"
+                android:background="#80ffffff"
+                android:layout_gravity="left"/>
+
+        </RelativeLayout>
+    </LinearLayout>
     </androidx.drawerlayout.widget.DrawerLayout>
 
 

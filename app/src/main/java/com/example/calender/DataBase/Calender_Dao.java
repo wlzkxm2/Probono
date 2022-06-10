@@ -18,9 +18,9 @@ public interface Calender_Dao {
 
 
     // 선택한 날이 데이터 베이스 내부의 데이터의 사이에 있으면 참으로 반환
-    @Query("select * from calender_db where num != 1 and start_years <= (:Years) and end_years >= (:Years) " +
-            "and start_months <= (:Months) and end_months >= (:Months) " +
-            "and start_days <= (:Days) and end_days >= (:Days)")
+    @Query("select * from calender_db where num != 1 and start_years <= (:Years) or end_years >= (:Years) " +
+            "and start_months <= (:Months) or end_months >= (:Months) " +
+            "and start_days = (:Days) or end_days = (:Days)")
     List<Calender_DB> loadAllDataByYears(int Years, int Months, int Days);
 
     @Query("select * from calender_db where num in (:nums)")

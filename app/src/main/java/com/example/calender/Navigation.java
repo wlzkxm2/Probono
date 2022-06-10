@@ -1,5 +1,6 @@
 package com.example.calender;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
@@ -54,7 +55,7 @@ public class Navigation extends AppCompatActivity {
         calender_basic_frag = new Calender_Basic_Frag();
         main_basic_frag = new Main_Basic_Frag();
         setting_main = new Setting_main();
-        setFrag(1); // 첫 프래그먼트 화면 지정
+        setFrag(1); // 앱 켜질때 첫 프래그먼트 화면 지정
 
     }
 
