@@ -265,8 +265,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/exam"
-                android:text="가입 완료"
-                android:textColor="#000000"
+                android:text="@string/register_complete"
+                android:textColor="#2196F3"
                 android:textSize="20sp" />
 
 

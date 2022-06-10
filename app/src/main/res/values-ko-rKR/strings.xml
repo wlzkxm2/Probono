@@ -41,4 +41,5 @@
     <string name="ZIP">우편번호</string>
     <string name="ZIP_INSERT">우편번호를 입력해주세요</string>
     <string name="email_back">이메일 뒤</string>
+    <string name="register_complete">가입완료</string>
 </resources>

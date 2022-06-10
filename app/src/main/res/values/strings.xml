@@ -69,4 +69,5 @@
     <string name="ZIP">ZIP Code</string>
     <string name="ZIP_INSERT">Please Insert ZIP Code</string>
     <string name="email_back">Email Back</string>
+    <string name="register_complete">Complete Register</string>
 </resources>

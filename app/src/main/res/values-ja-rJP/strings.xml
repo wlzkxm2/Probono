@@ -41,4 +41,5 @@
     <string name="ZIP">郵便番号.</string>
     <string name="ZIP_INSERT">郵便番号を入力してください。</string>
     <string name="email_back">Eメールの裏</string>
+    <string name="register_complete">加入完了</string>
 </resources>
