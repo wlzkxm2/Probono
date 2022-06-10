@@ -11,14 +11,16 @@
         android:id="@+id/navi_fragment_main"
         android:name="com.example.calender.Main_Basic.Main_Basic_Frag"
         android:layout_width="match_parent"
-        android:layout_height="720dp">
+        android:layout_height="0dp"
+        android:layout_weight="18">
 
     </fragment>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/navi_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:background="?android:attr/windowBackground"
         app:itemIconTint="#5A88FF"
         app:itemTextColor="#5A88FF"

@@ -28,7 +28,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_view"
                 android:layout_width="match_parent"
-                android:layout_height="208dp"
+                android:layout_height="match_parent"
                 android:layoutAnimation="@anim/item_layout_animation"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -42,32 +42,5 @@
 
         </LinearLayout>
     </ScrollView>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-
-        <Button
-            android:id="@+id/Addcal_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Button"
-            android:textColor="#000000"
-            android:textColorHighlight="#000000"
-            android:textColorHint="#000000"
-            android:textColorLink="#000000" />
-
-        <Button
-            android:id="@+id/button8"
-            style="@android:style/Widget.Material.Light.Button.Toggle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Button"
-            android:textColor="#000000" />
-    </LinearLayout>
 
 </LinearLayout>

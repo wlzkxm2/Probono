@@ -64,7 +64,7 @@ public class Calender_Basic_Frag extends Fragment {
         final int[] _day = {0};
         final int[] appData = {0};  // DB 내에 있는 데이터의 사이즈
 
-        addcal_btn = (Button) view.findViewById(R.id.Addcal_btn);
+//        addcal_btn = (Button) view.findViewById(R.id.Addcal_btn);
 
         //<editor-fold desc="기본 뷰 세팅 코드">
         calendarView = (MaterialCalendarView) view.findViewById(R.id.calendarView);
