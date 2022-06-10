@@ -16,6 +16,8 @@ public class ThemeUtil {
 
     private static final String TAG = "ThemeUtil";
 
+
+
     public static void applyTheme(String themeColor) {
         switch (themeColor) {
             case LIGHT_MODE:

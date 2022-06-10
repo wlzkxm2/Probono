@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.calender.Main_Basic.Main_Basic_Frag;
+import com.example.calender.Permission.Permission;
 import com.example.calender.setting.Setting_main;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -22,10 +23,14 @@ public class Navigation extends AppCompatActivity {
     private Calender_Basic_Frag calender_basic_frag;
     private Setting_main setting_main;
 
+    private Permission permission;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.navigation);
+
+        permissionCheck();
 
         bottomNavigationView = findViewById(R.id.navi_view);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -76,6 +81,27 @@ public class Navigation extends AppCompatActivity {
                 break;
 
         }
+    }
+
+    void permissionCheck() {
+        // PermissionSupport.java 클래스 객체 생성
+        permission = new Permission(this, this);
+
+        // 권한 체크 후 리턴이 false로 들어오면
+        if (!permission.checkPermission()){
+            //권한 요청
+            permission.requestPermission();
+        }
+    }
+    // Request Permission에 대한 결과 값 받아와
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @androidx.annotation.NonNull String[] permissions, @androidx.annotation.NonNull int[] grantResults) {
+        //여기서도 리턴이 false로 들어온다면 (사용자가 권한 허용 거부)
+        if (!permission.permissionResult(requestCode, permissions, grantResults)) {
+            // 다시 permission 요청
+            permission.requestPermission();
+        }
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
 }
