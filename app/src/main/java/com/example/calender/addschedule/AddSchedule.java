@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -17,6 +18,7 @@ import android.widget.TimePicker;
 
 
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
@@ -28,6 +30,7 @@ import com.example.calender.R;
 import com.example.calender.StaticUidCode.UidCode;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -43,10 +46,12 @@ public class AddSchedule extends Activity {
     CheckBox allDayCheck;
     View.OnClickListener cl;
     TextView startDate, endDate, startTime, endTime;
-    int startYears,startMonths,startDays, endYears,endMonths,endDays,startHour,startMinute,endHour,endMinute = 0;
+    int startYears,startMonths,startDays, endYears,endMonths,endDays,startMinute,endHour,endMinute = 0;
+    int startHour = 0;
 
 
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,22 +77,29 @@ public class AddSchedule extends Activity {
 
 //      TODO 초기 시간값 설정해주기 : start time = 00:00 / end time = 23:59
 
+        Date today = new Date();
+        SimpleDateFormat yearFormat = new SimpleDateFormat("yyyy");
+        SimpleDateFormat monthFormat = new SimpleDateFormat("MM");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd");
+        SimpleDateFormat timeFormat = new SimpleDateFormat("HH시mm분");
+        LocalTime now = LocalTime.now();
+
+
         startYears = ((UidCode) getApplication()).getStatic_year();
         startMonths = ((UidCode) getApplication()).getStatic_month();
         startDays = ((UidCode) getApplication()).getStatic_day();
         endYears = ((UidCode) getApplication()).getStatic_year();
         endMonths = ((UidCode) getApplication()).getStatic_month();
         endDays = ((UidCode) getApplication()).getStatic_day();
-
+        startHour = now.getHour();
+        startMinute = now.getMinute();
+        endHour = now.getHour();
+        endMinute = now.getMinute();
 
         Log.d("HSH","" + startMonths);
 
 
-        Date today = new Date();
-        SimpleDateFormat yearFormat = new SimpleDateFormat("yyyy");
-        SimpleDateFormat monthFormat = new SimpleDateFormat("MM");
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd");
-        SimpleDateFormat timeFormat = new SimpleDateFormat("HH시mm분");
+
 
         if(startYears < 2000 || endYears < 2000){
             startYears = Integer.parseInt(yearFormat.format(today));
@@ -210,7 +222,7 @@ public class AddSchedule extends Activity {
                 startMinute = minute;
                 startTime.setText(startHour + "시" + startMinute + "분");
             }
-        },0,0,true);
+        },startHour,startMinute,true);
         timePickerDialog.show();
     }
 
@@ -222,7 +234,7 @@ public class AddSchedule extends Activity {
                 endMinute = minute;
                 endTime.setText(endHour + "시" + endMinute + "분");
             }
-        },0,0,true);
+        },endHour,endMinute,true);
         timePickerDialog.show();
     }
 //TODO endDate 가 StartDate보다 이전 날짜일 경우 startDate = endDate 구현하기
