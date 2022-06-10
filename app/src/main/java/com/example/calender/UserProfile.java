@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.os.PowerManager;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -51,7 +50,7 @@ public class UserProfile extends AppCompatActivity implements View.OnClickListen
     TextView userid, useremail, username,
             userage, userphonenum, useraddress;
 
-    Button sync;
+    TextView syncUpload, syncDownload;
 
     File tempSelectFile;
 
@@ -100,7 +99,8 @@ public class UserProfile extends AppCompatActivity implements View.OnClickListen
         userphonenum = (TextView) findViewById(R.id.UserPhonNumber_text);
         useraddress = (TextView) findViewById(R.id.Useraddress_text);
 
-        sync = (Button) findViewById(R.id.Sync_btn);
+        syncUpload = (TextView) findViewById(R.id.uploadFile);
+        syncDownload = (TextView) findViewById(R.id.downloadFile);
 
         List<UserDB> callUserInfo = user_dao.getAllData();
 
@@ -113,16 +113,36 @@ public class UserProfile extends AppCompatActivity implements View.OnClickListen
                 callUserInfo.get(0).getAddressDetail().toString() + "\n" +
                 callUserInfo.get(0).getZipcode().toString());
 
-        sync.setOnClickListener(this);
+        syncUpload.setOnClickListener(this);
+        syncDownload.setOnClickListener(this);
 
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.Sync_btn:
+            case R.id.uploadFile:
 
                 List<UserDB> callUserInfo = user_dao.getAllData();
+                Log.v("profile", "프로필 동기화");
+                try {
+                    SendIdTasks sid = new SendIdTasks();
+                    resultFileName = sid.execute(userId).get();
+                    Log.v("profile", "받은 파일 이름 : " + resultFileName);
+                    // 그럼 먼저 DB를 백업
+                    BackUpDB(this);
+                    // 그후 백업한 DB를 업로드
+
+
+                }catch (Exception e){
+
+                }
+
+
+                break;
+            case R.id.downloadFile:
+
+                List<UserDB> callUserInfos = user_dao.getAllData();
                 Log.v("profile", "프로필 동기화");
 
                 try {
@@ -130,25 +150,13 @@ public class UserProfile extends AppCompatActivity implements View.OnClickListen
                     resultFileName = sid.execute(userId).get();
                     Log.v("profile", "받은 파일 이름 : " + resultFileName);
 
-                    if(resultFileName.equals("null")){
+                    // 서버의 파일을 다운로드
+                    DownloadServerFiles();
 
-                        Log.v("profile", "파일이 없으므로 백업후 업로드 진행");
-                        // 만약 서버에 파일이 없을 경우 null 이 반환됨
-                        // 그럼 먼저 DB를 백업
-                        BackUpDB(this);
-                        // 그후 백업한 DB를 업로드
-                        UploadServerFiles();
-                    }else{
-                        // 서버의 파일을 다운로드
-                        DownloadServerFiles();
-                        // 서버의 파일을 다운로드 후 해독
-                        RestoreDB();
-                    }
 
                 }catch (Exception e){
 
                 }
-
                 break;
         }
     }
@@ -161,6 +169,8 @@ public class UserProfile extends AppCompatActivity implements View.OnClickListen
                 .secretKey("probono")
                 .onWorkFinishListener((success, message) -> Toast.makeText(UserProfile.this, message, Toast.LENGTH_SHORT).show())
                 .execute();
+
+        UploadServerFiles();
     }
 
     public void RestoreDB() {
@@ -248,6 +258,8 @@ public class UserProfile extends AppCompatActivity implements View.OnClickListen
             });
 
         }
+
+
     }
 
     class DownloadFilesTask extends AsyncTask<String, String, Long> {
@@ -359,11 +371,11 @@ public class UserProfile extends AppCompatActivity implements View.OnClickListen
 
             progressBar.dismiss();
 
-            if(size > 0){
+            if(size > -1){
                 Toast.makeText(context, "다운로드 완료되었습니다. 파일 크기=" + size.toString(), Toast.LENGTH_SHORT).show();
 
             }else{
-                Toast.makeText(context, "다운로드 에러", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "다운로드 크기 = " + size.toString(), Toast.LENGTH_SHORT).show();
             }
 
             RestoreDB();

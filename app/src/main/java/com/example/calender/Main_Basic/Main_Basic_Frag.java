@@ -35,6 +35,8 @@ import androidx.room.Room;
 import com.example.calender.DataBase.Calender_DB;
 import com.example.calender.DataBase.Calender_DBSet;
 import com.example.calender.DataBase.Calender_Dao;
+import com.example.calender.DataBase.User_DBset;
+import com.example.calender.DataBase.User_Dao;
 import com.example.calender.Main_Easy.Main_Easy;
 import com.example.calender.R;
 import com.example.calender.StaticUidCode.UidCode;
@@ -53,6 +55,7 @@ import java.util.TimerTask;
 public class Main_Basic_Frag extends Fragment implements View.OnClickListener {
 
     Calender_Dao calender_dao;
+    User_Dao user_dao;
     long dbinputTime = 0;
     String dbinputTitle = "";
     String dbinputDtitle = "";
@@ -226,10 +229,17 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener {
                 .allowMainThreadQueries()
                 .build();
 
+        User_DBset userdbController = Room.databaseBuilder(getActivity().getApplicationContext(), User_DBset.class, "UserInfoDB")
+                .fallbackToDestructiveMigration()
+                .allowMainThreadQueries()
+                .build();
+
+        user_dao = userdbController.user_dao();
+
         calender_dao = dbController.calender_dao();
 
         // 메인 DB호출
-        List<Calender_DB> Maindata = calender_dao.loadMainData(1);
+        List<Calender_DB> Maindata = calender_dao.getAllData();
 
         //시작일, 종료일 데이터 저장
         calendar = Calendar.getInstance();
@@ -244,9 +254,9 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener {
         d_day = (TextView) view.findViewById(R.id.main_basic_dday);
         d_day_text = (TextView) view.findViewById(R.id.main_basic_dday_text);
 
-        if(Maindata.get(0).get_mainActDTitle() == null)
-            d_day_text.setText("디데이 목표를 설정해 주세요");
-        else
+        Log.v("mainflag", "Maindata : " + Maindata.get(0).get_mainActDTitle());
+//        d_day_text.setText("default");
+        if(!Maindata.get(0).get_mainActDTitle().isEmpty())
             d_day_text.setText(Maindata.get(0)._mainActDTitle);
 
         d_day.setOnClickListener(this);
@@ -315,14 +325,54 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener {
 
         // -------------------------------------------------------- DB 데이터 넣는곳
         //샘플 데이터 생성
-        for (int i = 0; i < listDB; i++) {
-            List_Item list_item = new List_Item();
-            list_item.setTime("14:00" + "-" + i); // 시간
-            list_item.setTitle("과제하기" + "-" + i); // 일정 제목
-            list_item.setText("그치만 하기 싫은걸" + "-" + i); // 일정 내용
-            //데이터 등록
-            list_itemAdapter.addItem(list_item);
+
+        Date currentTime = Calendar.getInstance().getTime();
+        SimpleDateFormat yearFormat = new SimpleDateFormat("yyyy", Locale.getDefault());
+        SimpleDateFormat monthFormat = new SimpleDateFormat("MM", Locale.getDefault());
+        SimpleDateFormat dayFormat = new SimpleDateFormat("dd", Locale.getDefault());
+        String YearData = yearFormat.format(currentTime);
+        String monthData = monthFormat.format(currentTime);
+        String dayData = dayFormat.format(currentTime);
+
+        List<Calender_DB> calender_like_data = calender_dao.loadAllDataByYears(
+                Integer.parseInt(YearData),
+                Integer.parseInt(monthData),
+                Integer.parseInt(dayData)
+        );
+        int appData = calender_like_data.size();
+
+        Toast.makeText(getActivity().getApplication(), YearData + "-" + monthData + "-" + dayData, Toast.LENGTH_SHORT).show();
+
+        Log.v("HSH", Integer.toString(((UidCode) getActivity().getApplication()).getStatic_day()));
+
+        list_itemAdapter.removeAllItem();
+
+
+
+        for (int i = 0; i < calender_like_data.size(); i++) {
+            List_Item calList = new List_Item();
+            String startTime = String.format("%04d", calender_like_data.get(i).getStart_time());
+            String valueStartTime = startTime.substring(0,2) + " : " + startTime.substring(2, startTime.length());
+            String EndTime = String.format("%04d", calender_like_data.get(i).getEnd_time());
+            String valueEndTime = EndTime.substring(0,2) + " : " + EndTime.substring(2, EndTime.length());
+
+            calList.setTime(valueStartTime + "~ \n" + valueEndTime);
+            calList.setTitle(calender_like_data.get(i).get_titles());
+            calList.setText(calender_like_data.get(i).get_subtitle());
+
+            list_itemAdapter.addItem(calList);
         }
+        list_itemAdapter.notifyDataSetChanged();
+        recyclerView.startLayoutAnimation();
+
+//        for (int i = 0; i < listDB; i++) {
+//            List_Item list_item = new List_Item();
+//            list_item.setTime("14:00" + "-" + i); // 시간
+//            list_item.setTitle("과제하기" + "-" + i); // 일정 제목
+//            list_item.setText("그치만 하기 싫은걸" + "-" + i); // 일정 내용
+//            //데이터 등록
+//            list_itemAdapter.addItem(list_item);
+//        }
         //적용
         list_itemAdapter.notifyDataSetChanged();
 
@@ -469,7 +519,7 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener {
     }
 
     void D_dayfirsySet(){
-        List<Calender_DB> mainactDB = calender_dao.loadMainData(1);
+        List<Calender_DB> mainactDB = calender_dao.getAllData();
         // db에 만약 시간데이터가 있다면
         final Calendar ddayCalendar = Calendar.getInstance();
 
