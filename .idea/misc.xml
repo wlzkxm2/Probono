@@ -61,6 +61,9 @@
         <entry key="..\:/Users/hmlee/Documents/GitHub/Probono/app/src/main/res/layout/setting_main.xml" value="0.3578125" />
         <entry key="..\:/Users/hmlee/Documents/GitHub/Probono/app/src/main/res/layout/setting_main_easy.xml" value="0.24864130434782608" />
         <entry key="..\:/Users/hmlee/Documents/GitHub/Probono/app/src/main/res/layout/setting_notification.xml" value="0.3619791666666667" />
+        <entry key="app/src/main/res/drawable/arrow_left_line.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/buttonstyle.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/edge.xml" value="0.202" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.2028985507246377" />
         <entry key="app/src/main/res/layout/add_schedule.xml" value="0.25" />
         <entry key="app/src/main/res/layout/calender_basic.xml" value="0.2028985507246377" />
@@ -77,7 +80,7 @@
         <entry key="app/src/main/res/layout/navi_header.xml" value="0.15070921985815602" />
         <entry key="app/src/main/res/layout/navigation.xml" value="0.15070921985815602" />
         <entry key="app/src/main/res/layout/setting_account.xml" value="0.15070921985815602" />
-        <entry key="app/src/main/res/layout/setting_main.xml" value="0.1381340579710145" />
+        <entry key="app/src/main/res/layout/setting_main.xml" value="0.41688244084643705" />
         <entry key="app/src/main/res/layout/setting_main_easy.xml" value="0.1952991452991453" />
         <entry key="app/src/main/res/layout/setting_notification.xml" value="0.15070921985815602" />
         <entry key="app/src/main/res/layout/tts_test.xml" value="0.23143115942028986" />

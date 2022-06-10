@@ -32,31 +32,31 @@
 
         <ImageButton
             android:id="@+id/normalbtn"
-            android:layout_width="136dp"
-            android:layout_height="270dp"
+            android:layout_width="145dp"
+            android:layout_height="202dp"
             android:layout_alignBottom="@+id/imageView7"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="50dp"
-            android:layout_marginTop="45dp"
-            android:layout_marginBottom="85dp"
+            android:layout_marginStart="35dp"
+            android:layout_marginTop="70dp"
+            android:layout_marginBottom="87dp"
             android:background="@drawable/edge"
             android:scaleType="fitCenter"
-            app:srcCompat="@drawable/unknown" />
+            app:srcCompat="@drawable/normal" />
 
         <ImageButton
             android:id="@+id/easybtn"
-            android:layout_width="133dp"
-            android:layout_height="268dp"
+            android:layout_width="159dp"
+            android:layout_height="240dp"
             android:layout_alignBottom="@+id/imageView7"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginTop="45dp"
+            android:layout_marginTop="72dp"
             android:layout_marginEnd="25dp"
-            android:layout_marginBottom="87dp"
+            android:layout_marginBottom="88dp"
             android:background="#ffffff"
             android:scaleType="fitCenter"
-            app:srcCompat="@drawable/unknown_1" />
+            app:srcCompat="@drawable/easy" />
 
         <TextView
             android:id="@+id/textView3"
