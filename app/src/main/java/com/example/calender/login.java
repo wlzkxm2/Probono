@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -50,11 +51,26 @@ public class login extends AppCompatActivity {
 
     Button loginbtn,registerbtn;
     EditText userID, userPassword;
+    ImageButton logback;
+    View.OnClickListener cl;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
+        logback = (ImageButton) findViewById(R.id.login_back);
 
+
+        cl = new View.OnClickListener() {  //뒤로가기 버튼 누르면 화면 종료되도록 설정
+            @Override
+            public void onClick(View view) {
+                switch (view.getId()) {
+                    case R.id.login_back:
+                        finish();
+                        break;
+                }
+            }
+        };
+        logback.setOnClickListener(cl);
         Calender_DBSet dbController = Room.databaseBuilder(getApplicationContext(), Calender_DBSet.class, "CalenderDB")
                 .fallbackToDestructiveMigration()
                 .allowMainThreadQueries()
