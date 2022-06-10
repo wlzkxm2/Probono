@@ -19,10 +19,14 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
+import com.example.calender.Main_Basic.Main_Basic_Frag;
 import com.example.calender.R;
+import com.example.calender.StaticUidCode.UidCode;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.regex.Pattern;
 
 import javax.xml.transform.Result;
@@ -220,10 +224,12 @@ public class Custom_STT extends Dialog {
             tv_stt.setText(newText + " ");	//기존의 text에 인식 결과를 이어붙임
             Log.d("HSH",""+ newText);
             //speechRecognizer.startListening(intent);    //녹음버튼을 누를 때까지 계속 녹음해야 하므로 녹음 재개
-            handle_message();
-            hangle_message();
-            StopRecord();
+//            handle_message();
 
+            Main_Basic_Frag ma = new Main_Basic_Frag();
+            ma.inputData(newText);
+//            hangle_message();
+            StopRecord();
 
         }
 
@@ -257,33 +263,58 @@ public class Custom_STT extends Dialog {
         Toast.makeText(context, "음성 기록을 중지합니다.", Toast.LENGTH_SHORT).show();
     }
 
-    void handle_message() { // 음성인식 문장에서 숫자만 분리
-//        String extractInteger = newText.replaceAll("[^0~9]","");
-        String extractInteger = "";
-        for(int i =0; i< newText.length(); i++){
-            char ch = newText.charAt(i);
-            if(48 <= ch && ch <=57){
-                extractInteger +=ch;
-            }
-        }
-        Log.d("HSH","" + extractInteger);
-    }
+//    void handle_message() { // 음성인식 문장에서 숫자만 분리
+////        String extractInteger = newText.replaceAll("[^0~9]","");
+//        String extractInteger = "";
+//        for(int i =0; i< newText.length(); i++){
+//            char ch = newText.charAt(i);
+//            if(48 <= ch && ch <=57){
+//                extractInteger +=ch;
+//            }
+//        }
+//        Log.d("HSH","" + extractInteger);
+//    }
 
     void hangle_message(){
-        int MonthCheck = newText.indexOf("달");
-        int MonthCheck2 = newText.indexOf("월");
-        int WeakCheck = newText.indexOf("주");
-        int DayCheck = newText.indexOf("일");
-        String M = newText.substring(0,MonthCheck+1);
-        String M2 = newText.substring(0,MonthCheck2+1);
-        String W = newText.substring(0,WeakCheck+1);
-        String D = newText.substring(0,DayCheck+1);
+//        int MonthCheck = newText.indexOf("달");
+//        int MonthCheck2 = newText.indexOf("월");
+//        int WeakCheck = newText.indexOf("주");
+//        int DayCheck = newText.indexOf("일");
+//        String M = newText.substring(0,MonthCheck+1);
+//        String M2 = newText.substring(0,MonthCheck2+1);
+//        String W = newText.substring(0,WeakCheck+1);
+//        String D = newText.substring(0,DayCheck+1);
 
-        if(M == "다음 주"){
 
-        }else if(M == "이번 주"){
+        int startDays = 0;
 
-        }
+
+
+//        switch (newText) {
+//            case "다음 주":
+//                saveStartDays = + 7;
+//                Log.d("HSH" , "Day값 = " + saveStartDays);
+//
+//                break;
+//            case "이번 주":
+//                break;
+//            case "월요일부터":
+//                break;
+//            case "화요일부터":
+//                break;
+//            case "수요일부터":
+//                break;
+//            case "목요일부터":
+//                break;
+//            case "금요일부터":
+//                break;
+//            case "토요일부터":
+//                break;
+//            case "일요일부터":
+//                break;
+//
+//
+//        }
         //Log.d("HSH","추출 값 : " + W);
     }
 }

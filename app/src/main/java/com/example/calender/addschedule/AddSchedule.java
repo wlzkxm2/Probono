@@ -93,7 +93,7 @@ public class AddSchedule extends Activity {
                         int saveStartYears = startYears;
                         int saveStartMonths = startMonths;
                         int saveStartDays = startDays;
-                        int saveEndYears = startYears;
+                        int saveEndYears = endYears;
                         int saveEndMonths = endMonths;
                         int saveEndDays = endDays;
                         int saveStartTime =  (startHour * 100) + (startMinute);

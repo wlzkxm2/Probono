@@ -20,6 +20,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,6 +37,8 @@ import com.example.calender.DataBase.Calender_DBSet;
 import com.example.calender.DataBase.Calender_Dao;
 import com.example.calender.Main_Easy.Main_Easy;
 import com.example.calender.R;
+import com.example.calender.StaticUidCode.UidCode;
+import com.example.calender.addschedule.AddSchedule;
 import com.example.calender.addschedule.Custom_STT;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -79,12 +82,12 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener {
     TextView now, add_schedule_txt, maintitle_txt, d_day, d_day_text;
     RecyclerView recyclerView;
     List_ItemAdapter list_itemAdapter;
-    int listDB=10;
+    int listDB = 10;
 
     int lastVisibleItemPositions;
     int itemTotalCounts;
 
-    Animation fade_in,fade_out;
+    Animation fade_in, fade_out;
 
     View.OnClickListener cl;
 
@@ -109,6 +112,7 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener {
             mHandler.post(mUpdateTimeTask);
         }
     }
+
     @Override
     public void onDestroy() {
         mTimer.cancel();
@@ -172,7 +176,7 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener {
     }
 
     // 디데이 값 계산
-    public int onCalculatorDate (int dateEndY, int dateEndM, int dateEndD) {
+    public int onCalculatorDate(int dateEndY, int dateEndM, int dateEndD) {
         try {
             Calendar today = Calendar.getInstance(); //현재 오늘 날짜
             Calendar dday = Calendar.getInstance();
@@ -330,7 +334,7 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener {
                 super.onScrolled(recyclerView, dx, dy);
 
                 lastVisibleItemPositions = ((LinearLayoutManager) recyclerView.getLayoutManager()).findLastCompletelyVisibleItemPosition();
-                itemTotalCounts = recyclerView.getAdapter().getItemCount()-1;
+                itemTotalCounts = recyclerView.getAdapter().getItemCount() - 1;
                 if (lastVisibleItemPositions == itemTotalCounts) { // 마지막 아이템 자리일때
 //                    add_schedule.setVisibility(View.VISIBLE); //화면에 보이게 한다.
 //                    add_schedule_dot.setVisibility(View.VISIBLE); //화면에 보이게 한다.
@@ -338,7 +342,7 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener {
                     add_schedule.startAnimation(fade_in);
                     add_schedule_txt.startAnimation(fade_in);
                     add_schedule_dot.startAnimation(fade_in);
-                } else if (lastVisibleItemPositions != itemTotalCounts){
+                } else if (lastVisibleItemPositions != itemTotalCounts) {
                     add_schedule.setVisibility(View.INVISIBLE); //화면에 안보이게 한다.
                     add_schedule_dot.setVisibility(View.INVISIBLE); //화면에 안보이게 한다.
                     add_schedule_txt.setVisibility(View.INVISIBLE); //화면에 안보이게 한다.
@@ -362,12 +366,16 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener {
             case R.id.floating_edit:
                 toggleFab();
 //                Toast.makeText(this, "일정 상세 등록 팝업", Toast.LENGTH_SHORT).show();
-                Toast.makeText(getActivity(),"일정 상세 등록 팝업",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "일정 상세 등록 팝업", Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(getActivity(), AddSchedule.class);
+
+                startActivity(i);
                 break;
             case R.id.floating_voice:
                 toggleFab();
 //                Toast.makeText(this, "일정 음성 등록 팝업", Toast.LENGTH_SHORT).show();
                 Custom_STT custom_stt = new Custom_STT(getActivity());
+                int inputday = ((UidCode) getActivity().getApplication()).getStatic_day();
                 custom_stt.show();
 //                Toast.makeText(getActivity(),"일정 음성 등록 팝업",Toast.LENGTH_SHORT).show();
                 break;
@@ -378,7 +386,7 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener {
         // String타입으로 받으면 될듯
 
         // 타이틀 제목 변경 다이얼
-        if(v.equals(edit_title)){
+        if (v.equals(edit_title)) {
             final EditText edit_title = new EditText(this.getActivity());
             AlertDialog.Builder dialog = new AlertDialog.Builder(new ContextThemeWrapper(getActivity(), R.style.AlertDialogTheme));
             dialog.setTitle("제목을 입력해주세요"); // 다이얼 제목
@@ -395,7 +403,7 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener {
             });
 
             // 취소 버튼
-            dialog.setNegativeButton("취소",new DialogInterface.OnClickListener() {
+            dialog.setNegativeButton("취소", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int which) {
                     dialog.cancel();
                 }
@@ -408,10 +416,8 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener {
         // D-day 변경 다이얼
 
 
-
-
         // 내용
-        if(v.equals(d_day_text)){
+        if (v.equals(d_day_text)) {
 //            final EditText edit_dday = new EditText(this.getActivity());
             final EditText edit_dday_text = new EditText(this.getActivity());
             AlertDialog.Builder dialog = new AlertDialog.Builder(new ContextThemeWrapper(getActivity(), R.style.AlertDialogTheme));
@@ -433,7 +439,7 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener {
             });
 
             // 취소 버튼
-            dialog.setNegativeButton("취소",new DialogInterface.OnClickListener() {
+            dialog.setNegativeButton("취소", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int which) {
                     dialog.cancel();
                 }
@@ -487,9 +493,64 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener {
 
         d_day.setText(strCount);
     }
+
+    public void inputData(String data) {
+
+//        int y = data.indexOf("년뒤");
+//        int MonthCheck = data.indexOf("달");
+//        int MonthCheck2 = data.indexOf("월");
+//        int WeakCheck = data.indexOf("주");
+//        int DayCheck = data.indexOf("내일");
+//
+//
+//        int YY = Integer.parseInt(data.substring(0,y));
+//        String M = data.substring(0,MonthCheck+1);
+//        String M2 = data.substring(0,MonthCheck2+1);
+//        String W = data.substring(0,WeakCheck+1);
+//        String D = data.substring(0,DayCheck+2);
+
+//        Log.d("HSH" , "초기 Day값 = " + M + M2 + W + D );
+        //boolean 으로 년 뒤 T/F 체크해서 개월 / 월 / 달 조건문 돌리기 why? : (년뒤 뒤부터, 월까지) 추출해야하니까
+        int y = 0;
+        boolean checkYearWord;
+        String saveYearData;
+
+        if (data.indexOf("년 뒤") > -1) {
+            checkYearWord = true;
+            y = data.indexOf("년 뒤");
+            saveYearData = data.substring(0,y);
+//            Log.d("HSH", "년 뒤 =" + y);
+//            Log.d("HSH", "년 뒤 =" + saveYearData);
+
+        } else if(data.indexOf("년") > -1) {
+            checkYearWord = false;
+            y = data.indexOf("년");
+            saveYearData = data.substring(0,y);
+//            Log.d("HSH", "년 뒤 =" + data.indexOf("년 뒤"));
+        }else{ // 현재 년도 반환
+            Date currentTime = Calendar.getInstance().getTime();
+            SimpleDateFormat yearFormat = new SimpleDateFormat("yyyy", Locale.getDefault());
+            saveYearData = yearFormat.format(currentTime);
+        }
+
+        if(data.indexOf("개월" ) > -1) {
+
+        }else if(data.indexOf("월") > -1){
+
+        }else if(data.indexOf("달") > -1){
+
+        }else{//현재 달 반환
+
+        }
+
+
+    }
 }
 
-//    @Override
+
+
+
+//    @Overri환e
 //    public void onClick(View view) {
 //        if (isFabOpen) {
 //            floating_main.setImageResource(R.drawable.ic_more);
