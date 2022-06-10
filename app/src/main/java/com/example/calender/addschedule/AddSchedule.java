@@ -237,7 +237,7 @@ public class AddSchedule extends Activity {
                 endDate.setText(year + "년 " + (month + 1)+ "월 " + dayOfMonth + "일 ");
 
             }
-        },((UidCode) getApplication()).getStatic_year(),((UidCode) getApplication()).getStatic_month()-1,((UidCode) getApplication()).getStatic_day());
+        },endYears,endMonths-1,endDays);
         datePickerDialog.show();
     }
 
@@ -250,7 +250,7 @@ public class AddSchedule extends Activity {
                 startDays = dayOfMonth;
                 startDate.setText(year + "년 " + (month + 1)+ "월 " + dayOfMonth + "일 ");
             }
-        },((UidCode) getApplication()).getStatic_year(),((UidCode) getApplication()).getStatic_month()-1,((UidCode) getApplication()).getStatic_day());
+        },startYears,startMonths-1,startDays);
         datePickerDialog.show();
     }
 
