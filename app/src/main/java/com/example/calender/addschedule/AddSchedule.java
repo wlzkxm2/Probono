@@ -133,6 +133,8 @@ public class AddSchedule extends Activity {
                         
                         // 입력한 일정을 DB에 추가
                         calender_dao.insertAll(inputCalData);
+
+                        finish();
                         
                         
                         break;
