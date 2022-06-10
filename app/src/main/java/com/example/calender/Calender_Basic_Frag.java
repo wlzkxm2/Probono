@@ -145,6 +145,8 @@ public class Calender_Basic_Frag extends Fragment {
 
                 Toast.makeText(getActivity().getApplication(), _year[0] + "-" + _month[0] + "-" + _day[0], Toast.LENGTH_SHORT).show();
 
+                Log.v("HSH", Integer.toString(((UidCode) getActivity().getApplication()).getStatic_day()));
+
                 list_itemAdapter.removeAllItem();
 
                 for (int i = 0; i < calender_like_data.size(); i++) {
