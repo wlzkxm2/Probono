@@ -495,6 +495,11 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener {
     }
 
     public void inputData(String data) {
+        Date currentTime = Calendar.getInstance().getTime();
+        SimpleDateFormat yearFormat = new SimpleDateFormat("yyyy", Locale.getDefault());
+        SimpleDateFormat monthFormat = new SimpleDateFormat("mm", Locale.getDefault());
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd", Locale.getDefault());
+
 
 //        int y = data.indexOf("년뒤");
 //        int MonthCheck = data.indexOf("달");
@@ -512,36 +517,123 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener {
 //        Log.d("HSH" , "초기 Day값 = " + M + M2 + W + D );
         //boolean 으로 년 뒤 T/F 체크해서 개월 / 월 / 달 조건문 돌리기 why? : (년뒤 뒤부터, 월까지) 추출해야하니까
         int y = 0;
-        boolean checkYearWord;
-        String saveYearData;
+        int m = 0;
+        int w = 0;
+        int d = 0;
+        int t = 0;
+        int checkYearWord = -1;
+        int checkMonthWord = -1;
+        int checkWeekWord = -1;
+        int saveYearData;
+        int saveMonthData;
+        int saveDateData;
+        int saveTimeData;
+
 
         if (data.indexOf("년 뒤") > -1) {
-            checkYearWord = true;
+            checkYearWord = 1;
             y = data.indexOf("년 뒤");
-            saveYearData = data.substring(0,y);
+            saveYearData = Integer.parseInt(yearFormat.format(currentTime)) + Integer.parseInt(data.substring(0,y));
 //            Log.d("HSH", "년 뒤 =" + y);
 //            Log.d("HSH", "년 뒤 =" + saveYearData);
 
         } else if(data.indexOf("년") > -1) {
-            checkYearWord = false;
+            checkYearWord = 0;
             y = data.indexOf("년");
-            saveYearData = data.substring(0,y);
+            saveYearData = Integer.parseInt(data.substring(0,y));
 //            Log.d("HSH", "년 뒤 =" + data.indexOf("년 뒤"));
         }else{ // 현재 년도 반환
-            Date currentTime = Calendar.getInstance().getTime();
-            SimpleDateFormat yearFormat = new SimpleDateFormat("yyyy", Locale.getDefault());
-            saveYearData = yearFormat.format(currentTime);
+            saveYearData = Integer.parseInt(yearFormat.format(currentTime));
         }
 
         if(data.indexOf("개월" ) > -1) {
+            m = data.indexOf("개월");
+            checkMonthWord = 1;
+            if(checkYearWord == 0){
+                saveMonthData = Integer.parseInt(data.substring(y + 1, m));
+            }else if(checkYearWord == 1){
+                saveMonthData = Integer.parseInt(data.substring(y + 2, m));
+            }else{
+                saveMonthData = Integer.parseInt(data.substring(0, m));
+            }
 
         }else if(data.indexOf("월") > -1){
+            m = data.indexOf("월");
+            checkMonthWord = 0;
+            if(checkYearWord == 1){
+                saveMonthData = Integer.parseInt(data.substring(y + 1, m));
+            }else if(checkYearWord == 2){
+                saveMonthData = Integer.parseInt(data.substring(y + 2, m));
+            }else{
+                saveMonthData = Integer.parseInt(data.substring(0, m));
+            }
 
         }else if(data.indexOf("달") > -1){
+            m = data.indexOf("달");
+            checkMonthWord = 0;
+            if(checkYearWord == 1){
+                saveMonthData = Integer.parseInt(data.substring(y + 1, m));
+            }else if(checkYearWord == 2){
+                saveMonthData = Integer.parseInt(data.substring(y + 2, m));
+            }else{
+                saveMonthData = Integer.parseInt(data.substring(0, m));
+            }
 
         }else{//현재 달 반환
+            saveMonthData = Integer.parseInt(monthFormat.format(currentTime));
+        }
+
+        if(data.indexOf("주 후") > -1){
+            w = data.indexOf("주 후");
+            checkWeekWord = 1;
+            if(checkMonthWord == 0){
+                saveDateData = Integer.parseInt(data.substring(m+1 , w)) * 7;
+                saveDateData = Integer.parseInt(dateFormat.format(currentTime)) + saveDateData;
+            }else if(checkMonthWord == 1){
+                saveDateData = Integer.parseInt(data.substring(m+2 , w)) * 7;
+                saveDateData = Integer.parseInt(dateFormat.format(currentTime)) + saveDateData;
+            }else{
+                saveDateData = Integer.parseInt(dateFormat.format(currentTime));
+            }
+//            while(saveDateData > 28){
+//                if (saveMonthData == 2){
+//                    if(saveYearData %4 ==0){//윤년이면
+//                        saveDateData = saveDateData - 29;
+//                        saveMonthData = saveMonthData + 1;
+//                    }else{
+//                        saveDateData = saveDateData - 28;
+//                        saveMonthData = saveMonthData + 1;
+//                    }
+//                }else if (saveMonthData == 1 || saveMonthData == 3 || saveMonthData == 5 || saveMonthData == 7 || saveMonthData == 8 || saveMonthData == 10 || saveMonthData == 12) {
+//                    saveDateData = saveDateData - 31;
+//                    saveMonthData = saveMonthData + 1;
+//                }else{
+//                    saveDateData = saveDateData - 30;
+//                    saveMonthData = saveMonthData + 1;
+//                }
+//            }
+        }else if(data.indexOf("다음 주") > -1){
+            w = data.indexOf("주");
+            checkWeekWord = 0;
 
         }
+        if(data.indexOf("일 뒤") > -1){
+            d = data.indexOf("일 뒤");
+            if(checkWeekWord == 0){
+                saveDateData = Integer.parseInt(dateFormat.format(currentTime)) + Integer.parseInt(data.substring(w+1,d));
+            }else if (checkWeekWord == 1){
+                saveDateData = Integer.parseInt(dateFormat.format(currentTime)) + Integer.parseInt(data.substring(w+2,d));
+            }else{
+                saveDateData = Integer.parseInt(dateFormat.format(currentTime)) + Integer.parseInt(data.substring(0,d));
+            }
+        }else if(data.indexOf("요일") > -1){
+
+        }else if(data.indexOf("일") > -1) {
+
+        }else{//오늘 날짜 반환
+
+        }
+
 
 
     }

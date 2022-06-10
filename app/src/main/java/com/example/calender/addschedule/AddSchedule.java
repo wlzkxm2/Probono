@@ -43,7 +43,7 @@ public class AddSchedule extends Activity {
     CheckBox allDayCheck;
     View.OnClickListener cl;
     TextView startDate, endDate, startTime, endTime;
-    int startYears,startMonths,startDays, endYears,endMonths,endDays,startHour,startMinute,endHour,endMinute;
+    int startYears,startMonths,startDays, endYears,endMonths,endDays,startHour,startMinute,endHour,endMinute = 0;
 
 
 
@@ -78,8 +78,38 @@ public class AddSchedule extends Activity {
         endYears = ((UidCode) getApplication()).getStatic_year();
         endMonths = ((UidCode) getApplication()).getStatic_month();
         endDays = ((UidCode) getApplication()).getStatic_day();
+
+
+        Log.d("HSH","" + startMonths);
+
+
+        Date today = new Date();
+        SimpleDateFormat yearFormat = new SimpleDateFormat("yyyy");
+        SimpleDateFormat monthFormat = new SimpleDateFormat("MM");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd");
+        SimpleDateFormat timeFormat = new SimpleDateFormat("HH시mm분");
+
+        if(startYears < 2000 || endYears < 2000){
+            startYears = Integer.parseInt(yearFormat.format(today));
+            endYears = Integer.parseInt(yearFormat.format(today));
+        }
+        if(startMonths < 1 || endMonths < 1){
+            startMonths = Integer.parseInt(monthFormat.format(today));
+            endMonths = Integer.parseInt(monthFormat.format(today));
+        }
+        if(startDays < 1 || endDays < 1){
+            startDays = Integer.parseInt(dateFormat.format(today));
+            endDays = Integer.parseInt(dateFormat.format(today));
+        }
+
+        startTime.setText(timeFormat.format(today));
+        endTime.setText(timeFormat.format(today));
+
         startDate.setText(startYears + "년" + startMonths + "월" + startDays + "일");
         endDate.setText(endYears + "년" + endMonths + "월" + endDays + "일");
+        Log.d("HSH","시작 : " +startYears + "년" + startMonths + "월" + startDays + "일\n" +
+                "끝 : " + endYears + "년" + endMonths + "월" + endDays + "일");
+
         
 
         cl = new View.OnClickListener() {
