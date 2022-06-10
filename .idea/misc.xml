@@ -73,6 +73,7 @@
         <entry key="app/src/main/res/layout/dialog_test.xml" value="0.23143115942028986" />
         <entry key="app/src/main/res/layout/list_child.xml" value="0.2006340579710145" />
         <entry key="app/src/main/res/layout/list_header.xml" value="0.2105978260869565" />
+        <entry key="app/src/main/res/layout/login.xml" value="0.1" />
         <entry key="app/src/main/res/layout/login_register.xml" value="0.1" />
         <entry key="app/src/main/res/layout/main_basic.xml" value="0.22080199329565603" />
         <entry key="app/src/main/res/layout/main_easy.xml" value="0.15070921985815602" />
@@ -80,8 +81,8 @@
         <entry key="app/src/main/res/layout/navi_header.xml" value="0.15070921985815602" />
         <entry key="app/src/main/res/layout/navigation.xml" value="0.15070921985815602" />
         <entry key="app/src/main/res/layout/setting_account.xml" value="0.15070921985815602" />
-        <entry key="app/src/main/res/layout/setting_main.xml" value="0.41688244084643705" />
-        <entry key="app/src/main/res/layout/setting_main_easy.xml" value="0.45627136230468757" />
+        <entry key="app/src/main/res/layout/setting_main.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/setting_main_easy.xml" value="0.1" />
         <entry key="app/src/main/res/layout/setting_notification.xml" value="0.15070921985815602" />
         <entry key="app/src/main/res/layout/tts_test.xml" value="0.23143115942028986" />
       </map>

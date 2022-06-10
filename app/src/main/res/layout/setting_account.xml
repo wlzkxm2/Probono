@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -16,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:text="@string/account"
-        android:textSize="30dp"
+        android:textSize="30sp"
         android:textAlignment="center"
         android:layout_marginTop="50dp"
         android:textStyle="bold" />
@@ -40,7 +38,7 @@
             android:background="@drawable/example1"
             android:text="@string/name_setting"
             android:textColor="#000000"
-            android:textSize="20dp" />
+            android:textSize="20sp" />
         <!-- 알림 설정 버튼이다-->
         <Button
             android:id="@+id/birthbtn"
@@ -52,7 +50,7 @@
             android:background="@drawable/example1"
             android:text="@string/birthday"
             android:textColor="#000000"
-            android:textSize="20dp" />
+            android:textSize="20sp" />
         <!--언어 설정 버튼이다-->
 
         <Button
@@ -65,7 +63,7 @@
             android:background="@drawable/example1"
             android:text="@string/back"
             android:textColor="#000000"
-            android:textSize="20dp" />
+            android:textSize="20sp" />
 
         <Button
             android:id="@+id/logout_btn"
