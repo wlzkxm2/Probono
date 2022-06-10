@@ -3,6 +3,7 @@ package com.example.calender.Main_Easy;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -14,6 +15,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -25,9 +27,20 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.Room;
 
+import com.example.calender.Calendar_Easy.Calendar_Easy;
+import com.example.calender.DataBase.Calender_DBSet;
+import com.example.calender.DataBase.Calender_Dao;
+import com.example.calender.DataBase.UserDB;
+import com.example.calender.DataBase.User_DBset;
+import com.example.calender.DataBase.User_Dao;
 import com.example.calender.Main_Basic.List_Item;
 import com.example.calender.R;
+import com.example.calender.UserProfile;
+import com.example.calender.login;
+import com.example.calender.setting.Setting_main_easy;
+import com.example.calender.setting.Setting_notification;
 import com.google.android.material.navigation.NavigationView;
 
 import org.jetbrains.annotations.Nullable;
@@ -36,11 +49,19 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class Main_Easy extends AppCompatActivity {
+
+    //드로어 버튼
+    private TextView drawer_user_setting, drawer_calendar, drawer_game, drawer_setting,
+            drawer_welcome, drawer_username, drawer_user_address, drawer_username_nogin;
+    private ImageView drawer_user_img, drawer_user_img_nogin;
+    Calender_Dao calender_dao;
+    User_Dao user_dao;
 
     // 디데이 변수
     int dateEndY, dateEndM, dateEndD;
@@ -64,7 +85,8 @@ public class Main_Easy extends AppCompatActivity {
     private View drawerView;
     NavigationView navigationView;
     RecyclerView recyclerView, calendar_recyclerView;
-    String jan = "1", feb = "2", mar = "3", apr = "4", may = "5", jun = "6", jul = "7", aus = "8", sep = "9", oct = "10", nov = "1", dec = "12";
+    String jan = "1", feb = "2", mar = "3", apr = "4", may = "5", jun = "6", jul = "7",
+            aus = "8", sep = "9", oct = "10", nov = "1", dec = "12";
 
     int listDB = 10;
     private List_ItemAdapter_Easy list_itemAdapter_easy;
@@ -278,11 +300,53 @@ public class Main_Easy extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_easy);
 
-        // 드로어 버튼
+        // 드로어
         drawer_btn = (ImageButton) findViewById(R.id.main_easy_drawer_btn);
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawerView = (View) findViewById(R.id.drawerView);
         drawerLayout.setDrawerListener(listener);
+        drawer_user_setting = (TextView) findViewById(R.id.main_easy_user_setting);
+        drawer_calendar = (TextView) findViewById(R.id.main_easy_calendar);
+        drawer_game = (TextView) findViewById(R.id.main_easy_game);
+        drawer_setting = (TextView) findViewById(R.id.main_easy_setting);
+        drawer_welcome = (TextView) findViewById(R.id.main_easy_drawer_welcome);
+        drawer_username = (TextView) findViewById(R.id.main_easy_user_name);
+        drawer_user_address = (TextView) findViewById(R.id.main_easy_user_address);
+        drawer_user_img = (ImageView) findViewById(R.id.main_easy_user_img);
+        drawer_username_nogin = (TextView) findViewById(R.id.main_easy_user_name_nogin);;
+        drawer_user_img_nogin = (ImageView) findViewById(R.id.main_easy_user_img_nogin);
+
+        Calender_DBSet dbController = Room.databaseBuilder(Main_Easy.this.getApplicationContext(), Calender_DBSet.class, "CalenderDB")
+                .fallbackToDestructiveMigration()
+                .allowMainThreadQueries()
+                .build();
+
+        User_DBset userdbController = Room.databaseBuilder(Main_Easy.this.getApplicationContext(), User_DBset.class, "UserInfoDB")
+                .fallbackToDestructiveMigration()
+                .allowMainThreadQueries()
+                .build();
+
+        calender_dao = dbController.calender_dao();
+        user_dao = userdbController.user_dao();
+
+        List<UserDB> userdata = user_dao.getAllData();
+
+        // -----------------------------------------------------------DB 데이터
+        // 드로어 사용자 프로필 부분
+        if(userdata.get(0).getId() == null){ // 로그인 상태가 아닐시
+            drawer_welcome.setVisibility(View.GONE);
+            drawer_username.setVisibility(View.GONE);
+            drawer_user_address.setVisibility(View.GONE);
+            drawer_user_img.setVisibility(View.GONE);
+        } else {                                                // 로그인 했을때
+            drawer_username_nogin.setVisibility(View.GONE); //  로그아웃 상태일때
+            drawer_user_img_nogin.setVisibility(View.GONE); //  표시되던 사진과 이미지 없앰
+            drawer_welcome.setVisibility(View.INVISIBLE); // 환영인사
+            drawer_username.setVisibility(View.INVISIBLE); // 사용자 이름 표시
+            drawer_user_address.setVisibility(View.INVISIBLE); // 사용자 이메일 표시
+            drawer_user_img.setVisibility(View.INVISIBLE); // 사용자 사진 표시
+        }
+
 
         //시작일, 종료일 데이터 저장
         calendar = Calendar.getInstance();
@@ -375,6 +439,28 @@ public class Main_Easy extends AppCompatActivity {
                             drawer.openDrawer(Gravity.LEFT) ;
                         }
                         break;
+                    case R.id.main_easy_user_setting:
+                        List<UserDB> userdata = user_dao.getAllData();
+
+                        // 유저 DB를 불러온 다음에 데이터를 읽어와서 null 이면 로그인 페이지로 아니면 마이프로필로 이동
+                        if(userdata.get(0).getId() == null){
+                            Intent intent = new Intent(Main_Easy.this, login.class);
+                            startActivity(intent);
+
+                        }else{
+                            Intent userprofile = new Intent(Main_Easy.this, UserProfile.class);
+                            startActivity(userprofile);
+                            Log.v("login", "동작함");
+                        }
+                        break;
+                    case R.id.main_easy_calendar:
+                        Intent j = new Intent(Main_Easy.this, Calendar_Easy.class);
+                        startActivity(j);
+                        break;
+                    case R.id.main_easy_setting:
+                        Intent k = new Intent(Main_Easy.this, Setting_main_easy.class);
+                        startActivity(k);
+                        break;
                         }
                 }
         };
@@ -383,6 +469,10 @@ public class Main_Easy extends AppCompatActivity {
         d_day.setOnClickListener(cl);
         d_day_text.setOnClickListener(cl);
         drawer_btn.setOnClickListener(cl);
+        drawer_user_setting.setOnClickListener(cl);
+        drawer_calendar.setOnClickListener(cl);
+//        drawer_game.setOnClickListener(cl);   // 게임 미구현
+        drawer_setting.setOnClickListener(cl);
 
         calendar_recyclerView = (RecyclerView)findViewById(R.id.recycler_view_easy_calendar_day);
         calendar_recyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false)); // 가로 스크롤

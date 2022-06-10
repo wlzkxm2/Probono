@@ -77,7 +77,7 @@ public class Setting_main extends Fragment {
 
                 List<UserDB> userdata = user_dao.getAllData();
 
-                // 유저 DB를 불러온 다음에 데이터를 읽어와서 null 이면 로그인 페이지로 아니면 마이프로필로 이동ㅅ
+                // 유저 DB를 불러온 다음에 데이터를 읽어와서 null 이면 로그인 페이지로 아니면 마이프로필로 이동
                 if(userdata.get(0).getId() == null){
                     Intent intent = new Intent(getActivity(), login.class);
                     startActivity(intent);
