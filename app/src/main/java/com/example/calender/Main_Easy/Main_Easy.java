@@ -18,6 +18,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -131,12 +132,12 @@ public class Main_Easy extends AppCompatActivity {
         super.onPause();
     }
 
-    @Override
-    protected void onResume() {
-        MainTimerTask timerTask = new MainTimerTask();
-        mTimer.schedule(timerTask, 500, 3000);
-        super.onResume();
-    }
+//    @Override
+//    protected void onResume() {
+//        MainTimerTask timerTask = new MainTimerTask();
+//        mTimer.schedule(timerTask, 500, 3000);
+//        super.onResume();
+//    }
 
     // DatePickerDialog띄우기, 종료일 저장, 기존에 입력한 값이 있으면 해당 데이터 설정후 띄우기
     private DatePickerDialog.OnDateSetListener endDateSetListener = new DatePickerDialog.OnDateSetListener() {
@@ -461,6 +462,9 @@ public class Main_Easy extends AppCompatActivity {
                         Intent k = new Intent(Main_Easy.this, Setting_main_easy.class);
                         startActivity(k);
                         break;
+                    case R.id.main_easy_game:
+                        Toast.makeText(Main_Easy.this,"미구현 기능입니다.",Toast.LENGTH_SHORT).show();
+                        break;
                         }
                 }
         };
@@ -471,7 +475,7 @@ public class Main_Easy extends AppCompatActivity {
         drawer_btn.setOnClickListener(cl);
         drawer_user_setting.setOnClickListener(cl);
         drawer_calendar.setOnClickListener(cl);
-//        drawer_game.setOnClickListener(cl);   // 게임 미구현
+        drawer_game.setOnClickListener(cl);   // 게임 미구현
         drawer_setting.setOnClickListener(cl);
 
         calendar_recyclerView = (RecyclerView)findViewById(R.id.recycler_view_easy_calendar_day);
