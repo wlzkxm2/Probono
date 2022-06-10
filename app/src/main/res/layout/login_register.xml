@@ -161,7 +161,7 @@
                 android:ems="10"
 
                 android:hint="@string/name_insert"
-                android:inputType="number"
+                android:inputType="text"
                 android:text=""
                 android:textColorHint="#AAAAAA" />
 
@@ -237,7 +237,7 @@
 
                 android:ems="10"
                 android:hint="@string/address_detail_insert"
-                android:inputType="date"
+                android:inputType="text"
                 android:text=""
                 android:textColorHint="#AAAAAA" />
             <!--우편번호소쪽이다-->
