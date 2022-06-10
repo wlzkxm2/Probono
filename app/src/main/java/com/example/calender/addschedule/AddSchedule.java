@@ -19,7 +19,11 @@ import android.widget.TimePicker;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.Room;
 
+import com.example.calender.DataBase.Calender_DB;
+import com.example.calender.DataBase.Calender_DBSet;
+import com.example.calender.DataBase.Calender_Dao;
 import com.example.calender.R;
 import com.example.calender.StaticUidCode.UidCode;
 
@@ -27,9 +31,12 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 public class AddSchedule extends Activity {
+
+    Calender_Dao calender_dao;
 
     Button btn_save, btn_back;
     EditText et_title,et_memo;
@@ -44,6 +51,14 @@ public class AddSchedule extends Activity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_schedule);
+
+        // DB 접근 허용
+        Calender_DBSet dbController = Room.databaseBuilder(getApplicationContext(), Calender_DBSet.class, "CalenderDB")
+                .fallbackToDestructiveMigration()
+                .allowMainThreadQueries()
+                .build();
+
+        calender_dao = dbController.calender_dao();
 
         btn_back = findViewById(R.id.btn_negative);
         btn_save = findViewById(R.id.btn_positive);
@@ -99,6 +114,25 @@ public class AddSchedule extends Activity {
                         Log.d("MyTag",saveStartTime + " 부터 " +saveEndTime + " 까지");
                         Log.d("MyTag",title + " / " +subtitle);
 
+                        Calender_DB inputCalData = new Calender_DB();
+                        // 일정 시작일
+                        inputCalData.setStart_years(saveStartYears);
+                        inputCalData.setStart_month(saveStartMonths);
+                        inputCalData.setStart_day(saveStartDays);
+                        inputCalData.setStart_time(saveStartTime);
+                        
+                        // 일정 마지막일
+                        inputCalData.setEnd_years(saveEndYears);
+                        inputCalData.setEnd_month(saveEndMonths);
+                        inputCalData.setEnd_day(saveEndDays);
+                        inputCalData.setEnd_time(saveEndTime);
+                        
+                        // 일정 내용 추가
+                        inputCalData.set_titles(title);
+                        inputCalData.set_subtitle(subtitle);
+                        
+                        // 입력한 일정을 DB에 추가
+                        calender_dao.insertAll(inputCalData);
                         
                         
                         break;

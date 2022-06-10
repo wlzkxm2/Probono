@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -47,6 +48,8 @@ public class MainActivity extends AppCompatActivity {
 
     private Permission permission;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,36 +80,44 @@ public class MainActivity extends AppCompatActivity {
 
         //</editor-fold>
 
-        ttsbtn = findViewById(R.id.tts_test);
-        calbtn = findViewById(R.id.calendartestbtn);
+//        ttsbtn = findViewById(R.id.tts_test);
+//        calbtn = findViewById(R.id.calendartestbtn);
 //        easybtn = findViewById(R.id.calendar_easy_testbtn);
 
-        //<editor-fold desc="메인 엑티비티 버튼 스위치 문">
-        cl = new View.OnClickListener() {
+        new Handler().postDelayed(new Runnable() {
             @Override
-            public void onClick(View v) {
-                switch (v.getId()){
-                    case R.id.tts_test:
-                        Intent i = new Intent(getApplicationContext(), TTS_Test.class);
-                        startActivity(i);
-                        break;
-
-                    case R.id.calendartestbtn:
-                        Intent j = new Intent(getApplicationContext(), Navigation.class);
-                        startActivity(j);
-                        break;
-
-                    case R.id.calendar_easy_testbtn:
-                        Intent k = new Intent(getApplicationContext(), Main_Easy.class);
-                        startActivity(k);
-                        break;
-                }
+            public void run() {
+                Intent intent = new Intent(MainActivity.this, Navigation.class);
+                startActivity(intent);
             }
-        };
+        }, 4000);
+
+        //<editor-fold desc="메인 엑티비티 버튼 스위치 문">
+//        cl = new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                switch (v.getId()){
+//                    case R.id.tts_test:
+//                        Intent i = new Intent(getApplicationContext(), TTS_Test.class);
+//                        startActivity(i);
+//                        break;
+//
+//                    case R.id.calendartestbtn:
+//                        Intent j = new Intent(getApplicationContext(), Navigation.class);
+//                        startActivity(j);
+//                        break;
+//
+//                    case R.id.calendar_easy_testbtn:
+//                        Intent k = new Intent(getApplicationContext(), Main_Easy.class);
+//                        startActivity(k);
+//                        break;
+//                }
+//            }
+//        };
         //</editor-fold>
 
-        ttsbtn.setOnClickListener(cl);
-        calbtn.setOnClickListener(cl);
+//        ttsbtn.setOnClickListener(cl);
+//        calbtn.setOnClickListener(cl);
 
         //<editor-fold desc="앱 최초 실행시 유저 기본 코드를 제공한 후 데이터베이스에 삽입">
         SharedPreferences pref = getSharedPreferences("isFirstStart", Activity.MODE_PRIVATE);

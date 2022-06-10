@@ -18,7 +18,7 @@ public interface Calender_Dao {
 
 
     // 선택한 날이 데이터 베이스 내부의 데이터의 사이에 있으면 참으로 반환
-    @Query("select * from calender_db where start_years <= (:Years) or end_years >= (:Years) " +
+    @Query("select * from calender_db where num != 1 and start_years <= (:Years) or end_years >= (:Years) " +
             "and start_months <= (:Months) or end_months >= (:Months) " +
             "and start_days = (:Days) or end_days = (:Days)")
     List<Calender_DB> loadAllDataByYears(int Years, int Months, int Days);
@@ -43,6 +43,9 @@ public interface Calender_Dao {
     @Query("update Calender_DB set MainActDTitle = :dtitle " +       // 메인 엑트 시간 변경
             "where num = :num")
     void MainActDtitleupdate(int num, String dtitle);
+
+    @Query("select * from calender_db where num != :nums")
+    List<Calender_DB> loadnotFirstData(int nums);
 
     // 데이터 삽입
     @Insert

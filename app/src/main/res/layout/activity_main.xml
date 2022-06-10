@@ -4,33 +4,38 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:orientation="vertical">
+    android:background="#5090B3"
+    android:backgroundTint="#5090B3"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/tts_test"
-        style="@android:style/Widget.Holo.Light.Button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="tts 테스트"
-        tools:layout_editor_absoluteX="214dp"
-        tools:layout_editor_absoluteY="167dp" />
+    <!--    <Button-->
+    <!--        android:id="@+id/tts_test"-->
+    <!--        style="@android:style/Widget.Holo.Light.Button"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:text="tts 테스트"-->
+    <!--        tools:layout_editor_absoluteX="214dp"-->
+    <!--        tools:layout_editor_absoluteY="167dp" />-->
 
-    <Button
-        android:id="@+id/calendartestbtn"
-        style="@android:style/Widget.Holo.Light.Button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="기본모드" />
+    <!--    <Button-->
+    <!--        android:id="@+id/calendartestbtn"-->
+    <!--        style="@android:style/Widget.Holo.Light.Button"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:text="기본모드" />-->
 
-    <Button
-        android:id="@+id/calendar_easy_testbtn"
-        style="@android:style/Widget.Holo.Light.Button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="이지모드" />
-
-
+    <!--    <Button-->
+    <!--        android:id="@+id/calendar_easy_testbtn"-->
+    <!--        style="@android:style/Widget.Holo.Light.Button"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:text="이지모드" />-->
 
 
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:srcCompat="@drawable/applogo" />
 </LinearLayout>
