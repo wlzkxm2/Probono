@@ -152,7 +152,7 @@ public class MainActivity extends AppCompatActivity {
             calender_dao.insertAll(calender_db);
 
             // 로그인한 사용자의 정보를 받기위한 데이터값
-            UserDB userDB = new UserDB(null, null, null, null, null, "00000", 0);
+            UserDB userDB = new UserDB(null, null, null, null, 0, "00000", null, null, null);
             user_dao.insertAll(userDB);
 
             SharedPreferences.Editor editor = pref.edit();

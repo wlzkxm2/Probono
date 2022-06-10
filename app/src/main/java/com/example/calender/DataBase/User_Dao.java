@@ -29,14 +29,17 @@ public interface User_Dao {
     // 데이터 수정을 위한 쿼리
     @Query("update UserDB set userID = :id " +
             ", userPassword = :pw " +
+            ", userEmail = :email " +
+            ", userName = :name " +
+            ", userPhonenumber = :phone " +
+            ", userAge = :age" +
             ", userAddress = :address " +
             ", userAddressDetail = :addressdetail " +
-            ", userZIPCode = :zipcode " +
-            ", userEmail = :email " +
-            ", userAge = :age where code = :codes")
+            ", userZIPCode = :zipcode where code = :codes")
     void update(int codes,
                 String id, String pw,
+                String email, String name,
+                String phone, int age,
                 String address, String addressdetail,
-                String zipcode, String email,
-                int age);
+                String zipcode);
 }

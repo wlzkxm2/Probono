@@ -169,7 +169,7 @@ public class login_register extends FragmentActivity {
             newUser.useremail = user_email.getText().toString();
             newUser.userlastemail = user_lastemail.getText().toString();
             newUser.username = user_name.getText().toString();
-            newUser.username = user_phonenumber.getText().toString();
+            newUser.userphonenumber = user_phonenumber.getText().toString();
             newUser.userage = user_age.getText().toString();
             newUser.useraddress = user_address.getText().toString();
             newUser.userdetailaddress = user_detailaddress.getText().toString();
@@ -186,7 +186,7 @@ public class login_register extends FragmentActivity {
             if(IdCheck == false || PwCheck == false)
                 Toast.makeText(this, "아이디 중복검사 또는 비밀번호를 재확인해주세요", Toast.LENGTH_SHORT).show();
             else{
-                Log.v("error", newUser.toString());
+//                Log.v("error", newUser.toString());
                 if(newUser.useremail.isEmpty())
                     Log.v("error", "이메일 비어있음");
                 else if (newUser.userlastemail.isEmpty())
@@ -197,6 +197,14 @@ public class login_register extends FragmentActivity {
                     Log.v("error", "비밀번호 길이가 안맞음");
                 else{
                     registerC = true;
+
+                    if(newUser.username.isEmpty())
+                        newUser.username = "nothing";
+
+                    if(newUser.userphonenumber.isEmpty())
+                    newUser.userphonenumber = "nothing";
+
+
                     if(newUser.useraddress.isEmpty())
                         newUser.useraddress = "nothing";
 
@@ -205,6 +213,8 @@ public class login_register extends FragmentActivity {
 
                     if(newUser.userzipcode.isEmpty())
                         newUser.userzipcode = "nothing";
+
+                    Log.v("error", newUser.toString());
 
                 }
 
@@ -215,25 +225,25 @@ public class login_register extends FragmentActivity {
                     // 아이디를 삽입
                     String result = register_task.execute(newUser.userId,
                             newUser.userpw,
-                            newUser.useremail,
-                            newUser.userlastemail,
+                            newUser.useremail + "@" + newUser.userlastemail,
                             newUser.username,
                             newUser.userphonenumber,
                             newUser.userage,
                             newUser.useraddress,
                             newUser.userdetailaddress,
-                            newUser.userzipcode).get();     // 서버가 전송한 값을 String 값으로
+                            newUser.userzipcode
+                    ).get();     // 서버가 전송한 값을 String 값으로
                     Toast.makeText(this, "회원가입 완료", Toast.LENGTH_SHORT).show();
                     finish();
                 } else
                     Toast.makeText(this, "필수 입력란이 비어있거나 비밀번호를 6자 이상으로 해주세요.", Toast.LENGTH_SHORT).show();
-                
+
             }
 
 
 
         }catch (Exception e){
-            
+
         }
     }
 
@@ -255,13 +265,12 @@ public class login_register extends FragmentActivity {
                 sendMsg = "id=" + strings[0]
                         + "&pw=" + strings[1]
                         + "&email=" + strings[2]
-                        + "&lastemail=" + strings[3]
-                        + "&name=" + strings[4]
-                        + "&phonenumber=" + strings[5]
-                        + "&age=" + strings[6]
-                        + "&address=" + strings[7]
-                        + "&detailaddress=" + strings[8]
-                        + "&zipcode=" + strings[9]; // GET방식으로 작성해 POST로 보냄 ex) "id=admin&pwd=1234";
+                        + "&name=" + strings[3]
+                        + "&phone=" + strings[4] // GET방식으로 작성해 POST로 보냄 ex) "id=admin&pwd=1234";
+                        + "&age=" + strings[5] // GET방식으로 작성해 POST로 보냄 ex) "id=admin&pwd=1234";
+                        + "&address=" + strings[6] // GET방식으로 작성해 POST로 보냄 ex) "id=admin&pwd=1234";
+                        + "&detailaddress=" + strings[7] // GET방식으로 작성해 POST로 보냄 ex) "id=admin&pwd=1234";
+                        + "&zipcode=" + strings[8]; // GET방식으로 작성해 POST로 보냄 ex) "id=admin&pwd=1234";
                 osw.write(sendMsg);                           // OutputStreamWriter에 담아 전송
                 osw.flush();
 
@@ -287,6 +296,7 @@ public class login_register extends FragmentActivity {
             // 서버에서 보낸 값을 리턴합니다.
             return receiveMsg;
         }
+
     }
 
     class IDCheck extends AsyncTask<String, Void, String> {

@@ -15,6 +15,18 @@ public class UserDB {
     @ColumnInfo(name = "userPassword")
     public String pw;
 
+    @ColumnInfo(name = "userEmail")
+    public String email;
+
+    @ColumnInfo(name = "userName")
+    public String name;
+
+    @ColumnInfo(name = "userAge")
+    public int age;
+
+    @ColumnInfo(name = "userPhonenumber")
+    public String phonenumber;
+
     @ColumnInfo(name = "userAddress")
     public String address;
 
@@ -24,23 +36,20 @@ public class UserDB {
     @ColumnInfo(name = "userZIPCode")
     public String zipcode;
 
-    @ColumnInfo(name = "userEmail")
-    public String email;
-
-    @ColumnInfo(name = "userAge")
-    public int age;
-
 
     public UserDB(String id, String pw,
-                  String address, String addressDetail, String zipcode,
-                  String email, int age){
+                  String email, String name,
+                  int age, String phonenumber,
+                  String address, String addressDetail, String zipcode){
         this.id = id;
         this.pw = pw;
+        this.email = email;
+        this.name = name;
+        this.age = age;
+        this.phonenumber = phonenumber;
         this.address = address;
         this.addressDetail = addressDetail;
         this.zipcode = zipcode;
-        this.email = email;
-        this.age = age;
 
     }
 
@@ -102,4 +111,19 @@ public class UserDB {
         this.age = age;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getPhonenumber() {
+        return phonenumber;
+    }
+
+    public void setPhonenumber(String phonenumber) {
+        this.phonenumber = phonenumber;
+    }
 }

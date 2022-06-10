@@ -141,11 +141,11 @@ public class login extends AppCompatActivity {
 
 
             ArrayList<String> userDatas = new ArrayList<>();
-            for (int i = 0; i < 7; i++) {
+            for (int i = 0; i < 9; i++) {
                 FO = userData.indexOf("=", LO+1);
                 LO = userData.indexOf(",", LO+1);
 
-                if(i == 6){
+                if(i == 8){
                     LO = userData.indexOf(")");
                     findresults = userData.substring(FO+1, LO);
                 }
@@ -157,22 +157,28 @@ public class login extends AppCompatActivity {
                 Log.v("login", "loginFindData : " + findresults);
             }
             System.out.println("test");
-            UserDB userAdd = new UserDB (userDatas.get(0).toString(),   // ID
+            UserDB userAdd = new UserDB (
+                    userDatas.get(0).toString(),                        // ID
                     userDatas.get(1).toString(),                        // PW
-                    userDatas.get(2).toString(),                        // address city
-                    userDatas.get(3).toString(),                        // address detail
-                    userDatas.get(4).toString(),                        // zipcode
-                    userDatas.get(5).toString(),                        // email
-                    Integer.parseInt(userDatas.get(6).toString())      // age
+                    userDatas.get(2).toString(),                        // email
+                    userDatas.get(3).toString(),                        // name
+                    Integer.parseInt(userDatas.get(5).toString()),      // age
+                    userDatas.get(4).toString(),                        // phonenumber
+                    userDatas.get(6).toString(),                        // address city
+                    userDatas.get(7).toString(),                        // address detail
+                    userDatas.get(8).toString()                        // zipcode
             );
 
-            user_dao.update(1, userDatas.get(0).toString(),   // ID
+            user_dao.update(1,
+                    userDatas.get(0).toString(),                        // ID
                     userDatas.get(1).toString(),                        // PW
-                    userDatas.get(2).toString(),                        // address city
-                    userDatas.get(3).toString(),                        // address detail
-                    userDatas.get(4).toString(),                        // zipcode
-                    userDatas.get(5).toString(),                        // email
-                    Integer.parseInt(userDatas.get(6).toString())
+                    userDatas.get(2).toString(),                        // email
+                    userDatas.get(3).toString(),                        // name
+                    userDatas.get(4).toString(),                        // phonenumber
+                    Integer.parseInt(userDatas.get(5).toString()),      // age
+                    userDatas.get(6).toString(),                        // address city
+                    userDatas.get(7).toString(),                        // address detail
+                    userDatas.get(8).toString()                        // zipcode
             );     // age
 //        String findresults = userData.substring(FO+1, LO);
             finish();
