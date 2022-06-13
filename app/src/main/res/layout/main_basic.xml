@@ -95,13 +95,14 @@
         android:id="@+id/main_basic_dday"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="120dp"
         android:gravity="left"
         android:text="D-1"
         android:textColor="@color/black"
         android:textSize="24dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/main_basic_dday_text"
+        app:layout_constraintHorizontal_bias="0.847"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.223" />
@@ -110,14 +111,14 @@
         android:id="@+id/main_basic_dday_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="180dp"
-        android:gravity="left"
         android:text="디데이"
         android:textColor="@color/black"
         android:textSize="24dp"
+        android:gravity="left"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/main_basic_dday"
+        app:layout_constraintHorizontal_bias="0.53"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.223" />
 
@@ -183,7 +184,7 @@
         android:background="@android:color/transparent"
         android:scaleType="fitCenter"
         android:src="@drawable/img_add_schedule"
-        android:visibility="invisible"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -195,7 +196,8 @@
         android:layout_width="16dp"
         android:layout_height="65dp"
         android:src="@drawable/img_dot_dot_dot"
-        android:visibility="invisible"
+        android:visibility="gone"
+        android:rotationX="180"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -211,7 +213,7 @@
         android:text="일정을 추가해보세요!"
         android:textColor="#5A88FF"
         android:textSize="10sp"
-        android:visibility="invisible"
+        android:visibility="gone"
         app:drawableTint="#8A5858"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -274,6 +276,35 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.936"
         app:tint="@null" />
+
+    <ImageButton
+        android:id="@+id/main_basic_nolist_add"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@android:color/transparent"
+        android:scaleType="fitCenter"
+        android:src="@drawable/img_add_schedule"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.586"
+        android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/main_basic_nolist_add_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="일정을 추가해보세요!"
+        android:textColor="#5A88FF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/main_basic_nolist_add"
+        app:layout_constraintVertical_bias="0.055"
+        android:visibility="gone"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

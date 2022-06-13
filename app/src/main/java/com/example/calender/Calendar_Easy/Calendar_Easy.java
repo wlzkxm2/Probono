@@ -1,12 +1,14 @@
 package com.example.calender.Calendar_Easy;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,6 +26,7 @@ import com.example.calender.Main_Basic.List_ItemAdapter;
 import com.example.calender.Main_Easy.List_ItemAdapter_Easy;
 import com.example.calender.R;
 import com.example.calender.StaticUidCode.UidCode;
+import com.example.calender.addschedule.AddSchedule;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
@@ -33,6 +36,10 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class Calendar_Easy extends AppCompatActivity {
+
+    // 일정 없는 날 일정추가버튼 표시
+    private ImageButton nolist_add;
+    private TextView nolist_add_text;
 
     public Calender_Dao calender_dao;       // 데이터 베이스 구축을 위한 객체
 
@@ -58,6 +65,10 @@ public class Calendar_Easy extends AppCompatActivity {
     protected void onCreate(@org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.calendar_easy);
+
+        // 일정 없는 날 일정추가버튼 표시
+        nolist_add = (ImageButton) findViewById(R.id.calendar_easy_nolist_add);
+        nolist_add_text = (TextView) findViewById(R.id.calendar_easy_nolist_add_text);
 
         // 날짜를 입력받기 위한 배열
         // 배열로 밖에 데이터를 못받기 때문에 배열로 선언
@@ -119,7 +130,7 @@ public class Calendar_Easy extends AppCompatActivity {
                         outputData = "";
 
                 int time = 0000;      // 시간은 앞 두개 분은 뒤 두개
-                                        // 예를 들어 12시 39분 일때 1239
+                // 예를 들어 12시 39분 일때 1239
 
                 //<editor-fold desc="누른 일자를 구하는 함수">
                 _day[0] = date.getDay();
@@ -151,16 +162,33 @@ public class Calendar_Easy extends AppCompatActivity {
 
                 list_itemAdapter_easy.removeAllItem();
 
-                for (int i = 0; i < calender_like_data.size(); i++) {
-                    List_Item calList = new List_Item();
-                    calList.setTime(Integer.toString(calender_like_data.get(i).getStart_time()));
-                    calList.setTitle(calender_like_data.get(i).get_titles());
-                    calList.setText(calender_like_data.get(i).get_subtitle());
+                if (calender_like_data.isEmpty()) { // 캘린더 눌러서 일정이 없을때
+                    Log.v("일정이 없는 날입니다", Integer.toString(((UidCode) Calendar_Easy.this.getApplication()).getStatic_day()));
+                    // 일정 없는 날 일정추가버튼 표시
+                    nolist_add.setVisibility(View.VISIBLE);
+                    nolist_add_text.setVisibility(View.VISIBLE);
+                    nolist_add.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent n = new Intent(Calendar_Easy.this, AddSchedule.class);
+                            startActivity(n);
+                        }
+                    });
+                } else {
+                    // 일정 있으면 추가버튼 없애기
+                    nolist_add.setVisibility(View.GONE);
+                    nolist_add_text.setVisibility(View.GONE);
+                    for (int i = 0; i < calender_like_data.size(); i++) {
+                        List_Item calList = new List_Item();
+                        calList.setTime(Integer.toString(calender_like_data.get(i).getStart_time()));
+                        calList.setTitle(calender_like_data.get(i).get_titles());
+                        calList.setText(calender_like_data.get(i).get_subtitle());
 
-                    list_itemAdapter_easy.addItem(calList);
+                        list_itemAdapter_easy.addItem(calList);
+                    }
+                    list_itemAdapter_easy.notifyDataSetChanged();
+                    recyclerView.startLayoutAnimation();
                 }
-                list_itemAdapter_easy.notifyDataSetChanged();
-                recyclerView.startLayoutAnimation();
             }
         });
         //</editor-fold desc="캘린더에 일자가 눌렷을떄">

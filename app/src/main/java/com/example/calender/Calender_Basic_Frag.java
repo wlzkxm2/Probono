@@ -1,12 +1,15 @@
 package com.example.calender;
 
 
+import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,15 +25,22 @@ import com.example.calender.DataBase.Calender_Dao;
 import com.example.calender.Main_Basic.List_Item;
 import com.example.calender.Main_Basic.List_ItemAdapter;
 import com.example.calender.StaticUidCode.UidCode;
+import com.example.calender.addschedule.AddSchedule;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
+
+import org.w3c.dom.Text;
 
 import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class Calender_Basic_Frag extends Fragment {
+
+    // 일정 없는 날 일정추가버튼 표시
+    private ImageButton nolist_add;
+    private TextView nolist_add_text;
 
     public Calender_Dao calender_dao;       // 데이터 베이스 구축을 위한 객체
 
@@ -56,6 +66,10 @@ public class Calender_Basic_Frag extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.calender_basic, container, false);
         Log.v(TAG, "Frag 뷰입니다");
+
+        // 일정 없는 날 일정추가버튼 표시
+        nolist_add = (ImageButton) view.findViewById(R.id.calendar_basic_nolist_add);
+        nolist_add_text = (TextView) view.findViewById(R.id.calendar_basic_nolist_add_text);
 
         // 날짜를 입력받기 위한 배열
         // 배열로 밖에 데이터를 못받기 때문에 배열로 선언
@@ -149,16 +163,39 @@ public class Calender_Basic_Frag extends Fragment {
 
                 list_itemAdapter.removeAllItem();
 
-                for (int i = 0; i < calender_like_data.size(); i++) {
-                    List_Item calList = new List_Item();
-                    calList.setTime(Integer.toString(calender_like_data.get(i).getStart_time()));
-                    calList.setTitle(calender_like_data.get(i).get_titles());
-                    calList.setText(calender_like_data.get(i).get_subtitle());
+                if (calender_like_data.isEmpty()) { // 캘린더 눌러서 일정이 없을때
+                    Log.v("일정이 없는 날입니다", Integer.toString(((UidCode) getActivity().getApplication()).getStatic_day()));
+                    // 일정 없는 날 일정추가버튼 표시
+                    nolist_add.setVisibility(View.VISIBLE);
+                    nolist_add_text.setVisibility(View.VISIBLE);
+                    nolist_add.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent n = new Intent(getActivity(), AddSchedule.class);
+                            startActivity(n);
+                        }
+                    });
 
-                    list_itemAdapter.addItem(calList);
+                } else {
+                    // 일정 있으면 추가버튼 없애기
+                    nolist_add.setVisibility(View.GONE);
+                    nolist_add_text.setVisibility(View.GONE);
+                    for (int i = 0; i < calender_like_data.size(); i++) {
+                        List_Item calList = new List_Item();
+                        calList.setTime(Integer.toString(calender_like_data.get(i).getStart_time()));
+                        calList.setTitle(calender_like_data.get(i).get_titles());
+                        calList.setText(calender_like_data.get(i).get_subtitle());
+
+                        list_itemAdapter.addItem(calList);
+//                        list_itemAdapter.addItem(calList); //두개 써있어서 하나 주석 해둠
+                    }
+                    list_itemAdapter.notifyDataSetChanged();
+                    recyclerView.startLayoutAnimation();
                 }
                 list_itemAdapter.notifyDataSetChanged();
                 recyclerView.startLayoutAnimation();
+
+
             }
         });
         //</editor-fold desc="캘린더에 일자가 눌렷을떄">

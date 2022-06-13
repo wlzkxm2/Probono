@@ -43,11 +43,11 @@
         <entry key="..\:/Users/412-22/Desktop/kjm_project/Probono/app/src/main/res/layout/setting_main.xml" value="0.17806484295845998" />
         <entry key="..\:/Users/412-22/Desktop/kjm_project/Probono/app/src/main/res/menu/navi_drawer.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/412-22/Desktop/kjm_project/Probono/app/src/main/res/menu/navi_menu.xml" value="0.36614583333333334" />
-        <entry key="..\:/Users/K/Desktop/probono/app/src/main/res/layout/calendar_easy.xml" value="0.1464688675302967" />
-        <entry key="..\:/Users/K/Desktop/probono/app/src/main/res/layout/calender_basic.xml" value="0.14688675302966986" />
+        <entry key="..\:/Users/K/Desktop/probono/app/src/main/res/layout/calendar_easy.xml" value="0.25" />
+        <entry key="..\:/Users/K/Desktop/probono/app/src/main/res/layout/calender_basic.xml" value="0.1" />
         <entry key="..\:/Users/K/Desktop/probono/app/src/main/res/layout/dday.xml" value="0.14688675302966986" />
         <entry key="..\:/Users/K/Desktop/probono/app/src/main/res/layout/main_basic.xml" value="0.33" />
-        <entry key="..\:/Users/K/Desktop/probono/app/src/main/res/layout/main_easy.xml" value="0.14688675302966986" />
+        <entry key="..\:/Users/K/Desktop/probono/app/src/main/res/layout/main_easy.xml" value="0.3603174603174603" />
         <entry key="..\:/Users/K/Desktop/probono/app/src/main/res/layout/navigation.xml" value="0.1" />
         <entry key="..\:/Users/K/Desktop/probono/app/src/main/res/menu/navi_menu.xml" value="0.30055579307396324" />
         <entry key="..\:/Users/hmlee/Documents/GitHub/Probono/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.363" />
@@ -94,7 +94,7 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" project-jdk-name="11" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

@@ -6,6 +6,7 @@ import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -59,6 +60,10 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener {
     long dbinputTime = 0;
     String dbinputTitle = "";
     String dbinputDtitle = "";
+
+    // 일정이 없는날 등록하는 버튼
+    ImageButton nolist_add;
+    TextView nolist_add_text;
 
     // 디데이 변수
     int dateEndY, dateEndM, dateEndD;
@@ -241,6 +246,10 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener {
         // 메인 DB호출
         List<Calender_DB> Maindata = calender_dao.getAllData();
 
+        //일정 없는날 등록하는 버튼
+        nolist_add = view.findViewById(R.id.main_basic_nolist_add);
+        nolist_add_text = view.findViewById(R.id.main_basic_nolist_add_text);
+
         //시작일, 종료일 데이터 저장
         calendar = Calendar.getInstance();
         currentYear = calendar.get(Calendar.YEAR);
@@ -347,21 +356,35 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener {
 
         list_itemAdapter.removeAllItem();
 
+        if (calender_like_data.isEmpty()) {
+            nolist_add.setVisibility(View.VISIBLE);
+            nolist_add_text.setVisibility(View.VISIBLE);
+            nolist_add.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent n = new Intent(getActivity(), AddSchedule.class);
+                    startActivity(n);
+                }
+            });
 
+        } else {
+            nolist_add.setVisibility(View.GONE);
+            nolist_add_text.setVisibility(View.GONE);
+            for (int i = 0; i < calender_like_data.size(); i++) {
+                List_Item calList = new List_Item();
+                String startTime = String.format("%04d", calender_like_data.get(i).getStart_time());
+                String valueStartTime = startTime.substring(0,2) + " : " + startTime.substring(2, startTime.length());
+                String EndTime = String.format("%04d", calender_like_data.get(i).getEnd_time());
+                String valueEndTime = EndTime.substring(0,2) + " : " + EndTime.substring(2, EndTime.length());
 
-        for (int i = 0; i < calender_like_data.size(); i++) {
-            List_Item calList = new List_Item();
-            String startTime = String.format("%04d", calender_like_data.get(i).getStart_time());
-            String valueStartTime = startTime.substring(0,2) + " : " + startTime.substring(2, startTime.length());
-            String EndTime = String.format("%04d", calender_like_data.get(i).getEnd_time());
-            String valueEndTime = EndTime.substring(0,2) + " : " + EndTime.substring(2, EndTime.length());
+                calList.setTime(valueStartTime + "~ \n" + valueEndTime);
+                calList.setTitle(calender_like_data.get(i).get_titles());
+                calList.setText(calender_like_data.get(i).get_subtitle());
 
-            calList.setTime(valueStartTime + "~ \n" + valueEndTime);
-            calList.setTitle(calender_like_data.get(i).get_titles());
-            calList.setText(calender_like_data.get(i).get_subtitle());
-
-            list_itemAdapter.addItem(calList);
+                list_itemAdapter.addItem(calList);
+            }
         }
+
         list_itemAdapter.notifyDataSetChanged();
         recyclerView.startLayoutAnimation();
 
@@ -386,19 +409,28 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener {
                 lastVisibleItemPositions = ((LinearLayoutManager) recyclerView.getLayoutManager()).findLastCompletelyVisibleItemPosition();
                 itemTotalCounts = recyclerView.getAdapter().getItemCount() - 1;
                 if (lastVisibleItemPositions == itemTotalCounts) { // 마지막 아이템 자리일때
-//                    add_schedule.setVisibility(View.VISIBLE); //화면에 보이게 한다.
-//                    add_schedule_dot.setVisibility(View.VISIBLE); //화면에 보이게 한다.
-//                    add_schedule_txt.setVisibility(View.VISIBLE); //화면에 보이게 한다.
-                    add_schedule.startAnimation(fade_in);
-                    add_schedule_txt.startAnimation(fade_in);
-                    add_schedule_dot.startAnimation(fade_in);
+                    add_schedule.setVisibility(View.VISIBLE); //화면에 보이게 한다.
+                    add_schedule_dot.setVisibility(View.VISIBLE); //화면에 보이게 한다.
+                    add_schedule_txt.setVisibility(View.VISIBLE); //화면에 보이게 한다.
+//                    add_schedule.startAnimation(fade_in);         //서서히 보이는 애니메이션
+//                    add_schedule_txt.startAnimation(fade_in);         //서서히 보이는 애니메이션
+//                    add_schedule_dot.startAnimation(fade_in);         //서서히 보이는 애니메이션
+
+                    add_schedule.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent n = new Intent(getActivity(), AddSchedule.class);
+                            startActivity(n);
+                        }
+                    });
+
                 } else if (lastVisibleItemPositions != itemTotalCounts) {
-                    add_schedule.setVisibility(View.INVISIBLE); //화면에 안보이게 한다.
-                    add_schedule_dot.setVisibility(View.INVISIBLE); //화면에 안보이게 한다.
-                    add_schedule_txt.setVisibility(View.INVISIBLE); //화면에 안보이게 한다.
-                    add_schedule.startAnimation(fade_out);
-                    add_schedule_dot.startAnimation(fade_out);
-                    add_schedule_txt.startAnimation(fade_out);
+                    add_schedule.setVisibility(View.GONE); //화면에 안보이게 한다.
+                    add_schedule_dot.setVisibility(View.GONE); //화면에 안보이게 한다.
+                    add_schedule_txt.setVisibility(View.GONE); //화면에 안보이게 한다.
+//                    add_schedule.startAnimation(fade_out);
+//                    add_schedule_dot.startAnimation(fade_out);
+//                    add_schedule_txt.startAnimation(fade_out);
 
                 }
             }
