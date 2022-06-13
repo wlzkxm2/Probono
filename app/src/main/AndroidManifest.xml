@@ -110,6 +110,7 @@
         <activity android:name=".login"/>
         <activity android:name=".setting.Setting_main_easy"/>
         <activity android:name=".UserProfile"/>
+        <activity android:name=".nav1"/>
 
 
 

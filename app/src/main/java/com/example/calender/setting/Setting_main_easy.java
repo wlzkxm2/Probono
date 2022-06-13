@@ -21,6 +21,7 @@ import com.example.calender.Navigation;
 import com.example.calender.R;
 import com.example.calender.UserProfile;
 import com.example.calender.login;
+import com.example.calender.nav1;
 
 import java.util.List;
 
@@ -75,9 +76,7 @@ public class Setting_main_easy extends AppCompatActivity {
                     case R.id.normalbtn:
                         // 액티비티에서 프래그먼트로 데이터 넘기는 코드
 
-
-
-                        Intent intent = new Intent(getApplicationContext(), Navigation.class);
+                        Intent intent = new Intent(getApplicationContext(), nav1.class);
                         startActivity(intent);
 //                        finish();
                         break;
