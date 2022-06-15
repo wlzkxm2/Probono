@@ -29,18 +29,19 @@
                 android:textSize="15sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/imageView6"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/imageView6"
                 app:layout_constraintVertical_bias="0.526" />
 
-            //일정 제목
+            //일정 박스
 
             <TextView
                 android:id="@+id/schedule_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="100dp"
                 android:gravity="left"
                 android:padding="20dp"
                 android:text="과제하기"
@@ -49,17 +50,16 @@
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView6"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.246"
+                app:layout_constraintHorizontal_bias="0.039"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/imageView6"
                 app:layout_constraintVertical_bias="0.0" />
-
-            //일정 내용
 
             <TextView
                 android:id="@+id/schedule_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="100dp"
                 android:gravity="left"
                 android:padding="20dp"
                 android:text="그치만 하기 싫은걸"
@@ -68,18 +68,16 @@
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView6"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.308"
+                app:layout_constraintHorizontal_bias="0.055"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/imageView6"
                 app:layout_constraintVertical_bias="1.0" />
-
-            //일정 박스
 
             <ImageView
                 android:id="@+id/imageView6"
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
-                android:layout_marginStart="80dp"
+                android:layout_marginStart="90dp"
                 android:layout_marginTop="5dp"
                 android:layout_weight="1"
                 android:src="@drawable/img_listbox"

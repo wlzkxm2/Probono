@@ -84,16 +84,19 @@ public class Single_Adapter extends RecyclerView.Adapter<Single_Adapter.Single_A
         void bind(final Main_Easy_Calendar_Day main_easy_calendar_day){
             if (checkedPosition == -1)
             {
-                day.setTextColor(Color.BLACK);
-                img.setVisibility(View.GONE);
+//                day.setTextColor(Color.RED);
+                img.setVisibility(View.VISIBLE);
             } else
             {
-                if (checkedPosition == getAdapterPosition())
+                if (checkedPosition == getAdapterPosition()) // 앱 실행하면 오늘 날짜에 선택된 표시
                 {
                     img.setVisibility(View.VISIBLE);
-                } else
-                    day.setTextColor(Color.BLACK);
+                    day.setTextColor(Color.WHITE);
+
+                } else {
                     img.setVisibility(View.GONE);
+                    day.setTextColor(Color.BLACK);
+                }
             }
             day.setText(main_easy_calendar_day.getDay());
             itemView.setOnClickListener(new View.OnClickListener() {

@@ -31,6 +31,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
 import com.example.calender.Calendar_Easy.Calendar_Easy;
+import com.example.calender.DataBase.Calender_DB;
 import com.example.calender.DataBase.Calender_DBSet;
 import com.example.calender.DataBase.Calender_Dao;
 import com.example.calender.DataBase.UserDB;
@@ -38,10 +39,14 @@ import com.example.calender.DataBase.User_DBset;
 import com.example.calender.DataBase.User_Dao;
 import com.example.calender.Main_Basic.List_Item;
 import com.example.calender.R;
+import com.example.calender.StaticUidCode.UidCode;
 import com.example.calender.UserProfile;
+import com.example.calender.addschedule.AddSchedule;
+import com.example.calender.addschedule.Custom_STT;
 import com.example.calender.login;
 import com.example.calender.setting.Setting_main_easy;
 import com.example.calender.setting.Setting_notification;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 
 import org.jetbrains.annotations.Nullable;
@@ -56,6 +61,13 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class Main_Easy extends AppCompatActivity {
+
+    //플로팅 버튼 음성 등록
+    private FloatingActionButton floating_voice;
+
+    // 일정 없는날 선택시 일정 추가 버튼
+    private ImageButton nolist_add;
+    private TextView nolist_add_text;
 
     //드로어 버튼
     private TextView drawer_user_setting, drawer_calendar, drawer_game, drawer_setting,
@@ -301,6 +313,13 @@ public class Main_Easy extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_easy);
 
+        //플로팅버튼
+        floating_voice = (FloatingActionButton) findViewById(R.id.main_easy_floating_voice);
+
+        // 일정 없는날 일정 추가 버튼
+        nolist_add = (ImageButton)findViewById(R.id.main_easy_nolist_add);
+        nolist_add_text = (TextView) findViewById(R.id.main_easy_nolist_add_text);
+
         // 드로어
         drawer_btn = (ImageButton) findViewById(R.id.main_easy_drawer_btn);
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -465,6 +484,12 @@ public class Main_Easy extends AppCompatActivity {
                     case R.id.main_easy_game:
                         Toast.makeText(Main_Easy.this,"미구현 기능입니다.",Toast.LENGTH_SHORT).show();
                         break;
+                    case R.id.main_easy_floating_voice:
+                        Custom_STT custom_stt = new Custom_STT(Main_Easy.this);
+                        int inputday = ((UidCode) Main_Easy.this.getApplication()).getStatic_day();
+                        custom_stt.show();
+                        break;
+
                         }
                 }
         };
@@ -477,6 +502,7 @@ public class Main_Easy extends AppCompatActivity {
         drawer_calendar.setOnClickListener(cl);
         drawer_game.setOnClickListener(cl);   // 게임 미구현
         drawer_setting.setOnClickListener(cl);
+        floating_voice.setOnClickListener(cl);
 
         calendar_recyclerView = (RecyclerView)findViewById(R.id.recycler_view_easy_calendar_day);
         calendar_recyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false)); // 가로 스크롤
@@ -493,18 +519,65 @@ public class Main_Easy extends AppCompatActivity {
         list_itemAdapter_easy = new List_ItemAdapter_Easy();
         recyclerView.setAdapter(list_itemAdapter_easy);
 
+        Date currentTime = Calendar.getInstance().getTime();
+        SimpleDateFormat yearFormat = new SimpleDateFormat("yyyy", Locale.getDefault());
+        SimpleDateFormat monthFormat = new SimpleDateFormat("MM", Locale.getDefault());
+        SimpleDateFormat dayFormat = new SimpleDateFormat("dd", Locale.getDefault());
+        String YearData = yearFormat.format(currentTime);
+        String monthData = monthFormat.format(currentTime);
+        String dayData = dayFormat.format(currentTime);
+
+        List<Calender_DB> calender_like_data = calender_dao.loadAllDataByYears(
+                Integer.parseInt(YearData),
+                Integer.parseInt(monthData),
+                Integer.parseInt(dayData)
+        );
+
         //화면 클리어
         list_itemAdapter_easy.removeAllItem();
 
         // -------------------------------------------------------- DB 데이터 넣는곳
-        //샘플 데이터 생성
-        for (int i = 0; i < listDB; i++) {
-            List_Item list_item = new List_Item();
-            list_item.setTime("14:00" + "-" + i); // 일정 시간
-            list_item.setTitle("과제하기" + "-" + i); // 일정 제목
-            //데이터 등록
-            list_itemAdapter_easy.addItem(list_item);
+        if (calender_like_data.isEmpty()) {
+            nolist_add.setVisibility(View.VISIBLE);
+            nolist_add_text.setVisibility(View.VISIBLE);
+            nolist_add.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent n = new Intent(Main_Easy.this, AddSchedule.class);
+                    startActivity(n);
+                }
+            });
+
+        } else {
+            nolist_add.setVisibility(View.GONE);
+            nolist_add_text.setVisibility(View.GONE);
+            for (int i = 0; i < calender_like_data.size(); i++) {
+                List_Item calList = new List_Item();
+                String startTime = String.format("%04d", calender_like_data.get(i).getStart_time());
+                String valueStartTime = startTime.substring(0,2) + " : " + startTime.substring(2, startTime.length());
+                String EndTime = String.format("%04d", calender_like_data.get(i).getEnd_time());
+                String valueEndTime = EndTime.substring(0,2) + " : " + EndTime.substring(2, EndTime.length());
+
+                calList.setTime(valueStartTime + "~ \n" + valueEndTime);
+                calList.setTitle(calender_like_data.get(i).get_titles());
+                calList.setText(calender_like_data.get(i).get_subtitle());
+
+                list_itemAdapter_easy.addItem(calList);
+            }
         }
+
+
+
+
+
+        //샘플 데이터 생성
+//        for (int i = 0; i < listDB; i++) {
+//            List_Item list_item = new List_Item();
+//            list_item.setTime("14:00" + "-" + i); // 일정 시간
+//            list_item.setTitle("과제하기" + "-" + i); // 일정 제목
+//            //데이터 등록
+//            list_itemAdapter_easy.addItem(list_item);
+//        }
 
         //적용
         list_itemAdapter_easy.notifyDataSetChanged();

@@ -37,13 +37,9 @@
                 app:layout_constraintVertical_bias="0.526" />
 
 
-            //일정 제목
-
-            //일정 박스
-
             <TextView
                 android:id="@+id/schedule_title"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="left"
                 android:padding="20dp"
@@ -53,8 +49,8 @@
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView6"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.301"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintHorizontal_bias="0.075"
+                app:layout_constraintStart_toStartOf="@+id/imageView6"
                 app:layout_constraintTop_toTopOf="@+id/imageView6"
                 app:layout_constraintVertical_bias="0.0" />
 
@@ -62,7 +58,7 @@
                 android:id="@+id/imageView6"
                 android:layout_width="350dp"
                 android:layout_height="80dp"
-                android:layout_marginStart="80dp"
+                android:layout_marginStart="100dp"
                 android:layout_weight="1"
                 android:src="@drawable/img_listbox"
                 app:layout_constraintBottom_toBottomOf="parent"
