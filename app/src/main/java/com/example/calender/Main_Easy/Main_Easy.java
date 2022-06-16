@@ -120,7 +120,7 @@ public class Main_Easy extends AppCompatActivity {
 
             Date rightNow = new Date();
             SimpleDateFormat formatter = new SimpleDateFormat(
-                    "h시 m분");
+                    "k시 m분");
             String dateString = formatter.format(rightNow);
             now.setText(dateString);
 
@@ -164,13 +164,27 @@ public class Main_Easy extends AppCompatActivity {
     // 설정한 디데이 year, mMonthOfYear : 설정한 디데이 MonthOfYear, mDayOfMonth : 설정한 디데이 DayOfMonth
     private String getDday(int mYear, int mMonthOfYear, int mDayOfMonth) {
         // D-day 설정
+        List<Calender_DB> mainactDB = calender_dao.loadMainData(1);
+        long result = 0;
+
+
         final Calendar ddayCalendar = Calendar.getInstance();
         ddayCalendar.set(mYear, mMonthOfYear, mDayOfMonth);
+
 
         // D-day 를 구하기 위해 millisecond 으로 환산하여 d-day 에서 today 의 차를 구한다.
         final long dday = ddayCalendar.getTimeInMillis() / ONE_DAY;
         final long today = Calendar.getInstance().getTimeInMillis() / ONE_DAY;
-        long result = dday - today;
+
+        calender_dao.MainActDayupdate(1, dday);
+        // 현재 시간을 출력
+        Log.v("MainDays", "dday : " + dday + "\n" + "today : " + today);
+        result = dday - today;
+
+        // db에 지정한 시간 데이터를 저장
+        calender_dao.MainActDayupdate(1, dday);
+
+
 
         // 출력 시 d-day 에 맞게 표시
         String strFormat;
@@ -188,7 +202,7 @@ public class Main_Easy extends AppCompatActivity {
     }
 
     // 디데이 값 계산
-    public int onCalculatorDate (int dateEndY, int dateEndM, int dateEndD) {
+    public int onCalculatorDate(int dateEndY, int dateEndM, int dateEndD) {
         try {
             Calendar today = Calendar.getInstance(); //현재 오늘 날짜
             Calendar dday = Calendar.getInstance();
