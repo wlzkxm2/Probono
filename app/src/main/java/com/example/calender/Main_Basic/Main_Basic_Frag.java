@@ -141,6 +141,8 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
 
     private void speakOut() {
         //CharSequence text = 여기다가_읽어줄_값_넣어주세요.getText();
+
+        tts = new TextToSpeech(getActivity().getApplicationContext(), this);
         Date currentTime = Calendar.getInstance().getTime();
         SimpleDateFormat yearFormat = new SimpleDateFormat("yyyy", Locale.getDefault());
         SimpleDateFormat monthFormat = new SimpleDateFormat("MM", Locale.getDefault());
@@ -301,7 +303,6 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
 
         // TTS 버튼
         main_basic_TTS_btn = view.findViewById(R.id.tts_button);
-        tts = new TextToSpeech(getActivity().getApplicationContext(), this);
         main_basic_TTS_btn.setOnClickListener(this);
         main_basic_TTS_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -662,6 +663,7 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
 //        SimpleDateFormat yearFormat = new SimpleDateFormat("yyyy", Locale.getDefault());
 //        SimpleDateFormat monthFormat = new SimpleDateFormat("mm", Locale.getDefault());
 //        SimpleDateFormat dateFormat = new SimpleDateFormat("dd", Locale.getDefault());
+
         Calendar cal = Calendar.getInstance();
         int sysYear = cal.get(Calendar.YEAR);
         int sysMonth = cal.get(Calendar.MONTH) +1;
@@ -999,16 +1001,33 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
         String saveStartTime = Integer.toString(saveHourData) + Integer.toString(saveMinuteData);
         String saveEndTime = Integer.toString(saveEndHourData) + Integer.toString(saveEndMinuteData);
 
+        Log.v("stt", "saveStartTime" + saveStartTime + "\n" + "saveEndTime" + saveEndTime);
 
-        Calender_DB SaveCalederDB = new Calender_DB();
-        SaveCalederDB.setStart_years(saveYearData);
-        SaveCalederDB.setStart_month(saveMonthData);
-        SaveCalederDB.setStart_month(saveDateData);
-        SaveCalederDB.setStart_time(Integer.parseInt(saveStartTime));
-        SaveCalederDB.setEnd_time(Integer.parseInt(saveEndTime));
-        SaveCalederDB.set_titles(saveTitleData);
+        int saveStartTimeint = Integer.parseInt(saveStartTime);
+        int saveEndTimeint = Integer.parseInt(saveEndTime);
 
-        //calender_dao.insertAll(SaveCalederDB);
+
+        Calender_DB inputCalData = new Calender_DB();
+        // 일정 시작일
+        inputCalData.setStart_years(00);
+        inputCalData.setStart_month(00);
+        inputCalData.setStart_day(00);
+        inputCalData.setStart_time(00);
+
+        // 일정 마지막일
+        inputCalData.setEnd_years(00);
+        inputCalData.setEnd_month(00);
+        inputCalData.setEnd_day(00);
+        inputCalData.setEnd_time(00);
+
+        // 일정 내용 추가
+        inputCalData.set_titles("saveTitleData");
+        inputCalData.set_subtitle("");
+
+        // 입력한 일정을 DB에 추가
+        calender_dao.insertAll(inputCalData);
+
+//        Log.v("stt", );
 
     }
 
