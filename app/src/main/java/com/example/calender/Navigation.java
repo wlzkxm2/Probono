@@ -7,7 +7,12 @@ import android.view.MenuItem;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.room.Room;
 
+import com.example.calender.DataBase.Calender_DBSet;
+import com.example.calender.DataBase.Calender_Dao;
+import com.example.calender.DataBase.User_DBset;
+import com.example.calender.DataBase.User_Dao;
 import com.example.calender.Main_Basic.Main_Basic_Frag;
 import com.example.calender.Permission.Permission;
 import com.example.calender.setting.Setting_main;
@@ -16,6 +21,9 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import io.reactivex.rxjava3.annotations.NonNull;
 
 public class Navigation extends AppCompatActivity {
+
+    Calender_Dao calender_dao;
+    User_Dao user_dao;
 
     private BottomNavigationView bottomNavigationView;
     private FragmentManager fm;
@@ -32,6 +40,19 @@ public class Navigation extends AppCompatActivity {
         setContentView(R.layout.navigation);
 
         permissionCheck();
+
+        Calender_DBSet dbController = Room.databaseBuilder(getApplicationContext(), Calender_DBSet.class, "CalenderDB")
+                .fallbackToDestructiveMigration()
+                .allowMainThreadQueries()
+                .build();
+
+        User_DBset userdbController = Room.databaseBuilder(getApplicationContext(), User_DBset.class, "UserInfoDB")
+                .fallbackToDestructiveMigration()
+                .allowMainThreadQueries()
+                .build();
+
+        calender_dao = dbController.calender_dao();
+        user_dao = userdbController.user_dao();
 
         bottomNavigationView = findViewById(R.id.navi_view);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {

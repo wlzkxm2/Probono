@@ -896,8 +896,23 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener {
 
         Log.d("HSH", "최종 DB 저장값 = " + saveYearData +"년 "+ saveMonthData +"월 "+ saveDateData+"일 "
                 + saveHourData+"시 "+ saveMinuteData + "분 " + "내용 : " + saveTitleData);
+
         Log.d("HSH", "최종 DB End 저장값 = " + saveEndYearData +"년 "+ saveEndMonthData +"월 "+ saveEndDateData+"일 "
                 + saveEndHourData+"시 "+ saveEndMinuteData + "분 ");
+
+        String saveStartTime = Integer.toString(saveHourData) + Integer.toString(saveMinuteData);
+        String saveEndTime = Integer.toString(saveEndHourData) + Integer.toString(saveEndMinuteData);
+
+
+        Calender_DB SaveCalederDB = new Calender_DB();
+        SaveCalederDB.setStart_years(saveYearData);
+        SaveCalederDB.setStart_month(saveMonthData);
+        SaveCalederDB.setStart_month(saveDateData);
+        SaveCalederDB.setStart_time(Integer.parseInt(saveStartTime));
+        SaveCalederDB.setEnd_time(Integer.parseInt(saveEndTime));
+        SaveCalederDB.set_titles(saveTitleData);
+
+        calender_dao.insertAll(SaveCalederDB);
 
     }
 
