@@ -444,29 +444,29 @@ public class Main_Easy extends AppCompatActivity {
                         new DatePickerDialog(Main_Easy.this, endDateSetListener, (currentYear), (currentMonth), currentDay).show();
                         break;
                     case R.id.main_easy_dday_text: // 디데이 내용
-                            final EditText edit_dday_text = new EditText(Main_Easy.this);
-                            AlertDialog.Builder dialog = new AlertDialog.Builder(new ContextThemeWrapper(Main_Easy.this, R.style.AlertDialogTheme));
-                            dialog.setTitle("D-day를 설정해주세요");
-                            dialog.setView(edit_dday_text);
-                            dialog.setView(edit_dday_text);
-                            edit_dday_text.setText(d_day_text.getText()); // D-day 내용
+                        final EditText edit_dday_text = new EditText(Main_Easy.this);
+                        AlertDialog.Builder dialog = new AlertDialog.Builder(new ContextThemeWrapper(Main_Easy.this, R.style.AlertDialogTheme));
+                        dialog.setTitle("D-day를 설정해주세요");
+                        dialog.setView(edit_dday_text);
+                        dialog.setView(edit_dday_text);
+                        edit_dday_text.setText(d_day_text.getText()); // D-day 내용
 
-                            // 완료 버튼
-                            dialog.setPositiveButton("완료", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int which) {
-                                    String getText = edit_dday_text.getText().toString();
-                                    d_day_text.setText(getText);
-                                }
-                            });
+                        // 완료 버튼
+                        dialog.setPositiveButton("완료", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                String getText = edit_dday_text.getText().toString();
+                                d_day_text.setText(getText);
+                            }
+                        });
 
-                            // 취소 버튼
-                            dialog.setNegativeButton("취소",new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int which) {
-                                    dialog.cancel();
-                                }
-                            });
-                            dialog.show();
-                            break;
+                        // 취소 버튼
+                        dialog.setNegativeButton("취소",new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        });
+                        dialog.show();
+                        break;
                     case R.id.main_easy_drawer_btn: // 드로어 버튼
                         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout) ;
                         if (!drawer.isDrawerOpen(Gravity.LEFT)) {
@@ -504,8 +504,8 @@ public class Main_Easy extends AppCompatActivity {
                         custom_stt.show();
                         break;
 
-                        }
                 }
+            }
         };
         next.setOnClickListener(cl);
         previous.setOnClickListener(cl);
@@ -628,13 +628,27 @@ public class Main_Easy extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    private long backpressedTime = 0;
+
     @Override
-    public void onBackPressed() { //뒤로가기 했을 때
-        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
-            drawerLayout.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
+    public void onBackPressed() {
+
+        if (System.currentTimeMillis() > backpressedTime + 2000) {
+            backpressedTime = System.currentTimeMillis();
+            Toast.makeText(this, "\'뒤로\' 버튼을 한번 더 누르시면 종료됩니다.", Toast.LENGTH_SHORT).show();
+        } else if (System.currentTimeMillis() <= backpressedTime + 2000) {
+
+            moveTaskToBack(true); // 태스크를 백그라운드로 이동
+            finishAndRemoveTask(); // 액티비티 종료 + 태스크 리스트에서 지우기
+
+            System.exit(0);
+
+
+
+
         }
+
     }
+
 }
 
