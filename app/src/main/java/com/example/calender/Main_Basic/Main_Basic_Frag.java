@@ -141,13 +141,42 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
 
     private void speakOut() {
         //CharSequence text = 여기다가_읽어줄_값_넣어주세요.getText();
+        Date currentTime = Calendar.getInstance().getTime();
+        SimpleDateFormat yearFormat = new SimpleDateFormat("yyyy", Locale.getDefault());
+        SimpleDateFormat monthFormat = new SimpleDateFormat("MM", Locale.getDefault());
+        SimpleDateFormat dayFormat = new SimpleDateFormat("dd", Locale.getDefault());
+        String YearData = yearFormat.format(currentTime);
+        String monthData = monthFormat.format(currentTime);
+        String dayData = dayFormat.format(currentTime);
+
+        SimpleDateFormat hour = new SimpleDateFormat("HH", Locale.getDefault());
+        SimpleDateFormat minute = new SimpleDateFormat("mm", Locale.getDefault());
+        String hourstr = hour.format(currentTime);
+        String minutestr = minute.format(currentTime);
+        String Time = hourstr+minutestr;
+        int nowTime = Integer.parseInt(Time);
+
+        List<Calender_DB> calender_like_data = calender_dao.loadAllDataByYears(
+                Integer.parseInt(YearData),
+                Integer.parseInt(monthData),
+                Integer.parseInt(dayData)
+        );
+        CharSequence text = null;
+        for(int i = 1; i < calender_like_data.size(); i++){
+            text += calender_like_data.get(i).get_titles().toString() + "일정과 ";
+
+            if(calender_like_data.size() - 1 == i)
+                text += "일정이 있습니다";
+        }
         tts.setPitch((float)1.5); // 음성 톤 높이 지정
         tts.setSpeechRate((float)1.5); // 음성 속도 지정
+//        tts.setPitch((float)1.5); // 음성 톤 높이 지정
+//        tts.setSpeechRate((float)1.5); // 음성 속도 지정
 
         // 첫 번째 매개변수: 음성 출력을 할 텍스트
         // 두 번째 매개변수: 1. TextToSpeech.QUEUE_FLUSH - 진행중인 음성 출력을 끊고 이번 TTS의 음성 출력
         //                 2. TextToSpeech.QUEUE_ADD - 진행중인 음성 출력이 끝난 후에 이번 TTS의 음성 출력
-        //tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, "id1");
+        tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, "id1");
     }
 
 
