@@ -43,13 +43,11 @@
         <entry key="..\:/Users/412-22/Desktop/kjm_project/Probono/app/src/main/res/layout/setting_main.xml" value="0.17806484295845998" />
         <entry key="..\:/Users/412-22/Desktop/kjm_project/Probono/app/src/main/res/menu/navi_drawer.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/412-22/Desktop/kjm_project/Probono/app/src/main/res/menu/navi_menu.xml" value="0.36614583333333334" />
-        <entry key="..\:/Users/K/Desktop/probono/app/src/main/res/layout/calendar_easy.xml" value="0.25" />
-        <entry key="..\:/Users/K/Desktop/probono/app/src/main/res/layout/calender_basic.xml" value="0.1" />
+        <entry key="..\:/Users/K/Desktop/probono/app/src/main/res/layout/calendar_easy.xml" value="0.1464688675302967" />
+        <entry key="..\:/Users/K/Desktop/probono/app/src/main/res/layout/calender_basic.xml" value="0.14688675302966986" />
         <entry key="..\:/Users/K/Desktop/probono/app/src/main/res/layout/dday.xml" value="0.14688675302966986" />
-        <entry key="..\:/Users/K/Desktop/probono/app/src/main/res/layout/item_layout.xml" value="0.40555555555555556" />
-        <entry key="..\:/Users/K/Desktop/probono/app/src/main/res/layout/item_layout_easy.xml" value="0.33" />
         <entry key="..\:/Users/K/Desktop/probono/app/src/main/res/layout/main_basic.xml" value="0.33" />
-        <entry key="..\:/Users/K/Desktop/probono/app/src/main/res/layout/main_easy.xml" value="0.25" />
+        <entry key="..\:/Users/K/Desktop/probono/app/src/main/res/layout/main_easy.xml" value="0.14688675302966986" />
         <entry key="..\:/Users/K/Desktop/probono/app/src/main/res/layout/navigation.xml" value="0.1" />
         <entry key="..\:/Users/K/Desktop/probono/app/src/main/res/menu/navi_menu.xml" value="0.30055579307396324" />
         <entry key="..\:/Users/hmlee/Documents/GitHub/Probono/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.363" />
@@ -59,7 +57,6 @@
         <entry key="..\:/Users/hmlee/Documents/GitHub/Probono/app/src/main/res/drawable/ic_main.xml" value="0.363" />
         <entry key="..\:/Users/hmlee/Documents/GitHub/Probono/app/src/main/res/drawable/ic_tts.xml" value="0.363" />
         <entry key="..\:/Users/hmlee/Documents/GitHub/Probono/app/src/main/res/drawable/user_line.xml" value="0.2815" />
-        <entry key="..\:/Users/hmlee/Documents/GitHub/Probono/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Users/hmlee/Documents/GitHub/Probono/app/src/main/res/layout/darkmode.xml" value="0.3578125" />
         <entry key="..\:/Users/hmlee/Documents/GitHub/Probono/app/src/main/res/layout/login.xml" value="0.3619791666666667" />
         <entry key="..\:/Users/hmlee/Documents/GitHub/Probono/app/src/main/res/layout/login_register.xml" value="0.33" />
@@ -69,7 +66,6 @@
         <entry key="..\:/Users/hmlee/Documents/GitHub/Probono/app/src/main/res/layout/setting_main.xml" value="0.3578125" />
         <entry key="..\:/Users/hmlee/Documents/GitHub/Probono/app/src/main/res/layout/setting_main_easy.xml" value="0.24864130434782608" />
         <entry key="..\:/Users/hmlee/Documents/GitHub/Probono/app/src/main/res/layout/setting_notification.xml" value="0.3619791666666667" />
-        <entry key="..\:/Users/hmlee/Documents/GitHub/Probono/app/src/main/res/menu/navi_menu.xml" value="0.3523076923076923" />
         <entry key="app/src/main/res/drawable/arrow_left_line.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/buttonstyle.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/edge.xml" value="0.202" />

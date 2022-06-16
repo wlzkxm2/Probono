@@ -72,4 +72,7 @@ dependencies {
     // db 백업을 위한 그래들
     implementation 'com.github.salehyarahmadi:RoomDatabaseBackupAndRestore:v1.0.1'
 
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
+
 }

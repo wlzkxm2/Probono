@@ -11,6 +11,7 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -20,6 +21,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.room.Room;
 
+import com.bumptech.glide.Glide;
 import com.example.calender.DataBase.Calender_DB;
 import com.example.calender.DataBase.Calender_DBSet;
 import com.example.calender.DataBase.Calender_Dao;
@@ -43,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
     Intent i;
 
     View.OnClickListener cl;
+
+    ImageView giflogo;
 
     final int PERMISSION = 1;	//permission 변수
 
@@ -73,6 +77,9 @@ public class MainActivity extends AppCompatActivity {
 
         calender_dao = dbController.calender_dao();
         user_dao = userdbController.user_dao();
+
+        giflogo = (ImageView) findViewById(R.id.gifimage);
+        Glide.with(this).load(R.raw.logo_gif).into(giflogo);
 
 //        List<Calender_DB> calender_dbs = calender_dao.getAllData();
 //        List<UserDB> userdb = user_dao.getAllData();        // 유저 데이터베이스

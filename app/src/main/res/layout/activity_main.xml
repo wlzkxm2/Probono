@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#5090B3"
-    android:backgroundTint="#5090B3"
+    android:background="#5A88FF"
+    android:backgroundTint="#5A88FF"
     android:orientation="vertical"
     tools:context=".MainActivity">
 
@@ -34,8 +34,7 @@
 
 
     <ImageView
-        android:id="@+id/imageView5"
+        android:id="@+id/gifimage"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:srcCompat="@drawable/applogo" />
+        android:layout_height="match_parent"/>
 </LinearLayout>
