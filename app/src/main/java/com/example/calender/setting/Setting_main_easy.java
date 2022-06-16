@@ -33,7 +33,11 @@ public class Setting_main_easy extends AppCompatActivity {
 
     Button accountbtn, notibtn, darkbtn;      // 프래그먼트 전환을 위한 버튼
     ImageButton im1,im2,backbtn;
-
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(getApplicationContext(), Main_Easy.class);
+        startActivity(intent);
+    }
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

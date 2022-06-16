@@ -26,7 +26,7 @@ public class Setting_notification extends AppCompatActivity {
 
         back = (Button) findViewById(R.id.back_noti);
         notisw=(Switch) findViewById(R.id.noti_switch) ;
-        (notisw).setChecked(true);
+        //(notisw).setChecked(true);
         (notisw).setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
