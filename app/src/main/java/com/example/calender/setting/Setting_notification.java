@@ -104,6 +104,13 @@ public class Setting_notification extends AppCompatActivity {
         String monthData = monthFormat.format(currentTime);
         String dayData = dayFormat.format(currentTime);
 
+        SimpleDateFormat hour = new SimpleDateFormat("HH", Locale.getDefault());
+        SimpleDateFormat minute = new SimpleDateFormat("mm", Locale.getDefault());
+        String hourstr = hour.format(currentTime);
+        String minutestr = minute.format(currentTime);
+        String Time = hourstr+minutestr;
+        int nowTime = Integer.parseInt(Time);
+
         List<Calender_DB> calender_like_data = calender_dao.loadAllDataByYears(
                 Integer.parseInt(YearData),
                 Integer.parseInt(monthData),
@@ -111,7 +118,7 @@ public class Setting_notification extends AppCompatActivity {
         );
 
         Calender_DB calender_db = new Calender_DB();
-        calender_db.setStart_time(0);
+        calender_db.setStart_time(nowTime);
 
         for(int i = 1; i < calender_like_data.size(); i++){
             if(calender_like_data.get(i).getStart_time() >= calender_db.getStart_time()){
@@ -126,6 +133,8 @@ public class Setting_notification extends AppCompatActivity {
             }
         }
 
+
+
         Log.v("notification", "calender_db.set_titles" + calender_db.get_titles());
 
         String startTime = String.format("%04d", calender_db.getStart_time());
@@ -134,7 +143,11 @@ public class Setting_notification extends AppCompatActivity {
         String valueEndTime = EndTime.substring(0,2) + " : " + EndTime.substring(2, EndTime.length());
 
 //        builder.setContentTitle("오늘의 일정");
-        builder.setContentText(valueStartTime + " ~ " + valueEndTime + "\n" + calender_db.get_titles() + "\n" + calender_db.get_subtitle());
+        if(calender_db.get_titles() == "null"){
+            builder.setContentText(valueStartTime + " ~ " + valueEndTime + "\n" + calender_db.get_titles() + "\n" + calender_db.get_subtitle());
+        }else{
+            builder.setContentText("오늘 일정이 없습니다");
+        }
 
         builder.setContentTitle("오늘의 일정");
 //        builder.setContentText(calender_db.get_titles().toString());
