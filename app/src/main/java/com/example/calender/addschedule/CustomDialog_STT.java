@@ -178,3 +178,118 @@
 //        Toast.makeText(getApplicationContext(), "음성 기록을 중지합니다.", Toast.LENGTH_SHORT).show();
 //    }
 //}
+////--------------------------------------------stt 메모장------------------------------------------
+////        int y = 0;
+////                int m = 0;
+////                int w = 0;
+////                int d = 0;
+////                int h = 0;
+////
+////                int checkYearWord = -1;
+////                int checkMonthWord = -1;
+////                int checkWeekWord = -1;
+////                int checkDayWord = -1;
+////
+////                int saveYearData;
+////                int saveMonthData;
+////                int saveDateData;
+////                int saveTimeData;
+////
+////
+////                if (data.indexOf("년 뒤") > -1) {
+////                checkYearWord = 1;
+////                y = data.indexOf("년 뒤");
+////                saveYearData = Integer.parseInt(yearFormat.format(currentTime)) + Integer.parseInt(data.substring(0,y));
+////                Log.d("HSH", "년 뒤 변수 y값 =" + y);
+////                Log.d("HSH", "년 뒤 저장값 =" + saveYearData);
+////
+////                } else if(data.indexOf("년") > -1) {
+////                checkYearWord = 0;
+////                y = data.indexOf("년");
+////                saveYearData = Integer.parseInt(data.substring(0,y));
+//////            Log.d("HSH", "년 뒤 =" + data.indexOf("년 뒤"));
+////                }else{ // 현재 년도 반환
+////                saveYearData = Integer.parseInt(yearFormat.format(currentTime));
+////                }
+////
+////                if(data.indexOf("개월" ) > -1) {
+////                m = data.indexOf("개월");
+////                checkMonthWord = 1;
+////                if(checkYearWord == 0){
+////                saveMonthData = Integer.parseInt(data.substring(y + 1, m));
+////                }else if(checkYearWord == 1){
+////                saveMonthData = Integer.parseInt(data.substring(y + 2, m));
+////                }else{
+////                saveMonthData = Integer.parseInt(data.substring(0, m));
+////                }
+////
+////                }else if(data.indexOf("월") > -1){
+////                m = data.indexOf("월");
+////                checkMonthWord = 0;
+////                if(checkYearWord == 1){
+////                saveMonthData = Integer.parseInt(data.substring(y + 1, m));
+////                }else if(checkYearWord == 2){
+////                saveMonthData = Integer.parseInt(data.substring(y + 2, m));
+////                }else{
+////                saveMonthData = Integer.parseInt(data.substring(0, m));
+////                }
+////
+////                }else if(data.indexOf("달") > -1){
+////                m = data.indexOf("달");
+////                checkMonthWord = 0;
+////                if(checkYearWord == 1){
+////                saveMonthData = Integer.parseInt(data.substring(y + 1, m));
+////                }else if(checkYearWord == 2){
+////                saveMonthData = Integer.parseInt(data.substring(y + 2, m));
+////                }else{
+////                saveMonthData = Integer.parseInt(data.substring(0, m));
+////                }
+////
+////                }else{//현재 달 반환
+////                saveMonthData = Integer.parseInt(monthFormat.format(currentTime));
+////                }
+////
+////                if(data.indexOf("주 후") > -1){
+////                w = data.indexOf("주 후");
+////                checkWeekWord = 1;
+////                if(checkMonthWord == 0){
+////                saveDateData = Integer.parseInt(data.substring(m+1 , w)) * 7;
+////                saveDateData = Integer.parseInt(dateFormat.format(currentTime)) + saveDateData;
+////                }else if(checkMonthWord == 1){
+////                saveDateData = Integer.parseInt(data.substring(m+2 , w)) * 7;
+////                saveDateData = Integer.parseInt(dateFormat.format(currentTime)) + saveDateData;
+////                }else{
+////                saveDateData = Integer.parseInt(dateFormat.format(currentTime));
+////                }
+////
+////                }else if(data.indexOf("다음 주") > -1){
+////                w = data.indexOf("다음 주");
+////                checkWeekWord = 0;
+////
+////
+////                }
+////                if(data.indexOf("일 뒤") > -1){
+////                d = data.indexOf("일 뒤");
+////                if(checkWeekWord == 0){
+////                saveDateData = Integer.parseInt(dateFormat.format(currentTime)) + Integer.parseInt(data.substring(w+1,d));
+////                }else if (checkWeekWord == 1){
+////                saveDateData = Integer.parseInt(dateFormat.format(currentTime)) + Integer.parseInt(data.substring(w+2,d));
+////                }else{
+////                saveDateData = Integer.parseInt(dateFormat.format(currentTime)) + Integer.parseInt(data.substring(0,d));
+////                }
+////                }else if(data.indexOf("요일") > -1){
+////
+////                }else if(data.indexOf("일") > -1) {
+////
+////                }else{//오늘 날짜 반환
+////
+////                }
+////
+////                if(data.indexOf("시")> -1){
+////                h = data.indexOf("시");
+////                saveTimeData = Integer.parseInt(dateFormat.format(currentTime)) + Integer.parseInt(data.substring(d+1,h));
+////                }
+////
+////
+////
+////                }

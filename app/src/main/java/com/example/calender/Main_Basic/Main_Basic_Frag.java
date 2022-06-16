@@ -301,6 +301,7 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
 
         // TTS 버튼
         main_basic_TTS_btn = view.findViewById(R.id.tts_button);
+        tts = new TextToSpeech(getActivity().getApplicationContext(), this);
         main_basic_TTS_btn.setOnClickListener(this);
         main_basic_TTS_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -954,6 +955,13 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
             }
 
         }
+        else if(data.indexOf("부터") == -1){
+            saveEndYearData = saveYearData;
+            saveEndMonthData = saveMonthData;
+            saveEndDateData = saveDateData;
+            saveEndHourData = saveHourData;
+            saveEndMinuteData = saveMinuteData;
+        }
 
         if(data.indexOf("까지") > -1) {
             checkUntilWord = 1;
@@ -963,7 +971,15 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
             until = data.indexOf("에");
         }
 
-        if(data.indexOf("추가해 줘") > -1){
+        if(data.indexOf("일정 추가해 줘") > -1){
+            add = data.indexOf("추가해 줘");
+            if(checkUntilWord == 1){
+                saveTitleData = data.substring(until+3, add);
+            }else if(checkUntilWord == 0){
+                saveTitleData = data.substring(until+2, add);
+
+            }
+        }else if(data.indexOf("추가해 줘") > -1){
             add = data.indexOf("추가해 줘");
             if(checkUntilWord == 1){
                 saveTitleData = data.substring(until+3, add);
@@ -992,7 +1008,7 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
         SaveCalederDB.setEnd_time(Integer.parseInt(saveEndTime));
         SaveCalederDB.set_titles(saveTitleData);
 
-        calender_dao.insertAll(SaveCalederDB);
+        //calender_dao.insertAll(SaveCalederDB);
 
     }
 
