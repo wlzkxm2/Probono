@@ -33,6 +33,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.calender.DataBase.Calender_DB;
 import com.example.calender.DataBase.Calender_DBSet;
@@ -164,15 +165,17 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
                 Integer.parseInt(dayData)
         );
         String text = null;
-        for(int i = 1; i < calender_like_data.size(); i++){
-            text += calender_like_data.get(i).get_titles().toString() + "일정과 ";
+        for(int i = 0; i < calender_like_data.size(); i++){
+            text += calender_like_data.get(i).get_titles().toString();
             Log.v("tts", calender_like_data.get(i).get_titles());
 
             if(calender_like_data.size() - 1 == i)
-                text += "일정이 있습니다";
+                text += ",일정이 있습니다,";
+            else
+                text += "일정과, ";
         }
-        tts.setPitch((float)1.5); // 음성 톤 높이 지정
-        tts.setSpeechRate((float)1.5); // 음성 속도 지정
+        tts.setPitch((float)1.3); // 음성 톤 높이 지정
+        tts.setSpeechRate((float)1.3); // 음성 속도 지정
 //        tts.setPitch((float)1.5); // 음성 톤 높이 지정
 //        tts.setSpeechRate((float)1.5); // 음성 속도 지정
 
@@ -301,7 +304,6 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.main_basic, container, false);
-
         // TTS 버튼
         main_basic_TTS_btn = view.findViewById(R.id.tts_button);
 
@@ -322,6 +324,7 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
 
         // 메인 DB호출
         List<Calender_DB> Maindata = calender_dao.getAllData();
+
 
         //일정 없는날 등록하는 버튼
         nolist_add = view.findViewById(R.id.main_basic_nolist_add);
