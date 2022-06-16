@@ -30,8 +30,8 @@
         >
         <!-- 계정 설정 버튼이다-->
         <!-- 알림 설정 버튼이다-->
-        <com.google.android.material.switchmaterial.SwitchMaterial
-            android:id="@+id/switch1"
+        <Switch
+            android:id="@+id/noti_switch"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="10dp"
@@ -41,17 +41,6 @@
             android:textSize="30sp"
             android:textAlignment="center"
             android:text="@string/notification_all" />
-        <com.google.android.material.switchmaterial.SwitchMaterial
-            android:id="@+id/switch2"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginStart="5dp"
-            android:layout_marginEnd="5dp"
-            android:background="@drawable/example1"
-            android:textSize="30sp"
-            android:textAlignment="center"
-            android:text="@string/Donotdisturb" />
 
         <Button
             android:id="@+id/back_noti"
