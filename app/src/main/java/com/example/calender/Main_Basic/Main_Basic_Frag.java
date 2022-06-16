@@ -54,6 +54,8 @@ import java.util.Locale;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import static android.speech.tts.TextToSpeech.ERROR;
+
 public class Main_Basic_Frag extends Fragment implements View.OnClickListener, TextToSpeech.OnInitListener {
 
     // TTS 버튼
@@ -141,8 +143,6 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
 
     private void speakOut() {
         //CharSequence text = 여기다가_읽어줄_값_넣어주세요.getText();
-
-        tts = new TextToSpeech(getActivity().getApplicationContext(), this);
         Date currentTime = Calendar.getInstance().getTime();
         SimpleDateFormat yearFormat = new SimpleDateFormat("yyyy", Locale.getDefault());
         SimpleDateFormat monthFormat = new SimpleDateFormat("MM", Locale.getDefault());
@@ -163,9 +163,10 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
                 Integer.parseInt(monthData),
                 Integer.parseInt(dayData)
         );
-        CharSequence text = null;
+        String text = null;
         for(int i = 1; i < calender_like_data.size(); i++){
             text += calender_like_data.get(i).get_titles().toString() + "일정과 ";
+            Log.v("tts", calender_like_data.get(i).get_titles());
 
             if(calender_like_data.size() - 1 == i)
                 text += "일정이 있습니다";
@@ -178,7 +179,7 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
         // 첫 번째 매개변수: 음성 출력을 할 텍스트
         // 두 번째 매개변수: 1. TextToSpeech.QUEUE_FLUSH - 진행중인 음성 출력을 끊고 이번 TTS의 음성 출력
         //                 2. TextToSpeech.QUEUE_ADD - 진행중인 음성 출력이 끝난 후에 이번 TTS의 음성 출력
-        tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, "id1");
+        tts.speak(text, TextToSpeech.QUEUE_FLUSH, null);
     }
 
 
@@ -303,13 +304,7 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
 
         // TTS 버튼
         main_basic_TTS_btn = view.findViewById(R.id.tts_button);
-        main_basic_TTS_btn.setOnClickListener(this);
-        main_basic_TTS_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                speakOut();
-            }
-        });
+
 
         Calender_DBSet dbController = Room.databaseBuilder(getActivity().getApplicationContext(), Calender_DBSet.class, "CalenderDB")
                 .fallbackToDestructiveMigration()
@@ -480,6 +475,25 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
 //        }
         //적용
         list_itemAdapter.notifyDataSetChanged();
+
+        tts = new TextToSpeech(getActivity().getApplicationContext(), new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                if(status != ERROR){
+                    tts.setLanguage(Locale.KOREA);
+                }
+            }
+        });
+
+        main_basic_TTS_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.v("main", "TTS 버튼");
+
+                speakOut();
+            }
+        });
+
 
         //리스트 밑 일정 추가 버튼 나타나기
         recyclerView.startLayoutAnimation();
