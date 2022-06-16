@@ -105,7 +105,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="80dp"
             android:gravity="left"
-            android:text="D-1"
+            android:text="D-11"
             android:textColor="@color/black"
             android:textSize="50dp"
             android:textStyle="bold"

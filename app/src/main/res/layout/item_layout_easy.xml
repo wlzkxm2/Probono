@@ -21,7 +21,7 @@
             //일정 시간
             <TextView
                 android:id="@+id/schedule_time"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:padding="20dp"
                 android:text="14:00"
@@ -49,7 +49,7 @@
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView6"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.075"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/imageView6"
                 app:layout_constraintTop_toTopOf="@+id/imageView6"
                 app:layout_constraintVertical_bias="0.0" />
@@ -58,12 +58,10 @@
                 android:id="@+id/imageView6"
                 android:layout_width="350dp"
                 android:layout_height="80dp"
-                android:layout_marginStart="100dp"
-                android:layout_weight="1"
+                android:layout_marginStart="90dp"
                 android:src="@drawable/img_listbox"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.0" />

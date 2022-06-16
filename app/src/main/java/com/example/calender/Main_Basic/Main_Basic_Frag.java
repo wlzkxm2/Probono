@@ -56,6 +56,9 @@ import java.util.TimerTask;
 
 public class Main_Basic_Frag extends Fragment implements View.OnClickListener, TextToSpeech.OnInitListener {
 
+    // TTS 버튼
+    private ImageButton main_basic_TTS_btn;
+
     Calender_Dao calender_dao;
     User_Dao user_dao;
     long dbinputTime = 0;
@@ -266,6 +269,16 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.main_basic, container, false);
+
+        // TTS 버튼
+        main_basic_TTS_btn = view.findViewById(R.id.tts_button);
+        main_basic_TTS_btn.setOnClickListener(this);
+        main_basic_TTS_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
 
         Calender_DBSet dbController = Room.databaseBuilder(getActivity().getApplicationContext(), Calender_DBSet.class, "CalenderDB")
                 .fallbackToDestructiveMigration()
