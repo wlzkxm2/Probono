@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
 import android.os.Handler;
+import android.speech.tts.TextToSpeech;
 import android.util.Log;
 import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
@@ -53,7 +54,7 @@ import java.util.Locale;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class Main_Basic_Frag extends Fragment implements View.OnClickListener {
+public class Main_Basic_Frag extends Fragment implements View.OnClickListener, TextToSpeech.OnInitListener {
 
     Calender_Dao calender_dao;
     User_Dao user_dao;
@@ -75,6 +76,10 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener {
 
     // Millisecond 형태의 하루(24 시간)
     private final int ONE_DAY = 24 * 60 * 60 * 1000;
+
+    // TTS
+    private TextToSpeech tts;
+    private ImageButton btn_Tts;
 
     Context context;
     Main_Basic mainbasic;       // 프래그럼트 매니저가 있음
@@ -115,6 +120,35 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener {
         }
     };
 
+    @Override
+    public void onInit(int status) {
+        if(status == TextToSpeech.SUCCESS){
+            int ttsResult = tts.setLanguage(Locale.KOREA); // TTS언어 한국어로 설정
+
+            if(ttsResult == TextToSpeech.LANG_NOT_SUPPORTED || ttsResult == TextToSpeech.LANG_MISSING_DATA){
+                Log.e("TTS", "This Language is not supported");
+            }else{
+
+                speakOut();// onInit에 음성출력할 텍스트를 넣어줌
+            }
+        }else{
+            Log.e("TTS", "Initialization Failed!");
+        }
+    }
+
+    private void speakOut() {
+        //CharSequence text = 여기다가_읽어줄_값_넣어주세요.getText();
+        tts.setPitch((float)1.5); // 음성 톤 높이 지정
+        tts.setSpeechRate((float)1.5); // 음성 속도 지정
+
+        // 첫 번째 매개변수: 음성 출력을 할 텍스트
+        // 두 번째 매개변수: 1. TextToSpeech.QUEUE_FLUSH - 진행중인 음성 출력을 끊고 이번 TTS의 음성 출력
+        //                 2. TextToSpeech.QUEUE_ADD - 진행중인 음성 출력이 끝난 후에 이번 TTS의 음성 출력
+        //tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, "id1");
+    }
+
+
+
     class MainTimerTask extends TimerTask {
         public void run() {
             mHandler.post(mUpdateTimeTask);
@@ -123,6 +157,10 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener {
 
     @Override
     public void onDestroy() {
+        if(tts!=null){ // 사용한 TTS객체 제거
+            tts.stop();
+            tts.shutdown();
+        }
         mTimer.cancel();
         super.onDestroy();
     }
