@@ -276,7 +276,7 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
         main_basic_TTS_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                speakOut();
             }
         });
 
