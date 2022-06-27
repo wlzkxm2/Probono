@@ -26,6 +26,8 @@ import androidx.room.Room;
 import com.example.calender.DataBase.Calender_DB;
 import com.example.calender.DataBase.Calender_DBSet;
 import com.example.calender.DataBase.Calender_Dao;
+import com.example.calender.Main_Basic.Main_Basic_Frag;
+import com.example.calender.Navigation;
 import com.example.calender.R;
 import com.example.calender.StaticUidCode.UidCode;
 

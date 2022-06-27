@@ -117,10 +117,12 @@ public class Setting_notification extends AppCompatActivity {
                 Integer.parseInt(dayData)
         );
 
+//        System.out.println(nowTime);
+
         Calender_DB calender_db = new Calender_DB();
         calender_db.setStart_time(nowTime);
 
-        for(int i = 1; i < calender_like_data.size(); i++){
+        for(int i = 0; i < calender_like_data.size(); i++){
             if(calender_like_data.get(i).getStart_time() >= calender_db.getStart_time()){
                 calender_db.set_titles(calender_like_data.get(i).get_titles());
                 calender_db.set_subtitle(calender_like_data.get(i).get_subtitle());
@@ -143,7 +145,7 @@ public class Setting_notification extends AppCompatActivity {
         String valueEndTime = EndTime.substring(0,2) + " : " + EndTime.substring(2, EndTime.length());
 
 //        builder.setContentTitle("오늘의 일정");
-        if(calender_db.get_titles() == "null"){
+        if(calender_db.get_titles() != "null"){
             builder.setContentText(valueStartTime + " ~ " + valueEndTime + "\n" + calender_db.get_titles() + "\n" + calender_db.get_subtitle());
         }else{
             builder.setContentText("오늘 일정이 없습니다");
@@ -168,6 +170,10 @@ public class Setting_notification extends AppCompatActivity {
     }
 
     private void deleteNoti(){
-        NotificationManagerCompat.from(this).cancel(1);
+        NotificationManager notificationManager = (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            notificationManager.deleteNotificationChannel("1");
+        }
+//        NotificationManagerCompat.from(this).cancel(1);
     }
 }

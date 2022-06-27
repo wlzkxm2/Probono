@@ -157,7 +157,7 @@ public class Calender_Basic_Frag extends Fragment {
                 );
                 appData[0] = calender_like_data.size();
 
-                Toast.makeText(getActivity().getApplication(), _year[0] + "-" + _month[0] + "-" + _day[0], Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getActivity().getApplication(), _year[0] + "-" + _month[0] + "-" + _day[0], Toast.LENGTH_SHORT).show();
 
                 Log.v("HSH", Integer.toString(((UidCode) getActivity().getApplication()).getStatic_day()));
 
@@ -182,7 +182,12 @@ public class Calender_Basic_Frag extends Fragment {
                     nolist_add_text.setVisibility(View.GONE);
                     for (int i = 0; i < calender_like_data.size(); i++) {
                         List_Item calList = new List_Item();
-                        calList.setTime(Integer.toString(calender_like_data.get(i).getStart_time()));
+                        String startTime = String.format("%04d", calender_like_data.get(i).getStart_time());
+                        String valueStartTime = startTime.substring(0,2) + " : " + startTime.substring(2, startTime.length());
+                        String EndTime = String.format("%04d", calender_like_data.get(i).getEnd_time());
+                        String valueEndTime = EndTime.substring(0,2) + " : " + EndTime.substring(2, EndTime.length());
+
+                        calList.setTime(valueStartTime + "~ \n" + valueEndTime);
                         calList.setTitle(calender_like_data.get(i).get_titles());
                         calList.setText(calender_like_data.get(i).get_subtitle());
 

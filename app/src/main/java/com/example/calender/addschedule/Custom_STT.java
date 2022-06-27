@@ -275,7 +275,7 @@ public class Custom_STT extends Dialog {
             int saveMonthData = sysMonth;
             int saveDateData = sysDate;
             int saveHourData = sysHour;
-            int saveMinuteData = sysMinute;
+            int saveMinuteData = 0;
             String saveTitleData = "";
             int saveEndYearData = saveYearData;
             int saveEndMonthData = saveMonthData;

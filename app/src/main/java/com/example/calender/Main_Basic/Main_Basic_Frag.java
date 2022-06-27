@@ -62,6 +62,8 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
     // TTS 버튼
     private ImageButton main_basic_TTS_btn;
 
+    boolean threadstart = false;
+
     Calender_Dao calender_dao;
     User_Dao user_dao;
     long dbinputTime = 0;
@@ -109,6 +111,7 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
     Animation fade_in, fade_out;
 
     View.OnClickListener cl;
+
 
     // 현재 시간 실시간으로 구해오기
 
@@ -184,7 +187,6 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
         //                 2. TextToSpeech.QUEUE_ADD - 진행중인 음성 출력이 끝난 후에 이번 TTS의 음성 출력
         tts.speak(text, TextToSpeech.QUEUE_FLUSH, null);
     }
-
 
 
     class MainTimerTask extends TimerTask {
@@ -430,7 +432,7 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
         );
         int appData = calender_like_data.size();
 
-        Toast.makeText(getActivity().getApplication(), YearData + "-" + monthData + "-" + dayData, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(getActivity().getApplication(), YearData + "-" + monthData + "-" + dayData, Toast.LENGTH_SHORT).show();
 
         Log.v("HSH", Integer.toString(((UidCode) getActivity().getApplication()).getStatic_day()));
 
@@ -468,6 +470,8 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
         list_itemAdapter.notifyDataSetChanged();
         recyclerView.startLayoutAnimation();
 
+
+
 //        for (int i = 0; i < listDB; i++) {
 //            List_Item list_item = new List_Item();
 //            list_item.setTime("14:00" + "-" + i); // 시간
@@ -477,7 +481,7 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
 //            list_itemAdapter.addItem(list_item);
 //        }
         //적용
-        list_itemAdapter.notifyDataSetChanged();
+//        list_itemAdapter.notifyDataSetChanged();
 
         tts = new TextToSpeech(getActivity().getApplicationContext(), new TextToSpeech.OnInitListener() {
             @Override
@@ -547,7 +551,7 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
             case R.id.floating_edit:
                 toggleFab();
 //                Toast.makeText(this, "일정 상세 등록 팝업", Toast.LENGTH_SHORT).show();
-                Toast.makeText(getActivity(), "일정 상세 등록 팝업", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getActivity(), "일정 상세 등록 팝업", Toast.LENGTH_SHORT).show();
                 Intent i = new Intent(getActivity(), AddSchedule.class);
 
                 startActivity(i);
@@ -629,6 +633,7 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
         }
 
     }
+
 
     //플로팅버튼 동작
     private void toggleFab() {
