@@ -35,6 +35,11 @@ public class Navigation extends AppCompatActivity {
     private Permission permission;
 
     @Override
+    public void onBackPressed() {
+        //super.onBackPressed();
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.navigation);
