@@ -1,12 +1,14 @@
 package com.example.calender.Main_Basic;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -23,6 +25,16 @@ public class List_ItemAdapter extends RecyclerView.Adapter<List_ItemAdapter.View
     Context context;
 
     static String TAG = "Adapter";
+
+    public interface OnItemLongClickListener{
+        void onItemClick(View v, int pos);
+    }
+
+    private OnItemLongClickListener mListener = null;
+
+    public void setOnitemLongClickListener(OnItemLongClickListener listener){
+        this.mListener = listener;
+    }
 
     @NonNull
     @Override
@@ -64,7 +76,11 @@ public class List_ItemAdapter extends RecyclerView.Adapter<List_ItemAdapter.View
         listItems.clear();
     }
 
-    static class ViewHolder extends RecyclerView.ViewHolder{
+    public void removeItem(int pos){
+        listItems.remove(pos);
+    }
+
+    public class ViewHolder extends RecyclerView.ViewHolder{
 
         TextView time;
         TextView title;
@@ -76,6 +92,20 @@ public class List_ItemAdapter extends RecyclerView.Adapter<List_ItemAdapter.View
             time = itemView.findViewById(R.id.schedule_time);
             title = itemView.findViewById(R.id.schedule_title);
             text = itemView.findViewById(R.id.schedule_text);
+
+            itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    int pos = getAdapterPosition();
+                    if(pos != RecyclerView.NO_POSITION){
+                        if(mListener != null){
+                            mListener.onItemClick(v, pos);
+                        }
+                    }
+                    return true;
+                }
+            });
+
         }
 
         public void setItem(List_Item item){

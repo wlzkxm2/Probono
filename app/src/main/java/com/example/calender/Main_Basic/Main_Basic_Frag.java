@@ -6,6 +6,7 @@ import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.media.Image;
 import android.os.Bundle;
 import android.os.Handler;
@@ -469,6 +470,49 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
 
         list_itemAdapter.notifyDataSetChanged();
         recyclerView.startLayoutAnimation();
+
+        // 아이템 클릭 이벤트
+        /*
+        list_itemAdapter.setOnitemClickListener(new List_ItemAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View v, int pos) {
+                // 해당 아이템의 포지션 정보를 제공
+                Toast.makeText(getActivity().getApplication(), "test : " + pos, Toast.LENGTH_SHORT).show();
+            }
+        });
+        */
+
+        list_itemAdapter.setOnitemLongClickListener(new List_ItemAdapter.OnItemLongClickListener() {
+            @Override
+            public void onItemClick(View v, int pos) {
+//                Toast.makeText(getActivity().getApplicationContext(), "LongClick : " + pos, Toast.LENGTH_SHORT).show();
+
+                AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
+                dialog.setTitle("");        // 다이얼로그 타이틀
+                dialog.setMessage("정말로 해당 일정을 삭제하시겠습니까?");
+                dialog.setPositiveButton("삭제", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        calender_dao.deleteCalendar(calender_like_data.get(pos).getNum());
+
+                        Toast.makeText(getActivity().getApplicationContext(), "calender_like_data.get(pos).getNum() : " + calender_like_data.get(pos).getNum(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity().getApplicationContext(), "삭제확인", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+                dialog.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(getActivity().getApplicationContext(), "삭제취소", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+                dialog.show();
+
+            }
+        });
+        
 
 
 

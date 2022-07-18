@@ -47,6 +47,9 @@ public interface Calender_Dao {
     @Query("select * from calender_db where num != :nums")
     List<Calender_DB> loadnotFirstData(int nums);
 
+    @Query("delete from calender_db where num = :nums")
+    void deleteCalendar(int nums);
+
     // 데이터 삽입
     @Insert
     void insertAll(Calender_DB calender_db);
