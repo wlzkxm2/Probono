@@ -13,12 +13,28 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.calender.Main_Easy.List_ItemAdapter_Easy;
 import com.example.calender.R;
 import java.util.ArrayList;
 
 public class List_ItemAdapter extends RecyclerView.Adapter<List_ItemAdapter.ViewHolder>{
 
     ArrayList<List_Item> listItems = new ArrayList<List_Item>();
+
+    //===== 일정 리스트 클릭 이벤트 구현을 위해 추가된 코드 ==========================
+    // OnItemClickListener 인터페이스 선언
+    public interface OnItemClickListener {
+        void onItemClicked(View v, int pos);
+    }
+
+    // OnItemClickListener 참조 변수 선언
+    private OnItemClickListener itemClickListener;
+
+    // OnItemClickListener 전달 메소드
+    public void setOnItemClickListener (OnItemClickListener listener) {
+        itemClickListener = listener;
+    }
+    //======================================================================
 
     int lastPosition = -1;
 
@@ -44,6 +60,22 @@ public class List_ItemAdapter extends RecyclerView.Adapter<List_ItemAdapter.View
         View itemView = inflater.inflate(R.layout.item_layout, viewGroup, false);
 
         context = viewGroup.getContext();
+
+        //===== 일정 리스트 클릭 이벤트 구현을 위해 추가된 코드 =====================
+
+        List_ItemAdapter.ViewHolder viewHolder = new List_ItemAdapter.ViewHolder(itemView);
+        itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String data = "";
+                int position = viewHolder.getAdapterPosition();
+                if (position != RecyclerView.NO_POSITION) {
+//                    data = viewHolder.getTextView().getText().toString();
+                }
+                itemClickListener.onItemClicked(v, position);
+            }
+        });
+        //==================================================================
 
         return new ViewHolder(itemView);
     }

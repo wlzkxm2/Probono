@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="200dp"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/schedule_basic_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="일정 제목"
+        android:singleLine="false"
+        android:textColor="#5A88FF"
+        />
+
+    <EditText
+        android:id="@+id/schedule_basic_title_ed"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="일정 제목이 들어가는 곳"
+        android:singleLine="false"
+        />
+
+    <TextView
+        android:id="@+id/schedule_basic_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="일정 시간"
+        android:textColor="#5A88FF"
+        android:singleLine="false"
+        />
+
+    <EditText
+        android:id="@+id/schedule_basic_time_ed"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="일정 시간 들어가는 곳"
+        android:singleLine="false"/>
+
+    <TextView
+        android:id="@+id/schedule_basic_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="일정 내용"
+        android:textColor="#5A88FF"
+        android:singleLine="false"
+        />
+
+    <EditText
+        android:id="@+id/schedule_basic_text_ed"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="일정 내용 들어가는 곳(내용이 길어지면 아래로 내려갑니다ㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏ)"
+        android:singleLine="false"/>
+
+
+
+</LinearLayout>

@@ -420,7 +420,11 @@
         android:layout_height="match_parent"
         android:layout_gravity="left"
         android:id="@+id/drawerView"
-        android:background="#5559b4">
+        android:background="#5559b4"
+        android:clickable="true"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        >
 
         <RelativeLayout
             android:layout_width="match_parent"
