@@ -3,6 +3,7 @@ package com.example.calender.Main_Basic;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -445,16 +446,19 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
             @Override
             public void onItemClicked(View v, int pos) {
 
-//                final EditText edit_schedule = new EditText(getActivity());
                 AlertDialog.Builder dialog = new AlertDialog.Builder(new ContextThemeWrapper(getActivity(), R.style.AlertDialogTheme));
-//                dialog.setTitle("일정 상세 정보");
-//                dialog.setMessage("일정 제목");
-//                dialog.setView(edit_schedule);
 
                 LayoutInflater inflater= getLayoutInflater();
                 View view = inflater.inflate(R.layout.schedule_basic, null);
-
                 dialog.setView(view);
+
+                final EditText schedule_title = (EditText) view.findViewById(R.id.schedule_basic_title_ed);
+                final EditText schedule_time = (EditText) view.findViewById(R.id.schedule_basic_time_ed);
+                final EditText schedule_text = (EditText) view.findViewById(R.id.schedule_basic_text_ed);
+
+                schedule_title.setText(calender_like_data.get(pos).get_titles().toString());
+                schedule_time.setText("ㅇㅇ");
+                schedule_text.setText("ㅇㅇㅇ");
 
                 // 저장 버튼
                 dialog.setPositiveButton("저장(개발중)", new DialogInterface.OnClickListener() {
