@@ -439,7 +439,7 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
 
         Log.v("HSH", Integer.toString(((UidCode) getActivity().getApplication()).getStatic_day()));
 
-        list_itemAdapter.removeAllItem();
+//        list_itemAdapter.removeAllItem();
 
         // 일정 리스트 눌러서 뜨는 다이얼로그
         list_itemAdapter.setOnItemClickListener(new List_ItemAdapter.OnItemClickListener() {
@@ -456,7 +456,7 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
                 final EditText schedule_time = (EditText) view.findViewById(R.id.schedule_basic_time_ed);
                 final EditText schedule_text = (EditText) view.findViewById(R.id.schedule_basic_text_ed);
 
-                schedule_title.setText(calender_like_data.get(pos).get_titles().toString());
+                schedule_title.setText(calender_like_data.get(pos).get_titles());
                 schedule_time.setText("ㅇㅇ");
                 schedule_text.setText("ㅇㅇㅇ");
 

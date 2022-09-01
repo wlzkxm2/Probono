@@ -68,11 +68,11 @@ public class List_ItemAdapter extends RecyclerView.Adapter<List_ItemAdapter.View
             @Override
             public void onClick(View v) {
                 String data = "";
-                int position = viewHolder.getAdapterPosition();
-                if (position != RecyclerView.NO_POSITION) {
+                int pos = viewHolder.getAdapterPosition();
+                if (pos != RecyclerView.NO_POSITION) {
 //                    data = viewHolder.getTextView().getText().toString();
                 }
-                itemClickListener.onItemClicked(v, position);
+                itemClickListener.onItemClicked(v, pos);
             }
         });
         //==================================================================
