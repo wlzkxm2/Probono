@@ -453,22 +453,33 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
                 dialog.setView(view);
 
                 final EditText schedule_title = (EditText) view.findViewById(R.id.schedule_basic_title_ed);
-                final EditText schedule_time = (EditText) view.findViewById(R.id.schedule_basic_time_ed);
+                final EditText schedule_start_time = (EditText) view.findViewById(R.id.schedule_basic_start_time_ed);
+                final EditText schedule_end_time = (EditText) view.findViewById(R.id.schedule_basic_end_time_ed);
                 final EditText schedule_text = (EditText) view.findViewById(R.id.schedule_basic_text_ed);
 
+                List_Item calList = new List_Item();
+                String startTime = String.format("%04d", calender_like_data.get(pos).getStart_time());
+                String valueStartTime = startTime.substring(0,2) + " : " + startTime.substring(2, startTime.length());
+                String EndTime = String.format("%04d", calender_like_data.get(pos).getEnd_time());
+                String valueEndTime = EndTime.substring(0,2) + " : " + EndTime.substring(2, EndTime.length());
+
                 schedule_title.setText(calender_like_data.get(pos).get_titles());
-                schedule_time.setText("ㅇㅇ");
-                schedule_text.setText("ㅇㅇㅇ");
+                schedule_start_time.setText(valueStartTime);
+                schedule_end_time.setText(valueEndTime);
+                schedule_text.setText(calender_like_data.get(pos).get_subtitle());
+
+
 
                 // 저장 버튼
                 dialog.setPositiveButton("저장(개발중)", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.cancel();
+
                     }
                 });
 
                 // 삭제 버튼
-                dialog.setNegativeButton("삭제(개발중)",new DialogInterface.OnClickListener() {
+                dialog.setNegativeButton("삭제",new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         calender_dao.deleteCalendar(calender_like_data.get(pos).getNum());
                     }

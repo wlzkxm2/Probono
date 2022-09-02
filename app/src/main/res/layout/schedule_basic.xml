@@ -12,14 +12,16 @@
         android:text="일정 제목"
         android:singleLine="false"
         android:textColor="#5A88FF"
+        android:ellipsize="end"
         />
 
     <EditText
         android:id="@+id/schedule_basic_title_ed"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="일정 제목이 들어가는 곳"
-        android:singleLine="false"
+        android:hint="일정 제목이 설정되지 않았습니다"
+        android:ellipsize="end"
+        android:singleLine="true"
         />
 
     <TextView
@@ -30,13 +32,31 @@
         android:textColor="#5A88FF"
         android:singleLine="false"
         />
+    <androidx.appcompat.widget.LinearLayoutCompat
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <EditText
+            android:id="@+id/schedule_basic_start_time_ed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="시작"
+            android:singleLine="false"/>
 
-    <EditText
-        android:id="@+id/schedule_basic_time_ed"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="일정 시간 들어가는 곳"
-        android:singleLine="false"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="~"/>
+
+        <EditText
+            android:id="@+id/schedule_basic_end_time_ed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="종료"
+            android:singleLine="false"/>
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
     <TextView
         android:id="@+id/schedule_basic_text"
@@ -51,7 +71,7 @@
         android:id="@+id/schedule_basic_text_ed"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="일정 내용 들어가는 곳(내용이 길어지면 아래로 내려갑니다ㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏ)"
+        android:hint="일정 내용이 등록되지 않았습니다"
         android:singleLine="false"/>
 
 
