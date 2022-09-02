@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.room.Room;
@@ -20,7 +21,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import io.reactivex.rxjava3.annotations.NonNull;
 
-public class Navigation extends AppCompatActivity {
+public class Navigation extends FragmentActivity {
 
     Calender_Dao calender_dao;
     User_Dao user_dao;

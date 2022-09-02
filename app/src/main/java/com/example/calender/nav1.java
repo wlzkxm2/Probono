@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -15,7 +16,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import io.reactivex.rxjava3.annotations.NonNull;
 
-public class nav1 extends AppCompatActivity {
+public class nav1 extends FragmentActivity {
 
     private BottomNavigationView bottomNavigationView;
     private FragmentManager fm;
