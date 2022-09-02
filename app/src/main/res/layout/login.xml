@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/test2"
 
     >
     <ImageButton
@@ -11,13 +12,14 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:src="@drawable/arrow_left_line"
-        android:background="#ffffff"/>
+        android:background="@color/test2"/>
     <!--이메일 쪽이다-->
     <TextView
         android:id="@+id/textView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAlignment="center"
+        android:textColor="@color/test1"
         android:layout_marginTop="90dp"
         android:textSize="50sp"
         android:text="CALANDER" />
@@ -64,7 +66,7 @@
         android:id="@+id/Register_Btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="#000000"
+        android:textColor="@color/test1"
         android:textSize="20sp"
         android:text="@string/Register"
         android:background="@drawable/exam"/>
@@ -76,7 +78,7 @@
         android:layout_height="wrap_content"
         android:backgroundTint="#FFFFFF"
         android:background="@drawable/exam"
-        android:textColor="#000000"
+        android:textColor="@color/test1"
         android:textSize="20sp"
         android:text="@string/Login" />
 

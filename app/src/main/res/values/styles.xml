@@ -106,6 +106,5 @@
     <style name="CalendarDateTextAppearance" parent="Theme.MaterialComponents.DayNight">
         <item name="android:textColor">@color/test1</item>
         <item name="android:textSize">14sp</item>
-
     </style>
 </resources>
