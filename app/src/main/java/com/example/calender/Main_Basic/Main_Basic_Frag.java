@@ -58,9 +58,6 @@ import java.util.TimerTask;
 
 import static android.speech.tts.TextToSpeech.ERROR;
 
-// text
-// test
-
 public class Main_Basic_Frag extends Fragment implements View.OnClickListener, TextToSpeech.OnInitListener {
 
     // TTS 버튼
@@ -497,7 +494,7 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
-                        calender_dao.deleteCalendar(calender_like_data.get(pos).getNum());      // DB 위치 서치
+                        calender_dao.deleteCalendar(calender_like_data.get(pos).getNum());
 
                         Toast.makeText(getActivity().getApplicationContext(), "calender_like_data.get(pos).getNum() : " + calender_like_data.get(pos).getNum(), Toast.LENGTH_SHORT).show();
                         Toast.makeText(getActivity().getApplicationContext(), "삭제확인", Toast.LENGTH_SHORT).show();
