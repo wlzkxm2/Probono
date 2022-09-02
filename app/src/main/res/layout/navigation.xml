@@ -21,7 +21,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:background="?android:attr/windowBackground"
+        android:background="@color/test"
         app:itemIconTint="#5A88FF"
         app:itemTextColor="#5A88FF"
         app:menu="@menu/navi_menu" />

@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#F2F2F6"
+    android:background="@color/test"
 
     >
 
@@ -13,6 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:textColor="@color/test1"
         android:text="@string/Setting"
         android:textSize="50sp"
         android:textAlignment="center"
@@ -69,6 +70,7 @@
             android:layout_marginBottom="9dp"
             android:text="@string/current_normal"
             android:textAlignment="center"
+            android:textColor="@color/test1"
             android:textSize="30sp" />
 
 
@@ -96,7 +98,7 @@
             android:text="@string/account"
             android:textAlignment="textStart"
             android:textSize="20sp"
-            android:textColor="#000000" />
+            android:textColor="@color/test1" />
 
         <Button
             android:id="@+id/notificationsetting_btn"
@@ -107,7 +109,7 @@
             android:drawableLeft="@drawable/ic_notification_line"
             android:text="@string/notification"
             android:textAlignment="textStart"
-            android:textColor="#000000"
+            android:textColor="@color/test1"
             android:textSize="20sp" />
         <!--언어 설정 버튼이다-->
         <Button
@@ -115,7 +117,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:textColor="#000000"
+            android:textColor="@color/test1"
             android:textSize="20sp"
             android:background="@drawable/example1"
             android:drawableLeft="@drawable/ic_contrast_2_line"
