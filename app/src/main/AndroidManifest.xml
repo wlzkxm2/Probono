@@ -23,7 +23,7 @@
 
         <!-- 제일먼저 실행되는 액티비티 -->
         <activity
-            android:name=".splashscreen"
+            android:name=".MainActivity"
             android:exported="true">
 
             <intent-filter>
@@ -32,7 +32,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
+<!--        <activity android:name=".MainActivity"/>-->
         <!-- 캘린더 엑티비티 -->
 
         <activity
@@ -118,7 +118,6 @@
         <activity android:name=".login"/>
         <activity android:name=".setting.Setting_main_easy"/>
         <activity android:name=".UserProfile"/>
-        <activity android:name=".MainActivity"/>
 
 
 

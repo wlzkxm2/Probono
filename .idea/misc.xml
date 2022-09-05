@@ -60,8 +60,10 @@
         <entry key="..\:/Users/hmlee/Documents/GitHub/Probono/app/src/main/res/drawable/exam.xml" value="0.17" />
         <entry key="..\:/Users/hmlee/Documents/GitHub/Probono/app/src/main/res/drawable/example1.xml" value="0.363" />
         <entry key="..\:/Users/hmlee/Documents/GitHub/Probono/app/src/main/res/drawable/ic_contrast_2_line.xml" value="0.2855" />
+        <entry key="..\:/Users/hmlee/Documents/GitHub/Probono/app/src/main/res/drawable/ic_edit_line1.xml" value="0.148" />
         <entry key="..\:/Users/hmlee/Documents/GitHub/Probono/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2855" />
         <entry key="..\:/Users/hmlee/Documents/GitHub/Probono/app/src/main/res/drawable/ic_main.xml" value="0.363" />
+        <entry key="..\:/Users/hmlee/Documents/GitHub/Probono/app/src/main/res/drawable/ic_more.xml" value="0.1575" />
         <entry key="..\:/Users/hmlee/Documents/GitHub/Probono/app/src/main/res/drawable/ic_notification_line.xml" value="0.2855" />
         <entry key="..\:/Users/hmlee/Documents/GitHub/Probono/app/src/main/res/drawable/ic_tts.xml" value="0.363" />
         <entry key="..\:/Users/hmlee/Documents/GitHub/Probono/app/src/main/res/drawable/ic_tts_big.xml" value="0.2855" />
@@ -74,7 +76,7 @@
         <entry key="..\:/Users/hmlee/Documents/GitHub/Probono/app/src/main/res/layout/darkmode_easy.xml" value="0.14635416666666667" />
         <entry key="..\:/Users/hmlee/Documents/GitHub/Probono/app/src/main/res/layout/login.xml" value="0.3619791666666667" />
         <entry key="..\:/Users/hmlee/Documents/GitHub/Probono/app/src/main/res/layout/login_register.xml" value="0.33" />
-        <entry key="..\:/Users/hmlee/Documents/GitHub/Probono/app/src/main/res/layout/main_basic.xml" value="0.33" />
+        <entry key="..\:/Users/hmlee/Documents/GitHub/Probono/app/src/main/res/layout/main_basic.xml" value="0.5" />
         <entry key="..\:/Users/hmlee/Documents/GitHub/Probono/app/src/main/res/layout/main_basic_title.xml" value="0.3619791666666667" />
         <entry key="..\:/Users/hmlee/Documents/GitHub/Probono/app/src/main/res/layout/main_easy.xml" value="0.23777173913043478" />
         <entry key="..\:/Users/hmlee/Documents/GitHub/Probono/app/src/main/res/layout/maintestlayout.xml" value="0.14791666666666667" />
