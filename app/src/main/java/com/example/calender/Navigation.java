@@ -21,7 +21,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import io.reactivex.rxjava3.annotations.NonNull;
 
-public class Navigation extends FragmentActivity {
+public class Navigation extends AppCompatActivity {
 
     Calender_Dao calender_dao;
     User_Dao user_dao;
@@ -32,7 +32,7 @@ public class Navigation extends FragmentActivity {
     private Main_Basic_Frag main_basic_frag;
     private Calender_Basic_Frag calender_basic_frag;
     private Setting_main setting_main;
-
+    String themeColor;
     private Permission permission;
 
     @Override
@@ -44,7 +44,8 @@ public class Navigation extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.navigation);
-
+        themeColor= ThemeUtil.modLoad(getApplicationContext());
+        ThemeUtil.applyTheme(themeColor);
         permissionCheck();
 
         Calender_DBSet dbController = Room.databaseBuilder(getApplicationContext(), Calender_DBSet.class, "CalenderDB")

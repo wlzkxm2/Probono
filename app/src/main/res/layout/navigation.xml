@@ -7,14 +7,14 @@
     tools:context=".MainActivity"
     android:orientation="vertical">
 
-    <fragment
+    <FrameLayout
         android:id="@+id/navi_fragment_main"
         android:name="com.example.calender.Main_Basic.Main_Basic_Frag"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="18">
 
-    </fragment>
+    </FrameLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/navi_view"
