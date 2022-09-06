@@ -19,6 +19,21 @@ public class List_ItemAdapter_Easy extends RecyclerView.Adapter<List_ItemAdapter
 
     ArrayList<List_Item> listItems = new ArrayList<List_Item>();
 
+    //===== 일정 리스트 클릭 이벤트 구현을 위해 추가된 코드 ==========================
+    // OnItemClickListener 인터페이스 선언
+    public interface OnItemClickListener {
+        void onItemClicked(int position, String data);
+    }
+
+    // OnItemClickListener 참조 변수 선언
+    private OnItemClickListener itemClickListener;
+
+    // OnItemClickListener 전달 메소드
+    public void setOnItemClickListener (OnItemClickListener listener) {
+        itemClickListener = listener;
+    }
+    //======================================================================
+
     int lastPosition = -1;
 
     Context context;
@@ -33,6 +48,22 @@ public class List_ItemAdapter_Easy extends RecyclerView.Adapter<List_ItemAdapter
         View itemView = inflater.inflate(R.layout.item_layout_easy, viewGroup, false);
 
         context = viewGroup.getContext();
+
+        //===== [Click 이벤트 구현을 위해 추가된 코드] =====================
+
+        List_ItemAdapter_Easy.ViewHolder viewHolder = new List_ItemAdapter_Easy.ViewHolder(itemView);
+        itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String data = "";
+                int position = viewHolder.getAdapterPosition();
+                if (position != RecyclerView.NO_POSITION) {
+//                    data = viewHolder.getTextView().getText().toString();
+                }
+                itemClickListener.onItemClicked(position, data);
+            }
+        });
+        //==================================================================
 
         return new ViewHolder(itemView);
     }

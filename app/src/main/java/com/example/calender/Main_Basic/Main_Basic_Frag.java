@@ -3,6 +3,7 @@ package com.example.calender.Main_Basic;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -41,6 +42,7 @@ import com.example.calender.DataBase.Calender_DBSet;
 import com.example.calender.DataBase.Calender_Dao;
 import com.example.calender.DataBase.User_DBset;
 import com.example.calender.DataBase.User_Dao;
+import com.example.calender.Main_Easy.List_ItemAdapter_Easy;
 import com.example.calender.Main_Easy.Main_Easy;
 import com.example.calender.R;
 import com.example.calender.StaticUidCode.UidCode;
@@ -437,7 +439,55 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
 
         Log.v("HSH", Integer.toString(((UidCode) getActivity().getApplication()).getStatic_day()));
 
-        list_itemAdapter.removeAllItem();
+//        list_itemAdapter.removeAllItem();
+
+        // 일정 리스트 눌러서 뜨는 다이얼로그
+        list_itemAdapter.setOnItemClickListener(new List_ItemAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClicked(View v, int pos) {
+
+                AlertDialog.Builder dialog = new AlertDialog.Builder(new ContextThemeWrapper(getActivity(), R.style.AlertDialogTheme));
+
+                LayoutInflater inflater= getLayoutInflater();
+                View view = inflater.inflate(R.layout.schedule_basic, null);
+                dialog.setView(view);
+
+                final EditText schedule_title = (EditText) view.findViewById(R.id.schedule_basic_title_ed);
+                final EditText schedule_start_time = (EditText) view.findViewById(R.id.schedule_basic_start_time_ed);
+                final EditText schedule_end_time = (EditText) view.findViewById(R.id.schedule_basic_end_time_ed);
+                final EditText schedule_text = (EditText) view.findViewById(R.id.schedule_basic_text_ed);
+
+                List_Item calList = new List_Item();
+                String startTime = String.format("%04d", calender_like_data.get(pos).getStart_time());
+                String valueStartTime = startTime.substring(0,2) + " : " + startTime.substring(2, startTime.length());
+                String EndTime = String.format("%04d", calender_like_data.get(pos).getEnd_time());
+                String valueEndTime = EndTime.substring(0,2) + " : " + EndTime.substring(2, EndTime.length());
+
+                schedule_title.setText(calender_like_data.get(pos).get_titles());
+                schedule_start_time.setText(valueStartTime);
+                schedule_end_time.setText(valueEndTime);
+                schedule_text.setText(calender_like_data.get(pos).get_subtitle());
+
+
+
+                // 저장 버튼
+                dialog.setPositiveButton("저장(개발중)", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+
+                    }
+                });
+
+                // 삭제 버튼
+                dialog.setNegativeButton("삭제",new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        calender_dao.deleteCalendar(calender_like_data.get(pos).getNum());
+                    }
+                });
+                dialog.show();
+
+            }
+        });
 
         if (calender_like_data.isEmpty()) {
             nolist_add.setVisibility(View.VISIBLE);
@@ -650,7 +700,7 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
 //            final EditText edit_dday = new EditText(this.getActivity());
             final EditText edit_dday_text = new EditText(this.getActivity());
             AlertDialog.Builder dialog = new AlertDialog.Builder(new ContextThemeWrapper(getActivity(), R.style.AlertDialogTheme));
-            dialog.setTitle("D-day를 설정해주세요");
+            dialog.setTitle("목표 D-day 일정을 입력해주세요");
             dialog.setView(edit_dday_text);
             dialog.setView(edit_dday_text);
 //            edit_dday.setText("날짜"); // D-day 날짜

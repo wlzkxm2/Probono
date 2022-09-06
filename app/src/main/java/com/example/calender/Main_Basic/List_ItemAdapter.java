@@ -1,14 +1,12 @@
 package com.example.calender.Main_Basic;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -19,6 +17,21 @@ import java.util.ArrayList;
 public class List_ItemAdapter extends RecyclerView.Adapter<List_ItemAdapter.ViewHolder>{
 
     ArrayList<List_Item> listItems = new ArrayList<List_Item>();
+
+    //===== 일정 리스트 클릭 이벤트 구현을 위해 추가된 코드 ==========================
+    // OnItemClickListener 인터페이스 선언
+    public interface OnItemClickListener {
+        void onItemClicked(View v, int pos);
+    }
+
+    // OnItemClickListener 참조 변수 선언
+    private OnItemClickListener itemClickListener;
+
+    // OnItemClickListener 전달 메소드
+    public void setOnItemClickListener (OnItemClickListener listener) {
+        this.itemClickListener = listener;
+    }
+    //======================================================================
 
     int lastPosition = -1;
 
@@ -44,6 +57,12 @@ public class List_ItemAdapter extends RecyclerView.Adapter<List_ItemAdapter.View
         View itemView = inflater.inflate(R.layout.item_layout, viewGroup, false);
 
         context = viewGroup.getContext();
+
+        //===== 일정 리스트 클릭 이벤트 구현을 위해 추가된 코드 =====================
+
+
+
+        //==================================================================
 
         return new ViewHolder(itemView);
     }
@@ -106,6 +125,19 @@ public class List_ItemAdapter extends RecyclerView.Adapter<List_ItemAdapter.View
                 }
             });
 
+//            List_ItemAdapter.ViewHolder viewHolder = new List_ItemAdapter.ViewHolder(itemView);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int pos = getAdapterPosition();
+                    if(pos != RecyclerView.NO_POSITION){
+                        if(itemClickListener != null){
+                            itemClickListener.onItemClicked(v, pos);
+                        }
+                    }
+                    return;
+                }
+            });
         }
 
         public void setItem(List_Item item){

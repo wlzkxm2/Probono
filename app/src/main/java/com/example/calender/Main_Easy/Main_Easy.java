@@ -446,7 +446,7 @@ public class Main_Easy extends AppCompatActivity {
                     case R.id.main_easy_dday_text: // 디데이 내용
                         final EditText edit_dday_text = new EditText(Main_Easy.this);
                         AlertDialog.Builder dialog = new AlertDialog.Builder(new ContextThemeWrapper(Main_Easy.this, R.style.AlertDialogTheme));
-                        dialog.setTitle("D-day를 설정해주세요");
+                        dialog.setTitle("목표 D-day 일정을 입력해주세요");
                         dialog.setView(edit_dday_text);
                         dialog.setView(edit_dday_text);
                         edit_dday_text.setText(d_day_text.getText()); // D-day 내용
@@ -526,11 +526,46 @@ public class Main_Easy extends AppCompatActivity {
         main_easy_calendar_adapter = new Main_Easy_Calendar_Adapter();
         getDay();
         LinearLayoutManager layoutManager = (LinearLayoutManager) calendar_recyclerView.getLayoutManager();
-        layoutManager.scrollToPositionWithOffset(Integer.parseInt(today)-1, 270);
 
+        layoutManager.scrollToPositionWithOffset(Integer.parseInt(getToday())-1, singleAdapter.getItemCount()/2);
+
+//                layoutManager.scrollToPositionWithOffset(Integer.parseInt(today)-1, 270);
+
+//        calendar_recyclerView.scrollToPosition(singleAdapter.getItemCount()/2);
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view_easy);
         list_itemAdapter_easy = new List_ItemAdapter_Easy();
+
+        // 일정 리스트 눌러서 뜨는 다이얼로그
+        list_itemAdapter_easy.setOnItemClickListener(new List_ItemAdapter_Easy.OnItemClickListener() {
+            @Override
+            public void onItemClicked(int position, String data) {
+
+                final EditText edit_schedule = new EditText(Main_Easy.this);
+                AlertDialog.Builder dialog = new AlertDialog.Builder(new ContextThemeWrapper(Main_Easy.this, R.style.AlertDialogTheme));
+                dialog.setTitle("일정 제목");
+                dialog.setView(edit_schedule);
+                dialog.setView(edit_schedule);
+
+                // 완료 버튼
+                dialog.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+
+                // 편집 버튼
+                dialog.setNegativeButton("편집(개발중)",new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+
+                dialog.show();
+
+            }
+        });
+
         recyclerView.setAdapter(list_itemAdapter_easy);
 
         Date currentTime = Calendar.getInstance().getTime();
