@@ -4,6 +4,7 @@ package com.example.calender.Main_Basic;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -26,6 +27,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -346,9 +348,10 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
 
         // 디데이 다이얼로그
         d_day = (TextView) view.findViewById(R.id.main_basic_dday);
+
         d_day_text = (TextView) view.findViewById(R.id.main_basic_dday_text);
 
-        Log.v("mainflag", "Maindata : " + Maindata.get(0).get_mainActDTitle());
+//        Log.v("mainflag", "Maindata : " + Maindata.get(0).get_mainActDTitle());
 //        d_day_text.setText("default");
         if(!Maindata.get(0).get_mainActDTitle().isEmpty())
             d_day_text.setText(Maindata.get(0)._mainActDTitle);
@@ -365,7 +368,6 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
             maintitle_txt.setText("Title을 설정해주세요"); // 초기 제목
         }else
             maintitle_txt.setText(Maindata.get(0).get_mainActTitle());
-
 
         // 현재 시간
         now = view.findViewById(R.id.main_basic_now);
@@ -441,6 +443,8 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
 
 //        list_itemAdapter.removeAllItem();
 
+
+
         // 일정 리스트 눌러서 뜨는 다이얼로그
         list_itemAdapter.setOnItemClickListener(new List_ItemAdapter.OnItemClickListener() {
             @Override
@@ -453,9 +457,11 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
                 dialog.setView(view);
 
                 final EditText schedule_title = (EditText) view.findViewById(R.id.schedule_basic_title_ed);
-                final EditText schedule_start_time = (EditText) view.findViewById(R.id.schedule_basic_start_time_ed);
-                final EditText schedule_end_time = (EditText) view.findViewById(R.id.schedule_basic_end_time_ed);
+                final TextView schedule_start_time = (TextView) view.findViewById(R.id.schedule_basic_start_time_ed);
+                final TextView schedule_end_time = (TextView) view.findViewById(R.id.schedule_basic_end_time_ed);
                 final EditText schedule_text = (EditText) view.findViewById(R.id.schedule_basic_text_ed);
+                final TimePicker timePicker = new TimePicker(getActivity());
+
 
                 List_Item calList = new List_Item();
                 String startTime = String.format("%04d", calender_like_data.get(pos).getStart_time());
@@ -468,7 +474,19 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
                 schedule_end_time.setText(valueEndTime);
                 schedule_text.setText(calender_like_data.get(pos).get_subtitle());
 
+                schedule_start_time.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
 
+                        timePicker.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
+                            @Override
+                            public void onTimeChanged(TimePicker view, int hourOfDay, int minute) {
+
+                                schedule_start_time.setText(hourOfDay + "시" + minute + "분");
+                            }
+                        });
+                    }
+                });
 
                 // 저장 버튼
                 dialog.setPositiveButton("저장(개발중)", new DialogInterface.OnClickListener() {

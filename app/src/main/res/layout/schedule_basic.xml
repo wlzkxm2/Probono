@@ -27,32 +27,35 @@
     <TextView
         android:id="@+id/schedule_basic_time"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="30dp"
         android:text="일정 시간"
         android:textColor="#5A88FF"
         android:singleLine="false"
         />
     <androidx.appcompat.widget.LinearLayoutCompat
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="30dp"
         android:orientation="horizontal">
-        <EditText
+        <TextView
             android:id="@+id/schedule_basic_start_time_ed"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="시작"
+            android:textSize="20dp"
             android:singleLine="false"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="~"/>
+            android:text=" ~ "
+            android:textSize="20dp"/>
 
-        <EditText
+        <TextView
             android:id="@+id/schedule_basic_end_time_ed"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="종료"
+            android:textSize="20dp"
             android:singleLine="false"/>
 
 
@@ -73,6 +76,12 @@
         android:layout_height="wrap_content"
         android:hint="일정 내용이 등록되지 않았습니다"
         android:singleLine="false"/>
+
+    <TimePicker
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:timePickerMode="spinner"/>
+
 
 
 
