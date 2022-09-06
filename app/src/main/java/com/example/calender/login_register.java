@@ -8,11 +8,13 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentActivity;
 
 import org.w3c.dom.Text;
@@ -25,7 +27,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class login_register extends FragmentActivity {
+public class login_register extends AppCompatActivity {
 
     EditText user_id,
             user_pwd, user_pwdre,
@@ -38,7 +40,8 @@ public class login_register extends FragmentActivity {
     TextView userIDCheck_text;
 
     Button userIDCheck_btn, register_btn;
-
+    ImageButton back_btn;
+    View.OnClickListener cl;
     Boolean IdCheck = false,
             PwCheck = false;
 
@@ -64,9 +67,19 @@ public class login_register extends FragmentActivity {
         user_address = (EditText) findViewById(R.id.editText_address);
         user_detailaddress = (EditText) findViewById(R.id.editText_detailaddress);
         user_zipcode = (EditText) findViewById(R.id.editText_Zipcode);
-
+        back_btn=(ImageButton) findViewById(R.id.back_reg);
         userIDCheck_text = (TextView) findViewById(R.id.Text_IDCheck);
-
+        cl = new View.OnClickListener() {  //뒤로가기 버튼 누르면 화면 종료되도록 설정
+            @Override
+            public void onClick(View view) {
+                switch (view.getId()) {
+                    case R.id.back_reg:
+                        finish();
+                        break;
+                }
+            }
+        };
+        back_btn.setOnClickListener(cl);
         btnbranch = new View.OnClickListener() {
             @Override
             public void onClick(View view) {

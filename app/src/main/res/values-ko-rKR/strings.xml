@@ -43,4 +43,5 @@
     <string name="email_back">이메일 뒤</string>
     <string name="register_complete">가입완료</string>
     <string name="Setting">설정</string>
+    <string name="add_schedule">일정을 추가해주세요!</string>
 </resources>

@@ -71,4 +71,5 @@
     <string name="email_back">Last Email</string>
     <string name="register_complete">Complete Register</string>
     <string name="Setting">Setting</string>
+    <string name="add_schedule">Add the Schedule</string>
 </resources>
