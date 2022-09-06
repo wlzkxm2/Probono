@@ -23,7 +23,7 @@
 
         <!-- 제일먼저 실행되는 액티비티 -->
         <activity
-            android:name=".splashscreen"
+            android:name=".MainActivity"
             android:exported="true">
 
             <intent-filter>
@@ -118,8 +118,6 @@
         <activity android:name=".login"/>
         <activity android:name=".setting.Setting_main_easy"/>
         <activity android:name=".UserProfile"/>
-        <activity android:name=".MainActivity"/>
-
 
 
     </application>
