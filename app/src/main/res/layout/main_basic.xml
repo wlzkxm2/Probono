@@ -78,51 +78,14 @@
         app:layout_constraintVertical_bias="0.282" />
 
 
-    <!--    <TextView-->
-<!--        android:id="@+id/textView4"-->
-<!--        android:layout_width="10dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:gravity="right"-->
-<!--        android:text=""-->
-<!--        android:textColor="@color/black"-->
-<!--        android:textSize="24dp"-->
-<!--        android:textStyle="bold"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        app:layout_constraintVertical_bias="0.223" />-->
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
-        android:gravity="left"
-        android:text="D-11"
-        android:textColor="@color/test1"
-        android:textSize="24dp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/main_basic_dday_text"
-        app:layout_constraintHorizontal_bias="0.847"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.223" />
-
-    <TextView
-        android:id="@+id/main_basic_dday_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="디데이"
-        android:textColor="@color/test1"
-        android:textSize="24dp"
-        android:gravity="left"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.511"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.228"/>
+        app:layout_constraintVertical_bias="0.223">
 
         <TextView
             android:id="@+id/main_basic_dday"
@@ -143,12 +106,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
+            android:ellipsize="end"
             android:gravity="left"
+            android:singleLine="true"
             android:text="디데이"
             android:textColor="@color/black"
             android:textSize="24dp"
-            android:ellipsize="end"
-            android:singleLine="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/main_basic_dday"
             app:layout_constraintTop_toTopOf="parent"
