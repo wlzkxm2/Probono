@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#f2f2f6">
+    android:background="@color/test">
 
     <TextView
         android:id="@+id/setting_dark"
@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:text="@string/darkmode"
         android:textSize="50dp"
+        android:textColor="@color/test1"
         android:textAlignment="center"
         android:layout_marginTop="50dp"
        />
@@ -21,9 +22,9 @@
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:text="@string/lightmode"
-        android:textColor="#000000"
+        android:textColor="@color/test1"
         android:textSize="30dp"
-        android:background="@drawable/exam"
+        android:background="@drawable/example1"
         android:layout_marginTop="100dp"
         />
 
@@ -31,8 +32,17 @@
         android:id="@+id/dark_btn"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:textColor="#000000"
+        android:textColor="@color/test1"
         android:text="@string/Darkmode"
+        android:background="@drawable/exam"
+        android:textSize="30dp"
+        />
+    <Button
+        android:id="@+id/sys_btn"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:textColor="@color/test1"
+        android:text="시스템 태마 따라가기"
         android:background="@drawable/exam"
         android:textSize="30dp"
         />
@@ -40,7 +50,7 @@
         android:id="@+id/dark_back"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:textColor="#000000"
+        android:textColor="@color/test1"
         android:background="@drawable/exam"
         android:text="@string/back"
         android:textSize="30dp"

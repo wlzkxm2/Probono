@@ -37,7 +37,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     Calender_Dao calender_dao;
     User_Dao user_dao;
-
+    String themeColor;
     private  static final String TAG = "MainActivity";
 
     Button ttsbtn, calbtn;
@@ -60,8 +60,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 //        permissionCheck();
-
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        themeColor= ThemeUtil.modLoad(getApplicationContext());
+        ThemeUtil.applyTheme(themeColor);
+//        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         //<editor-fold desc="DB 기본 세팅 코드">
 
         // 캘린더 데이터베이스 정의
@@ -96,6 +97,7 @@ public class MainActivity extends AppCompatActivity {
             public void run() {
                 Intent intent = new Intent(MainActivity.this, Navigation.class);
                 startActivity(intent);
+                finish();
             }
         }, 2500);
 

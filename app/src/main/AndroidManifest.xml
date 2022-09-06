@@ -32,7 +32,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
+<!--        <activity android:name=".MainActivity"/>-->
         <!-- 캘린더 엑티비티 -->
 
         <activity
@@ -102,6 +102,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".nav1"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".setting.Setting_dark"/>
         <activity android:name=".setting.Setting_main"/>
         <activity android:name=".setting.Setting_account"/>
@@ -110,7 +118,6 @@
         <activity android:name=".login"/>
         <activity android:name=".setting.Setting_main_easy"/>
         <activity android:name=".UserProfile"/>
-        <activity android:name=".nav1"/>
 
 
 

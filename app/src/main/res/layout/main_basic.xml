@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
+    android:background="@color/test"
     android:foregroundTint="#5C2727"
     tools:context=".Main_Basic.Main_Basic">
 
@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="-7dp"
         android:background="@android:color/transparent"
-        android:src="@drawable/ic_edit_line"
+        android:src="@drawable/ic_edit_line1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.041"
@@ -30,7 +30,7 @@
         android:layout_marginStart="8dp"
         android:gravity="left"
         android:text="main_basic_title"
-        android:textColor="@color/black"
+        android:textColor="@color/test1"
         android:textSize="48dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -96,12 +96,33 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+
+        android:gravity="left"
+        android:text="D-11"
+        android:textColor="@color/test1"
+        android:textSize="24dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/main_basic_dday_text"
+        app:layout_constraintHorizontal_bias="0.847"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.223" />
+
+    <TextView
+        android:id="@+id/main_basic_dday_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="디데이"
+        android:textColor="@color/test1"
+        android:textSize="24dp"
+        android:gravity="left"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.511"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.228">
+        app:layout_constraintVertical_bias="0.228"/>
 
         <TextView
             android:id="@+id/main_basic_dday"
@@ -138,9 +159,8 @@
         android:id="@+id/main_basic_now"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="#FFFFFF"
         android:text="TextView"
-        android:textColor="@color/black"
+        android:textColor="@color/test1"
         android:textSize="18dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -275,7 +295,7 @@
         android:id="@+id/floating_main"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/white"
+        android:backgroundTint="@color/test"
         android:clickable="true"
         android:scaleType="fitCenter"
         android:src="@drawable/ic_more"

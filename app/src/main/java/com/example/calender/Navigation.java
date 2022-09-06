@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.room.Room;
@@ -31,7 +32,7 @@ public class Navigation extends AppCompatActivity {
     private Main_Basic_Frag main_basic_frag;
     private Calender_Basic_Frag calender_basic_frag;
     private Setting_main setting_main;
-
+    String themeColor;
     private Permission permission;
 
     @Override
@@ -43,7 +44,8 @@ public class Navigation extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.navigation);
-
+        themeColor= ThemeUtil.modLoad(getApplicationContext());
+        ThemeUtil.applyTheme(themeColor);
         permissionCheck();
 
         Calender_DBSet dbController = Room.databaseBuilder(getApplicationContext(), Calender_DBSet.class, "CalenderDB")
