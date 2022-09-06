@@ -97,7 +97,6 @@ public class MainActivity extends AppCompatActivity {
             public void run() {
                 Intent intent = new Intent(MainActivity.this, Navigation.class);
                 startActivity(intent);
-                finish();
             }
         }, 2500);
 

@@ -27,7 +27,7 @@ ImageView giflogo;
                 startActivity(intent);
                 finish();;
             }
-        },2000); // 스플래쉬 화면 3초동안 보이기
+        },4000); // 스플래쉬 화면 3초동안 보이기
     }
     protected void onPause() {
         super.onPause();
