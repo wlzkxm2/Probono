@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.media.Image;
 import android.os.Bundle;
 import android.os.Handler;
@@ -460,7 +461,6 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
                 final TextView schedule_start_time = (TextView) view.findViewById(R.id.schedule_basic_start_time_ed);
                 final TextView schedule_end_time = (TextView) view.findViewById(R.id.schedule_basic_end_time_ed);
                 final EditText schedule_text = (EditText) view.findViewById(R.id.schedule_basic_text_ed);
-                final TimePicker timePicker = new TimePicker(getActivity());
 
 
                 List_Item calList = new List_Item();
@@ -474,17 +474,62 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
                 schedule_end_time.setText(valueEndTime);
                 schedule_text.setText(calender_like_data.get(pos).get_subtitle());
 
-                schedule_start_time.setOnClickListener(new View.OnClickListener() {
+                final int startHour=Integer.parseInt(startTime.substring(0,2)), startMinute=Integer.parseInt(startTime.substring(2, startTime.length()));
+                final int endHour=Integer.parseInt(EndTime.substring(0,2)), endMinute=Integer.parseInt(EndTime.substring(2, startTime.length()));
+
+                schedule_start_time.setOnClickListener(new View.OnClickListener() { // 일정 시작 시간 타임피커
                     @Override
                     public void onClick(View view) {
+                        TimePickerDialog timePickerDialog = new TimePickerDialog
+                                (getActivity(), android.R.style.Theme_Holo_Light_Dialog, new TimePickerDialog.OnTimeSetListener() {
+                                    @Override
+                                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
 
-                        timePicker.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
-                            @Override
-                            public void onTimeChanged(TimePicker view, int hourOfDay, int minute) {
+                                    }
+                                },startHour, startMinute, true);
 
-                                schedule_start_time.setText(hourOfDay + "시" + minute + "분");
+                        // 타임피커 설정(확인) 버튼
+                        timePickerDialog.setButton(TimePickerDialog.BUTTON_POSITIVE, "설정", new DialogInterface.OnClickListener() {
+                            @Override public void onClick(DialogInterface dialogInterface, int i) {
+
                             }
                         });
+                        // 타임피커 취소 버튼
+                        timePickerDialog.setButton(TimePickerDialog.BUTTON_NEGATIVE, "취소", new DialogInterface.OnClickListener() {
+                            @Override public void onClick(DialogInterface dialogInterface, int i) {
+
+                            }
+                        });
+                        timePickerDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT)); // 타임피커 다이얼로그 뒷배경 여백 투명하게
+                        timePickerDialog.show();
+                    }
+                });
+
+                schedule_end_time.setOnClickListener(new View.OnClickListener() { // 일정 끝나는 시간 타임피커
+                    @Override
+                    public void onClick(View view) {
+                        TimePickerDialog timePickerDialog = new TimePickerDialog
+                                (getActivity(), android.R.style.Theme_Holo_Light_Dialog,new TimePickerDialog.OnTimeSetListener() {
+                                    @Override
+                                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+
+                                    }
+                                },endHour, endMinute, true);
+
+                        // 타임피커 설정(확인) 버튼
+                        timePickerDialog.setButton(TimePickerDialog.BUTTON_POSITIVE, "설정", new DialogInterface.OnClickListener() {
+                            @Override public void onClick(DialogInterface dialogInterface, int i) {
+
+                            }
+                        });
+                        // 타임피커 취소 버튼
+                        timePickerDialog.setButton(TimePickerDialog.BUTTON_NEGATIVE, "취소", new DialogInterface.OnClickListener() {
+                            @Override public void onClick(DialogInterface dialogInterface, int i) {
+
+                            }
+                        });
+                        timePickerDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT)); // 타임피커 다이얼로그 뒷배경 여백 투명하게
+                        timePickerDialog.show();
                     }
                 });
 

@@ -22,7 +22,7 @@
         android:name=".StaticUidCode.UidCode"
         android:windowSoftInputMode ="adjustNothing">
 
-<!--  EditText 입력시 화면이 키보드에 밀리면 
+<!--  EditText 입력시 화면이 키보드에 밀리면
       해당 액티비티에 android:windowSoftInputMode="adjustNothing" 추가 해주면 됨     -->
 
         <!-- 제일먼저 실행되는 액티비티 -->
