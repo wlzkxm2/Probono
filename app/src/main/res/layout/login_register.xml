@@ -20,8 +20,8 @@
                 android:id="@+id/back_reg"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:background="#00FFFFFF"
-                app:tint="#8F6CB1" />
+                android:src="@drawable/arrow_left_line"
+                android:background="@color/test" />
 
             <!--회원가입 쪽이다-->
             <TextView
@@ -67,7 +67,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/id_duplicate_check"
-                android:textColor="#000000" />
+                android:textColor="@color/test1" />
 
             <TextView
                 android:layout_width="match_parent"

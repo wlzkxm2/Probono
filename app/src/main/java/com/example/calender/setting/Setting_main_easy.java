@@ -17,7 +17,6 @@ import com.example.calender.DataBase.UserDB;
 import com.example.calender.DataBase.User_DBset;
 import com.example.calender.DataBase.User_Dao;
 import com.example.calender.Main_Easy.Main_Easy;
-import com.example.calender.Navigation;
 import com.example.calender.R;
 import com.example.calender.UserProfile;
 import com.example.calender.login;

@@ -43,4 +43,5 @@
     <string name="email_back">Eメールの裏</string>
     <string name="register_complete">加入完了</string>
     <string name="Setting">設定.</string>
+    <string name="add_schedule">日程を追加してください!</string>
 </resources>

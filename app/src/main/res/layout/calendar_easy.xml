@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
+    android:background="@color/test"
     android:orientation="vertical">
 
     <ScrollView
@@ -21,8 +21,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:mcv_selectionColor="#5A88FF"
-                app:mcv_showOtherDates="all">
-
+                app:mcv_showOtherDates="all"
+                app:mcv_arrowColor="@color/test1"
+                app:mcv_dateTextAppearance="@style/CalendarDateTextAppearance">
             </com.prolificinteractive.materialcalendarview.MaterialCalendarView>
 
             <androidx.recyclerview.widget.RecyclerView
@@ -85,7 +86,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Button"
-            android:textColor="#000000"
+            android:textColor="@color/test1"
             android:textColorHighlight="#000000"
             android:textColorHint="#000000"
             android:textColorLink="#000000" />
@@ -97,7 +98,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Button"
-            android:textColor="#000000" />
+            android:textColor="@color/test1" />
 
     </LinearLayout>
 

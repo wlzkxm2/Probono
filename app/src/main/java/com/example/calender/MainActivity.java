@@ -1,24 +1,15 @@
 package com.example.calender;
 
-import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.Toast;
-
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import androidx.room.Room;
 
 import com.bumptech.glide.Glide;
@@ -29,7 +20,6 @@ import com.example.calender.DataBase.UserDB;
 import com.example.calender.DataBase.User_DBset;
 import com.example.calender.DataBase.User_Dao;
 import com.example.calender.Permission.Permission;
-import com.example.calender.Main_Easy.Main_Easy;
 import com.example.calender.StaticUidCode.UidCode;
 
 import java.util.List;
@@ -97,6 +87,7 @@ public class MainActivity extends AppCompatActivity {
             public void run() {
                 Intent intent = new Intent(MainActivity.this, Navigation.class);
                 startActivity(intent);
+                finish();
             }
         }, 2500);
 
