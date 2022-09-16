@@ -180,7 +180,6 @@ public class AddSchedule extends AppCompatActivity {
                         calender_dao.insertAll(inputCalData);
                         finish();
 
-                        
                         break;
                     case R.id.allDayCheck:
                         if (allDayCheck.isChecked()){

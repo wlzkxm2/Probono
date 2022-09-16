@@ -19,12 +19,18 @@
         android:roundIcon="@mipmap/iconlauncher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Calender"
-        android:name=".StaticUidCode.UidCode">
+        android:name=".StaticUidCode.UidCode"
+        android:windowSoftInputMode ="adjustNothing">
+
+<!--  EditText 입력시 화면이 키보드에 밀리면
+      해당 액티비티에 android:windowSoftInputMode="adjustNothing" 추가 해주면 됨     -->
 
         <!-- 제일먼저 실행되는 액티비티 -->
         <activity
             android:name=".MainActivity"
-            android:exported="true">
+            android:exported="true"
+            android:windowSoftInputMode="adjustNothing">
+
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -66,11 +72,15 @@
 
         <activity
             android:name=".Main_Easy.Main_Easy"
-            android:exported="true">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
+
+            android:exported="true"
+            android:windowSoftInputMode="adjustNothing">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+
         </activity>
 
         <activity
@@ -96,11 +106,14 @@
         <!-- 네비게이션 엑티비티 -->
         <activity
             android:name=".Navigation"
-            android:exported="true">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
+
+            android:exported="true"
+            android:windowSoftInputMode="adjustNothing">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
         </activity>
         <activity
             android:name=".nav1"
@@ -118,6 +131,7 @@
         <activity android:name=".login"/>
         <activity android:name=".setting.Setting_main_easy"/>
         <activity android:name=".UserProfile"/>
+
 
 
     </application>
