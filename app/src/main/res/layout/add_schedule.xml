@@ -69,6 +69,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="24dp"
         android:text="하루종일"
+        android:textColor="@color/test1"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_Title" />
@@ -80,7 +81,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="24dp"
         android:text="TextView"
-        android:textColor="@color/black"
+        android:textColor="@color/test1"
         android:clickable="true"
         android:focusable="true"
         app:layout_constraintStart_toStartOf="parent"
@@ -93,7 +94,7 @@
         android:layout_marginTop="24dp"
         android:layout_marginEnd="32dp"
         android:text="TextView"
-        android:textColor="@color/black"
+        android:textColor="@color/test1"
         android:clickable="true"
         android:focusable="true"
         app:layout_constraintEnd_toEndOf="parent"
@@ -106,6 +107,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="24dp"
         android:text="0시0분"
+        android:textColor="@color/test1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/startDate" />
 
@@ -116,11 +118,12 @@
         android:layout_marginTop="24dp"
         android:layout_marginEnd="32dp"
         android:text="23시59분"
+        android:textColor="@color/test1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/endDate" />
 
 
-    //bool 값 출력 테스트용
+<!--    //bool 값 출력 테스트용-->
     <!--    <TextView-->
 <!--        android:id="@+id/booltest"-->
 <!--        android:layout_width="wrap_content"-->
