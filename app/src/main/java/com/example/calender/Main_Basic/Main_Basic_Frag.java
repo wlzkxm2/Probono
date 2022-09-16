@@ -35,6 +35,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
@@ -312,6 +313,10 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.main_basic, container, false);
+
+        FragmentTransaction ft = getFragmentManager().beginTransaction();
+        ft.detach(this).attach(this).commit();
+
         // TTS 버튼
         main_basic_TTS_btn = view.findViewById(R.id.tts_button);
 
@@ -444,15 +449,11 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
 
 //        list_itemAdapter.removeAllItem();
 
-
-
         // 일정 리스트 눌러서 뜨는 다이얼로그
         list_itemAdapter.setOnItemClickListener(new List_ItemAdapter.OnItemClickListener() {
             @Override
             public void onItemClicked(View v, int pos) {
-
                 AlertDialog.Builder dialog = new AlertDialog.Builder(new ContextThemeWrapper(getActivity(), R.style.AlertDialogTheme));
-
                 LayoutInflater inflater= getLayoutInflater();
                 View view = inflater.inflate(R.layout.schedule_basic, null);
                 dialog.setView(view);
@@ -462,8 +463,6 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
                 final TextView schedule_end_time = (TextView) view.findViewById(R.id.schedule_basic_end_time_ed);
                 final EditText schedule_text = (EditText) view.findViewById(R.id.schedule_basic_text_ed);
 
-
-                List_Item calList = new List_Item();
                 String startTime = String.format("%04d", calender_like_data.get(pos).getStart_time());
                 String valueStartTime = startTime.substring(0,2) + " : " + startTime.substring(2, startTime.length());
                 String EndTime = String.format("%04d", calender_like_data.get(pos).getEnd_time());
@@ -484,7 +483,9 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
                                 (getActivity(), android.R.style.Theme_Holo_Light_Dialog, new TimePickerDialog.OnTimeSetListener() {
                                     @Override
                                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-
+                                        String startHour = String.format("%02d",hourOfDay);
+                                        String startMinute = String.format("%02d",minute);
+                                        schedule_start_time.setText(startHour + " : " + startMinute);
                                     }
                                 },startHour, startMinute, true);
 
@@ -512,7 +513,9 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
                                 (getActivity(), android.R.style.Theme_Holo_Light_Dialog,new TimePickerDialog.OnTimeSetListener() {
                                     @Override
                                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-
+                                        String endHour = String.format("%02d",hourOfDay);
+                                        String endMinute = String.format("%02d",minute);
+                                        schedule_end_time.setText(endHour + " : " + endMinute);
                                     }
                                 },endHour, endMinute, true);
 
@@ -536,8 +539,12 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
                 // 저장 버튼
                 dialog.setPositiveButton("저장(개발중)", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
-
+//                        List<Calender_DB> loadDb = calender_dao.getAllData();
+//                        loadDb.get(pos).getNum();
+//                        Log.v("num",loadDb.get(pos).getNum()+"");
+//                        for (int i = 0; i < loadDb.size(); i++){
+//
+//                        }
                     }
                 });
 

@@ -179,7 +179,6 @@ public class AddSchedule extends Activity {
                         calender_dao.insertAll(inputCalData);
                         finish();
 
-                        
                         break;
                     case R.id.allDayCheck:
                         if (allDayCheck.isChecked()){

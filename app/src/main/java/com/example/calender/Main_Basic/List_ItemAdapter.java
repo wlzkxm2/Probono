@@ -1,6 +1,8 @@
 package com.example.calender.Main_Basic;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -78,6 +80,7 @@ public class List_ItemAdapter extends RecyclerView.Adapter<List_ItemAdapter.View
 
             List_Item listItem = listItems.get(position);
             viewHolder.setItem(listItem);
+            
         }
 
     }
