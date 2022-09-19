@@ -547,18 +547,18 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
                         Log.v("start start start",start+"");
                         Log.v("num",calender_like_data.get(pos).getNum()+"");
 
-                        for (int i = 0; i < loadDb.size(); i++){
-                            if (scheduleKey == loadDb.get(i).getNum()) {
-                                loadDb.get(i).setStart_time(Integer.parseInt(start));
-
-                            }
-                        }
-                        if (dbpos != Integer.parseInt(null)){
-                            Calender_DB calender_db = new Calender_DB();
-                            calender_db.setStart_time();
-                            calender_dao.updateData(loadDb);
-
-                        }
+//                        for (int i = 0; i < loadDb.size(); i++){
+//                            if (scheduleKey == loadDb.get(i).getNum()) {
+//                                loadDb.get(i).setStart_time(Integer.parseInt(start));
+//
+//                            }
+//                        }
+//                        if (dbpos != Integer.parseInt(null)){
+//                            Calender_DB calender_db = new Calender_DB();
+//                            calender_db.setStart_time();
+//                            calender_dao.updateData(loadDb);
+//
+//                        }
                     }
                 });
 
