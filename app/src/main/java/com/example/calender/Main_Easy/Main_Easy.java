@@ -540,6 +540,10 @@ public class Main_Easy extends AppCompatActivity {
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view_easy);
         list_itemAdapter_easy = new List_ItemAdapter_Easy();
+        recyclerView.setAdapter(list_itemAdapter_easy);
+
+        //화면 클리어
+        list_itemAdapter_easy.removeAllItem();
 
         Date currentTime = Calendar.getInstance().getTime();
         SimpleDateFormat yearFormat = new SimpleDateFormat("yyyy", Locale.getDefault());
@@ -680,7 +684,6 @@ public class Main_Easy extends AppCompatActivity {
             }
         });
 
-        recyclerView.setAdapter(list_itemAdapter_easy);
 
 //        Date currentTime = Calendar.getInstance().getTime();
 //        SimpleDateFormat yearFormat = new SimpleDateFormat("yyyy", Locale.getDefault());
@@ -695,9 +698,6 @@ public class Main_Easy extends AppCompatActivity {
 //                Integer.parseInt(monthData),
 //                Integer.parseInt(dayData)
 //        );
-
-        //화면 클리어
-        list_itemAdapter_easy.removeAllItem();
 
         // -------------------------------------------------------- DB 데이터 넣는곳
         if (calender_like_data.isEmpty()) {

@@ -26,7 +26,7 @@ public class List_ItemAdapter_Easy extends RecyclerView.Adapter<List_ItemAdapter
     }
 
     // OnItemClickListener 참조 변수 선언
-    private OnItemClickListener itemClickListener;
+    private static OnItemClickListener itemClickListener;
 
     // OnItemClickListener 전달 메소드
     public void setOnItemClickListener (OnItemClickListener listener) {
@@ -44,7 +44,7 @@ public class List_ItemAdapter_Easy extends RecyclerView.Adapter<List_ItemAdapter
         void onItemClick(View v, int pos);
     }
 
-    private OnItemLongClickListener mListener = null;
+    private static OnItemLongClickListener mListener = null;
 
     public void setOnitemLongClickListener(OnItemLongClickListener listener){
         this.mListener = listener;
@@ -104,6 +104,10 @@ public class List_ItemAdapter_Easy extends RecyclerView.Adapter<List_ItemAdapter
 
     public void removeAllItem(){
         listItems.clear();
+    }
+
+    public void removeItem(int pos){
+        listItems.remove(pos);
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder{
