@@ -71,6 +71,13 @@ public class nav1 extends AppCompatActivity {
                         break;
                     case R.id.navi_main:
                         setFrag(1);
+
+                        // 네비게이션 버튼 똑같은거 눌렀을 때 새로고침
+                        overridePendingTransition(0, 0);//인텐트 효과 없애기
+                        Intent intent = getIntent(); //인텐트
+                        startActivity(intent); //액티비티 열기
+                        overridePendingTransition(0, 0);//인텐트 효과 없애기
+
                         break;
                     case R.id.navi_setting:
                         setFrag(2);

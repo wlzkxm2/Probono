@@ -72,4 +72,5 @@
     <string name="register_complete">Complete Register</string>
     <string name="Setting">Setting</string>
     <string name="add_schedule">Add the Schedule</string>
+    <string name="add_goal">Add goal!</string>
 </resources>
