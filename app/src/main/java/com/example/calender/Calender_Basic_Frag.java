@@ -26,6 +26,8 @@ import com.example.calender.Main_Basic.List_Item;
 import com.example.calender.Main_Basic.List_ItemAdapter;
 import com.example.calender.StaticUidCode.UidCode;
 import com.example.calender.addschedule.AddSchedule;
+import com.example.calender.calendarSource.SaturdayDecorator;
+import com.example.calender.calendarSource.SundayDecorator;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
@@ -98,6 +100,12 @@ public class Calender_Basic_Frag extends Fragment {
         calender_dao = dbController.calender_dao();
 
         List<Calender_DB> calender_dbs = calender_dao.getAllData();
+
+        calendarView.addDecorators(
+                new SundayDecorator(),
+                new SaturdayDecorator()
+        );
+
         //</editor-fold>
 /*
         //<editor-fold desc="달력 꾸미기">

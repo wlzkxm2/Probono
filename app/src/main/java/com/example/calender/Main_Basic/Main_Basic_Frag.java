@@ -473,6 +473,8 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
                 schedule_end_time.setText(valueEndTime);
                 schedule_text.setText(calender_like_data.get(pos).get_subtitle());
 
+
+
                 final int startHour=Integer.parseInt(startTime.substring(0,2)), startMinute=Integer.parseInt(startTime.substring(2, startTime.length()));
                 final int endHour=Integer.parseInt(EndTime.substring(0,2)), endMinute=Integer.parseInt(EndTime.substring(2, startTime.length()));
 
@@ -542,6 +544,11 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
                         List<Calender_DB> loadDb = calender_dao.getAllData();
                         Calender_DB calender_db = new Calender_DB();
 
+//                        mArrayList.get (pos).setName (schedule_title);
+//                        mArrayList.get (pos).setNumber (schedule_text);
+//                        mAdapter.notifyItemChanged (position);
+//                        dialog.dismiss();
+
                         int scheduleKey = calender_like_data.get(pos).getNum();
                         Log.v("선택한 일정의 일정시작 시간",startHour+startMinute+"");
                         Log.v("선택한 일정의 num",calender_like_data.get(pos).getNum()+"");
@@ -549,16 +556,17 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
                         for (int i = 0; i < loadDb.size(); i++){
                             if (scheduleKey == loadDb.get(i).getNum()) {
                                 Log.v("12",loadDb.get(i).getStart_time()+"");
-//                                calender_db.
+                                calender_dao.UpdateThisScadule(calender_like_data.get(pos).getNum(),
+                                                                schedule_title.getText().toString(),
+                                                                schedule_text.getText().toString(),
+                                        schedule_start_time.getText().toString().substring(0,2)+
+                                                schedule_start_time.getText().toString().substring(5,7),
+                                        schedule_end_time.getText().toString().substring(0,2)+
+                                                schedule_end_time.getText().toString().substring(5,7));
 
                             }
                         }
-//                        if (scheduleKey != Integer.parseInt(null)){
-//                            Calender_DB calender_db = new Calender_DB();
-//                            calender_db.setStart_time(startHour);
-//                            calender_dao.updateData(calender_db);
-////
-//                        }
+
                     }
                 });
 
