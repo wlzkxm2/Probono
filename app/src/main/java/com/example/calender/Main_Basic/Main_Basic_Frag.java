@@ -483,7 +483,7 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
                                 (getActivity(), android.R.style.Theme_Holo_Light_Dialog, new TimePickerDialog.OnTimeSetListener() {
                                     @Override
                                     public void onTimeSet(TimePicker view, int hour, int minute) {
-                                        String startHour = String.format("%02d",hour;
+                                        String startHour = String.format("%02d",hour);
                                         String startMinute = String.format("%02d",minute);
                                         schedule_start_time.setText(startHour + " : " + startMinute);
                                     }
@@ -540,24 +540,25 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
                 dialog.setPositiveButton("저장(개발중)", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         List<Calender_DB> loadDb = calender_dao.getAllData();
+                        Calender_DB calender_db = new Calender_DB();
 
                         int scheduleKey = calender_like_data.get(pos).getNum();
-                        int dbpos = Integer.parseInt(null);
                         Log.v("선택한 일정의 일정시작 시간",startHour+startMinute+"");
                         Log.v("선택한 일정의 num",calender_like_data.get(pos).getNum()+"");
 
                         for (int i = 0; i < loadDb.size(); i++){
                             if (scheduleKey == loadDb.get(i).getNum()) {
-                                loadDb.get(i).setStart_time(startHour+startMinute);
+                                Log.v("12",loadDb.get(i).getStart_time()+"");
+//                                calender_db.
 
                             }
                         }
-                        if (dbpos != Integer.parseInt(null)){
-                            Calender_DB calender_db = new Calender_DB();
-                            calender_db.setStart_time();
-                            calender_dao.updateData(loadDb);
-
-                        }
+//                        if (scheduleKey != Integer.parseInt(null)){
+//                            Calender_DB calender_db = new Calender_DB();
+//                            calender_db.setStart_time(startHour);
+//                            calender_dao.updateData(calender_db);
+////
+//                        }
                     }
                 });
 
