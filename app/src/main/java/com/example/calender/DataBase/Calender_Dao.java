@@ -50,6 +50,22 @@ public interface Calender_Dao {
     @Query("delete from calender_db where num = :nums")
     void deleteCalendar(int nums);
 
+    // 제목 , 시작시간, 끝나느시간, 일정내용
+    @Query("update Calender_DB set Titles = :titles where num = :num")
+    void UpdateTtitles(int num, String titles);
+
+    @Query("update Calender_DB set Subtitles = :subtitles where num = :num")
+    void UpdateSubTttiles(int num, String subtitles);
+
+    @Query("update Calender_DB set start_times = :startTimes where num = :num")
+    void UpdateStartTime(int num, String startTimes);
+
+    @Query("update Calender_DB set end_times = :endTimes where num = :num")
+    void UpdateEndTime(int num, String endTimes);
+
+    @Query("update Calender_DB set Titles = :titles, Subtitles = :subtitles, start_times = :startTimes, end_times = :endTimes where num = :num")
+    void UpdateThisScadule(int num, String titles, String subtitles, String startTimes, String endTimes);
+
     // 데이터 삽입
     @Insert
     void insertAll(Calender_DB calender_db);
