@@ -57,7 +57,6 @@
         android:inputType="textPassword"
 
         android:textColorHint="#AAAAAA"
-        android:textColor="#000000"
         android:ems="10"
         android:hint="@string/Password_insert"
         />

@@ -3,7 +3,8 @@
     android:layout_gravity="center"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="322dp"
-    android:layout_height="155dp">
+    android:layout_height="155dp"
+    android:background="@color/test">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -24,7 +25,7 @@
                 android:layout_margin="5dp"
                 android:layout_weight="0.6"
                 android:text="내용을 말해 주세요."
-                android:textColor="#000" />
+                android:textColor="@color/test1" />
 
             <View
                 android:layout_width="64dp"
@@ -60,9 +61,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="4dp"
+                android:background="@drawable/exam"
                 android:scaleType="center"
                 android:text="다시 시작"
-                android:textColor="@color/black"
+                android:textColor="@color/test1"
                 android:textSize="10dp" />
 
             <View
@@ -76,10 +78,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="4dp"
+                android:background="@drawable/exam"
                 android:layout_weight="1"
                 android:scaleType="center"
                 android:text="확인"
-                android:textColor="@color/black"
+                android:textColor="@color/test1"
                 android:textSize="10dp" />
 
         </LinearLayout>

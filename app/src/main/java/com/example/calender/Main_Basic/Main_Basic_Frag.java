@@ -314,9 +314,6 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.main_basic, container, false);
 
-        FragmentTransaction ft = getFragmentManager().beginTransaction();
-        ft.detach(this).attach(this).commit();
-
         // TTS 버튼
         main_basic_TTS_btn = view.findViewById(R.id.tts_button);
 
@@ -371,7 +368,7 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
         maintitle_txt = (TextView) view.findViewById(R.id.main_basic_title);
 
         if(Maindata.get(0).get_mainActTitle() == null){
-            maintitle_txt.setText("Title을 설정해주세요"); // 초기 제목
+            maintitle_txt.setText(""); // 초기 제목
         }else
             maintitle_txt.setText(Maindata.get(0).get_mainActTitle());
 
@@ -770,6 +767,7 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
 //            final EditText edit_dday = new EditText(this.getActivity());
             final EditText edit_dday_text = new EditText(this.getActivity());
             AlertDialog.Builder dialog = new AlertDialog.Builder(new ContextThemeWrapper(getActivity(), R.style.AlertDialogTheme));
+            //getString(R.string.스트링 입력)
             dialog.setTitle("목표 D-day 일정을 입력해주세요");
             dialog.setView(edit_dday_text);
             dialog.setView(edit_dday_text);
