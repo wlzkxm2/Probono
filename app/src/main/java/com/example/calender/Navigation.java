@@ -58,6 +58,10 @@ public class Navigation extends AppCompatActivity {
         // 현재 표시된 Toast 취소
         if (System.currentTimeMillis() <= backKeyPressedTime + 2000) {
             finish();
+            moveTaskToBack(true); // 태스크를 백그라운드로 이동
+            finishAndRemoveTask(); // 액티비티 종료 + 태스크 리스트에서 지우기
+
+            System.exit(0);
             toast.cancel();
         }
     }
