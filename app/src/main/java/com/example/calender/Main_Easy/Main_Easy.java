@@ -68,7 +68,6 @@ public class Main_Easy extends AppCompatActivity {
     // 일정 없는날 선택시 일정 추가 버튼
     private ImageButton nolist_add;
     private TextView nolist_add_text;
-
     //드로어 버튼
     private TextView drawer_user_setting, drawer_calendar, drawer_game, drawer_setting,
             drawer_welcome, drawer_username, drawer_user_address, drawer_username_nogin;
