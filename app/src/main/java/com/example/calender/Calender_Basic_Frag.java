@@ -2,7 +2,7 @@ package com.example.calender;
 
 
 import android.content.Intent;
-import android.media.Image;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,7 +11,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -24,6 +23,7 @@ import com.example.calender.DataBase.Calender_DBSet;
 import com.example.calender.DataBase.Calender_Dao;
 import com.example.calender.Main_Basic.List_Item;
 import com.example.calender.Main_Basic.List_ItemAdapter;
+import com.example.calender.calendarSource.Calendar_Basic_Scheduled;
 import com.example.calender.StaticUidCode.UidCode;
 import com.example.calender.addschedule.AddSchedule;
 import com.example.calender.calendarSource.SaturdayDecorator;
@@ -32,10 +32,9 @@ import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 
-import org.w3c.dom.Text;
-
 import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
+import java.util.Collections;
 import java.util.List;
 
 public class Calender_Basic_Frag extends Fragment {
@@ -103,7 +102,8 @@ public class Calender_Basic_Frag extends Fragment {
 
         calendarView.addDecorators(
                 new SundayDecorator(),
-                new SaturdayDecorator()
+                new SaturdayDecorator(),
+                new Calendar_Basic_Scheduled(Color.RED, Collections.singleton(CalendarDay.from(2022,8,3)))
         );
 
         //</editor-fold>

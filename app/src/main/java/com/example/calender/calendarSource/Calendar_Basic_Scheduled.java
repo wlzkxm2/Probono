@@ -1,4 +1,4 @@
-package com.example.calender.StaticUidCode;
+package com.example.calender.calendarSource;
 
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.DayViewDecorator;
@@ -30,4 +30,3 @@ public class Calendar_Basic_Scheduled implements DayViewDecorator {
     }
 }
 
-}
