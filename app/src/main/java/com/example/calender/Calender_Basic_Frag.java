@@ -100,11 +100,34 @@ public class Calender_Basic_Frag extends Fragment {
 
         List<Calender_DB> calender_dbs = calender_dao.getAllData();
 
-        calendarView.addDecorators(
-                new SundayDecorator(),
-                new SaturdayDecorator(),
-                new Calendar_Basic_Scheduled(Color.RED, Collections.singleton(CalendarDay.from(2022,8,3)))
-        );
+        for (int i = 0; i < calender_dbs.size(); i++){
+            int calS_years = calender_dbs.get(i).getStart_years();
+            int calS_months = calender_dbs.get(i).getStart_month();
+            int calS_days = calender_dbs.get(i).getStart_day();
+
+            int calE_years = calender_dbs.get(i).getEnd_years();
+            int calE_months = calender_dbs.get(i).getEnd_month();
+            int calE_days = calender_dbs.get(i).getEnd_day();
+
+            calendarView.addDecorators(
+                    new SundayDecorator(),
+                    new SaturdayDecorator(),
+                    new Calendar_Basic_Scheduled(Color.RED, Collections.singleton(CalendarDay.from(
+                            calS_years,
+                            calS_months-1,
+                            calS_days)))
+            );
+
+        }
+
+//        calendarView.addDecorators(
+//                new SundayDecorator(),
+//                new SaturdayDecorator(),
+//                new Calendar_Basic_Scheduled(Color.RED, Collections.singleton(CalendarDay.from(
+//                        2022,
+//                        8,
+//                        3)))
+//        );
 
         //</editor-fold>
 /*
@@ -125,12 +148,13 @@ public class Calender_Basic_Frag extends Fragment {
         //</editor-fold desc="달력 꾸미기">
 */
 
-
         //<editor-fold desc="캘린더에 일자가 눌렷을떄">
         calendarView.setOnDateChangedListener(new OnDateSelectedListener() {
             @Override
             public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
                 Calender_Basic_Frag calender_basic_frag = new Calender_Basic_Frag();
+
+
 
                 String month_t = "",
                         week_t = "",
@@ -180,14 +204,15 @@ public class Calender_Basic_Frag extends Fragment {
                         @Override
                         public void onClick(View v) {
                             Intent n = new Intent(getActivity(), AddSchedule.class);
+                            n.putExtra("100",1);
                             startActivity(n);
                         }
                     });
 
                 } else {
                     // 일정 있으면 추가버튼 없애기
-                    nolist_add.setVisibility(View.GONE);
-                    nolist_add_text.setVisibility(View.GONE);
+//                    nolist_add.setVisibility(View.GONE);
+//                    nolist_add_text.setVisibility(View.GONE);
                     for (int i = 0; i < calender_like_data.size(); i++) {
                         List_Item calList = new List_Item();
                         String startTime = String.format("%04d", calender_like_data.get(i).getStart_time());
@@ -217,6 +242,14 @@ public class Calender_Basic_Frag extends Fragment {
         recyclerView.startLayoutAnimation();
 
         return view;
+    }
+
+    Bundle extra = getArguments();
+    if (extra != null) {
+        int data = extra.getInt("200");
+        if (data == 200) {
+            
+        }
     }
 
 }
