@@ -126,8 +126,8 @@ public class AddSchedule extends AppCompatActivity {
         Log.d("HSH","시작 : " +startYears + "년" + startMonths + "월" + startDays + "일\n" +
                 "끝 : " + endYears + "년" + endMonths + "월" + endDays + "일");
 
-        Intent intent = getIntent();
-        int a =intent.getExtras().getInt("100");
+//        Intent intent = getIntent();
+//        int a =intent.getExtras().getInt("100");
 
         cl = new View.OnClickListener() {
             @Override
@@ -180,12 +180,6 @@ public class AddSchedule extends AppCompatActivity {
                         
                         // 입력한 일정을 DB에 추가
                         calender_dao.insertAll(inputCalData);
-
-                        Bundle bundle = new Bundle();
-                        bundle.putInt("200", 1);
-                        Calender_Basic_Frag calender_basic_frag = new Calender_Basic_Frag();
-                        calender_basic_frag.setArguments(bundle);
-
                         finish();
 
                         break;

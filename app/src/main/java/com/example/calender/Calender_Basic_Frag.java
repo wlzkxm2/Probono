@@ -100,6 +100,7 @@ public class Calender_Basic_Frag extends Fragment {
 
         List<Calender_DB> calender_dbs = calender_dao.getAllData();
 
+        // 일정 있는 날에 빨간 점 표시
         for (int i = 0; i < calender_dbs.size(); i++){
             int calS_years = calender_dbs.get(i).getStart_years();
             int calS_months = calender_dbs.get(i).getStart_month();
@@ -244,12 +245,12 @@ public class Calender_Basic_Frag extends Fragment {
         return view;
     }
 
-    Bundle extra = getArguments();
-    if (extra != null) {
-        int data = extra.getInt("200");
-        if (data == 200) {
-            
-        }
-    }
+//    Bundle extra = getArguments();
+//    if (extra != null) {
+//        int data = extra.getInt("200");
+//        if (data == 200) {
+//
+//        }
+//    }
 
 }

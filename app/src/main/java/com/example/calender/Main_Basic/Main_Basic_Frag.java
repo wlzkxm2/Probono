@@ -48,15 +48,19 @@ import com.example.calender.DataBase.User_DBset;
 import com.example.calender.DataBase.User_Dao;
 import com.example.calender.Main_Easy.List_ItemAdapter_Easy;
 import com.example.calender.Main_Easy.Main_Easy;
+import com.example.calender.Navigation;
 import com.example.calender.R;
 import com.example.calender.StaticUidCode.UidCode;
 import com.example.calender.addschedule.AddSchedule;
 import com.example.calender.addschedule.Custom_STT;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalTime;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Locale;
 import java.util.Timer;
@@ -65,6 +69,10 @@ import java.util.TimerTask;
 import static android.speech.tts.TextToSpeech.ERROR;
 
 public class Main_Basic_Frag extends Fragment implements View.OnClickListener, TextToSpeech.OnInitListener {
+
+    int startYears = 0,startMonths = 0,startDays = 0, endYears = 0,endMonths = 0,endDays = 0,
+            startMinute = 0,endHour = 0,endMinute = 0, startHour = 0, startDate = 0;
+    int startLoaclHour = 0, startLoaclMinute = 0, endLoaclHour = 0, endLoaclMinute = 0;
 
     // TTS 버튼
     private ImageButton main_basic_TTS_btn;
@@ -309,13 +317,15 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
         return Main_Basic;
     }
 
+    private void refresh() {
+        FragmentTransaction ft = getFragmentManager().beginTransaction();
+        ft.detach(this).attach(this).commit();
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.main_basic, container, false);
-
-        FragmentTransaction ft = getFragmentManager().beginTransaction();
-        ft.detach(this).attach(this).commit();
 
         // TTS 버튼
         main_basic_TTS_btn = view.findViewById(R.id.tts_button);
@@ -423,7 +433,7 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
         });
 
         //화면 클리어
-        list_itemAdapter.removeAllItem();
+//        list_itemAdapter.removeAllItem();
 
         // -------------------------------------------------------- DB 데이터 넣는곳
         //샘플 데이터 생성
@@ -539,7 +549,7 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
                 });
 
                 // 저장 버튼
-                dialog.setPositiveButton("저장(개발중)", new DialogInterface.OnClickListener() {
+                dialog.setPositiveButton("저장", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         List<Calender_DB> loadDb = calender_dao.getAllData();
                         Calender_DB calender_db = new Calender_DB();
@@ -738,9 +748,303 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
                 toggleFab();
 //                Toast.makeText(this, "일정 상세 등록 팝업", Toast.LENGTH_SHORT).show();
 //                Toast.makeText(getActivity(), "일정 상세 등록 팝업", Toast.LENGTH_SHORT).show();
-                Intent i = new Intent(getActivity(), AddSchedule.class);
+//                Intent i = new Intent(getActivity(), AddSchedule.class);
+//                startActivity(i);
 
-                startActivity(i);
+                Date today = new Date();
+                SimpleDateFormat yearFormat = new SimpleDateFormat("yyyy");
+                SimpleDateFormat monthFormat = new SimpleDateFormat("MM");
+                SimpleDateFormat dateFormat = new SimpleDateFormat("dd");
+                SimpleDateFormat timeFormat = new SimpleDateFormat("HH시mm분");
+
+
+                Date currentTime = Calendar.getInstance().getTime();
+//                SimpleDateFormat yearFormat = new SimpleDateFormat("yyyy", Locale.getDefault());
+//                SimpleDateFormat monthFormat = new SimpleDateFormat("MM", Locale.getDefault());
+//                SimpleDateFormat dayFormat = new SimpleDateFormat("dd", Locale.getDefault());
+//                SimpleDateFormat timeFormat = new SimpleDateFormat("HH시mm분");
+                String YearData = yearFormat.format(currentTime);
+                String monthData = monthFormat.format(currentTime);
+//                String dayData = dayFormat.format(currentTime);
+//                LocalTime now = LocalTime.now();
+
+                startYears = ((UidCode) getActivity().getApplication()).getStatic_year();
+                startMonths = ((UidCode) getActivity().getApplication()).getStatic_month();
+                startDays = ((UidCode) getActivity().getApplication()).getStatic_day();
+                endYears = ((UidCode) getActivity().getApplication()).getStatic_year();
+                endMonths = ((UidCode) getActivity().getApplication()).getStatic_month();
+                endDays = ((UidCode) getActivity().getApplication()).getStatic_day();
+//                startLoaclHour = now.getHour();
+//                startLoaclMinute = now.getMinute();
+//                endLoaclHour = now.getHour();
+//                endLoaclMinute = now.getMinute();
+
+//                List<Calender_DB> calender_like_data = calender_dao.loadAllDataByYears(
+//                        Integer.parseInt(YearData),
+//                        Integer.parseInt(monthData),
+//                        Integer.parseInt(dayData)
+//                );
+
+                AlertDialog.Builder dialog = new AlertDialog.Builder(new ContextThemeWrapper(getActivity(), R.style.AlertDialogTheme));
+                LayoutInflater inflater= getLayoutInflater();
+                View view = inflater.inflate(R.layout.add_schedule_basic, null);
+                dialog.setView(view);
+
+                final EditText schedule_title = (EditText) view.findViewById(R.id.add_schedule_basic_title_ed);
+                final TextView schedule_start_day = (TextView) view.findViewById(R.id.add_schedule_basic_start_day_ed);
+                final TextView schedule_end_day = (TextView) view.findViewById(R.id.add_schedule_basic_end_day_ed);
+                final TextView schedule_start_time = (TextView) view.findViewById(R.id.add_schedule_basic_start_time_ed);
+                final TextView schedule_end_time = (TextView) view.findViewById(R.id.add_schedule_basic_end_time_ed);
+                final EditText schedule_text = (EditText) view.findViewById(R.id.add_schedule_basic_text_ed);
+
+                if(startYears < 2000 || endYears < 2000){
+                    startYears = Integer.parseInt(yearFormat.format(today));
+                    endYears = Integer.parseInt(yearFormat.format(today));
+                }
+                if(startMonths < 1 || endMonths < 1){
+                    startMonths = Integer.parseInt(monthFormat.format(today));
+                    endMonths = Integer.parseInt(monthFormat.format(today));
+                }
+                if(startDays < 1 || endDays < 1){
+                    startDays = Integer.parseInt(dateFormat.format(today));
+                    endDays = Integer.parseInt(dateFormat.format(today));
+                }
+
+//                String startTime = String.format("%04d", calender_like_data.get(pos).getStart_time());
+//                String valueStartTime = startTime.substring(0,2) + " : " + startTime.substring(2, startTime.length());
+//                String EndTime = String.format("%04d", calender_like_data.get(pos).getEnd_time());
+//                String valueEndTime = EndTime.substring(0,2) + " : " + EndTime.substring(2, EndTime.length());
+
+//                schedule_title.setText(calender_like_data.get(pos).get_titles());
+                schedule_start_day.setText("시작날짜");
+                schedule_end_day.setText("종료날짜");
+                schedule_start_time.setText("시작시간");
+                schedule_end_time.setText("종료시간");
+//                schedule_text.setText(calender_like_data.get(pos).get_subtitle());
+
+//                final int startScheduleHour=Integer.parseInt(startTime.substring(0,2)), startScheduleMinute=Integer.parseInt(startTime.substring(2, startTime.length()));
+//                final int endScheduleHour=Integer.parseInt(EndTime.substring(0,2)), endScheduleMinute=Integer.parseInt(EndTime.substring(2, startTime.length()));
+
+
+                GregorianCalendar gregorianCalendar = new GregorianCalendar();
+
+
+                // 일정 시작 날짜
+                schedule_start_day.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
+                            @Override
+                            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                                startYears = year;
+                                startMonths = month+1;
+                                startDays = dayOfMonth;
+                                schedule_start_day.setText(year + "년 " + (month + 1)+ "월 " + dayOfMonth + "일 ");
+                            }
+                        },startYears,startMonths-1,startDays);
+
+                        // 시작날짜 설정(확인) 버튼
+                        datePickerDialog.setButton(DatePickerDialog.BUTTON_POSITIVE,"설정", new DialogInterface.OnClickListener(){
+                            @Override public void onClick(DialogInterface dialogInterface, int i) {
+
+                            }
+                        });
+
+                        // 시작날짜 취소 버튼
+                        datePickerDialog.setButton(DatePickerDialog.BUTTON_NEGATIVE,"취소", new DialogInterface.OnClickListener(){
+                            @Override public void onClick(DialogInterface dialogInterface, int i) {
+
+                            }
+                        });
+                        datePickerDialog.show();
+                    }
+                });
+
+                // 일정 종료 날짜
+                schedule_end_day.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
+                            @Override
+                            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                                startYears = year;
+                                startMonths = month+1;
+                                startDays = dayOfMonth;
+                                schedule_end_day.setText(year + "년 " + (month + 1)+ "월 " + dayOfMonth + "일 ");
+                            }
+                        },startYears,startMonths-1,startDays);
+
+                        // 종료날짜 설정(확인) 버튼
+                        datePickerDialog.setButton(DatePickerDialog.BUTTON_POSITIVE,"설정", new DialogInterface.OnClickListener(){
+                            @Override public void onClick(DialogInterface dialogInterface, int i) {
+
+                            }
+                        });
+
+                        // 종료날짜 취소 버튼
+                        datePickerDialog.setButton(DatePickerDialog.BUTTON_NEGATIVE,"취소", new DialogInterface.OnClickListener(){
+                            @Override public void onClick(DialogInterface dialogInterface, int i) {
+
+                            }
+                        });
+                        datePickerDialog.show();
+                    }
+                });
+
+
+                //일정 시작 시간
+                schedule_start_time.setOnClickListener(new View.OnClickListener() { // 일정 시작 시간 타임피커
+                    @Override
+                    public void onClick(View view) {
+                        TimePickerDialog timePickerDialog = new TimePickerDialog
+                                (getActivity(), android.R.style.Theme_Holo_Light_Dialog, new TimePickerDialog.OnTimeSetListener() {
+                                    @Override
+                                    public void onTimeSet(TimePicker view, int hour, int minute) {
+                                        String startScheduleHour = String.format("%02d",hour);
+                                        String startScheduleMinute = String.format("%02d",minute);
+                                        schedule_start_time.setText(startScheduleHour + " : " + startScheduleMinute);
+                                    }
+                                },startHour, startMinute, true);
+
+                        // 타임피커 설정(확인) 버튼
+                        timePickerDialog.setButton(TimePickerDialog.BUTTON_POSITIVE, "설정", new DialogInterface.OnClickListener() {
+                            @Override public void onClick(DialogInterface dialogInterface, int i) {
+
+                            }
+                        });
+                        // 타임피커 취소 버튼
+                        timePickerDialog.setButton(TimePickerDialog.BUTTON_NEGATIVE, "취소", new DialogInterface.OnClickListener() {
+                            @Override public void onClick(DialogInterface dialogInterface, int i) {
+
+                            }
+                        });
+                        timePickerDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT)); // 타임피커 다이얼로그 뒷배경 여백 투명하게
+                        timePickerDialog.show();
+                    }
+                });
+
+                //일정 종료 시간
+                schedule_end_time.setOnClickListener(new View.OnClickListener() { // 일정 끝나는 시간 타임피커
+                    @Override
+                    public void onClick(View view) {
+                        TimePickerDialog timePickerDialog = new TimePickerDialog
+                                (getActivity(), android.R.style.Theme_Holo_Light_Dialog,new TimePickerDialog.OnTimeSetListener() {
+                                    @Override
+                                    public void onTimeSet(TimePicker view, int hour, int minute) {
+                                        String endScheduleHour = String.format("%02d",hour);
+                                        String endScheduleMinute = String.format("%02d",minute);
+                                        schedule_end_time.setText(endScheduleHour + " : " + endScheduleMinute);
+                                    }
+                                },endHour, endMinute, true);
+
+                        // 타임피커 설정(확인) 버튼
+                        timePickerDialog.setButton(TimePickerDialog.BUTTON_POSITIVE, "설정", new DialogInterface.OnClickListener() {
+                            @Override public void onClick(DialogInterface dialogInterface, int i) {
+
+                            }
+                        });
+                        // 타임피커 취소 버튼
+                        timePickerDialog.setButton(TimePickerDialog.BUTTON_NEGATIVE, "취소", new DialogInterface.OnClickListener() {
+                            @Override public void onClick(DialogInterface dialogInterface, int i) {
+
+                            }
+                        });
+                        timePickerDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT)); // 타임피커 다이얼로그 뒷배경 여백 투명하게
+                        timePickerDialog.show();
+                    }
+                });
+
+                // 저장 버튼
+                dialog.setPositiveButton("등록(개발중)", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        List<Calender_DB> loadDb = calender_dao.getAllData();
+                        Calender_DB calender_db = new Calender_DB();
+
+                        list_itemAdapter.notifyDataSetChanged();
+
+
+//                        mArrayList.get (pos).setName (schedule_title);
+//                        mArrayList.get (pos).setNumber (schedule_text);
+//                        mAdapter.notifyItemChanged (position);
+//                        dialog.dismiss();
+//
+//                        int scheduleKey = calender_like_data.get(pos).getNum();
+//                        Log.v("선택한 일정의 일정시작 시간",startHour+startMinute+"");
+//                        Log.v("선택한 일정의 num",calender_like_data.get(pos).getNum()+"");
+//
+//                        for (int i = 0; i < loadDb.size(); i++){
+//                            if (scheduleKey == loadDb.get(i).getNum()) {
+//                                Log.v("12",loadDb.get(i).getStart_time()+"");
+//                                calender_dao.UpdateThisScadule(calender_like_data.get(pos).getNum(),
+//                                        schedule_title.getText().toString(),
+//                                        schedule_text.getText().toString(),
+//                                        schedule_start_time.getText().toString().substring(0,2)+
+//                                                schedule_start_time.getText().toString().substring(5,7),
+//                                        schedule_end_time.getText().toString().substring(0,2)+
+//                                                schedule_end_time.getText().toString().substring(5,7));
+//
+//                            }
+//                        }
+//
+//
+//                        int saveStartYears = startYears;
+//                        int saveStartMonths = startMonths;
+//                        int saveStartDays = startDays;
+//                        int saveEndYears = endYears;
+//                        int saveEndMonths = endMonths;
+//                        int saveEndDays = endDays;
+//                        int saveStartTime =  (startHour * 100) + (startMinute);
+//                        int saveEndTime = (endHour * 100) + (endMinute);
+//                        String title = et_title.getText().toString();
+//                        String subtitle = et_memo.getText().toString();
+//                        boolean scheduleLoof = allDayCheck.isChecked();
+//                        if(allDayCheck.isChecked()){
+//                            saveStartTime = 0;
+//                            saveEndTime = 2359;
+//                        }
+//
+//
+//                        // 그대로 데이터베이스에 연동하면됨
+//                        // for 시작날~끝난날까지 DB삽입
+//                        Log.d("MyTag",String.valueOf(saveStartYears) + "년" + String.valueOf(saveStartMonths) + "월" + String.valueOf(saveStartDays) + "일");
+//                        Log.d("MyTag",String.valueOf(saveEndYears) + "년" + String.valueOf(saveEndMonths) + "월" + String.valueOf(saveEndDays) + "일");
+//                        Log.d("MyTag",saveStartTime + " 부터 " +saveEndTime + " 까지");
+//                        Log.d("MyTag",title + " / " +subtitle);
+//
+//                        Calender_DB inputCalData = new Calender_DB();
+//                        // 일정 시작일
+//                        inputCalData.setStart_years(saveStartYears);
+//                        inputCalData.setStart_month(saveStartMonths);
+//                        inputCalData.setStart_day(saveStartDays);
+//                        inputCalData.setStart_time(saveStartTime);
+//
+//                        // 일정 마지막일
+//                        inputCalData.setEnd_years(saveEndYears);
+//                        inputCalData.setEnd_month(saveEndMonths);
+//                        inputCalData.setEnd_day(saveEndDays);
+//                        inputCalData.setEnd_time(saveEndTime);
+//
+//                        // 일정 내용 추가
+//                        inputCalData.set_titles(title);
+//                        inputCalData.set_subtitle(subtitle);
+//
+//                        // 입력한 일정을 DB에 추가
+//                        calender_dao.insertAll(inputCalData);
+
+
+                    }
+                });
+
+                // 취소 버튼
+                dialog.setNegativeButton("취소",new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+                dialog.show();
+
+
+
                 break;
             case R.id.floating_voice:
                 toggleFab();
@@ -1238,7 +1542,6 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
 //        Log.v("stt", );
 
     }
-
 }
 
 
