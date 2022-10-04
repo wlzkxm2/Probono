@@ -79,4 +79,7 @@
     <string name="list_content">List Content</string>
     <string name="list_content_not">List contet not added</string>
     <string name="delete">Delete</string>
+    <string name="calender_big">Show Calender in BIg size</string>
+    <string name="game">game</string>
+    <string name="plz_login">login</string>
 </resources>

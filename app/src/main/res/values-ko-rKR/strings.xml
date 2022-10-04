@@ -51,4 +51,7 @@
     <string name="list_content">일정 내용</string>
     <string name="list_content_not">일정내용이 입력되지 않았습니다</string>
     <string name="delete">삭제</string>
+    <string name="calender_big">달력 크게 보기</string>
+    <string name="game">게임</string>
+    <string name="plz_login">로그인</string>
 </resources>

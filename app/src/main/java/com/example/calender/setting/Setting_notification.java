@@ -90,7 +90,7 @@ public class Setting_notification extends AppCompatActivity {
     private void showNoti(){
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "default");
 
-        builder.setSmallIcon(R.mipmap.ic_launcher);
+        builder.setSmallIcon(R.drawable.notiicons);
 
         Date currentTime = Calendar.getInstance().getTime();
         SimpleDateFormat yearFormat = new SimpleDateFormat("yyyy", Locale.getDefault());
@@ -150,7 +150,7 @@ public class Setting_notification extends AppCompatActivity {
         builder.setContentTitle("오늘의 일정");
 //        builder.setContentText(calender_db.get_titles().toString());
 
-        builder.setColor(Color.RED);
+        builder.setColor(Color.parseColor("#5A88FF"));
         // 사용자가 탭을 클릭하면 자동 제거
         builder.setAutoCancel(true);
 

@@ -98,7 +98,7 @@
             android:layout_marginLeft="44dp"
             android:layout_marginTop="228dp"
             android:onClick="OnClick"
-            android:text="계정 설정"
+            android:text="@string/account"
             android:textColor="#ffffff" />
 
         <LinearLayout
@@ -122,7 +122,7 @@
             android:layout_marginLeft="44dp"
             android:layout_marginTop="298dp"
             android:onClick="OnClick"
-            android:text="달력 크게 보기"
+            android:text="@string/calender_big"
             android:textColor="#ffffff"
             android:layout_gravity="left"/>
 
@@ -147,7 +147,7 @@
             android:layout_marginLeft="44dp"
             android:layout_marginTop="368dp"
             android:onClick="OnClick"
-            android:text="게임"
+            android:text="@string/game"
             android:textColor="#ffffff"
             android:layout_gravity="left"/>
 
@@ -173,7 +173,7 @@
             android:layout_marginLeft="44dp"
             android:layout_marginTop="438dp"
             android:onClick="OnClick"
-            android:text="설정"
+            android:text="@string/Setting"
             android:textColor="#ffffff" />
 
         <LinearLayout
