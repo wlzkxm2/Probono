@@ -91,7 +91,7 @@
         <Button
             android:id="@+id/account_settingbtn"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_marginTop="5dp"
             android:background="@drawable/example1"
             android:drawableLeft="@drawable/ic_user_line"
@@ -103,7 +103,7 @@
         <Button
             android:id="@+id/notificationsetting_btn"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_marginTop="5dp"
             android:background="@drawable/example1"
             android:drawableLeft="@drawable/ic_notification_line"
@@ -115,7 +115,7 @@
         <Button
             android:id="@+id/darkmodesetting_btn"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_marginTop="5dp"
             android:textColor="@color/test1"
             android:textSize="20sp"
