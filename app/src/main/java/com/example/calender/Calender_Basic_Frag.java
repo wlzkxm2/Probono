@@ -109,7 +109,7 @@ public class Calender_Basic_Frag extends Fragment {
             int calE_years = calender_dbs.get(i).getEnd_years();
             int calE_months = calender_dbs.get(i).getEnd_month();
             int calE_days = calender_dbs.get(i).getEnd_day();
-
+            calendarView.setDateTextAppearance(R.style.CalendarDateTextAppearance);
             calendarView.addDecorators(
                     new SundayDecorator(),
                     new SaturdayDecorator(),

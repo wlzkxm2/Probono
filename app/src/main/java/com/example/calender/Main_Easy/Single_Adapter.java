@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -95,7 +96,8 @@ public class Single_Adapter extends RecyclerView.Adapter<Single_Adapter.Single_A
 
                 } else {
                     img.setVisibility(View.GONE);
-                    day.setTextColor(Color.BLACK);
+                    day.setTextColor(ContextCompat.getColor(context, R.color.test1));
+                    //달력 색
                 }
             }
             day.setText(main_easy_calendar_day.getDay());
