@@ -2,7 +2,7 @@ package com.example.calender;
 
 
 import android.content.Intent;
-import android.media.Image;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,7 +11,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -24,16 +23,18 @@ import com.example.calender.DataBase.Calender_DBSet;
 import com.example.calender.DataBase.Calender_Dao;
 import com.example.calender.Main_Basic.List_Item;
 import com.example.calender.Main_Basic.List_ItemAdapter;
+import com.example.calender.calendarSource.Calendar_Basic_Scheduled;
 import com.example.calender.StaticUidCode.UidCode;
 import com.example.calender.addschedule.AddSchedule;
+import com.example.calender.calendarSource.SaturdayDecorator;
+import com.example.calender.calendarSource.SundayDecorator;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 
-import org.w3c.dom.Text;
-
 import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
+import java.util.Collections;
 import java.util.List;
 
 public class Calender_Basic_Frag extends Fragment {
@@ -98,6 +99,37 @@ public class Calender_Basic_Frag extends Fragment {
         calender_dao = dbController.calender_dao();
 
         List<Calender_DB> calender_dbs = calender_dao.getAllData();
+
+        // 일정 있는 날에 빨간 점 표시
+        for (int i = 0; i < calender_dbs.size(); i++){
+            int calS_years = calender_dbs.get(i).getStart_years();
+            int calS_months = calender_dbs.get(i).getStart_month();
+            int calS_days = calender_dbs.get(i).getStart_day();
+
+            int calE_years = calender_dbs.get(i).getEnd_years();
+            int calE_months = calender_dbs.get(i).getEnd_month();
+            int calE_days = calender_dbs.get(i).getEnd_day();
+
+            calendarView.addDecorators(
+                    new SundayDecorator(),
+                    new SaturdayDecorator(),
+                    new Calendar_Basic_Scheduled(Color.RED, Collections.singleton(CalendarDay.from(
+                            calS_years,
+                            calS_months-1,
+                            calS_days)))
+            );
+
+        }
+
+//        calendarView.addDecorators(
+//                new SundayDecorator(),
+//                new SaturdayDecorator(),
+//                new Calendar_Basic_Scheduled(Color.RED, Collections.singleton(CalendarDay.from(
+//                        2022,
+//                        8,
+//                        3)))
+//        );
+
         //</editor-fold>
 /*
         //<editor-fold desc="달력 꾸미기">
@@ -117,12 +149,13 @@ public class Calender_Basic_Frag extends Fragment {
         //</editor-fold desc="달력 꾸미기">
 */
 
-
         //<editor-fold desc="캘린더에 일자가 눌렷을떄">
         calendarView.setOnDateChangedListener(new OnDateSelectedListener() {
             @Override
             public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
                 Calender_Basic_Frag calender_basic_frag = new Calender_Basic_Frag();
+
+
 
                 String month_t = "",
                         week_t = "",
@@ -172,14 +205,15 @@ public class Calender_Basic_Frag extends Fragment {
                         @Override
                         public void onClick(View v) {
                             Intent n = new Intent(getActivity(), AddSchedule.class);
+                            n.putExtra("100",1);
                             startActivity(n);
                         }
                     });
 
                 } else {
                     // 일정 있으면 추가버튼 없애기
-                    nolist_add.setVisibility(View.GONE);
-                    nolist_add_text.setVisibility(View.GONE);
+//                    nolist_add.setVisibility(View.GONE);
+//                    nolist_add_text.setVisibility(View.GONE);
                     for (int i = 0; i < calender_like_data.size(); i++) {
                         List_Item calList = new List_Item();
                         String startTime = String.format("%04d", calender_like_data.get(i).getStart_time());
@@ -210,5 +244,13 @@ public class Calender_Basic_Frag extends Fragment {
 
         return view;
     }
+
+//    Bundle extra = getArguments();
+//    if (extra != null) {
+//        int data = extra.getInt("200");
+//        if (data == 200) {
+//
+//        }
+//    }
 
 }

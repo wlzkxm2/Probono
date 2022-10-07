@@ -128,7 +128,6 @@ public class List_ItemAdapter extends RecyclerView.Adapter<List_ItemAdapter.View
                 }
             });
 
-//            List_ItemAdapter.ViewHolder viewHolder = new List_ItemAdapter.ViewHolder(itemView);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

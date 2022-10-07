@@ -156,6 +156,7 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_easy"
+        app:layout_constraintHorizontal_weight="1"
         android:layout_width="match_parent"
         android:layout_height="320dp"
         android:layoutAnimation="@anim/item_layout_animation"

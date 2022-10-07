@@ -20,10 +20,11 @@
                 android:id="@+id/calendarView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                app:mcv_arrowColor="@color/test1"
                 app:mcv_selectionColor="#5A88FF"
                 app:mcv_showOtherDates="all"
-                app:mcv_arrowColor="@color/test1"
-                app:mcv_dateTextAppearance="@style/CalendarDateTextAppearance">
+                >
+
             </com.prolificinteractive.materialcalendarview.MaterialCalendarView>
 
             <androidx.recyclerview.widget.RecyclerView
@@ -41,6 +42,12 @@
 
             </androidx.recyclerview.widget.RecyclerView>
 
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="30dp">
+
+            </FrameLayout>
+
             <ImageButton
                 android:id="@+id/calendar_basic_nolist_add"
                 android:layout_width="100dp"
@@ -54,7 +61,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.586"
-                android:visibility="gone"
+                android:visibility="visible"
                 android:layout_gravity="center"/>
 
             <TextView
@@ -69,7 +76,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/main_basic_nolist_add"
                 app:layout_constraintVertical_bias="0.055"
-                android:visibility="gone"
+                android:visibility="visible"
                 android:layout_gravity="center"/>
 
         </LinearLayout>

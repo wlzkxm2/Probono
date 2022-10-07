@@ -22,15 +22,15 @@ public class List_ItemAdapter_Easy extends RecyclerView.Adapter<List_ItemAdapter
     //===== 일정 리스트 클릭 이벤트 구현을 위해 추가된 코드 ==========================
     // OnItemClickListener 인터페이스 선언
     public interface OnItemClickListener {
-        void onItemClicked(int position, String data);
+        void onItemClicked(View v, int pos);
     }
 
     // OnItemClickListener 참조 변수 선언
-    private OnItemClickListener itemClickListener;
+    private static OnItemClickListener itemClickListener;
 
     // OnItemClickListener 전달 메소드
     public void setOnItemClickListener (OnItemClickListener listener) {
-        itemClickListener = listener;
+        this.itemClickListener = listener;
     }
     //======================================================================
 
@@ -39,6 +39,16 @@ public class List_ItemAdapter_Easy extends RecyclerView.Adapter<List_ItemAdapter
     Context context;
 
     static String TAG = "Adapter";
+
+    public interface OnItemLongClickListener{
+        void onItemClick(View v, int pos);
+    }
+
+    private static OnItemLongClickListener mListener = null;
+
+    public void setOnitemLongClickListener(OnItemLongClickListener listener){
+        this.mListener = listener;
+    }
 
     @NonNull
     @Override
@@ -51,18 +61,18 @@ public class List_ItemAdapter_Easy extends RecyclerView.Adapter<List_ItemAdapter
 
         //===== [Click 이벤트 구현을 위해 추가된 코드] =====================
 
-        List_ItemAdapter_Easy.ViewHolder viewHolder = new List_ItemAdapter_Easy.ViewHolder(itemView);
-        itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String data = "";
-                int position = viewHolder.getAdapterPosition();
-                if (position != RecyclerView.NO_POSITION) {
-//                    data = viewHolder.getTextView().getText().toString();
-                }
-                itemClickListener.onItemClicked(position, data);
-            }
-        });
+//        List_ItemAdapter_Easy.ViewHolder viewHolder = new List_ItemAdapter_Easy.ViewHolder(itemView);
+//        itemView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                String data = "";
+//                int position = viewHolder.getAdapterPosition();
+//                if (position != RecyclerView.NO_POSITION) {
+////                    data = viewHolder.getTextView().getText().toString();
+//                }
+//                itemClickListener.onItemClicked(v, pos);
+//            }
+//        });
         //==================================================================
 
         return new ViewHolder(itemView);
@@ -96,6 +106,10 @@ public class List_ItemAdapter_Easy extends RecyclerView.Adapter<List_ItemAdapter
         listItems.clear();
     }
 
+    public void removeItem(int pos){
+        listItems.remove(pos);
+    }
+
     static class ViewHolder extends RecyclerView.ViewHolder{
 
         TextView time;
@@ -106,6 +120,33 @@ public class List_ItemAdapter_Easy extends RecyclerView.Adapter<List_ItemAdapter
 
             time = itemView.findViewById(R.id.schedule_time);
             title = itemView.findViewById(R.id.schedule_title);
+
+            itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    int pos = getAdapterPosition();
+                    if(pos != RecyclerView.NO_POSITION){
+                        if(mListener != null){
+                            mListener.onItemClick(v, pos);
+                        }
+                    }
+                    return true;
+                }
+            });
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int pos = getAdapterPosition();
+                    if(pos != RecyclerView.NO_POSITION){
+                        if(itemClickListener != null){
+                            itemClickListener.onItemClicked(v, pos);
+                        }
+                    }
+                    return;
+                }
+            });
+
         }
 
         public void setItem(List_Item item){

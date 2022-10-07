@@ -24,6 +24,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
+import com.example.calender.Calender_Basic_Frag;
 import com.example.calender.DataBase.Calender_DB;
 import com.example.calender.DataBase.Calender_DBSet;
 import com.example.calender.DataBase.Calender_Dao;
@@ -125,7 +126,8 @@ public class AddSchedule extends AppCompatActivity {
         Log.d("HSH","시작 : " +startYears + "년" + startMonths + "월" + startDays + "일\n" +
                 "끝 : " + endYears + "년" + endMonths + "월" + endDays + "일");
 
-        
+//        Intent intent = getIntent();
+//        int a =intent.getExtras().getInt("100");
 
         cl = new View.OnClickListener() {
             @Override
