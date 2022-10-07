@@ -206,7 +206,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:foregroundTint="#B55151"
-        android:text="일정을 추가해보세요!"
+        android:text="@string/add_schedule"
         android:textColor="#5A88FF"
         android:textSize="10sp"
         android:visibility="gone"
@@ -271,6 +271,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.936"
+        app:backgroundTint="@color/appcolor"
         app:tint="@null" />
 
     <ImageButton

@@ -68,15 +68,14 @@
         android:textColor="@color/test1"
         android:textSize="20sp"
         android:text="@string/Register"
-        android:background="@drawable/exam"/>
+        android:background="@drawable/example1"/>
     <!--로그인 버튼이다-->
     <Button
         android:id="@+id/login_btn"
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:backgroundTint="#FFFFFF"
-        android:background="@drawable/exam"
+        android:layout_height="50dp"
+        android:background="@drawable/example1"
         android:textColor="@color/test1"
         android:textSize="20sp"
         android:text="@string/Login" />

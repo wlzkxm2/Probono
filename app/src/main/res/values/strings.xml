@@ -73,4 +73,13 @@
     <string name="Setting">Setting</string>
     <string name="add_schedule">Add the Schedule</string>
     <string name="add_goal">Add goal!</string>
+    <string name="list_title">List Title</string>
+    <string name="list_title_not">List Not selected</string>
+    <string name="list_time">List Time</string>
+    <string name="list_content">List Content</string>
+    <string name="list_content_not">List contet not added</string>
+    <string name="delete">Delete</string>
+    <string name="calender_big">Show Calender in BIg size</string>
+    <string name="game">game</string>
+    <string name="plz_login">login</string>
 </resources>

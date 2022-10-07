@@ -20,7 +20,7 @@
     <Button
         android:id="@+id/light_btn"
         android:layout_width="match_parent"
-        android:layout_height="70sp"
+        android:layout_height="50sp"
         android:text="@string/lightmode"
         android:textColor="@color/test1"
         android:textSize="30dp"
@@ -34,31 +34,31 @@
         android:id="@+id/dark_btn"
         android:layout_marginTop="10sp"
         android:layout_width="match_parent"
-        android:layout_height="70sp"
+        android:layout_height="50sp"
         android:textColor="@color/test1"
         android:text="@string/Darkmode"
         android:drawableLeft="@drawable/ic_contrast_2_line"
         android:textAlignment="textStart"
-        android:background="@drawable/exam"
+        android:background="@drawable/example1"
         android:textSize="30dp"
         />
     <Button
         android:id="@+id/sys_btn"
         android:layout_marginTop="10sp"
         android:layout_width="match_parent"
-        android:layout_height="70sp"
+        android:layout_height="50sp"
         android:textColor="@color/test1"
         android:text="시스템 태마 따라가기"
-        android:background="@drawable/exam"
+        android:background="@drawable/example1"
         android:textSize="30dp"
         />
 
     <Button
         android:id="@+id/dark_back"
         android:layout_width="match_parent"
-        android:layout_height="70sp"
+        android:layout_height="50sp"
         android:layout_marginTop="10sp"
-        android:background="@drawable/exam"
+        android:background="@drawable/example1"
         android:text="@string/back"
         android:textColor="@color/test1"
         android:textSize="30dp" />

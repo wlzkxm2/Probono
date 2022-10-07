@@ -80,9 +80,10 @@ public class Setting_main_easy extends AppCompatActivity {
                         // 액티비티에서 프래그먼트로 데이터 넘기는 코드
 
                         Intent intent = new Intent(getApplicationContext(), nav1.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(intent);
-//                        finish();
-                        break;
+                        finish();
+//                        break;
                 }
             }
         };

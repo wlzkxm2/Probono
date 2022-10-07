@@ -2,6 +2,7 @@ package com.example.calender.setting;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -31,6 +32,7 @@ public class Setting_dark extends AppCompatActivity {
                 themeColor = ThemeUtil.LIGHT_MODE;
                 ThemeUtil.applyTheme(themeColor);
                 ThemeUtil.modSave(getApplicationContext(), themeColor);
+                Toast.makeText(getApplicationContext(), "라이트모드로 적용됬습니다", Toast.LENGTH_SHORT).show();
             }
         });
         mod_btn1.setOnClickListener(new View.OnClickListener() {
@@ -39,6 +41,7 @@ public class Setting_dark extends AppCompatActivity {
                 themeColor = ThemeUtil.DARK_MODE;
                 ThemeUtil.applyTheme(themeColor);
                 ThemeUtil.modSave(getApplicationContext(), themeColor);
+                Toast.makeText(getApplicationContext(), "다크모드로 적용됬습니다", Toast.LENGTH_SHORT).show();
             }
         });
         mod_btn2.setOnClickListener(new View.OnClickListener() {
@@ -47,6 +50,7 @@ public class Setting_dark extends AppCompatActivity {
                 themeColor = ThemeUtil.DEFAULT_MODE;
                 ThemeUtil.applyTheme(themeColor);
                 ThemeUtil.modSave(getApplicationContext(), themeColor);
+                Toast.makeText(getApplicationContext(), "시스템 테마로 적용됬습니다", Toast.LENGTH_SHORT).show();
             }
         });
         darkback = (Button) findViewById(R.id.dark_back);

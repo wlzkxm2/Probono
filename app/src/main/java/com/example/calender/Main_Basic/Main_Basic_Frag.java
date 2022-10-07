@@ -357,7 +357,8 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
 //        Log.v("mainflag", "Maindata : " + Maindata.get(0).get_mainActDTitle());
 //        d_day_text.setText("default");
         if(!Maindata.get(0).get_mainActDTitle().isEmpty())
-            d_day_text.setText(Maindata.get(0)._mainActDTitle);
+//            d_day_text.setText(Maindata.get(0)._mainActDTitle);
+            d_day_text.setText(getString(R.string.add_goal));//메인화면 목표쪽타이틀임
 
         d_day.setOnClickListener(this);
         d_day_text.setOnClickListener(this);
@@ -369,8 +370,10 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
 
         if(Maindata.get(0).get_mainActTitle() == null){
             maintitle_txt.setText(""); // 초기 제목
-        }else
-            maintitle_txt.setText(Maindata.get(0).get_mainActTitle());
+        }else{
+//            maintitle_txt.setText(Maindata.get(0).get_mainActTitle());
+            maintitle_txt.setText(getString(R.string.add_schedule));
+        }
 
         // 현재 시간
         now = view.findViewById(R.id.main_basic_now);
@@ -607,7 +610,7 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
                 AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
                 dialog.setTitle("");        // 다이얼로그 타이틀
                 dialog.setMessage("정말로 해당 일정을 삭제하시겠습니까?");
-                dialog.setPositiveButton("삭제", new DialogInterface.OnClickListener() {
+                dialog.setPositiveButton(getString(R.string.delete), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 

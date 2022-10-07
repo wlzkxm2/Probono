@@ -22,13 +22,7 @@
 
     <!--    설정 버튼 화면 쪽이다-->
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/exam"
-        android:orientation="vertical"
-        android:layout_marginTop="100dp"
-        >
+
         <!-- 계정 설정 버튼이다-->
         <!-- 알림 설정 버튼이다-->
         <Switch
@@ -37,6 +31,7 @@
             android:layout_height="50dp"
             android:layout_marginTop="10dp"
             android:layout_marginStart="5dp"
+            android:background="@drawable/example1"
             android:layout_marginEnd="5dp"
             android:textSize="30sp"
             android:textAlignment="center"
@@ -55,4 +50,3 @@
             android:textSize="25sp"/>
 
     </LinearLayout>
-</LinearLayout>

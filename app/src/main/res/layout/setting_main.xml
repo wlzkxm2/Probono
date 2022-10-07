@@ -80,19 +80,14 @@
 
 
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="180dp"
-        android:orientation="vertical"
-        android:background="@drawable/exam"
-        android:padding="5sp"
-        >
 
         <Button
             android:id="@+id/account_settingbtn"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_marginTop="5dp"
+            android:layout_marginStart="5sp"
+            android:layout_marginEnd="5sp"
             android:background="@drawable/example1"
             android:drawableLeft="@drawable/ic_user_line"
             android:text="@string/account"
@@ -103,8 +98,10 @@
         <Button
             android:id="@+id/notificationsetting_btn"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_marginTop="5dp"
+            android:layout_marginStart="5sp"
+            android:layout_marginEnd="5sp"
             android:background="@drawable/example1"
             android:drawableLeft="@drawable/ic_notification_line"
             android:text="@string/notification"
@@ -115,8 +112,10 @@
         <Button
             android:id="@+id/darkmodesetting_btn"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_marginTop="5dp"
+            android:layout_marginStart="5sp"
+            android:layout_marginEnd="5sp"
             android:textColor="@color/test1"
             android:textSize="20sp"
             android:background="@drawable/example1"
@@ -124,9 +123,6 @@
             android:textAlignment="textStart"
             android:text="@string/darkmode"/>
 
-        <!--쿠폰 입력 버튼이다-->
-        <!--문의사항 버튼이다-->
-    </LinearLayout>
     <!-- 로그아웃 설정 버튼이다-->
 
     <!--로그아웃 버튼이다-->
