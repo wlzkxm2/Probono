@@ -16,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -60,12 +61,17 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Locale;
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class Main_Easy extends AppCompatActivity {
+
+    int startYears = 0,startMonths = 0,startDays = 0, endYears = 0,endMonths = 0,endDays = 0,
+            startMinute = 0,endHour = 0,endMinute = 0, startHour = 0, startDate = 0;
+    int startLoaclHour = 0, startLoaclMinute = 0, endLoaclHour = 0, endLoaclMinute = 0;
 
     //플로팅 버튼 음성 등록
     private FloatingActionButton floating_voice;
@@ -705,8 +711,102 @@ public class Main_Easy extends AppCompatActivity {
             nolist_add.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent n = new Intent(Main_Easy.this, AddSchedule.class);
-                    startActivity(n);
+
+                        Date today = new Date();
+                        SimpleDateFormat yearFormat = new SimpleDateFormat("yyyy");
+                        SimpleDateFormat monthFormat = new SimpleDateFormat("MM");
+                        SimpleDateFormat dateFormat = new SimpleDateFormat("dd");
+                        SimpleDateFormat timeFormat = new SimpleDateFormat("HH시mm분");
+
+                        Date currentTime = Calendar.getInstance().getTime();
+//                SimpleDateFormat yearFormat = new SimpleDateFormat("yyyy", Locale.getDefault());
+//                SimpleDateFormat monthFormat = new SimpleDateFormat("MM", Locale.getDefault());
+//                SimpleDateFormat dayFormat = new SimpleDateFormat("dd", Locale.getDefault());
+//                SimpleDateFormat timeFormat = new SimpleDateFormat("HH시mm분");
+                        String YearData = yearFormat.format(currentTime);
+                        String monthData = monthFormat.format(currentTime);
+//                String dayData = dayFormat.format(currentTime);
+//                LocalTime now = LocalTime.now();
+
+                        startYears = ((UidCode) getApplication()).getStatic_year();
+                        startMonths = ((UidCode) getApplication()).getStatic_month();
+                        startDays = ((UidCode) getApplication()).getStatic_day();
+                        endYears = ((UidCode) getApplication()).getStatic_year();
+                        endMonths = ((UidCode) getApplication()).getStatic_month();
+                        endDays = ((UidCode) getApplication()).getStatic_day();
+//                startLoaclHour = now.getHour();
+//                startLoaclMinute = now.getMinute();
+//                endLoaclHour = now.getHour();
+//                endLoaclMinute = now.getMinute();
+
+//                List<Calender_DB> calender_like_data = calender_dao.loadAllDataByYears(
+//                        Integer.parseInt(YearData),
+//                        Integer.parseInt(monthData),
+//                        Integer.parseInt(dayData)
+//                );
+
+                        AlertDialog.Builder dialog = new AlertDialog.Builder(Main_Easy.this, R.style.AlertDialogTheme);
+                        LayoutInflater inflater= getLayoutInflater();
+                        View view = inflater.inflate(R.layout.add_schedule_basic, null);
+                        dialog.setView(view);
+
+                        final EditText schedule_title = (EditText) view.findViewById(R.id.add_schedule_basic_title_ed);
+                        final TextView schedule_start_day = (TextView) view.findViewById(R.id.add_schedule_basic_start_day_ed);
+                        final TextView schedule_end_day = (TextView) view.findViewById(R.id.add_schedule_basic_end_day_ed);
+                        final TextView schedule_start_time = (TextView) view.findViewById(R.id.add_schedule_basic_start_time_ed);
+                        final TextView schedule_end_time = (TextView) view.findViewById(R.id.add_schedule_basic_end_time_ed);
+                        final EditText schedule_text = (EditText) view.findViewById(R.id.add_schedule_basic_text_ed);
+                        final CheckBox allDayCheck = (CheckBox) view.findViewById(R.id.add_schedule_basic_allday);
+                        final TextView dot = (TextView) view.findViewById(R.id.add_schedule_basic_dot);
+
+                        if(startYears < 2000 || endYears < 2000){
+                            startYears = Integer.parseInt(yearFormat.format(today));
+                            endYears = Integer.parseInt(yearFormat.format(today));
+                        }
+                        if(startMonths < 1 || endMonths < 1){
+                            startMonths = Integer.parseInt(monthFormat.format(today));
+                            endMonths = Integer.parseInt(monthFormat.format(today));
+                        }
+                        if(startDays < 1 || endDays < 1){
+                            startDays = Integer.parseInt(dateFormat.format(today));
+                            endDays = Integer.parseInt(dateFormat.format(today));
+                        }
+
+//                String startTime = String.format("%04d", calender_like_data.get(pos).getStart_time());
+//                String valueStartTime = startTime.substring(0,2) + " : " + startTime.substring(2, startTime.length());
+//                String EndTime = String.format("%04d", calender_like_data.get(pos).getEnd_time());
+//                String valueEndTime = EndTime.substring(0,2) + " : " + EndTime.substring(2, EndTime.length());
+
+//                schedule_title.setText(calender_like_data.get(pos).get_titles());
+                        schedule_start_day.setText("시작날짜");
+                        schedule_end_day.setText("종료날짜");
+                        schedule_start_time.setText("시작시간");
+                        schedule_end_time.setText("종료시간");
+//                schedule_text.setText(calender_like_data.get(pos).get_subtitle());
+
+//                final int startScheduleHour=Integer.parseInt(startTime.substring(0,2)), startScheduleMinute=Integer.parseInt(startTime.substring(2, startTime.length()));
+//                final int endScheduleHour=Integer.parseInt(EndTime.substring(0,2)), endScheduleMinute=Integer.parseInt(EndTime.substring(2, startTime.length()));
+
+
+                        GregorianCalendar gregorianCalendar = new GregorianCalendar();
+
+                        // 일정시간 하루종일 체크
+                        allDayCheck.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                if (allDayCheck.isChecked()){
+                                    schedule_start_time.setVisibility(View.GONE);
+                                    schedule_end_time.setVisibility(View.GONE);
+                                    dot.setVisibility(View.GONE);
+                                }else{
+                                    schedule_start_time.setVisibility(View.VISIBLE);
+                                    schedule_end_time.setVisibility(View.VISIBLE);
+                                    dot.setVisibility(View.VISIBLE);
+                                }
+                            }
+                        });
+
+
                 }
             });
 
