@@ -392,10 +392,11 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
 //                String valueEndTime = EndTime.substring(0,2) + " : " + EndTime.substring(2, EndTime.length());
 
 //                schedule_title.setText(calender_like_data.get(pos).get_titles());
-        schedule_start_day.setText("시작날짜");
-        schedule_end_day.setText("종료날짜");
-        schedule_start_time.setText("시작시간");
-        schedule_end_time.setText("종료시간");
+        //번역
+        schedule_start_day.setText(R.string.start_date);
+        schedule_end_day.setText(R.string.end_date);
+        schedule_start_time.setText(R.string.start_time);
+        schedule_end_time.setText(R.string.end_time);
 //                schedule_text.setText(calender_like_data.get(pos).get_subtitle());
 
 //                final int startScheduleHour=Integer.parseInt(startTime.substring(0,2)), startScheduleMinute=Integer.parseInt(startTime.substring(2, startTime.length()));
@@ -551,7 +552,7 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
         });
 
         // 저장 버튼
-        dialog.setPositiveButton("등록(개발중)", new DialogInterface.OnClickListener() {
+        dialog.setPositiveButton(R.string.save, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
 
 
@@ -605,7 +606,7 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
         });
 
         // 취소 버튼
-        dialog.setNegativeButton("취소",new DialogInterface.OnClickListener() {
+        dialog.setNegativeButton(R.string.cancel ,new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 dialog.cancel();
             }
