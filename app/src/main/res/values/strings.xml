@@ -93,4 +93,7 @@
     <string name="end_time">End Time</string>
     <string name="save">Save</string>
     <string name="cancel">Cancel</string>
+    <string name="restart">Restart</string>
+    <string name="dark_follow">Follow the System</string>
+    <string name="speak_list">Please Say contens</string>
 </resources>

@@ -48,7 +48,7 @@
         android:layout_width="match_parent"
         android:layout_height="50sp"
         android:textColor="@color/test1"
-        android:text="시스템 태마 따라가기"
+        android:text="@string/dark_follow"
         android:background="@drawable/example1"
         android:textSize="30dp"
         />

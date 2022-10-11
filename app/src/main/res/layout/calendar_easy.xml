@@ -21,7 +21,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:mcv_selectionColor="#5A88FF"
-                app:mcv_showOtherDates="all"
+                app:mcv_showOtherDates="none"
                 app:mcv_arrowColor="@color/test1">
             </com.prolificinteractive.materialcalendarview.MaterialCalendarView>
 

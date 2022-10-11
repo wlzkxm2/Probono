@@ -40,7 +40,7 @@ public class Custom_STT extends Dialog {
     Calender_Dao calender_dao;
 
     Context context;
-    Button btn_save, btn_restart;
+    Button btn_save, btn_restart,btn_cancel;
     Switch sw_auto;
     TextView tv_stt;
     View.OnClickListener cl;
@@ -65,6 +65,7 @@ public class Custom_STT extends Dialog {
         tv_stt = findViewById(R.id.stt_text);
         btn_save = findViewById(R.id.btn_Save);
         btn_restart = findViewById(R.id.btn_Restart);
+        btn_restart = findViewById(R.id.btn_stt_cancel);
         sw_auto = findViewById(R.id.sw_auto);
         sw_auto.setChecked(false);
 
@@ -125,6 +126,10 @@ public class Custom_STT extends Dialog {
                         break;
                     case R.id.btn_Save:
                         //TODO newText에 있는 값 DB로 보내기
+                        dismiss();
+                        break;
+                    case R.id.btn_stt_cancel:
+                        StopRecord();
                         dismiss();
                         break;
                 }
