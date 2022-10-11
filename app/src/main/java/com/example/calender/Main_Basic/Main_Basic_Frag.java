@@ -1057,6 +1057,8 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
                 toggleFab();
 //                Toast.makeText(this, "일정 음성 등록 팝업", Toast.LENGTH_SHORT).show();
                 Custom_STT custom_stt = new Custom_STT(getActivity());
+                custom_stt.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                //테마 라운드 처리기능
                 int inputday = ((UidCode) getActivity().getApplication()).getStatic_day();
                 custom_stt.show();
 //                Toast.makeText(getActivity(),"일정 음성 등록 팝업",Toast.LENGTH_SHORT).show();

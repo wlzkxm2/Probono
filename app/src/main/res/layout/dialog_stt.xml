@@ -4,7 +4,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="322dp"
     android:layout_height="155dp"
-    android:background="@color/test">
+    android:background="@drawable/example1">
 
     <LinearLayout
         android:layout_width="match_parent"
