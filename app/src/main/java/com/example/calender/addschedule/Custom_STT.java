@@ -603,6 +603,7 @@ public class Custom_STT extends Dialog {
 
             // 입력한 일정을 DB에 추가
             calender_dao.insertAll(inputCalData);
+
         }
 
         @Override

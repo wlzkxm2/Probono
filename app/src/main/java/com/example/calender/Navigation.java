@@ -99,10 +99,10 @@ public class Navigation extends AppCompatActivity {
                         setFrag(1);
 
                         // 네비게이션 버튼 똑같은거 눌렀을 때 새로고침
-                        overridePendingTransition(0, 0);//인텐트 효과 없애기
-                        Intent intent = getIntent(); //인텐트
-                        startActivity(intent); //액티비티 열기
-                        overridePendingTransition(0, 0);//인텐트 효과 없애기
+                        overridePendingTransition(1, 1);//인텐트 효과 없애기
+                        Intent j = getIntent(); //인텐트
+                        startActivity(j); //액티비티 열기
+                        overridePendingTransition(1, 1);//인텐트 효과 없애기
 
                         break;
                     case R.id.navi_setting:

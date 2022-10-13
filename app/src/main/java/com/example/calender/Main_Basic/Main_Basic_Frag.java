@@ -548,7 +548,7 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
         });
 
         // 저장 버튼
-        dialog.setPositiveButton("등록(개발중)", new DialogInterface.OnClickListener() {
+        dialog.setPositiveButton("등록", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
 
 
