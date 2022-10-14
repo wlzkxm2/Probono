@@ -328,7 +328,6 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd");
         SimpleDateFormat timeFormat = new SimpleDateFormat("HH시mm분");
 
-
         Date currentTime = Calendar.getInstance().getTime();
 //                SimpleDateFormat yearFormat = new SimpleDateFormat("yyyy", Locale.getDefault());
 //                SimpleDateFormat monthFormat = new SimpleDateFormat("MM", Locale.getDefault());
@@ -336,7 +335,7 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
 //                SimpleDateFormat timeFormat = new SimpleDateFormat("HH시mm분");
         String YearData = yearFormat.format(currentTime);
         String monthData = monthFormat.format(currentTime);
-//                String dayData = dayFormat.format(currentTime);
+        String dayData = dateFormat.format(currentTime);
 //                LocalTime now = LocalTime.now();
 
         startYears = ((UidCode) getActivity().getApplication()).getStatic_year();
@@ -350,11 +349,11 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
 //                endLoaclHour = now.getHour();
 //                endLoaclMinute = now.getMinute();
 
-//                List<Calender_DB> calender_like_data = calender_dao.loadAllDataByYears(
-//                        Integer.parseInt(YearData),
-//                        Integer.parseInt(monthData),
-//                        Integer.parseInt(dayData)
-//                );
+                List<Calender_DB> calender_like_data = calender_dao.loadAllDataByYears(
+                        Integer.parseInt(YearData),
+                        Integer.parseInt(monthData),
+                        Integer.parseInt(dayData)
+                );
 
         AlertDialog.Builder dialog = new AlertDialog.Builder(new ContextThemeWrapper(getActivity(), R.style.AlertDialogTheme));
         LayoutInflater inflater= getLayoutInflater();
@@ -596,8 +595,10 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
                 // 입력한 일정을 DB에 추가
                 calender_dao.insertAll(inputCalData);
 
-                refresh();
+                nolist_add.setVisibility(View.GONE);
+                nolist_add_text.setVisibility(View.GONE);
 
+                reloadrecyclerview(YearData,monthData,dayData);
             }
         });
 
@@ -764,6 +765,13 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
                 final TextView schedule_end_time = (TextView) view.findViewById(R.id.schedule_basic_end_time_ed);
                 final EditText schedule_text = (EditText) view.findViewById(R.id.schedule_basic_text_ed);
 
+
+                List<Calender_DB> calender_like_data = calender_dao.loadAllDataByYears(
+                        Integer.parseInt(YearData),
+                        Integer.parseInt(monthData),
+                        Integer.parseInt(dayData)
+                );
+
                 String startTime = String.format("%04d", calender_like_data.get(pos).getStart_time());
                 String valueStartTime = startTime.substring(0,2) + " : " + startTime.substring(2, startTime.length());
                 String EndTime = String.format("%04d", calender_like_data.get(pos).getEnd_time());
@@ -845,11 +853,6 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
                         List<Calender_DB> loadDb = calender_dao.getAllData();
                         Calender_DB calender_db = new Calender_DB();
 
-//                        mArrayList.get (pos).setName (schedule_title);
-//                        mArrayList.get (pos).setNumber (schedule_text);
-//                        mAdapter.notifyItemChanged (position);
-//                        dialog.dismiss();
-
                         int scheduleKey = calender_like_data.get(pos).getNum();
                         Log.v("선택한 일정의 일정시작 시간",startHour+startMinute+"");
                         Log.v("선택한 일정의 num",calender_like_data.get(pos).getNum()+"");
@@ -867,7 +870,7 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
 
                             }
                         }
-
+                        reloadrecyclerview(YearData,monthData,dayData);
                     }
                 });
 
@@ -875,11 +878,13 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
                 dialog.setNegativeButton("삭제",new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         calender_dao.deleteCalendar(calender_like_data.get(pos).getNum());
-                        refresh();
+                        reloadrecyclerview(YearData,monthData,dayData);
+                        Toast.makeText(getActivity().getApplicationContext(), "calender_like_data.get(pos).getNum() : " + calender_like_data.get(pos).getNum(), Toast.LENGTH_SHORT).show();
+
                     }
                 });
+                reloadrecyclerview(YearData,monthData,dayData);
                 dialog.show();
-
             }
         });
 
@@ -942,7 +947,7 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
                     public void onClick(DialogInterface dialog, int which) {
 
                         calender_dao.deleteCalendar(calender_like_data.get(pos).getNum());
-                        refresh();
+                        reloadrecyclerview(YearData,monthData,dayData);
 
                         Toast.makeText(getActivity().getApplicationContext(), "calender_like_data.get(pos).getNum() : " + calender_like_data.get(pos).getNum(), Toast.LENGTH_SHORT).show();
                         Toast.makeText(getActivity().getApplicationContext(), "삭제확인", Toast.LENGTH_SHORT).show();
@@ -952,7 +957,7 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
                 dialog.setNegativeButton("취소", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(getActivity().getApplicationContext(), "삭제취소", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity().getApplicationContext(), "ㅇㄴ취소", Toast.LENGTH_SHORT).show();
                     }
                 });
 
@@ -1016,8 +1021,7 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
                         public void onClick(View v) {
                             edit();
                             recyclerView.invalidate();
-                            recyclerView.getAdapter().notifyDataSetChanged();
-                            refresh();
+                            reloadrecyclerview(YearData,monthData,dayData);
                         }
                     });
 
@@ -1046,8 +1050,6 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
                 toggleFab();
                 edit();
                 recyclerView.invalidate();
-                recyclerView.getAdapter().notifyDataSetChanged();
-                refresh();
                 break;
             case R.id.floating_voice:
                 toggleFab();
@@ -1546,7 +1548,37 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
 //        Log.v("stt", );
 
     }
+
+    private void reloadrecyclerview(String YearData, String monthData, String dayData) {
+        List<Calender_DB> calender_like_data = calender_dao.loadAllDataByYears(
+                Integer.parseInt(YearData),
+                Integer.parseInt(monthData),
+                Integer.parseInt(dayData)
+        );
+
+        list_itemAdapter.removeAllItem();
+
+        for (int i = 0; i < calender_like_data.size(); i++) {
+            List_Item calList = new List_Item();
+            String startTime = String.format("%04d", calender_like_data.get(i).getStart_time());
+            String valueStartTime = startTime.substring(0,2) + " : " + startTime.substring(2, startTime.length());
+            String EndTime = String.format("%04d", calender_like_data.get(i).getEnd_time());
+            String valueEndTime = EndTime.substring(0,2) + " : " + EndTime.substring(2, EndTime.length());
+
+            calList.setTime(valueStartTime + "~ \n" + valueEndTime);
+            calList.setTitle(calender_like_data.get(i).get_titles());
+            calList.setText(calender_like_data.get(i).get_subtitle());
+
+            list_itemAdapter.addItem(calList);
+//                        list_itemAdapter.addItem(calList); //두개 써있어서 하나 주석 해둠
+        }
+        list_itemAdapter.notifyDataSetChanged();
+        recyclerView.startLayoutAnimation();
+    }
+
 }
+
+
 
 
 

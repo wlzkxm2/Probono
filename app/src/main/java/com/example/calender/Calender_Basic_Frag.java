@@ -21,6 +21,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -81,9 +82,32 @@ public class Calender_Basic_Frag extends Fragment {
         return Calender_Basic;
     }
 
-    private void refresh() {
-        FragmentTransaction ft = getFragmentManager().beginTransaction();
-        ft.detach(this).attach(this).commit();
+
+    private void reloadrecyclerview(String YearData, String monthData, String dayData) {
+        List<Calender_DB> calender_like_data = calender_dao.loadAllDataByYears(
+                Integer.parseInt(YearData),
+                Integer.parseInt(monthData),
+                Integer.parseInt(dayData)
+        );
+
+        list_itemAdapter.removeAllItem();
+
+        for (int i = 0; i < calender_like_data.size(); i++) {
+            List_Item calList = new List_Item();
+            String startTime = String.format("%04d", calender_like_data.get(i).getStart_time());
+            String valueStartTime = startTime.substring(0,2) + " : " + startTime.substring(2, startTime.length());
+            String EndTime = String.format("%04d", calender_like_data.get(i).getEnd_time());
+            String valueEndTime = EndTime.substring(0,2) + " : " + EndTime.substring(2, EndTime.length());
+
+            calList.setTime(valueStartTime + "~ \n" + valueEndTime);
+            calList.setTitle(calender_like_data.get(i).get_titles());
+            calList.setText(calender_like_data.get(i).get_subtitle());
+
+            list_itemAdapter.addItem(calList);
+//                        list_itemAdapter.addItem(calList); //두개 써있어서 하나 주석 해둠
+        }
+        list_itemAdapter.notifyDataSetChanged();
+        recyclerView.startLayoutAnimation();
     }
 
     @Nullable
@@ -102,6 +126,10 @@ public class Calender_Basic_Frag extends Fragment {
         final int[] _month = {0};
         final int[] _day = {0};
         final int[] appData = {0};  // DB 내에 있는 데이터의 사이즈
+
+
+
+
 
 //        addcal_btn = (Button) view.findViewById(R.id.Addcal_btn);
 
@@ -173,6 +201,8 @@ public class Calender_Basic_Frag extends Fragment {
                 final TextView schedule_end_time = (TextView) view.findViewById(R.id.schedule_basic_end_time_ed);
                 final EditText schedule_text = (EditText) view.findViewById(R.id.schedule_basic_text_ed);
 
+                List<Calender_DB> calender_like_data = calender_dao.loadAllDataByYears(_year[0],_month[0],_day[0]);
+
                 String startTime = String.format("%04d", calender_like_data.get(pos).getStart_time());
                 String valueStartTime = startTime.substring(0,2) + " : " + startTime.substring(2, startTime.length());
                 String EndTime = String.format("%04d", calender_like_data.get(pos).getEnd_time());
@@ -182,8 +212,6 @@ public class Calender_Basic_Frag extends Fragment {
                 schedule_start_time.setText(valueStartTime);
                 schedule_end_time.setText(valueEndTime);
                 schedule_text.setText(calender_like_data.get(pos).get_subtitle());
-
-
 
                 final int startHour=Integer.parseInt(startTime.substring(0,2)), startMinute=Integer.parseInt(startTime.substring(2, startTime.length()));
                 final int endHour=Integer.parseInt(EndTime.substring(0,2)), endMinute=Integer.parseInt(EndTime.substring(2, startTime.length()));
@@ -254,11 +282,6 @@ public class Calender_Basic_Frag extends Fragment {
                         List<Calender_DB> loadDb = calender_dao.getAllData();
                         Calender_DB calender_db = new Calender_DB();
 
-//                        mArrayList.get (pos).setName (schedule_title);
-//                        mArrayList.get (pos).setNumber (schedule_text);
-//                        mAdapter.notifyItemChanged (position);
-//                        dialog.dismiss();
-
                         int scheduleKey = calender_like_data.get(pos).getNum();
                         Log.v("선택한 일정의 일정시작 시간",startHour+startMinute+"");
                         Log.v("선택한 일정의 num",calender_like_data.get(pos).getNum()+"");
@@ -276,7 +299,7 @@ public class Calender_Basic_Frag extends Fragment {
 
                             }
                         }
-
+                        reloadrecyclerview(YearData,monthData,dayData);
                     }
                 });
 
@@ -284,11 +307,13 @@ public class Calender_Basic_Frag extends Fragment {
                 dialog.setNegativeButton("삭제",new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         calender_dao.deleteCalendar(calender_like_data.get(pos).getNum());
-                        refresh();
+                        reloadrecyclerview(YearData,monthData,dayData);
+                        Toast.makeText(getActivity().getApplicationContext(), "calender_like_data.get(pos).getNum() : " + calender_like_data.get(pos).getNum(), Toast.LENGTH_SHORT).show();
+
                     }
                 });
+                reloadrecyclerview(YearData,monthData,dayData);
                 dialog.show();
-
             }
         });
 
@@ -367,7 +392,10 @@ public class Calender_Basic_Frag extends Fragment {
 
 //                Toast.makeText(getActivity().getApplication(), _year[0] + "-" + _month[0] + "-" + _day[0], Toast.LENGTH_SHORT).show();
 
+                Log.v("HSH", Integer.toString(((UidCode) getActivity().getApplication()).getStatic_year()));
+                Log.v("HSH", Integer.toString(((UidCode) getActivity().getApplication()).getStatic_month()));
                 Log.v("HSH", Integer.toString(((UidCode) getActivity().getApplication()).getStatic_day()));
+
 
                 list_itemAdapter.removeAllItem();
 
@@ -411,11 +439,11 @@ public class Calender_Basic_Frag extends Fragment {
 //                endLoaclHour = now.getHour();
 //                endLoaclMinute = now.getMinute();
 
-//                List<Calender_DB> calender_like_data = calender_dao.loadAllDataByYears(
-//                        Integer.parseInt(YearData),
-//                        Integer.parseInt(monthData),
-//                        Integer.parseInt(dayData)
-//                );
+                List<Calender_DB> calender_like_data = calender_dao.loadAllDataByYears(
+                        Integer.parseInt(YearData),
+                        Integer.parseInt(monthData),
+                        Integer.parseInt(dayData)
+                );
 
                             AlertDialog.Builder dialog = new AlertDialog.Builder(new ContextThemeWrapper(getActivity(), R.style.AlertDialogTheme));
                             LayoutInflater inflater= getLayoutInflater();
@@ -657,7 +685,7 @@ public class Calender_Basic_Frag extends Fragment {
                                     // 입력한 일정을 DB에 추가
                                     calender_dao.insertAll(inputCalData);
 
-                                    refresh();
+                                    reloadrecyclerview(YearData,monthData,dayData);
 
                                 }
                             });
