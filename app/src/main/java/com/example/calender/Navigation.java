@@ -16,6 +16,7 @@ import com.example.calender.DataBase.Calender_Dao;
 import com.example.calender.DataBase.User_DBset;
 import com.example.calender.DataBase.User_Dao;
 import com.example.calender.Main_Basic.Main_Basic_Frag;
+import com.example.calender.Main_Basic.New_Main_basic;
 import com.example.calender.Permission.Permission;
 import com.example.calender.setting.Setting_main;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -30,7 +31,8 @@ public class Navigation extends AppCompatActivity {
     private BottomNavigationView bottomNavigationView;
     private FragmentManager fm;
     private FragmentTransaction ft;
-    private Main_Basic_Frag main_basic_frag;
+//    private Main_Basic_Frag main_basic_frag;
+    private New_Main_basic main_basic_frag;
     private Calender_Basic_Frag calender_basic_frag;
     private Setting_main setting_main;
     String themeColor;
@@ -114,7 +116,7 @@ public class Navigation extends AppCompatActivity {
         });
 
         calender_basic_frag = new Calender_Basic_Frag();
-        main_basic_frag = new Main_Basic_Frag();
+        main_basic_frag = new New_Main_basic();
         setting_main = new Setting_main();
         setFrag(1); // 앱 켜질때 첫 프래그먼트 화면 지정
 

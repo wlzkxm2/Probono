@@ -24,7 +24,7 @@
         app:layout_constraintVertical_bias="0.038" />
 
     <TextView
-        android:id="@+id/main_basic_title"
+        android:id="@+id/new_main_basic_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -173,135 +173,135 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.569" />
 
-    <ImageButton
-        android:id="@+id/add_schedule"
-        android:layout_width="45dp"
-        android:layout_height="42dp"
-        android:background="@android:color/transparent"
-        android:scaleType="fitCenter"
-        android:src="@drawable/img_add_schedule"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.899" />
+<!--    <ImageButton-->
+<!--        android:id="@+id/add_schedule"-->
+<!--        android:layout_width="45dp"-->
+<!--        android:layout_height="42dp"-->
+<!--        android:background="@android:color/transparent"-->
+<!--        android:scaleType="fitCenter"-->
+<!--        android:src="@drawable/img_add_schedule"-->
+<!--        android:visibility="gone"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintVertical_bias="0.899" />-->
 
-    <ImageView
-        android:id="@+id/add_schedule_dot"
-        android:layout_width="16dp"
-        android:layout_height="65dp"
-        android:src="@drawable/img_dot_dot_dot"
-        android:visibility="gone"
-        android:rotationX="180"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.822" />
+<!--    <ImageView-->
+<!--        android:id="@+id/add_schedule_dot"-->
+<!--        android:layout_width="16dp"-->
+<!--        android:layout_height="65dp"-->
+<!--        android:src="@drawable/img_dot_dot_dot"-->
+<!--        android:visibility="gone"-->
+<!--        android:rotationX="180"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.498"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintVertical_bias="0.822" />-->
 
-    <TextView
-        android:id="@+id/add_schedule_txt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:foregroundTint="#B55151"
-        android:text="@string/add_schedule"
-        android:textColor="#5A88FF"
-        android:textSize="10sp"
-        android:visibility="gone"
-        app:drawableTint="#8A5858"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.946" />
+<!--    <TextView-->
+<!--        android:id="@+id/add_schedule_txt"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:foregroundTint="#B55151"-->
+<!--        android:text="@string/add_schedule"-->
+<!--        android:textColor="#5A88FF"-->
+<!--        android:textSize="10sp"-->
+<!--        android:visibility="gone"-->
+<!--        app:drawableTint="#8A5858"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.498"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintVertical_bias="0.946" />-->
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floating_edit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="#5A88FF"
-        android:clickable="true"
-        android:src="@drawable/ic_edit_line"
-        android:visibility="invisible"
-        app:borderWidth="0dp"
-        app:fabSize="normal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/recycler_view"
-        app:layout_constraintHorizontal_bias="0.926"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.729"
-        app:tint="@android:color/white" />
+<!--    <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+<!--        android:id="@+id/floating_edit"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:backgroundTint="#5A88FF"-->
+<!--        android:clickable="true"-->
+<!--        android:src="@drawable/ic_edit_line"-->
+<!--        android:visibility="invisible"-->
+<!--        app:borderWidth="0dp"-->
+<!--        app:fabSize="normal"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="@+id/recycler_view"-->
+<!--        app:layout_constraintHorizontal_bias="0.926"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintVertical_bias="0.729"-->
+<!--        app:tint="@android:color/white" />-->
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floating_voice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="#5A88FF"
-        android:clickable="true"
-        android:src="@drawable/ic_mic"
-        android:visibility="invisible"
-        app:borderWidth="0dp"
-        app:fabSize="normal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/recycler_view"
-        app:layout_constraintHorizontal_bias="0.926"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.831"
-        app:tint="@android:color/white" />
+<!--    <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+<!--        android:id="@+id/floating_voice"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:backgroundTint="#5A88FF"-->
+<!--        android:clickable="true"-->
+<!--        android:src="@drawable/ic_mic"-->
+<!--        android:visibility="invisible"-->
+<!--        app:borderWidth="0dp"-->
+<!--        app:fabSize="normal"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="@+id/recycler_view"-->
+<!--        app:layout_constraintHorizontal_bias="0.926"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintVertical_bias="0.831"-->
+<!--        app:tint="@android:color/white" />-->
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floating_main"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/test"
-        android:clickable="true"
-        android:scaleType="fitCenter"
-        android:src="@drawable/ic_more"
-        android:tint="#5A88FF"
-        app:borderWidth="3dp"
-        app:fabSize="normal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/recycler_view"
-        app:layout_constraintHorizontal_bias="0.926"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.936"
-        app:backgroundTint="@color/appcolor"
-        app:tint="@null" />
+<!--    <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+<!--        android:id="@+id/floating_main"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:backgroundTint="@color/test"-->
+<!--        android:clickable="true"-->
+<!--        android:scaleType="fitCenter"-->
+<!--        android:src="@drawable/ic_more"-->
+<!--        android:tint="#5A88FF"-->
+<!--        app:borderWidth="3dp"-->
+<!--        app:fabSize="normal"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="@+id/recycler_view"-->
+<!--        app:layout_constraintHorizontal_bias="0.926"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintVertical_bias="0.936"-->
+<!--        app:backgroundTint="@color/appcolor"-->
+<!--        app:tint="@null" />-->
 
-    <ImageButton
-        android:id="@+id/main_basic_nolist_add"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:background="@android:color/transparent"
-        android:scaleType="fitCenter"
-        android:src="@drawable/img_add_schedule"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.586"
-        android:visibility="gone"/>
+<!--    <ImageButton-->
+<!--        android:id="@+id/main_basic_nolist_add"-->
+<!--        android:layout_width="100dp"-->
+<!--        android:layout_height="100dp"-->
+<!--        android:background="@android:color/transparent"-->
+<!--        android:scaleType="fitCenter"-->
+<!--        android:src="@drawable/img_add_schedule"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.498"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintVertical_bias="0.586"-->
+<!--        android:visibility="gone"/>-->
 
-    <TextView
-        android:id="@+id/main_basic_nolist_add_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/add_schedule"
-        android:textColor="#5A88FF"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/main_basic_nolist_add"
-        app:layout_constraintVertical_bias="0.055"
-        android:visibility="gone"/>
+<!--    <TextView-->
+<!--        android:id="@+id/main_basic_nolist_add_text"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="@string/add_schedule"-->
+<!--        android:textColor="#5A88FF"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.498"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/main_basic_nolist_add"-->
+<!--        app:layout_constraintVertical_bias="0.055"-->
+<!--        android:visibility="gone"/>-->
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
