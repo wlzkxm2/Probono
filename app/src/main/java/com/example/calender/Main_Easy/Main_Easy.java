@@ -505,6 +505,7 @@ public class Main_Easy extends AppCompatActivity {
                     case R.id.main_easy_floating_voice:
                         Custom_STT custom_stt = new Custom_STT(Main_Easy.this);
                         int inputday = ((UidCode) Main_Easy.this.getApplication()).getStatic_day();
+                        custom_stt.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                         custom_stt.show();
                         break;
 

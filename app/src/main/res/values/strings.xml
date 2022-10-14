@@ -96,4 +96,5 @@
     <string name="restart">Restart</string>
     <string name="dark_follow">Follow the System</string>
     <string name="speak_list">Please Say contens</string>
+    <string name="game_btn">GAME</string>
 </resources>

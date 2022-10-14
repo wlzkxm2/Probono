@@ -68,4 +68,5 @@
     <string name="cancel">취소</string>
     <string name="dark_follow">시스템 따라가기</string>
     <string name="speak_list">내옹을 얘기해주세요</string>
+    <string name="game_btn">게임</string>
 </resources>

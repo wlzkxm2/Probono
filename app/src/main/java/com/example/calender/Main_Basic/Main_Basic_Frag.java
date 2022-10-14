@@ -1078,7 +1078,7 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
             edit_title.setText(maintitle_txt.getText()); // 위 표시한 에딧 내용에 현재 적용되있는 제목 넣어놓음(처음이라면 초기 제목)
 
             // 완료 버튼
-            dialog.setPositiveButton("완료", new DialogInterface.OnClickListener() {
+            dialog.setPositiveButton(R.string.save, new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int which) {
                     String getTitle = edit_title.getText().toString();
                     maintitle_txt.setText(getTitle);
@@ -1087,7 +1087,7 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
             });
 
             // 취소 버튼
-            dialog.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+            dialog.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int which) {
                     dialog.cancel();
                 }
