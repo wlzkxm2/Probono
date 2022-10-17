@@ -11,6 +11,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.ContextThemeWrapper;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -76,6 +77,7 @@ public class Calendar_Easy extends AppCompatActivity {
     RecyclerView recyclerView;
     List_ItemAdapter_Easy list_itemAdapter_easy;
     Button addcal_btn;
+    ImageButton backbtn;
 
     public static Calendar_Easy newInstance() {
         Calendar_Easy Calender_Easy = new Calendar_Easy();
@@ -121,6 +123,9 @@ public class Calendar_Easy extends AppCompatActivity {
     protected void onCreate(@org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.calendar_easy);
+
+        //뒤로가기 버튼
+        backbtn = (ImageButton) findViewById(R.id.easy_calendar_back);
 
         // 일정 없는 날 일정추가버튼 표시
         nolist_add = (ImageButton) findViewById(R.id.calendar_easy_nolist_add);
@@ -201,7 +206,10 @@ public class Calendar_Easy extends AppCompatActivity {
                 final TextView schedule_end_time = (TextView) view.findViewById(R.id.schedule_basic_end_time_ed);
                 final EditText schedule_text = (EditText) view.findViewById(R.id.schedule_basic_text_ed);
 
-                List<Calender_DB> calender_like_data = calender_dao.loadAllDataByYears(_year[0],_month[0],_day[0]);
+                List<Calender_DB> calender_like_data = calender_dao.loadAllDataByYears(
+                        _year[0],
+                        _month[0],
+                        _day[0]);
 
                 String startTime = String.format("%04d", calender_like_data.get(pos).getStart_time());
                 String valueStartTime = startTime.substring(0,2) + " : " + startTime.substring(2, startTime.length());
@@ -311,9 +319,7 @@ public class Calendar_Easy extends AppCompatActivity {
                 dialog.setNegativeButton("삭제",new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         calender_dao.deleteCalendar(calender_like_data.get(pos).getNum());
-                        reloadrecyclerview(Integer.toString(((UidCode) getApplication()).getStatic_year())
-                                ,Integer.toString(((UidCode) getApplication()).getStatic_month()),
-                                Integer.toString(((UidCode) getApplication()).getStatic_day()));
+                        reloadrecyclerview(YearData,monthData,dayData);
 
                         Toast.makeText(getApplicationContext(), "calender_like_data.get(pos).getNum() : " + calender_like_data.get(pos).getNum(), Toast.LENGTH_SHORT).show();
 
@@ -692,6 +698,16 @@ public class Calendar_Easy extends AppCompatActivity {
                                     // 입력한 일정을 DB에 추가
                                     calender_dao.insertAll(inputCalData);
 
+                                    Log.v("간편모드 등록", " 등록된 일정 년도 : "+saveStartYears);
+                                    Log.v("간편모드 등록", " 등록된 일정 시작 날 : "+saveStartYears+"년 "+saveStartMonths+"월 "+saveStartDays+"일");
+                                    Log.v("간편모드 등록", " 등록된 일정 종료 날 : "+saveEndYears+"년 "+saveEndMonths+"월 "+saveEndDays+"일");
+                                    Log.v("간편모드 등록", " 등록된 일정 시작 시간 : "+saveStartTime);
+                                    Log.v("간편모드 등록", " 등록된 일정 종료 시간 : "+saveEndTime);
+                                    Log.v("간편모드 등록", " 등록된 일정 제목 : "+title);
+                                    Log.v("간편모드 등록", " 등록된 일정 내용 : "+subtitle);
+
+                                    Log.v("간편","엄");
+
                                     reloadrecyclerview(Integer.toString(((UidCode) getApplication()).getStatic_year())
                                             ,Integer.toString(((UidCode) getApplication()).getStatic_month()),
                                             Integer.toString(((UidCode) getApplication()).getStatic_day()));
@@ -774,5 +790,28 @@ public class Calendar_Easy extends AppCompatActivity {
             }
         });
 
+        backbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                overridePendingTransition(1, 1);//인텐트 효과 없애기
+                Intent back = new Intent(getApplicationContext(), Main_Easy.class);
+                startActivity(back);
+                overridePendingTransition(1, 1);//인텐트 효과 없애기
+            }
+        });
+
+
+    }
+    @Override
+    public boolean onKeyDown(int keycode, KeyEvent event) {
+        if(keycode == KeyEvent.KEYCODE_BACK) {
+            overridePendingTransition(1, 1);//인텐트 효과 없애기
+            Intent back = new Intent(getApplicationContext(), Main_Easy.class);
+            startActivity(back);
+            overridePendingTransition(1, 1);//인텐트 효과 없애기
+            return true;
+        }
+
+        return false;
     }
 }

@@ -901,6 +901,7 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
 
                     }
                 });
+                Log.v("일정 순서","현재 클릭한 일정 순번 : "+(pos+1)+"번째");
                 dialog.show();
             }
         });

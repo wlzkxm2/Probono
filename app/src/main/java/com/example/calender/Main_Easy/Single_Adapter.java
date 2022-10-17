@@ -28,6 +28,21 @@ public class Single_Adapter extends RecyclerView.Adapter<Single_Adapter.Single_A
 
     // -1 : 아무런 선택도 없는 상태. 0 : 첫번째 아이템 자리 
 
+    //===== 일정 리스트 클릭 이벤트 구현을 위해 추가된 코드 ==========================
+    // OnItemClickListener 인터페이스 선언
+    public interface OnItemClickListener {
+        void onItemClicked(View v, int pos);
+    }
+
+    // OnItemClickListener 참조 변수 선언
+    private static List_ItemAdapter_Easy.OnItemClickListener mListener = null;
+
+    // OnItemClickListener 전달 메소드
+    public void setOnItemClickListener (List_ItemAdapter_Easy.OnItemClickListener listener) {
+        this.mListener = listener;
+    }
+    //======================================================================
+
     private String getToday() { //오늘 날짜 가져오기
         long now = System.currentTimeMillis();
         Date date = new Date(now);
@@ -110,15 +125,19 @@ public class Single_Adapter extends RecyclerView.Adapter<Single_Adapter.Single_A
                         checkedPosition = getAdapterPosition();
                     }
 
+                    int pos = getAdapterPosition();
+                    if(pos != RecyclerView.NO_POSITION){
+                        if(mListener != null){
+                            mListener.onItemClicked(v, pos);
+                        }
+                    }
 
                     // 클릭한 일자 출력
                     // 일자 데이터베이스 데이터를 찾는데 사용됨
                     int days = getAdapterPosition() + 1;
                     if (days != RecyclerView.NO_POSITION) {
-                        Log.v("maineasy", "pos If : " + days);
+//                        Log.v("주간달력", "현재 Day : " + days);
                     }
-
-                    Log.v("maineasy", "pos getadapter Position : " + days);
                 }
             });
         }

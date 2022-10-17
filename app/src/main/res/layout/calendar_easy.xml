@@ -5,7 +5,13 @@
     android:layout_height="match_parent"
     android:background="@color/test"
     android:orientation="vertical">
-
+    <ImageButton
+        android:id="@+id/easy_calendar_back"
+        android:src="@drawable/arrow_left_line"
+        android:backgroundTint="@android:color/transparent"
+        android:scaleType="fitCenter"
+        android:layout_width="50dp"
+        android:layout_height="50dp"/>
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
