@@ -299,7 +299,11 @@ public class Calender_Basic_Frag extends Fragment {
 
                             }
                         }
-                        reloadrecyclerview(YearData,monthData,dayData);
+
+                        reloadrecyclerview(Integer.toString(((UidCode) getActivity().getApplication()).getStatic_year())
+                                ,Integer.toString(((UidCode) getActivity().getApplication()).getStatic_month()),
+                                Integer.toString(((UidCode) getActivity().getApplication()).getStatic_day()));
+
                     }
                 });
 
@@ -307,12 +311,15 @@ public class Calender_Basic_Frag extends Fragment {
                 dialog.setNegativeButton("삭제",new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         calender_dao.deleteCalendar(calender_like_data.get(pos).getNum());
-                        reloadrecyclerview(YearData,monthData,dayData);
+                        reloadrecyclerview(Integer.toString(((UidCode) getActivity().getApplication()).getStatic_year())
+                                ,Integer.toString(((UidCode) getActivity().getApplication()).getStatic_month()),
+                                Integer.toString(((UidCode) getActivity().getApplication()).getStatic_day()));
+
                         Toast.makeText(getActivity().getApplicationContext(), "calender_like_data.get(pos).getNum() : " + calender_like_data.get(pos).getNum(), Toast.LENGTH_SHORT).show();
 
                     }
                 });
-                reloadrecyclerview(YearData,monthData,dayData);
+//                reloadrecyclerview(YearData,monthData,dayData);
                 dialog.show();
             }
         });
@@ -685,7 +692,9 @@ public class Calender_Basic_Frag extends Fragment {
                                     // 입력한 일정을 DB에 추가
                                     calender_dao.insertAll(inputCalData);
 
-                                    reloadrecyclerview(YearData,monthData,dayData);
+                                    reloadrecyclerview(Integer.toString(((UidCode) getActivity().getApplication()).getStatic_year())
+                                            ,Integer.toString(((UidCode) getActivity().getApplication()).getStatic_month()),
+                                            Integer.toString(((UidCode) getActivity().getApplication()).getStatic_day()));
 
                                 }
                             });
