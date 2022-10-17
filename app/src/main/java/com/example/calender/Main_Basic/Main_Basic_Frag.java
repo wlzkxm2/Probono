@@ -423,11 +423,11 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
             public void onClick(View v) {
                 DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
                     @Override
-                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        startYears = year;
-                        startMonths = month+1;
-                        startDays = dayOfMonth;
-                        schedule_start_day.setText(year + "년 " + (month + 1)+ "월 " + dayOfMonth + "일 ");
+                    public void onDateSet(DatePicker view, int s_year, int s_month, int s_dayOfMonth) {
+                        startYears = s_year;
+                        startMonths = s_month+1;
+                        startDays = s_dayOfMonth;
+                        schedule_start_day.setText(s_year + "년 " + (s_month + 1)+ "월 " + s_dayOfMonth + "일 ");
                     }
                 },startYears,startMonths-1,startDays);
 
@@ -454,13 +454,13 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
             public void onClick(View v) {
                 DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
                     @Override
-                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        startYears = year;
-                        startMonths = month+1;
-                        startDays = dayOfMonth;
-                        schedule_end_day.setText(year + "년 " + (month + 1)+ "월 " + dayOfMonth + "일 ");
+                    public void onDateSet(DatePicker view, int e_year, int e_month, int e_dayOfMonth) {
+                        endYears = e_year;
+                        endMonths = e_month+1;
+                        endDays = e_dayOfMonth;
+                        schedule_end_day.setText(e_year + "년 " + (e_month + 1)+ "월 " + e_dayOfMonth + "일 ");
                     }
-                },startYears,startMonths-1,startDays);
+                },endYears,endMonths-1,endDays);
 
 //                        // 종료날짜 설정(확인) 버튼
 //                        datePickerDialog.setButton(DatePickerDialog.BUTTON_POSITIVE,"설정", new DialogInterface.OnClickListener(){
@@ -487,11 +487,11 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
                 TimePickerDialog timePickerDialog = new TimePickerDialog
                         (getActivity(), android.R.style.Theme_Holo_Light_Dialog, new TimePickerDialog.OnTimeSetListener() {
                             @Override
-                            public void onTimeSet(TimePicker view, int hour, int minute) {
-                                startHour = hour;
-                                startMinute = minute;
-                                String startScheduleHour = String.format("%02d",hour);
-                                String startScheduleMinute = String.format("%02d",minute);
+                            public void onTimeSet(TimePicker view, int shour, int sminute) {
+                                startHour = shour;
+                                startMinute = sminute;
+                                String startScheduleHour = String.format("%02d",shour);
+                                String startScheduleMinute = String.format("%02d",sminute);
                                 schedule_start_time.setText(startScheduleHour + " : " + startScheduleMinute);
                             }
                         },startHour, startMinute, true);
@@ -520,11 +520,11 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
                 TimePickerDialog timePickerDialog = new TimePickerDialog
                         (getActivity(), android.R.style.Theme_Holo_Light_Dialog,new TimePickerDialog.OnTimeSetListener() {
                             @Override
-                            public void onTimeSet(TimePicker view, int hour, int minute) {
-                                endHour = hour;
-                                endMinute = minute;
-                                String endScheduleHour = String.format("%02d",hour);
-                                String endScheduleMinute = String.format("%02d",minute);
+                            public void onTimeSet(TimePicker view, int ehour, int eminute) {
+                                endHour = ehour;
+                                endMinute = eminute;
+                                String endScheduleHour = String.format("%02d",ehour);
+                                String endScheduleMinute = String.format("%02d",eminute);
                                 schedule_end_time.setText(endScheduleHour + " : " + endScheduleMinute);
                             }
                         },endHour, endMinute, true);
@@ -597,6 +597,11 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
 
                 nolist_add.setVisibility(View.GONE);
                 nolist_add_text.setVisibility(View.GONE);
+
+                Log.v("일정 등록", "일정 날짜 : "+startDays+" ~ "+endDays);
+                Log.v("일정 등록", "일정 등록 시간 : "+startHour+":"+startMinute+" ~ "+endHour+":"+endMinute);
+                Log.v("일정 등록", "일정 제목 : "+title);
+                Log.v("일정 등록", "일정 내용 : "+subtitle);
 
                 reloadrecyclerview(YearData,monthData,dayData);
             }
