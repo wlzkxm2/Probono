@@ -26,10 +26,8 @@ public class List_ItemAdapter extends RecyclerView.Adapter<List_ItemAdapter.View
         void onItemClicked(View v, int pos);
     }
 
-    private OnItemClickListener mListener = null;
-
     // OnItemClickListener 참조 변수 선언
-    private OnItemClickListener itemClickListener;
+    private OnItemClickListener mListener = null;
 
     // OnItemClickListener 전달 메소드
     public void setOnItemClickListener (OnItemClickListener listener) {

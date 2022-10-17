@@ -46,6 +46,7 @@ import com.example.calender.DataBase.UserDB;
 import com.example.calender.DataBase.User_DBset;
 import com.example.calender.DataBase.User_Dao;
 import com.example.calender.Main_Basic.List_Item;
+import com.example.calender.Main_Basic.List_ItemAdapter;
 import com.example.calender.R;
 import com.example.calender.StaticUidCode.UidCode;
 import com.example.calender.UserProfile;
@@ -335,11 +336,37 @@ public class Main_Easy extends AppCompatActivity {
 
     private void refresh(){
         overridePendingTransition(0, 0);//인텐트 효과 없애기
-        Intent intent = getIntent(); //인텐트
-        startActivity(intent); //액티비티 열기
+        Intent re = getIntent(); //인텐트
+        startActivity(re); //액티비티 열기
         overridePendingTransition(0, 0);//인텐트 효과 없애기
     }
 
+    private void reloadrecyclerview(String YearData, String monthData, String dayData) {
+        List<Calender_DB> calender_like_data = calender_dao.loadAllDataByYears(
+                Integer.parseInt(YearData),
+                Integer.parseInt(monthData),
+                Integer.parseInt(dayData)
+        );
+
+        list_itemAdapter_easy.removeAllItem();
+
+        for (int i = 0; i < calender_like_data.size(); i++) {
+            List_Item calList = new List_Item();
+            String startTime = String.format("%04d", calender_like_data.get(i).getStart_time());
+            String valueStartTime = startTime.substring(0,2) + " : " + startTime.substring(2, startTime.length());
+            String EndTime = String.format("%04d", calender_like_data.get(i).getEnd_time());
+            String valueEndTime = EndTime.substring(0,2) + " : " + EndTime.substring(2, EndTime.length());
+
+            calList.setTime(valueStartTime + "~ \n" + valueEndTime);
+            calList.setTitle(calender_like_data.get(i).get_titles());
+            calList.setText(calender_like_data.get(i).get_subtitle());
+
+            list_itemAdapter_easy.addItem(calList);
+//                        list_itemAdapter.addItem(calList); //두개 써있어서 하나 주석 해둠
+        }
+        list_itemAdapter_easy.notifyDataSetChanged();
+        recyclerView.startLayoutAnimation();
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -577,7 +604,6 @@ public class Main_Easy extends AppCompatActivity {
         list_itemAdapter_easy.setOnItemClickListener(new List_ItemAdapter_Easy.OnItemClickListener() {
             @Override
             public void onItemClicked(View v, int pos) {
-
                 AlertDialog.Builder dialog = new AlertDialog.Builder(new ContextThemeWrapper(Main_Easy.this, R.style.AlertDialogTheme));
                 LayoutInflater inflater= getLayoutInflater();
                 View view = inflater.inflate(R.layout.schedule_basic, null);
@@ -587,6 +613,13 @@ public class Main_Easy extends AppCompatActivity {
                 final TextView schedule_start_time = (TextView) view.findViewById(R.id.schedule_basic_start_time_ed);
                 final TextView schedule_end_time = (TextView) view.findViewById(R.id.schedule_basic_end_time_ed);
                 final EditText schedule_text = (EditText) view.findViewById(R.id.schedule_basic_text_ed);
+
+
+                List<Calender_DB> calender_like_data = calender_dao.loadAllDataByYears(
+                        Integer.parseInt(YearData),
+                        Integer.parseInt(monthData),
+                        Integer.parseInt(dayData)
+                );
 
                 String startTime = String.format("%04d", calender_like_data.get(pos).getStart_time());
                 String valueStartTime = startTime.substring(0,2) + " : " + startTime.substring(2, startTime.length());
@@ -598,8 +631,10 @@ public class Main_Easy extends AppCompatActivity {
                 schedule_end_time.setText(valueEndTime);
                 schedule_text.setText(calender_like_data.get(pos).get_subtitle());
 
+
+
                 final int startHour=Integer.parseInt(startTime.substring(0,2)), startMinute=Integer.parseInt(startTime.substring(2, startTime.length()));
-                final int endHour=Integer.parseInt(EndTime.substring(0,2)), Calendar_EasyCalendar_EasyendMinute=Integer.parseInt(EndTime.substring(2, startTime.length()));
+                final int endHour=Integer.parseInt(EndTime.substring(0,2)), endMinute=Integer.parseInt(EndTime.substring(2, startTime.length()));
 
                 schedule_start_time.setOnClickListener(new View.OnClickListener() { // 일정 시작 시간 타임피커
                     @Override
@@ -607,8 +642,8 @@ public class Main_Easy extends AppCompatActivity {
                         TimePickerDialog timePickerDialog = new TimePickerDialog
                                 (Main_Easy.this, android.R.style.Theme_Holo_Light_Dialog, new TimePickerDialog.OnTimeSetListener() {
                                     @Override
-                                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                                        String startHour = String.format("%02d",hourOfDay);
+                                    public void onTimeSet(TimePicker view, int hour, int minute) {
+                                        String startHour = String.format("%02d",hour);
                                         String startMinute = String.format("%02d",minute);
                                         schedule_start_time.setText(startHour + " : " + startMinute);
                                     }
@@ -637,8 +672,8 @@ public class Main_Easy extends AppCompatActivity {
                         TimePickerDialog timePickerDialog = new TimePickerDialog
                                 (Main_Easy.this, android.R.style.Theme_Holo_Light_Dialog,new TimePickerDialog.OnTimeSetListener() {
                                     @Override
-                                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                                        String endHour = String.format("%02d",hourOfDay);
+                                    public void onTimeSet(TimePicker view, int hour, int minute) {
+                                        String endHour = String.format("%02d",hour);
                                         String endMinute = String.format("%02d",minute);
                                         schedule_end_time.setText(endHour + " : " + endMinute);
                                     }
@@ -667,11 +702,6 @@ public class Main_Easy extends AppCompatActivity {
                         List<Calender_DB> loadDb = calender_dao.getAllData();
                         Calender_DB calender_db = new Calender_DB();
 
-//                        mArrayList.get (pos).setName (schedule_title);
-//                        mArrayList.get (pos).setNumber (schedule_text);
-//                        mAdapter.notifyItemChanged (position);
-//                        dialog.dismiss();
-
                         int scheduleKey = calender_like_data.get(pos).getNum();
                         Log.v("선택한 일정의 일정시작 시간",startHour+startMinute+"");
                         Log.v("선택한 일정의 num",calender_like_data.get(pos).getNum()+"");
@@ -689,7 +719,7 @@ public class Main_Easy extends AppCompatActivity {
 
                             }
                         }
-                        refresh();
+                        reloadrecyclerview(YearData,monthData,dayData);
                     }
                 });
 
@@ -697,9 +727,44 @@ public class Main_Easy extends AppCompatActivity {
                 dialog.setNegativeButton("삭제",new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         calender_dao.deleteCalendar(calender_like_data.get(pos).getNum());
+                        reloadrecyclerview(YearData,monthData,dayData);
+                        Toast.makeText(getApplicationContext(), "calender_like_data.get(pos).getNum() : " + calender_like_data.get(pos).getNum(), Toast.LENGTH_SHORT).show();
+
                         refresh();
+
                     }
                 });
+                dialog.show();
+            }
+        });
+
+        list_itemAdapter_easy.setOnitemLongClickListener(new List_ItemAdapter_Easy.OnItemLongClickListener() {
+            @Override
+            public void onItemClick(View v, int pos) {
+//                Toast.makeText(getActivity().getApplicationContext(), "LongClick : " + pos, Toast.LENGTH_SHORT).show();
+
+                AlertDialog.Builder dialog = new AlertDialog.Builder(Main_Easy.this);
+                dialog.setTitle("");        // 다이얼로그 타이틀
+                dialog.setMessage("정말로 해당 일정을 삭제하시겠습니까?");
+                dialog.setPositiveButton(getString(R.string.delete), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        calender_dao.deleteCalendar(calender_like_data.get(pos).getNum());
+                        reloadrecyclerview(YearData,monthData,dayData);
+                        refresh();
+                        Toast.makeText(getApplicationContext(), "calender_like_data.get(pos).getNum() : " + calender_like_data.get(pos).getNum(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "삭제확인", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+                dialog.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(getApplicationContext(), "취소", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
                 dialog.show();
 
             }

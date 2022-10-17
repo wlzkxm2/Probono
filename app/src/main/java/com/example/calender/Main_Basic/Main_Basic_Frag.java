@@ -886,9 +886,21 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
                         reloadrecyclerview(YearData,monthData,dayData);
                         Toast.makeText(getActivity().getApplicationContext(), "calender_like_data.get(pos).getNum() : " + calender_like_data.get(pos).getNum(), Toast.LENGTH_SHORT).show();
 
+//                        if (calender_like_data.isEmpty()) {
+//                            nolist_add.setVisibility(View.VISIBLE);
+//                            nolist_add_text.setVisibility(View.VISIBLE);
+//                            nolist_add.setOnClickListener(new View.OnClickListener() {
+//                                @Override
+//                                public void onClick(View v) {
+//                                    edit();
+//                                    recyclerView.invalidate();
+//                                    recyclerView.getAdapter().notifyDataSetChanged();
+//                                }
+//                            });
+//                        }
+
                     }
                 });
-                reloadrecyclerview(YearData,monthData,dayData);
                 dialog.show();
             }
         });
@@ -908,8 +920,8 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
             });
 
         } else {
-            nolist_add.setVisibility(View.GONE);
-            nolist_add_text.setVisibility(View.GONE);
+//            nolist_add.setVisibility(View.GONE);
+//            nolist_add_text.setVisibility(View.GONE);
             for (int i = 0; i < calender_like_data.size(); i++) {
                 List_Item calList = new List_Item();
                 String startTime = String.format("%04d", calender_like_data.get(i).getStart_time());
@@ -962,7 +974,7 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
                 dialog.setNegativeButton("취소", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(getActivity().getApplicationContext(), "ㅇㄴ취소", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity().getApplicationContext(), "취소", Toast.LENGTH_SHORT).show();
                     }
                 });
 

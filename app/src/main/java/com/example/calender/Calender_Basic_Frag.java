@@ -552,12 +552,12 @@ public class Calender_Basic_Frag extends Fragment {
                                     DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
                                         @Override
                                         public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                                            startYears = year;
-                                            startMonths = month+1;
-                                            startDays = dayOfMonth;
+                                            endYears = year;
+                                            endMonths = month+1;
+                                            endDays = dayOfMonth;
                                             schedule_end_day.setText(year + "년 " + (month + 1)+ "월 " + dayOfMonth + "일 ");
                                         }
-                                    },startYears,startMonths-1,startDays);
+                                    },endYears,endMonths-1,endDays);
 
 //                        // 종료날짜 설정(확인) 버튼
 //                        datePickerDialog.setButton(DatePickerDialog.BUTTON_POSITIVE,"설정", new DialogInterface.OnClickListener(){
@@ -741,6 +741,38 @@ public class Calender_Basic_Frag extends Fragment {
 
         list_itemAdapter.notifyDataSetChanged();
         recyclerView.startLayoutAnimation();
+
+        list_itemAdapter.setOnitemLongClickListener(new List_ItemAdapter.OnItemLongClickListener() {
+            @Override
+            public void onItemClick(View v, int pos) {
+//                Toast.makeText(getActivity().getApplicationContext(), "LongClick : " + pos, Toast.LENGTH_SHORT).show();
+
+                AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
+                dialog.setTitle("");        // 다이얼로그 타이틀
+                dialog.setMessage("정말로 해당 일정을 삭제하시겠습니까?");
+                dialog.setPositiveButton(getString(R.string.delete), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        calender_dao.deleteCalendar(calender_like_data.get(pos).getNum());
+                        reloadrecyclerview(YearData,monthData,dayData);
+
+                        Toast.makeText(getActivity().getApplicationContext(), "calender_like_data.get(pos).getNum() : " + calender_like_data.get(pos).getNum(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity().getApplicationContext(), "삭제확인", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+                dialog.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(getActivity().getApplicationContext(), "취소", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+                dialog.show();
+
+            }
+        });
 
         return view;
     }
