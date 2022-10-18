@@ -14,6 +14,7 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.ContextThemeWrapper;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
@@ -25,6 +26,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -764,6 +766,22 @@ public class Main_Easy extends AppCompatActivity {
         month = (TextView) findViewById(R.id.main_easy_month);
         month.setText(getMonth()); // 현재 월 month에 저장. month.getText().toString()으로 현재 월 스트링 타입으로 쓸 수 있음
 
+        Date currentTime = Calendar.getInstance().getTime();
+        SimpleDateFormat yearFormat = new SimpleDateFormat("yyyy", Locale.getDefault());
+        SimpleDateFormat monthFormat = new SimpleDateFormat("MM", Locale.getDefault());
+        SimpleDateFormat dayFormat = new SimpleDateFormat("dd", Locale.getDefault());
+        String YearData = yearFormat.format(currentTime);
+        String monthData = monthFormat.format(currentTime);
+        String dayData = dayFormat.format(currentTime);
+
+        List<Calender_DB> calender_like_data = calender_dao.loadAllDataByYears(
+                Integer.parseInt(YearData),
+                Integer.parseInt(monthData),
+                Integer.parseInt(dayData)
+        );
+
+
+
         cl = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -1105,20 +1123,6 @@ public class Main_Easy extends AppCompatActivity {
         });
 
 
-
-//        Date currentTime = Calendar.getInstance().getTime();
-//        SimpleDateFormat yearFormat = new SimpleDateFormat("yyyy", Locale.getDefault());
-//        SimpleDateFormat monthFormat = new SimpleDateFormat("MM", Locale.getDefault());
-//        SimpleDateFormat dayFormat = new SimpleDateFormat("dd", Locale.getDefault());
-//        String YearData = yearFormat.format(currentTime);
-//        String monthData = monthFormat.format(currentTime);
-//        String dayData = dayFormat.format(currentTime);
-//
-//        List<Calender_DB> calender_like_data = calender_dao.loadAllDataByYears(
-//                Integer.parseInt(YearData),
-//                Integer.parseInt(monthData),
-//                Integer.parseInt(dayData)
-//        );
 
 
 
