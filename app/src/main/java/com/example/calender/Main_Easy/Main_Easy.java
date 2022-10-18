@@ -2,7 +2,6 @@ package com.example.calender.Main_Easy;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
-
 import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.content.DialogInterface;
@@ -915,6 +914,54 @@ public class Main_Easy extends AppCompatActivity {
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view_easy);
         list_itemAdapter_easy = new List_ItemAdapter_Easy();
 
+        // 일정 리스트 눌러서 뜨는 다이얼로그
+        list_itemAdapter_easy.setOnItemClickListener(new List_ItemAdapter_Easy.OnItemClickListener() {
+            @Override
+//            public void onItemClicked(int position, String data) {
+            public void onItemClicked(View v, int position) {
+
+                final EditText edit_schedule = new EditText(Main_Easy.this);
+                AlertDialog.Builder dialog = new AlertDialog.Builder(new ContextThemeWrapper(Main_Easy.this, R.style.AlertDialogTheme));
+                dialog.setTitle("일정 제목");
+                dialog.setView(edit_schedule);
+                dialog.setView(edit_schedule);
+
+                // 완료 버튼
+                dialog.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+
+                // 편집 버튼
+                dialog.setNegativeButton("편집(개발중)",new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+
+                dialog.show();
+
+            }
+        });
+
+
+        recyclerView.setAdapter(list_itemAdapter_easy);
+
+        Date currentTime = Calendar.getInstance().getTime();
+        SimpleDateFormat yearFormat = new SimpleDateFormat("yyyy", Locale.getDefault());
+        SimpleDateFormat monthFormat = new SimpleDateFormat("MM", Locale.getDefault());
+        SimpleDateFormat dayFormat = new SimpleDateFormat("dd", Locale.getDefault());
+        String YearData = yearFormat.format(currentTime);
+        String monthData = monthFormat.format(currentTime);
+        String dayData = dayFormat.format(currentTime);
+
+        List<Calender_DB> calender_like_data = calender_dao.loadAllDataByYears(
+                Integer.parseInt(YearData),
+                Integer.parseInt(monthData),
+                Integer.parseInt(dayData)
+        );
+
         // 주간달력 날짜 선택 시
         singleAdapter.setOnItemClickListener(new List_ItemAdapter_Easy.OnItemClickListener() {
             @Override
@@ -1124,6 +1171,22 @@ public class Main_Easy extends AppCompatActivity {
 
 
 
+
+//        Date currentTime = Calendar.getInstance().getTime();
+//        SimpleDateFormat yearFormat = new SimpleDateFormat("yyyy", Locale.getDefault());
+//        SimpleDateFormat monthFormat = new SimpleDateFormat("MM", Locale.getDefault());
+//        SimpleDateFormat dayFormat = new SimpleDateFormat("dd", Locale.getDefault());
+//        String YearData = yearFormat.format(currentTime);
+//        String monthData = monthFormat.format(currentTime);
+//        String dayData = dayFormat.format(currentTime);
+//
+//        List<Calender_DB> calender_like_data = calender_dao.loadAllDataByYears(
+//                Integer.parseInt(YearData),
+//                Integer.parseInt(monthData),
+//                Integer.parseInt(dayData)
+//        );
+        //화면 클리어
+        list_itemAdapter_easy.removeAllItem();
 
 
         // -------------------------------------------------------- DB 데이터 넣는곳

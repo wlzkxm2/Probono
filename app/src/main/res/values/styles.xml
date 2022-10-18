@@ -105,12 +105,10 @@
     </style>
     <style name="CalendarDateTextAppearance" parent="Theme.MaterialComponents">
         <item name="android:textColor">@color/test1</item>
-
         <item name="android:textSize">10sp</item>
     </style>
     <style name="CalendarDateTextAppearanceeasy" parent="Theme.MaterialComponents">
         <item name="android:textColor">@color/test1</item>
         <item name="android:textSize">30sp</item>
-
     </style>
 </resources>
