@@ -6,6 +6,7 @@ import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -871,7 +872,14 @@ public class Main_Easy extends AppCompatActivity {
                         startActivity(k);
                         break;
                     case R.id.main_easy_game:
-                        Toast.makeText(Main_Easy.this,"미구현 기능입니다.",Toast.LENGTH_SHORT).show();
+                        String gamePackage = "com.TheEasy.Kiosk";
+                        PackageManager pkg = Main_Easy.this.getApplication().getPackageManager();
+                        try{
+                            pkg.getApplicationInfo(gamePackage, PackageManager.GET_META_DATA);
+                            startActivity((pkg.getLaunchIntentForPackage(gamePackage)));
+                        }catch (Exception e){
+                            Toast.makeText(Main_Easy.this.getApplication(), "해당 앱이 없습니다 설치해주세요", Toast.LENGTH_SHORT).show();
+                        }
                         break;
                     case R.id.main_easy_floating_voice:
                         Custom_STT custom_stt = new Custom_STT(Main_Easy.this);
