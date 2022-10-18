@@ -31,7 +31,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
@@ -610,7 +609,7 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
         View view = inflater.inflate(R.layout.new_main_basic, container, false);
 
         // TTS 버튼
-        main_basic_TTS_btn = view.findViewById(R.id.tts_button);
+        main_basic_TTS_btn = view.findViewById(R.id.main_easy_tts1);
 
 
         Calender_DBSet dbController = Room.databaseBuilder(getActivity().getApplicationContext(), Calender_DBSet.class, "CalenderDB")
@@ -684,9 +683,9 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
                 R.anim.fade_out);
 
         //리스트 밑 일정 등록 버튼
-        add_schedule = view.findViewById(R.id.add_schedule);
-        add_schedule_txt = view.findViewById(R.id.add_schedule_txt);
-        add_schedule_dot = view.findViewById(R.id.add_schedule_dot);
+//        add_schedule = view.findViewById(R.id.add_schedule);
+//        add_schedule_txt = view.findViewById(R.id.add_schedule_txt);
+//        add_schedule_dot = view.findViewById(R.id.add_schedule_dot);
 
         //플로팅 버튼
         mContext = getActivity().getApplicationContext();
@@ -702,7 +701,7 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
         floating_edit.setOnClickListener(this);
         floating_voice.setOnClickListener(this);
 
-        recyclerView = view.findViewById(R.id.recycler_view);
+        recyclerView = view.findViewById(R.id.recycler_view_easy);
 
         list_itemAdapter = new List_ItemAdapter();
         recyclerView.setAdapter(list_itemAdapter);
@@ -909,8 +908,10 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
             });
 
         } else {
-//            nolist_add.setVisibility(View.GONE);
-//            nolist_add_text.setVisibility(View.GONE);
+            nolist_add.setVisibility(View.GONE);
+            nolist_add_text.setVisibility(View.GONE);
+            Toast.makeText(getActivity().getApplicationContext(), "data ari", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(getActivity().getApplicationContext(), calender_like_data.size(), Toast.LENGTH_SHORT).show();
             for (int i = 0; i < calender_like_data.size(); i++) {
                 List_Item calList = new List_Item();
                 String startTime = String.format("%04d", calender_like_data.get(i).getStart_time());
@@ -922,8 +923,12 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
                 calList.setTitle(calender_like_data.get(i).get_titles());
                 calList.setText(calender_like_data.get(i).get_subtitle());
 
+//                Toast.makeText(getActivity().getApplicationContext(), calender_like_data.get(i).get_titles(), Toast.LENGTH_SHORT).show();
+
                 list_itemAdapter.addItem(calList);
             }
+            list_itemAdapter.notifyDataSetChanged();
+            recyclerView.startLayoutAnimation();
         }
 
         list_itemAdapter.notifyDataSetChanged();
@@ -1012,34 +1017,34 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
 
-                lastVisibleItemPositions = ((LinearLayoutManager) recyclerView.getLayoutManager()).findLastCompletelyVisibleItemPosition();
-                itemTotalCounts = recyclerView.getAdapter().getItemCount() - 1;
-                if (lastVisibleItemPositions == itemTotalCounts) { // 마지막 아이템 자리일때
-                    add_schedule.setVisibility(View.VISIBLE); //화면에 보이게 한다.
-                    add_schedule_dot.setVisibility(View.VISIBLE); //화면에 보이게 한다.
-                    add_schedule_txt.setVisibility(View.VISIBLE); //화면에 보이게 한다.
-//                    add_schedule.startAnimation(fade_in);         //서서히 보이는 애니메이션
-//                    add_schedule_txt.startAnimation(fade_in);         //서서히 보이는 애니메이션
-//                    add_schedule_dot.startAnimation(fade_in);         //서서히 보이는 애니메이션
-
-                    add_schedule.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            edit();
-                            recyclerView.invalidate();
-                            reloadrecyclerview(YearData,monthData,dayData);
-                        }
-                    });
-
-                } else if (lastVisibleItemPositions != itemTotalCounts) {
-                    add_schedule.setVisibility(View.GONE); //화면에 안보이게 한다.
-                    add_schedule_dot.setVisibility(View.GONE); //화면에 안보이게 한다.
-                    add_schedule_txt.setVisibility(View.GONE); //화면에 안보이게 한다.
-//                    add_schedule.startAnimation(fade_out);
-//                    add_schedule_dot.startAnimation(fade_out);
-//                    add_schedule_txt.startAnimation(fade_out);
-
-                }
+//                lastVisibleItemPositions = ((LinearLayoutManager) recyclerView.getLayoutManager()).findLastCompletelyVisibleItemPosition();
+//                itemTotalCounts = recyclerView.getAdapter().getItemCount() - 1;
+//                if (lastVisibleItemPositions == itemTotalCounts) { // 마지막 아이템 자리일때
+////                    add_schedule.setVisibility(View.VISIBLE); //화면에 보이게 한다.
+////                    add_schedule_dot.setVisibility(View.VISIBLE); //화면에 보이게 한다.
+////                    add_schedule_txt.setVisibility(View.VISIBLE); //화면에 보이게 한다.
+////                    add_schedule.startAnimation(fade_in);         //서서히 보이는 애니메이션
+////                    add_schedule_txt.startAnimation(fade_in);         //서서히 보이는 애니메이션
+////                    add_schedule_dot.startAnimation(fade_in);         //서서히 보이는 애니메이션
+//
+//                    add_schedule.setOnClickListener(new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View v) {
+//                            edit();
+//                            recyclerView.invalidate();
+//                            reloadrecyclerview(YearData,monthData,dayData);
+//                        }
+//                    });
+//
+//                } else if (lastVisibleItemPositions != itemTotalCounts) {
+////                    add_schedule.setVisibility(View.GONE); //화면에 안보이게 한다.
+////                    add_schedule_dot.setVisibility(View.GONE); //화면에 안보이게 한다.
+////                    add_schedule_txt.setVisibility(View.GONE); //화면에 안보이게 한다.
+////                    add_schedule.startAnimation(fade_out);
+////                    add_schedule_dot.startAnimation(fade_out);
+////                    add_schedule_txt.startAnimation(fade_out);
+//
+//                }
             }
         });
         return view;

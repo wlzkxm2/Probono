@@ -41,7 +41,6 @@ import com.example.calender.Main_Easy.List_ItemAdapter_Easy;
 import com.example.calender.Main_Easy.Main_Easy;
 import com.example.calender.R;
 import com.example.calender.StaticUidCode.UidCode;
-
 import com.example.calender.calendarSource.Calendar_Basic_Scheduled;
 import com.example.calender.calendarSource.SaturdayDecorator;
 import com.example.calender.calendarSource.SundayDecorator;
@@ -75,7 +74,7 @@ public class Calendar_Easy extends AppCompatActivity {
     // 에러 표시를 위한 태그
     private static final String TAG = "ErrorTag";
     // 시간 포멧을 위한 양식
-    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("EEE, d, MMM,, yyyy");
+//    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("EEE, d, MMM,, yyyy");
 
     private MaterialCalendarView calendarView;  // calenderView 객체 생상
 

@@ -176,11 +176,11 @@
 
 
             <ImageButton
-                android:id="@+id/tts_button"
+                android:id="@+id/main_easy_tts1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
-                android:layout_marginLeft="68dp"
+                android:layout_marginLeft="24dp"
                 android:background="@android:color/transparent"
                 android:minWidth="40dp"
                 android:minHeight="40dp"
@@ -190,7 +190,9 @@
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_view"
+            android:id="@+id/recycler_view_easy"
+            android:layoutAnimation="@anim/item_layout_animation"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="24dp"
@@ -265,51 +267,6 @@
         android:visibility="gone"/>
 
     <ImageButton
-        android:id="@+id/add_schedule"
-        android:layout_width="24dp"
-        android:layout_height="16dp"
-        android:background="@android:color/transparent"
-        android:scaleType="fitCenter"
-        android:src="@drawable/img_add_schedule"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.899" />
-
-    <ImageView
-        android:id="@+id/add_schedule_dot"
-        android:layout_width="16dp"
-        android:layout_height="65dp"
-        android:src="@drawable/img_dot_dot_dot"
-        android:visibility="gone"
-        android:rotationX="180"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.822" />
-
-    <TextView
-        android:id="@+id/add_schedule_txt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:foregroundTint="#B55151"
-        android:text="@string/add_schedule"
-        android:textColor="#5A88FF"
-        android:textSize="10sp"
-        android:visibility="gone"
-        app:drawableTint="#8A5858"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.946" />
-
-    <ImageButton
         android:id="@+id/main_basic_nolist_add"
         android:layout_width="56dp"
         android:layout_height="56dp"
@@ -317,10 +274,57 @@
         android:background="@android:color/transparent"
         android:scaleType="fitCenter"
         android:src="@drawable/img_add_schedule"
-        android:visibility="visible"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+<!--    <ImageButton-->
+<!--        android:id="@+id/add_schedule"-->
+<!--        android:layout_width="24dp"-->
+<!--        android:layout_height="16dp"-->
+<!--        android:background="@android:color/transparent"-->
+<!--        android:scaleType="fitCenter"-->
+<!--        android:src="@drawable/img_add_schedule"-->
+<!--        android:visibility="visible"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintVertical_bias="0.899" />-->
+
+<!--    <ImageView-->
+<!--        android:id="@+id/add_schedule_dot"-->
+<!--        android:layout_width="16dp"-->
+<!--        android:layout_height="65dp"-->
+<!--        android:src="@drawable/img_dot_dot_dot"-->
+<!--        android:visibility="visible"-->
+<!--        android:rotationX="180"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.498"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintVertical_bias="0.822" />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/add_schedule_txt"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:foregroundTint="#B55151"-->
+<!--        android:text="@string/add_schedule"-->
+<!--        android:textColor="#5A88FF"-->
+<!--        android:textSize="10sp"-->
+<!--        android:visibility="visible"-->
+<!--        app:drawableTint="#8A5858"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.498"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintVertical_bias="0.946" />-->
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

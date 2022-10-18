@@ -5,7 +5,6 @@ import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -26,7 +25,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
@@ -134,7 +132,7 @@ public class Calender_Basic_Frag extends Fragment {
 
         //<editor-fold desc="기본 뷰 세팅 코드">
         calendarView = (MaterialCalendarView) view.findViewById(R.id.calendarView);
-        recyclerView = view.findViewById(R.id.recycler_view);
+        recyclerView = view.findViewById(R.id.recycler_view_easy);
         list_itemAdapter = new List_ItemAdapter();
         recyclerView.setAdapter(list_itemAdapter);
 
