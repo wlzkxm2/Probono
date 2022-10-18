@@ -950,6 +950,7 @@ public class Main_Easy extends AppCompatActivity {
 
         recyclerView.setAdapter(list_itemAdapter_easy);
 
+<<<<<<< Updated upstream
 //        Date currentTime = Calendar.getInstance().getTime();
 //        SimpleDateFormat yearFormat = new SimpleDateFormat("yyyy", Locale.getDefault());
 //        SimpleDateFormat monthFormat = new SimpleDateFormat("MM", Locale.getDefault());
@@ -964,6 +965,8 @@ public class Main_Easy extends AppCompatActivity {
 //                Integer.parseInt(dayData)
 //        );
 
+=======
+>>>>>>> Stashed changes
         // 주간달력 날짜 선택 시
         singleAdapter.setOnItemClickListener(new List_ItemAdapter_Easy.OnItemClickListener() {
             @Override
@@ -1124,8 +1127,8 @@ public class Main_Easy extends AppCompatActivity {
                     }
                 });
 
-                // 편집 버튼
-                dialog.setNegativeButton("편집(개발중)",new DialogInterface.OnClickListener() {
+                // 삭제 버튼
+                dialog.setNegativeButton("삭제",new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
 
                         calender_dao.deleteCalendar(calender_like_data.get(pos).getNum());

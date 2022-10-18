@@ -665,8 +665,8 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
 //        Log.v("mainflag", "Maindata : " + Maindata.get(0).get_mainActDTitle());
 //        d_day_text.setText("default");
         if(!Maindata.get(0).get_mainActDTitle().isEmpty())
-//            d_day_text.setText(Maindata.get(0)._mainActDTitle);
-            d_day_text.setText(getString(R.string.add_goal));//메인화면 목표쪽타이틀임
+            d_day_text.setText(Maindata.get(0)._mainActDTitle);
+//            d_day_text.setText("추가해주세요");//메인화면 목표쪽타이틀임
 
         d_day.setOnClickListener(this);
         d_day_text.setOnClickListener(this);
@@ -679,8 +679,8 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
         if(Maindata.get(0).get_mainActTitle() == null){
             maintitle_txt.setText(""); // 초기 제목
         }else{
-//            maintitle_txt.setText(Maindata.get(0).get_mainActTitle());
-            maintitle_txt.setText(getString(R.string.add_schedule));
+            maintitle_txt.setText(Maindata.get(0).get_mainActTitle());
+//            maintitle_txt.setText("");
         }
 
         // 현재 시간
@@ -1079,6 +1079,22 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
                     int inputday = ((UidCode) getActivity().getApplication()).getStatic_day();
                     custom_stt.show();
 //                Toast.makeText(getActivity(),"일정 음성 등록 팝업",Toast.LENGTH_SHORT).show();
+
+                Date currentTime = Calendar.getInstance().getTime();
+                SimpleDateFormat yearFormat = new SimpleDateFormat("yyyy", Locale.getDefault());
+                SimpleDateFormat monthFormat = new SimpleDateFormat("MM", Locale.getDefault());
+                SimpleDateFormat dayFormat = new SimpleDateFormat("dd", Locale.getDefault());
+                String YearData = yearFormat.format(currentTime);
+                String monthData = monthFormat.format(currentTime);
+                String dayData = dayFormat.format(currentTime);
+
+                List<Calender_DB> calender_like_data = calender_dao.loadAllDataByYears(
+                        Integer.parseInt(YearData),
+                        Integer.parseInt(monthData),
+                        Integer.parseInt(dayData)
+                );
+
+                reloadrecyclerview(YearData,monthData,dayData);
                 break;
         }
 
