@@ -3,11 +3,15 @@ package com.example.calender.Main_Basic;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -107,13 +111,15 @@ public class List_ItemAdapter extends RecyclerView.Adapter<List_ItemAdapter.View
         TextView time;
         TextView title;
         TextView text;
+        CheckBox checkBox;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             time = itemView.findViewById(R.id.schedule_time);
             title = itemView.findViewById(R.id.schedule_title);
-            text = itemView.findViewById(R.id.schedule_text);
+//            text = itemView.findViewById(R.id.schedule_text);
+            checkBox = itemView.findViewById(R.id.checkBox);
 
             itemView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
@@ -140,13 +146,34 @@ public class List_ItemAdapter extends RecyclerView.Adapter<List_ItemAdapter.View
                     return;
                 }
             });
+
+            //체크박스 클릭상태시 일정 제목과 시간에 취소선,색변경
+            checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    if(buttonView.isChecked()){
+                        title.setPaintFlags(title.getPaintFlags()| Paint.STRIKE_THRU_TEXT_FLAG);
+                        title.setTextColor(Color.parseColor("#767676"));
+                        time.setPaintFlags(time.getPaintFlags()| Paint.STRIKE_THRU_TEXT_FLAG);
+                        time.setTextColor(Color.parseColor("#767676"));
+
+                    }else{
+                        title.setPaintFlags(0);
+                        title.setTextColor(Color.parseColor("#191919"));
+                        time.setPaintFlags(0);
+                        time.setTextColor(Color.parseColor("#191919"));
+                    }
+                }
+            });
+
         }
+
 
         public void setItem(List_Item item){
 
             time.setText(item.getTime());
             title.setText(item.getTitle());
-            text.setText(item.getText());
+//            text.setText(item.getText());
         }
     }
 }

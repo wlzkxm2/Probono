@@ -5,6 +5,7 @@ public class List_Item {
     String title;
     String text;
 
+
     public String getTime() {
         return time;
     }

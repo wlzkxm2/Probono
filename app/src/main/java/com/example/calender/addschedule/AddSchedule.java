@@ -13,6 +13,7 @@ import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ExpandableListAdapter;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
@@ -52,7 +53,8 @@ public class AddSchedule extends AppCompatActivity {
     TextView startDate, endDate, startTime, endTime;
     int startYears,startMonths,startDays, endYears,endMonths,endDays,startMinute,endHour,endMinute = 0;
     int startHour = 0;
-
+    int radioState = 0; //0파,1빨,2초
+    RadioGroup radioGroup;
 
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -78,6 +80,7 @@ public class AddSchedule extends AppCompatActivity {
         startTime = findViewById(R.id.startTime);
         endTime = findViewById(R.id.endTime);
         allDayCheck = (CheckBox) findViewById(R.id.allDayCheck);
+        radioGroup = findViewById(R.id.radioGroup);
 
 //      TODO 초기 시간값 설정해주기 : start time = 00:00 / end time = 23:59
 
@@ -129,6 +132,26 @@ public class AddSchedule extends AppCompatActivity {
 //        Intent intent = getIntent();
 //        int a =intent.getExtras().getInt("100");
 
+        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch (checkedId){
+                    case R.id.rbtn_blue:
+                        radioState = 0;
+                        break;
+                    case R.id.rbtn_red:
+                        radioState = 1;
+                        break;
+                    case R.id.rbtn_green:
+                        radioState = 2;
+                        break;
+                    default:
+                        break;
+                }
+            }
+        });
+
+
         cl = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -145,6 +168,7 @@ public class AddSchedule extends AppCompatActivity {
                         int saveEndDays = endDays;
                         int saveStartTime =  (startHour * 100) + (startMinute);
                         int saveEndTime = (endHour * 100) + (endMinute);
+                        int saveRadioState = radioState; //라디오버튼 색상 값
                         String title = et_title.getText().toString();
                         String subtitle = et_memo.getText().toString();
                         boolean scheduleLoof = allDayCheck.isChecked();
@@ -152,6 +176,7 @@ public class AddSchedule extends AppCompatActivity {
                             saveStartTime = 0;
                             saveEndTime = 2359;
                         }
+                        if(radioState ==1)
 
                         
                         // 그대로 데이터베이스에 연동하면됨
