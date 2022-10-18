@@ -2,11 +2,11 @@ package com.example.calender.Main_Easy;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
-
 import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -871,7 +871,14 @@ public class Main_Easy extends AppCompatActivity {
                         startActivity(k);
                         break;
                     case R.id.main_easy_game:
-                        Toast.makeText(Main_Easy.this,"미구현 기능입니다.",Toast.LENGTH_SHORT).show();
+                        String gamePackage = "com.TheEasy.Kiosk";
+                        PackageManager pkg = Main_Easy.this.getApplication().getPackageManager();
+                        try{
+                            pkg.getApplicationInfo(gamePackage, PackageManager.GET_META_DATA);
+                            startActivity((pkg.getLaunchIntentForPackage(gamePackage)));
+                        }catch (Exception e){
+                            Toast.makeText(Main_Easy.this.getApplication(), "해당 앱이 없습니다 설치해주세요", Toast.LENGTH_SHORT).show();
+                        }
                         break;
                     case R.id.main_easy_floating_voice:
                         Custom_STT custom_stt = new Custom_STT(Main_Easy.this);
@@ -913,6 +920,41 @@ public class Main_Easy extends AppCompatActivity {
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view_easy);
         list_itemAdapter_easy = new List_ItemAdapter_Easy();
+
+        // 일정 리스트 눌러서 뜨는 다이얼로그
+        list_itemAdapter_easy.setOnItemClickListener(new List_ItemAdapter_Easy.OnItemClickListener() {
+            @Override
+//            public void onItemClicked(int position, String data) {
+            public void onItemClicked(View v, int position) {
+
+                final EditText edit_schedule = new EditText(Main_Easy.this);
+                AlertDialog.Builder dialog = new AlertDialog.Builder(new ContextThemeWrapper(Main_Easy.this, R.style.AlertDialogTheme));
+                dialog.setTitle("일정 제목");
+                dialog.setView(edit_schedule);
+                dialog.setView(edit_schedule);
+
+                // 완료 버튼
+                dialog.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+
+                // 편집 버튼
+                dialog.setNegativeButton("편집(개발중)",new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+
+                dialog.show();
+
+            }
+        });
+
+
+        recyclerView.setAdapter(list_itemAdapter_easy);
+
 
         // 주간달력 날짜 선택 시
         singleAdapter.setOnItemClickListener(new List_ItemAdapter_Easy.OnItemClickListener() {
@@ -1123,6 +1165,22 @@ public class Main_Easy extends AppCompatActivity {
 
 
 
+
+//        Date currentTime = Calendar.getInstance().getTime();
+//        SimpleDateFormat yearFormat = new SimpleDateFormat("yyyy", Locale.getDefault());
+//        SimpleDateFormat monthFormat = new SimpleDateFormat("MM", Locale.getDefault());
+//        SimpleDateFormat dayFormat = new SimpleDateFormat("dd", Locale.getDefault());
+//        String YearData = yearFormat.format(currentTime);
+//        String monthData = monthFormat.format(currentTime);
+//        String dayData = dayFormat.format(currentTime);
+//
+//        List<Calender_DB> calender_like_data = calender_dao.loadAllDataByYears(
+//                Integer.parseInt(YearData),
+//                Integer.parseInt(monthData),
+//                Integer.parseInt(dayData)
+//        );
+        //화면 클리어
+        list_itemAdapter_easy.removeAllItem();
 
 
         // -------------------------------------------------------- DB 데이터 넣는곳
