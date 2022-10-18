@@ -127,7 +127,6 @@ public class Main_Easy extends AppCompatActivity {
     String today=getToday();
 
     // 현재 시간 실시간으로 구해오기
-
     private Handler mHandler = new Handler();
 
     private Runnable mUpdateTimeTask = new Runnable() {
@@ -1132,8 +1131,6 @@ public class Main_Easy extends AppCompatActivity {
                         reloadrecyclerview(YearData,month.getText().toString(),select_day);
                         Toast.makeText(getApplicationContext(), "calender_like_data.get(pos).getNum() : " + calender_like_data.get(pos).getNum(), Toast.LENGTH_SHORT).show();
 
-                        refresh();
-
                     }
                 });
                 dialog.show();
@@ -1154,7 +1151,6 @@ public class Main_Easy extends AppCompatActivity {
 
                         calender_dao.deleteCalendar(calender_like_data.get(pos).getNum());
                         reloadrecyclerview(YearData,month.getText().toString(),select_day);
-                        refresh();
                         Toast.makeText(getApplicationContext(), "calender_like_data.get(pos).getNum() : " + calender_like_data.get(pos).getNum(), Toast.LENGTH_SHORT).show();
                         Toast.makeText(getApplicationContext(), "삭제확인", Toast.LENGTH_SHORT).show();
                     }

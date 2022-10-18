@@ -48,6 +48,7 @@ import com.example.calender.DataBase.Calender_DBSet;
 import com.example.calender.DataBase.Calender_Dao;
 import com.example.calender.DataBase.User_DBset;
 import com.example.calender.DataBase.User_Dao;
+import com.example.calender.MainActivity;
 import com.example.calender.Main_Easy.List_ItemAdapter_Easy;
 import com.example.calender.Main_Easy.Main_Easy;
 import com.example.calender.Navigation;
@@ -128,7 +129,6 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
     Animation fade_in, fade_out;
 
     View.OnClickListener cl;
-
 
     // 현재 시간 실시간으로 구해오기
 
@@ -622,9 +622,9 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.main_basic, container, false);
 
+
         // TTS 버튼
         main_basic_TTS_btn = view.findViewById(R.id.tts_button);
-
 
         Calender_DBSet dbController = Room.databaseBuilder(getActivity().getApplicationContext(), Calender_DBSet.class, "CalenderDB")
                 .fallbackToDestructiveMigration()
@@ -1079,22 +1079,6 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
                     int inputday = ((UidCode) getActivity().getApplication()).getStatic_day();
                     custom_stt.show();
 //                Toast.makeText(getActivity(),"일정 음성 등록 팝업",Toast.LENGTH_SHORT).show();
-
-                Date currentTime = Calendar.getInstance().getTime();
-                SimpleDateFormat yearFormat = new SimpleDateFormat("yyyy", Locale.getDefault());
-                SimpleDateFormat monthFormat = new SimpleDateFormat("MM", Locale.getDefault());
-                SimpleDateFormat dayFormat = new SimpleDateFormat("dd", Locale.getDefault());
-                String YearData = yearFormat.format(currentTime);
-                String monthData = monthFormat.format(currentTime);
-                String dayData = dayFormat.format(currentTime);
-
-                List<Calender_DB> calender_like_data = calender_dao.loadAllDataByYears(
-                        Integer.parseInt(YearData),
-                        Integer.parseInt(monthData),
-                        Integer.parseInt(dayData)
-                );
-
-                reloadrecyclerview(YearData,monthData,dayData);
                 break;
         }
 
@@ -1586,7 +1570,7 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
 
     }
 
-    private void reloadrecyclerview(String YearData, String monthData, String dayData) {
+    public void reloadrecyclerview(String YearData, String monthData, String dayData) {
         List<Calender_DB> calender_like_data = calender_dao.loadAllDataByYears(
                 Integer.parseInt(YearData),
                 Integer.parseInt(monthData),

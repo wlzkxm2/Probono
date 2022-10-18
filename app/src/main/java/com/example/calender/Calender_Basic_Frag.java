@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CalendarView;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -169,6 +170,7 @@ public class Calender_Basic_Frag extends Fragment {
                             calS_years,
                             calS_months-1,
                             calS_days)))
+
             );
 
         }
@@ -694,6 +696,7 @@ public class Calender_Basic_Frag extends Fragment {
                                     reloadrecyclerview(Integer.toString(((UidCode) getActivity().getApplication()).getStatic_year())
                                             ,Integer.toString(((UidCode) getActivity().getApplication()).getStatic_month()),
                                             Integer.toString(((UidCode) getActivity().getApplication()).getStatic_day()));
+
 
                                 }
                             });
