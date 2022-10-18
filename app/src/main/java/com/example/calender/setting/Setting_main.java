@@ -112,10 +112,12 @@ public class Setting_main extends Fragment {
         //게임 버튼을 눌렀을떄 작동 되는 부분
             @Override
             public void onClick(View view) {
-//                Intent intent = new Intent(getActivity(), Setting_dark.class);
-//                startActivity(intent);
+                Intent intent = new Intent(getActivity(), Setting_dark.class);
+                startActivity(intent);
             }
         });
         return view;
     }
+
+
 }
