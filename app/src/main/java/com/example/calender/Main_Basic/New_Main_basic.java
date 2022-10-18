@@ -52,8 +52,6 @@ import java.util.TimerTask;
 
 import static android.speech.tts.TextToSpeech.ERROR;
 
-// text
-
 public class New_Main_basic extends Fragment implements View.OnClickListener, TextToSpeech.OnInitListener {
 
     // TTS 버튼
@@ -455,11 +453,11 @@ public class New_Main_basic extends Fragment implements View.OnClickListener, Te
             for (int i = 0; i < calender_like_data.size(); i++) {
                 List_Item calList = new List_Item();
                 String startTime = String.format("%04d", calender_like_data.get(i).getStart_time());
-                String valueStartTime = startTime.substring(0,2) + " : " + startTime.substring(2, startTime.length());
+                String valueStartTime = startTime.substring(0,2) + ":" + startTime.substring(2, startTime.length());
                 String EndTime = String.format("%04d", calender_like_data.get(i).getEnd_time());
-                String valueEndTime = EndTime.substring(0,2) + " : " + EndTime.substring(2, EndTime.length());
+                String valueEndTime = EndTime.substring(0,2) + ":" + EndTime.substring(2, EndTime.length());
 
-                calList.setTime(valueStartTime + "~ \n" + valueEndTime);
+                calList.setTime(valueStartTime + "~" + valueEndTime);
                 calList.setTitle(calender_like_data.get(i).get_titles());
                 calList.setText(calender_like_data.get(i).get_subtitle());
 

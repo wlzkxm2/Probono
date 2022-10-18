@@ -585,7 +585,6 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
 
                 // 입력한 일정을 DB에 추가
                 calender_dao.insertAll(inputCalData);
-
                 refresh();
 
             }
@@ -603,7 +602,7 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.main_basic, container, false);
+        View view = inflater.inflate(R.layout.new_main_basic, container, false);
 
         // TTS 버튼
         main_basic_TTS_btn = view.findViewById(R.id.tts_button);
@@ -655,7 +654,7 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
         d_day_text.setOnClickListener(this);
 
         // 타이틀 다이얼로그
-        edit_title = (ImageButton) view.findViewById(R.id.edit_button);
+//        edit_title = (ImageButton) view.findViewById(R.id.edit_button);
         edit_title.setOnClickListener(this);
         maintitle_txt = (TextView) view.findViewById(R.id.new_main_basic_title);
 

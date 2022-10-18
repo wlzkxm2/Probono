@@ -168,15 +168,15 @@ public class AddSchedule extends AppCompatActivity {
                         int saveEndDays = endDays;
                         int saveStartTime =  (startHour * 100) + (startMinute);
                         int saveEndTime = (endHour * 100) + (endMinute);
-                        int saveRadioState = radioState; //라디오버튼 색상 값
                         String title = et_title.getText().toString();
                         String subtitle = et_memo.getText().toString();
+                        int saveRadioState = radioState; //라디오버튼 색상 값
                         boolean scheduleLoof = allDayCheck.isChecked();
                         if(allDayCheck.isChecked()){
                             saveStartTime = 0;
                             saveEndTime = 2359;
                         }
-                        if(radioState ==1)
+
 
                         
                         // 그대로 데이터베이스에 연동하면됨
@@ -202,6 +202,10 @@ public class AddSchedule extends AppCompatActivity {
                         // 일정 내용 추가
                         inputCalData.set_titles(title);
                         inputCalData.set_subtitle(subtitle);
+
+                        //일정 배경색상
+                        inputCalData.set_calanderCategory(saveRadioState);//default:0
+
                         
                         // 입력한 일정을 DB에 추가
                         calender_dao.insertAll(inputCalData);
