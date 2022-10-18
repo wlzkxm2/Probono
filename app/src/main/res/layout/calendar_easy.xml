@@ -122,6 +122,7 @@
 <!--            android:text="Button"-->
 <!--            android:textColor="@color/test1" />-->
 
+
 <!--    </LinearLayout>-->
 
 <!--    <TextView-->
@@ -130,5 +131,6 @@
 <!--        android:layout_height="wrap_content"-->
 <!--        android:layout_weight="1"-->
 <!--        android:text="TextView" />-->
+
 
 </LinearLayout>

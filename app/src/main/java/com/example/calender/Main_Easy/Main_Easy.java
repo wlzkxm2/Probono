@@ -984,6 +984,7 @@ public class Main_Easy extends AppCompatActivity {
         // 일정 리스트 눌러서 뜨는 다이얼로그
         list_itemAdapter_easy.setOnItemClickListener(new List_ItemAdapter_Easy.OnItemClickListener() {
             @Override
+
             public void onItemClicked(View v, int pos) {
                 AlertDialog.Builder dialog = new AlertDialog.Builder(new ContextThemeWrapper(Main_Easy.this, R.style.AlertDialogTheme));
                 LayoutInflater inflater= getLayoutInflater();
@@ -1101,12 +1102,14 @@ public class Main_Easy extends AppCompatActivity {
                             }
                         }
                         reloadrecyclerview(YearData,month.getText().toString(),select_day);
+
                     }
                 });
 
-                // 삭제 버튼
-                dialog.setNegativeButton("삭제",new DialogInterface.OnClickListener() {
+                // 편집 버튼
+                dialog.setNegativeButton("편집(개발중)",new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
+
                         calender_dao.deleteCalendar(calender_like_data.get(pos).getNum());
                         reloadrecyclerview(YearData,month.getText().toString(),select_day);
                         Toast.makeText(getApplicationContext(), "calender_like_data.get(pos).getNum() : " + calender_like_data.get(pos).getNum(), Toast.LENGTH_SHORT).show();
@@ -1145,11 +1148,11 @@ public class Main_Easy extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "취소", Toast.LENGTH_SHORT).show();
                     }
                 });
-
                 dialog.show();
 
             }
         });
+
 
 
 //        Date currentTime = Calendar.getInstance().getTime();
