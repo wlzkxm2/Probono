@@ -105,7 +105,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                app:srcCompat="?attr/actionModeCloseDrawable" />
+                android:src="@drawable/ic_left_arrow"/>
 
             <TextView
                 android:id="@+id/main_basic_now"
@@ -122,7 +122,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                app:srcCompat="?attr/actionModeCloseDrawable" />
+                android:src="@drawable/ic_right_arrow"/>
 
         </LinearLayout>
 
