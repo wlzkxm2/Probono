@@ -860,6 +860,7 @@ public class Main_Easy extends AppCompatActivity {
                     case R.id.main_easy_floating_voice:
                         Custom_STT custom_stt = new Custom_STT(Main_Easy.this);
                         int inputday = ((UidCode) Main_Easy.this.getApplication()).getStatic_day();
+                        custom_stt.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                         custom_stt.show();
                         break;
 
@@ -896,10 +897,40 @@ public class Main_Easy extends AppCompatActivity {
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view_easy);
         list_itemAdapter_easy = new List_ItemAdapter_Easy();
-        recyclerView.setAdapter(list_itemAdapter_easy);
 
-        //화면 클리어
-        list_itemAdapter_easy.removeAllItem();
+        // 일정 리스트 눌러서 뜨는 다이얼로그
+        list_itemAdapter_easy.setOnItemClickListener(new List_ItemAdapter_Easy.OnItemClickListener() {
+            @Override
+//            public void onItemClicked(int position, String data) {
+            public void onItemClicked(View v, int position) {
+
+                final EditText edit_schedule = new EditText(Main_Easy.this);
+                AlertDialog.Builder dialog = new AlertDialog.Builder(new ContextThemeWrapper(Main_Easy.this, R.style.AlertDialogTheme));
+                dialog.setTitle("일정 제목");
+                dialog.setView(edit_schedule);
+                dialog.setView(edit_schedule);
+
+                // 완료 버튼
+                dialog.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+
+                // 편집 버튼
+                dialog.setNegativeButton("편집(개발중)",new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+
+                dialog.show();
+
+            }
+        });
+
+
+        recyclerView.setAdapter(list_itemAdapter_easy);
 
         Date currentTime = Calendar.getInstance().getTime();
         SimpleDateFormat yearFormat = new SimpleDateFormat("yyyy", Locale.getDefault());
@@ -1134,6 +1165,8 @@ public class Main_Easy extends AppCompatActivity {
 //                Integer.parseInt(monthData),
 //                Integer.parseInt(dayData)
 //        );
+        //화면 클리어
+        list_itemAdapter_easy.removeAllItem();
 
 
         // -------------------------------------------------------- DB 데이터 넣는곳

@@ -31,7 +31,7 @@ public class Setting_main extends Fragment {
     Calender_Dao calender_dao;
     User_Dao user_dao;
 
-    Button userAccountSet_btn, noficationSet_btn, appThemeSet_btn;      // 프래그먼트 전환을 위한 버튼
+    Button userAccountSet_btn, noficationSet_btn, appThemeSet_btn,gme_btn;      // 프래그먼트 전환을 위한 버튼
     ImageButton defaultTheme, easyTheme;
 
     @Override
@@ -45,6 +45,7 @@ public class Setting_main extends Fragment {
         appThemeSet_btn = view.findViewById(R.id.darkmodesetting_btn);
         defaultTheme =view.findViewById(R.id.normalbtn);
         easyTheme =view.findViewById(R.id.easybtn);
+        gme_btn=view.findViewById(R.id.game_btn);
 
         Calender_DBSet dbController = Room.databaseBuilder(getActivity().getApplicationContext(), Calender_DBSet.class, "CalenderDB")
                 .fallbackToDestructiveMigration()
@@ -107,7 +108,14 @@ public class Setting_main extends Fragment {
                 startActivity(intent);
             }
         });
-
+        gme_btn.setOnClickListener(new View.OnClickListener() {
+        //게임 버튼을 눌렀을떄 작동 되는 부분
+            @Override
+            public void onClick(View view) {
+//                Intent intent = new Intent(getActivity(), Setting_dark.class);
+//                startActivity(intent);
+            }
+        });
         return view;
     }
 }

@@ -26,6 +26,18 @@ public interface User_Dao {
     @Delete
     void delete(UserDB userDB);
 
+    @Query("update UserDB set UserID = null" +
+            ", userPassword = null " +
+            ", userEmail = null " +
+            ", userName = null " +
+            ", userPhonenumber = 00000 " +
+            ", userAge = 0" +
+            ", userAddress = null " +
+            ", userAddressDetail = null " +
+            ", userZIPCode = null where code = :codes")
+    void deleteAll(int codes);
+
+
     // 데이터 수정을 위한 쿼리
     @Query("update UserDB set userID = :id " +
             ", userPassword = :pw " +
