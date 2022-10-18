@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.os.PowerManager;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -53,6 +54,8 @@ public class UserProfile extends AppCompatActivity implements View.OnClickListen
     TextView syncUpload, syncDownload;
 
     File tempSelectFile;
+
+    Button userLogout;
 
     private Calender_DBSet database;
 
@@ -102,6 +105,8 @@ public class UserProfile extends AppCompatActivity implements View.OnClickListen
         syncUpload = (TextView) findViewById(R.id.uploadFile);
         syncDownload = (TextView) findViewById(R.id.downloadFile);
 
+        userLogout = (Button) findViewById(R.id.btn_userlogout);
+
         List<UserDB> callUserInfo = user_dao.getAllData();
 
         userId = callUserInfo.get(0).getId().toString();
@@ -115,6 +120,7 @@ public class UserProfile extends AppCompatActivity implements View.OnClickListen
 
         syncUpload.setOnClickListener(this);
         syncDownload.setOnClickListener(this);
+        userLogout.setOnClickListener(this);
 
     }
 
@@ -157,6 +163,11 @@ public class UserProfile extends AppCompatActivity implements View.OnClickListen
                 }catch (Exception e){
 
                 }
+                break;
+
+            case R.id.btn_userlogout:
+                user_dao.deleteAll(1);
+                finish();
                 break;
         }
     }

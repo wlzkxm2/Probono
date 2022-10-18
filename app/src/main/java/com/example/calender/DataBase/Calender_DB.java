@@ -60,8 +60,13 @@ public class Calender_DB {
     @ColumnInfo(name = "MainActDTitle")
     public String _mainActDTitle;
 
-//<editor-fold desc="DB Getter & Setter">
+    @ColumnInfo(name = "CalanderCategory")
+    public int _calanderCategory;
 
+    @ColumnInfo(name = "FinishdQuest")
+    public boolean _finishedQuest;
+
+//<editor-fold desc="DB Getter & Setter">
 
     public int getNum() {
         return num;
@@ -191,7 +196,23 @@ public class Calender_DB {
         this._mainActDTitle = _mainActDTitle;
     }
 
+    public int get_calanderCategory() {
+        return _calanderCategory;
+    }
+
+    public void set_calanderCategory(int _calanderCategory) {
+        this._calanderCategory = _calanderCategory;
+    }
+
+    public boolean get_finishedQuest() {
+        return _finishedQuest;
+    }
+
+    public void set_finishedQuest(boolean _finishedQuest) {
+        this._finishedQuest = _finishedQuest;
+    }
+
+
 
     //</editor-fold desc="DB Getter & Setter">
-
 }

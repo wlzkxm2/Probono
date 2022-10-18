@@ -184,7 +184,7 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
                 Integer.parseInt(monthData),
                 Integer.parseInt(dayData)
         );
-        String text = null;
+        String text = "";
         for(int i = 0; i < calender_like_data.size(); i++){
             text += calender_like_data.get(i).get_titles().toString();
             Log.v("tts", calender_like_data.get(i).get_titles());
@@ -196,9 +196,6 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
         }
         tts.setPitch((float)1.3); // 음성 톤 높이 지정
         tts.setSpeechRate((float)1.3); // 음성 속도 지정
-//        tts.setPitch((float)1.5); // 음성 톤 높이 지정
-//        tts.setSpeechRate((float)1.5); // 음성 속도 지정
-
         // 첫 번째 매개변수: 음성 출력을 할 텍스트
         // 두 번째 매개변수: 1. TextToSpeech.QUEUE_FLUSH - 진행중인 음성 출력을 끊고 이번 TTS의 음성 출력
         //                 2. TextToSpeech.QUEUE_ADD - 진행중인 음성 출력이 끝난 후에 이번 TTS의 음성 출력
@@ -331,7 +328,6 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd");
         SimpleDateFormat timeFormat = new SimpleDateFormat("HH시mm분");
 
-
         Date currentTime = Calendar.getInstance().getTime();
 //                SimpleDateFormat yearFormat = new SimpleDateFormat("yyyy", Locale.getDefault());
 //                SimpleDateFormat monthFormat = new SimpleDateFormat("MM", Locale.getDefault());
@@ -339,7 +335,7 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
 //                SimpleDateFormat timeFormat = new SimpleDateFormat("HH시mm분");
         String YearData = yearFormat.format(currentTime);
         String monthData = monthFormat.format(currentTime);
-//                String dayData = dayFormat.format(currentTime);
+        String dayData = dateFormat.format(currentTime);
 //                LocalTime now = LocalTime.now();
 
         startYears = ((UidCode) getActivity().getApplication()).getStatic_year();
@@ -353,11 +349,11 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
 //                endLoaclHour = now.getHour();
 //                endLoaclMinute = now.getMinute();
 
-//                List<Calender_DB> calender_like_data = calender_dao.loadAllDataByYears(
-//                        Integer.parseInt(YearData),
-//                        Integer.parseInt(monthData),
-//                        Integer.parseInt(dayData)
-//                );
+                List<Calender_DB> calender_like_data = calender_dao.loadAllDataByYears(
+                        Integer.parseInt(YearData),
+                        Integer.parseInt(monthData),
+                        Integer.parseInt(dayData)
+                );
 
         AlertDialog.Builder dialog = new AlertDialog.Builder(new ContextThemeWrapper(getActivity(), R.style.AlertDialogTheme));
         LayoutInflater inflater= getLayoutInflater();
@@ -428,11 +424,11 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
             public void onClick(View v) {
                 DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
                     @Override
-                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        startYears = year;
-                        startMonths = month+1;
-                        startDays = dayOfMonth;
-                        schedule_start_day.setText(year + "년 " + (month + 1)+ "월 " + dayOfMonth + "일 ");
+                    public void onDateSet(DatePicker view, int s_year, int s_month, int s_dayOfMonth) {
+                        startYears = s_year;
+                        startMonths = s_month+1;
+                        startDays = s_dayOfMonth;
+                        schedule_start_day.setText(s_year + "년 " + (s_month + 1)+ "월 " + s_dayOfMonth + "일 ");
                     }
                 },startYears,startMonths-1,startDays);
 
@@ -459,13 +455,13 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
             public void onClick(View v) {
                 DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
                     @Override
-                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        startYears = year;
-                        startMonths = month+1;
-                        startDays = dayOfMonth;
-                        schedule_end_day.setText(year + "년 " + (month + 1)+ "월 " + dayOfMonth + "일 ");
+                    public void onDateSet(DatePicker view, int e_year, int e_month, int e_dayOfMonth) {
+                        endYears = e_year;
+                        endMonths = e_month+1;
+                        endDays = e_dayOfMonth;
+                        schedule_end_day.setText(e_year + "년 " + (e_month + 1)+ "월 " + e_dayOfMonth + "일 ");
                     }
-                },startYears,startMonths-1,startDays);
+                },endYears,endMonths-1,endDays);
 
 //                        // 종료날짜 설정(확인) 버튼
 //                        datePickerDialog.setButton(DatePickerDialog.BUTTON_POSITIVE,"설정", new DialogInterface.OnClickListener(){
@@ -492,11 +488,11 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
                 TimePickerDialog timePickerDialog = new TimePickerDialog
                         (getActivity(), android.R.style.Theme_Holo_Light_Dialog, new TimePickerDialog.OnTimeSetListener() {
                             @Override
-                            public void onTimeSet(TimePicker view, int hour, int minute) {
-                                startHour = hour;
-                                startMinute = minute;
-                                String startScheduleHour = String.format("%02d",hour);
-                                String startScheduleMinute = String.format("%02d",minute);
+                            public void onTimeSet(TimePicker view, int shour, int sminute) {
+                                startHour = shour;
+                                startMinute = sminute;
+                                String startScheduleHour = String.format("%02d",shour);
+                                String startScheduleMinute = String.format("%02d",sminute);
                                 schedule_start_time.setText(startScheduleHour + " : " + startScheduleMinute);
                             }
                         },startHour, startMinute, true);
@@ -525,11 +521,11 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
                 TimePickerDialog timePickerDialog = new TimePickerDialog
                         (getActivity(), android.R.style.Theme_Holo_Light_Dialog,new TimePickerDialog.OnTimeSetListener() {
                             @Override
-                            public void onTimeSet(TimePicker view, int hour, int minute) {
-                                endHour = hour;
-                                endMinute = minute;
-                                String endScheduleHour = String.format("%02d",hour);
-                                String endScheduleMinute = String.format("%02d",minute);
+                            public void onTimeSet(TimePicker view, int ehour, int eminute) {
+                                endHour = ehour;
+                                endMinute = eminute;
+                                String endScheduleHour = String.format("%02d",ehour);
+                                String endScheduleMinute = String.format("%02d",eminute);
                                 schedule_end_time.setText(endScheduleHour + " : " + endScheduleMinute);
                             }
                         },endHour, endMinute, true);
@@ -552,7 +548,7 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
         });
 
         // 저장 버튼
-        dialog.setPositiveButton(R.string.save, new DialogInterface.OnClickListener() {
+        dialog.setPositiveButton("등록", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
 
 
@@ -600,8 +596,15 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
                 // 입력한 일정을 DB에 추가
                 calender_dao.insertAll(inputCalData);
 
-                refresh();
+                nolist_add.setVisibility(View.GONE);
+                nolist_add_text.setVisibility(View.GONE);
 
+                Log.v("일정 등록", "일정 날짜 : "+startDays+" ~ "+endDays);
+                Log.v("일정 등록", "일정 등록 시간 : "+startHour+":"+startMinute+" ~ "+endHour+":"+endMinute);
+                Log.v("일정 등록", "일정 제목 : "+title);
+                Log.v("일정 등록", "일정 내용 : "+subtitle);
+
+                reloadrecyclerview(YearData,monthData,dayData);
             }
         });
 
@@ -768,6 +771,13 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
                 final TextView schedule_end_time = (TextView) view.findViewById(R.id.schedule_basic_end_time_ed);
                 final EditText schedule_text = (EditText) view.findViewById(R.id.schedule_basic_text_ed);
 
+
+                List<Calender_DB> calender_like_data = calender_dao.loadAllDataByYears(
+                        Integer.parseInt(YearData),
+                        Integer.parseInt(monthData),
+                        Integer.parseInt(dayData)
+                );
+
                 String startTime = String.format("%04d", calender_like_data.get(pos).getStart_time());
                 String valueStartTime = startTime.substring(0,2) + " : " + startTime.substring(2, startTime.length());
                 String EndTime = String.format("%04d", calender_like_data.get(pos).getEnd_time());
@@ -849,11 +859,6 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
                         List<Calender_DB> loadDb = calender_dao.getAllData();
                         Calender_DB calender_db = new Calender_DB();
 
-//                        mArrayList.get (pos).setName (schedule_title);
-//                        mArrayList.get (pos).setNumber (schedule_text);
-//                        mAdapter.notifyItemChanged (position);
-//                        dialog.dismiss();
-
                         int scheduleKey = calender_like_data.get(pos).getNum();
                         Log.v("선택한 일정의 일정시작 시간",startHour+startMinute+"");
                         Log.v("선택한 일정의 num",calender_like_data.get(pos).getNum()+"");
@@ -871,7 +876,7 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
 
                             }
                         }
-
+                        reloadrecyclerview(YearData,monthData,dayData);
                     }
                 });
 
@@ -879,11 +884,26 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
                 dialog.setNegativeButton("삭제",new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         calender_dao.deleteCalendar(calender_like_data.get(pos).getNum());
-                        refresh();
+                        reloadrecyclerview(YearData,monthData,dayData);
+                        Toast.makeText(getActivity().getApplicationContext(), "calender_like_data.get(pos).getNum() : " + calender_like_data.get(pos).getNum(), Toast.LENGTH_SHORT).show();
+
+//                        if (calender_like_data.isEmpty()) {
+//                            nolist_add.setVisibility(View.VISIBLE);
+//                            nolist_add_text.setVisibility(View.VISIBLE);
+//                            nolist_add.setOnClickListener(new View.OnClickListener() {
+//                                @Override
+//                                public void onClick(View v) {
+//                                    edit();
+//                                    recyclerView.invalidate();
+//                                    recyclerView.getAdapter().notifyDataSetChanged();
+//                                }
+//                            });
+//                        }
+
                     }
                 });
+                Log.v("일정 순서","현재 클릭한 일정 순번 : "+(pos+1)+"번째");
                 dialog.show();
-
             }
         });
 
@@ -902,8 +922,8 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
             });
 
         } else {
-            nolist_add.setVisibility(View.GONE);
-            nolist_add_text.setVisibility(View.GONE);
+//            nolist_add.setVisibility(View.GONE);
+//            nolist_add_text.setVisibility(View.GONE);
             for (int i = 0; i < calender_like_data.size(); i++) {
                 List_Item calList = new List_Item();
                 String startTime = String.format("%04d", calender_like_data.get(i).getStart_time());
@@ -946,7 +966,7 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
                     public void onClick(DialogInterface dialog, int which) {
 
                         calender_dao.deleteCalendar(calender_like_data.get(pos).getNum());
-                        refresh();
+                        reloadrecyclerview(YearData,monthData,dayData);
 
                         Toast.makeText(getActivity().getApplicationContext(), "calender_like_data.get(pos).getNum() : " + calender_like_data.get(pos).getNum(), Toast.LENGTH_SHORT).show();
                         Toast.makeText(getActivity().getApplicationContext(), "삭제확인", Toast.LENGTH_SHORT).show();
@@ -956,7 +976,7 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
                 dialog.setNegativeButton("취소", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(getActivity().getApplicationContext(), "삭제취소", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity().getApplicationContext(), "취소", Toast.LENGTH_SHORT).show();
                     }
                 });
 
@@ -1020,8 +1040,7 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
                         public void onClick(View v) {
                             edit();
                             recyclerView.invalidate();
-                            recyclerView.getAdapter().notifyDataSetChanged();
-                            refresh();
+                            reloadrecyclerview(YearData,monthData,dayData);
                         }
                     });
 
@@ -1050,8 +1069,6 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
                 toggleFab();
                 edit();
                 recyclerView.invalidate();
-                recyclerView.getAdapter().notifyDataSetChanged();
-                refresh();
                 break;
             case R.id.floating_voice:
                 toggleFab();
@@ -1196,337 +1213,337 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
         Log.d("HSH", "sysYear 값 : " + sysYear);
 
         //문장에서 특정 단어 위치값 저장 변수
-        int y = 0;
-        int m = 0;
-        int w = 0;
-        int d = 0;
-        int h = 0;
-        int mi = 0;
-        int from = 0;
-        int until = 0;
-        int add = 0;
-
-        // -1 = 없음, 0 = 1글자, 1 = 2글자
-        int checkYearWord = -1;
-        int checkMonthWord = -1;
-        int checkWeekWord = -1;
-        int checkDateWord = -1;
-        int checkHourWord = -1;
-        int checkMinuteWord = -1;
-        int checkUntilWord = -1;
-
-        //DB 넘길 변수들
-        int saveYearData = sysYear;
-        int saveMonthData = sysMonth;
-        int saveDateData = sysDate;
-        int saveHourData = sysHour;
-        int saveMinuteData = sysMinute;
-        String saveTitleData = "";
-        int saveEndYearData = saveYearData;
-        int saveEndMonthData = saveMonthData;
-        int saveEndDateData = saveDateData;
-        int saveEndHourData = saveHourData;
-        int saveEndMinuteData = saveMinuteData;
-
-        if (data.indexOf("년 뒤") > -1) {
-            checkYearWord = 1;
-            y = data.indexOf("년 뒤");
-            saveYearData = sysYear + Integer.parseInt(data.substring(0, y));
-            Log.d("HSH", "년 뒤 변수 y값 =" + y);
-            Log.d("HSH", "년 뒤 DB저장값 =" + saveYearData);
-
-        }else if(data.indexOf("년") > -1){
-            checkYearWord = 0;
-            y = data.indexOf("년");
-            saveYearData = Integer.parseInt(data.substring(0, y));
-            Log.d("HSH", "년, 변수 y값 =" + y);
-            Log.d("HSH", "년, DB저장값 =" + saveYearData);
-        }
-
-        if (data.indexOf("달 뒤") > -1){
-            checkMonthWord = 1;
-            m = data.indexOf("달 뒤");
-            if(checkYearWord == 1){
-                saveMonthData = sysMonth + Integer.parseInt(data.substring(y+3, m));
-            }else if(checkYearWord == 0){
-                saveMonthData = sysMonth + Integer.parseInt(data.substring(y+2, m));
-            }else{
-                saveMonthData = sysMonth + Integer.parseInt(data.substring(y, m));
-            }
-        }else if(data.indexOf("월") > -1){
-            checkMonthWord = 0;
-            m = data.indexOf("월");
-
-            if(checkYearWord == 1){
-                saveMonthData = Integer.parseInt(data.substring(y+3, m));
-            }else if(checkYearWord == 0){
-                saveMonthData = Integer.parseInt(data.substring(y+2, m));
-            }else{
-                saveMonthData = Integer.parseInt(data.substring(y, m));
-            }
-            Log.d("HSH", "월, 변수 m값 =" + m);
-            Log.d("HSH", "월, DB저장값 =" + saveMonthData);
-        }
-
-        if(data.indexOf("일 뒤") > -1){
-            checkDateWord = 1;
-            d = data.indexOf("일 뒤");
-
-            if(checkMonthWord == 1){
-                saveDateData = sysDate + Integer.parseInt(data.substring(m+3, d));
-            }else if(checkMonthWord == 0){
-                saveDateData = sysDate +Integer.parseInt(data.substring(m+2, d));
-            }else{
-                saveDateData = sysDate + Integer.parseInt(data.substring(m, d));
-            }
-            Log.d("HSH", "일 뒤, 변수 d값 =" + d);
-            Log.d("HSH", "일 뒤, DB저장값 =" + saveDateData);
-        }else if(data.indexOf("요일") > -1){
-
-        }else if(data.indexOf("일") > -1){
-            checkDateWord = 0;
-            d = data.indexOf("일");
-
-            if(checkMonthWord == 1){
-                saveDateData = Integer.parseInt(data.substring(m+3, d));
-            }else if(checkMonthWord == 0){
-                saveDateData = Integer.parseInt(data.substring(m+2, d));
-            }else{
-                saveDateData = Integer.parseInt(data.substring(m, d));
-            }
-            Log.d("HSH", "일, 변수 d값 =" + d);
-            Log.d("HSH", "일, DB저장값 =" + saveDateData);
-        }
-
-        if(data.indexOf("시간 뒤") > -1){
-            h = data.indexOf("시간 뒤");
-            saveHourData = sysHour + Integer.parseInt(data.substring(d, h));
-            Log.d("HSH", "시간 뒤, 변수 h값 =" + h);
-            Log.d("HSH", "시간 뒤, DB저장값 =" + saveHourData);
-        }else if(data.indexOf("시간") > -1){
-            h = data.indexOf("시간");
-            checkHourWord = 1;
-            saveHourData = sysHour + Integer.parseInt(data.substring(d, h));
-            Log.d("HSH", "시간, 변수 h값 =" + h);
-            Log.d("HSH", "시간, DB저장값 =" + saveHourData);
-        }else if(data.indexOf("시") > -1){
-            checkHourWord = 0;
-            h = data.indexOf("시");
-
-            if(checkDateWord == 1){
-                saveHourData = Integer.parseInt(data.substring(d+3, h));
-            }else if(checkDateWord == 0){
-                saveHourData = Integer.parseInt(data.substring(d+2, h));
-            }else{
-                saveHourData = Integer.parseInt(data.substring(d, h));
-            }
-            Log.d("HSH", "시, 변수 h값 =" + h);
-            Log.d("HSH", "시, DB저장값 =" + saveHourData);
-        }
-
-        if(data.indexOf("분 뒤") > -1){
-            mi = data.indexOf("분 뒤");
-            checkMinuteWord = 1;
-
-            if(checkHourWord == 1){
-                saveMinuteData = sysMinute + Integer.parseInt(data.substring(h+3, mi));
-            }else if(checkHourWord == 0){
-                saveMinuteData = sysMinute + Integer.parseInt(data.substring(h+2, mi));
-            }else{
-                saveMinuteData = sysMinute + Integer.parseInt(data.substring(h, mi));
-            }
-
-            while(saveMinuteData >= 60){
-                saveMinuteData = saveMinuteData - 60;
-                saveHourData = saveHourData + 1;
-            }
-            Log.d("HSH", "분 뒤, saveMinuteData 값 =" + saveMinuteData);
-
-
-            Log.d("HSH", "분 뒤, 변수 mi값 =" + mi);
-            Log.d("HSH", "분 뒤, DB저장값 =" + saveHourData +": "+ saveMinuteData);
-        }else if(data.indexOf("분") > -1){
-            mi = data.indexOf("분");
-            checkMinuteWord = 0;
-
-            if(checkHourWord == 1){
-                saveMinuteData = Integer.parseInt(data.substring(h+3, mi));
-            }else if(checkHourWord == 0){
-                saveMinuteData = Integer.parseInt(data.substring(h+2, mi));
-            }else{
-                saveMinuteData = Integer.parseInt(data.substring(h, mi));
-            }
-
-            Log.d("HSH", "분, 변수 mi값 =" + mi);
-            Log.d("HSH", "분, DB저장값 =" + saveMinuteData);
-        }
-
-        if(data.indexOf("부터") > -1){
-            from = data.indexOf("부터");
-
-            if (data.indexOf("년 뒤") > -1) {
-                checkYearWord = 1;
-                y = data.indexOf("년 뒤");
-                saveEndYearData = sysYear + Integer.parseInt(data.substring(from + 3, y));
-
-            }else if(data.indexOf("년") > -1){
-                checkYearWord = 0;
-                y = data.indexOf("년");
-                saveEndYearData = Integer.parseInt(data.substring(from + 3, y));
-
-            }
-
-            if (data.indexOf("달 뒤") > -1){
-                checkMonthWord = 1;
-                m = data.indexOf("달 뒤");
-                if(checkYearWord == 1){
-                    saveEndMonthData = sysMonth + Integer.parseInt(data.substring(y+3, m));
-                }else if(checkYearWord == 0){
-                    saveEndMonthData = sysMonth + Integer.parseInt(data.substring(y+2, m));
-                }else{
-                    saveEndMonthData = sysMonth + Integer.parseInt(data.substring(from + 3, m));
-                }
-            }else if(data.indexOf("월") > -1){
-                checkMonthWord = 0;
-                m = data.indexOf("월");
-
-                if(checkYearWord == 1){
-                    saveEndMonthData = Integer.parseInt(data.substring(y+3, m));
-                }else if(checkYearWord == 0){
-                    saveEndMonthData = Integer.parseInt(data.substring(y+2, m));
-                }else{
-                    saveEndMonthData = Integer.parseInt(data.substring(from + 3, m));
-                }
-            }
-
-            if(data.indexOf("일 뒤") > -1){
-                checkDateWord = 1;
-                d = data.indexOf("일 뒤");
-
-                if(checkMonthWord == 1){
-                    saveEndDateData = sysDate + Integer.parseInt(data.substring(m+3, d));
-                }else if(checkMonthWord == 0){
-                    saveEndDateData = sysDate +Integer.parseInt(data.substring(m+2, d));
-                }else{
-                    saveEndDateData = sysDate + Integer.parseInt(data.substring(from+3, d));
-                }
-
-            }else if(data.indexOf("요일") > -1){
-
-            }else if(data.indexOf("일") > -1){
-                checkDateWord = 0;
-                d = data.indexOf("일");
-
-                if(checkMonthWord == 1){
-                    saveEndDateData = Integer.parseInt(data.substring(m+3, d));
-                }else if(checkMonthWord == 0){
-                    saveEndDateData = Integer.parseInt(data.substring(m+2, d));
-                }else{
-                    saveEndDateData = Integer.parseInt(data.substring(from+3, d));
-                }
-            }
-
-            if(data.indexOf("시간 뒤") > -1){
-                h = data.indexOf("시간 뒤");
-                saveEndHourData = sysHour + Integer.parseInt(data.substring(from+3, h));
-            }else if(data.indexOf("시간") > -1){
-                h = data.indexOf("시간");
-                checkHourWord = 1;
-                saveEndHourData = sysHour + Integer.parseInt(data.substring(from+3, h));
-            }else if(data.indexOf("시") > -1){
-                checkHourWord = 0;
-                h = data.indexOf("시");
-
-                if(checkDateWord == 1){
-                    saveEndHourData = Integer.parseInt(data.substring(d+3, h));
-                }else if(checkDateWord == 0){
-                    saveEndHourData = Integer.parseInt(data.substring(d+2, h));
-                }else{
-                    saveEndHourData = Integer.parseInt(data.substring(from+3, h));
-                }
-
-            }
-
-            if(data.indexOf("분 뒤") > -1){
-                mi = data.indexOf("분 뒤");
-                checkMinuteWord = 1;
-
-                if(checkHourWord == 1){
-                    saveEndMinuteData = sysMinute + Integer.parseInt(data.substring(h+3, mi));
-                }else if(checkHourWord == 0){
-                    saveEndMinuteData = sysMinute + Integer.parseInt(data.substring(h+2, mi));
-                }else{
-                    saveEndMinuteData = sysMinute + Integer.parseInt(data.substring(from+3, mi));
-                }
-
-                while(saveEndMinuteData >= 60){
-                    saveEndMinuteData = saveEndMinuteData - 60;
-                    saveEndHourData = saveEndHourData + 1;
-                }
-
-            }else if(data.indexOf("분") > -1){
-                mi = data.indexOf("분");
-                checkMinuteWord = 0;
-
-                if(checkHourWord == 1){
-                    saveEndMinuteData = Integer.parseInt(data.substring(h+3, mi));
-                }else if(checkHourWord == 0){
-                    saveEndMinuteData = Integer.parseInt(data.substring(h+2, mi));
-                }else{
-                    saveEndMinuteData = Integer.parseInt(data.substring(from+3, mi));
-                }
-
-            }
-
-        }
-        else if(data.indexOf("부터") == -1){
-            saveEndYearData = saveYearData;
-            saveEndMonthData = saveMonthData;
-            saveEndDateData = saveDateData;
-            saveEndHourData = saveHourData;
-            saveEndMinuteData = saveMinuteData;
-        }
-
-        if(data.indexOf("까지") > -1) {
-            checkUntilWord = 1;
-            until = data.indexOf("까지");
-        }else if(data.indexOf("에") > -1){
-            checkUntilWord = 0;
-            until = data.indexOf("에");
-        }
-
-        if(data.indexOf("일정 추가해 줘") > -1){
-            add = data.indexOf("추가해 줘");
-            if(checkUntilWord == 1){
-                saveTitleData = data.substring(until+3, add);
-            }else if(checkUntilWord == 0){
-                saveTitleData = data.substring(until+2, add);
-
-            }
-        }else if(data.indexOf("추가해 줘") > -1){
-            add = data.indexOf("추가해 줘");
-            if(checkUntilWord == 1){
-                saveTitleData = data.substring(until+3, add);
-            }else if(checkUntilWord == 0){
-                saveTitleData = data.substring(until+2, add);
-
-            }
-        }
-
-
-        Log.d("HSH", "최종 DB 저장값 = " + saveYearData +"년 "+ saveMonthData +"월 "+ saveDateData+"일 "
-                + saveHourData+"시 "+ saveMinuteData + "분 " + "내용 : " + saveTitleData);
-
-        Log.d("HSH", "최종 DB End 저장값 = " + saveEndYearData +"년 "+ saveEndMonthData +"월 "+ saveEndDateData+"일 "
-                + saveEndHourData+"시 "+ saveEndMinuteData + "분 ");
-
-        String saveStartTime = Integer.toString(saveHourData) + Integer.toString(saveMinuteData);
-        String saveEndTime = Integer.toString(saveEndHourData) + Integer.toString(saveEndMinuteData);
-
-        Log.v("stt", "saveStartTime" + saveStartTime + "\n" + "saveEndTime" + saveEndTime);
-
-        int saveStartTimeint = Integer.parseInt(saveStartTime);
-        int saveEndTimeint = Integer.parseInt(saveEndTime);
+//        int y = 0;
+//        int m = 0;
+//        int w = 0;
+//        int d = 0;
+//        int h = 0;
+//        int mi = 0;
+//        int from = 0;
+//        int until = 0;
+//        int add = 0;
+//
+//        // -1 = 없음, 0 = 1글자, 1 = 2글자
+//        int checkYearWord = -1;
+//        int checkMonthWord = -1;
+//        int checkWeekWord = -1;
+//        int checkDateWord = -1;
+//        int checkHourWord = -1;
+//        int checkMinuteWord = -1;
+//        int checkUntilWord = -1;
+//
+//        //DB 넘길 변수들
+//        int saveYearData = sysYear;
+//        int saveMonthData = sysMonth;
+//        int saveDateData = sysDate;
+//        int saveHourData = sysHour;
+//        int saveMinuteData = sysMinute;
+//        String saveTitleData = "";
+//        int saveEndYearData = saveYearData;
+//        int saveEndMonthData = saveMonthData;
+//        int saveEndDateData = saveDateData;
+//        int saveEndHourData = saveHourData;
+//        int saveEndMinuteData = saveMinuteData;
+//
+//        if (data.indexOf("년 뒤") > -1) {
+//            checkYearWord = 1;
+//            y = data.indexOf("년 뒤");
+//            saveYearData = sysYear + Integer.parseInt(data.substring(0, y));
+//            Log.d("HSH", "년 뒤 변수 y값 =" + y);
+//            Log.d("HSH", "년 뒤 DB저장값 =" + saveYearData);
+//
+//        }else if(data.indexOf("년") > -1){
+//            checkYearWord = 0;
+//            y = data.indexOf("년");
+//            saveYearData = Integer.parseInt(data.substring(0, y));
+//            Log.d("HSH", "년, 변수 y값 =" + y);
+//            Log.d("HSH", "년, DB저장값 =" + saveYearData);
+//        }
+//
+//        if (data.indexOf("달 뒤") > -1){
+//            checkMonthWord = 1;
+//            m = data.indexOf("달 뒤");
+//            if(checkYearWord == 1){
+//                saveMonthData = sysMonth + Integer.parseInt(data.substring(y+3, m));
+//            }else if(checkYearWord == 0){
+//                saveMonthData = sysMonth + Integer.parseInt(data.substring(y+2, m));
+//            }else{
+//                saveMonthData = sysMonth + Integer.parseInt(data.substring(y, m));
+//            }
+//        }else if(data.indexOf("월") > -1){
+//            checkMonthWord = 0;
+//            m = data.indexOf("월");
+//
+//            if(checkYearWord == 1){
+//                saveMonthData = Integer.parseInt(data.substring(y+3, m));
+//            }else if(checkYearWord == 0){
+//                saveMonthData = Integer.parseInt(data.substring(y+2, m));
+//            }else{
+//                saveMonthData = Integer.parseInt(data.substring(y, m));
+//            }
+//            Log.d("HSH", "월, 변수 m값 =" + m);
+//            Log.d("HSH", "월, DB저장값 =" + saveMonthData);
+//        }
+//
+//        if(data.indexOf("일 뒤") > -1){
+//            checkDateWord = 1;
+//            d = data.indexOf("일 뒤");
+//
+//            if(checkMonthWord == 1){
+//                saveDateData = sysDate + Integer.parseInt(data.substring(m+3, d));
+//            }else if(checkMonthWord == 0){
+//                saveDateData = sysDate +Integer.parseInt(data.substring(m+2, d));
+//            }else{
+//                saveDateData = sysDate + Integer.parseInt(data.substring(m, d));
+//            }
+//            Log.d("HSH", "일 뒤, 변수 d값 =" + d);
+//            Log.d("HSH", "일 뒤, DB저장값 =" + saveDateData);
+//        }else if(data.indexOf("요일") > -1){
+//
+//        }else if(data.indexOf("일") > -1){
+//            checkDateWord = 0;
+//            d = data.indexOf("일");
+//
+//            if(checkMonthWord == 1){
+//                saveDateData = Integer.parseInt(data.substring(m+3, d));
+//            }else if(checkMonthWord == 0){
+//                saveDateData = Integer.parseInt(data.substring(m+2, d));
+//            }else{
+//                saveDateData = Integer.parseInt(data.substring(m, d));
+//            }
+//            Log.d("HSH", "일, 변수 d값 =" + d);
+//            Log.d("HSH", "일, DB저장값 =" + saveDateData);
+//        }
+//
+//        if(data.indexOf("시간 뒤") > -1){
+//            h = data.indexOf("시간 뒤");
+//            saveHourData = sysHour + Integer.parseInt(data.substring(d, h));
+//            Log.d("HSH", "시간 뒤, 변수 h값 =" + h);
+//            Log.d("HSH", "시간 뒤, DB저장값 =" + saveHourData);
+//        }else if(data.indexOf("시간") > -1){
+//            h = data.indexOf("시간");
+//            checkHourWord = 1;
+//            saveHourData = sysHour + Integer.parseInt(data.substring(d, h));
+//            Log.d("HSH", "시간, 변수 h값 =" + h);
+//            Log.d("HSH", "시간, DB저장값 =" + saveHourData);
+//        }else if(data.indexOf("시") > -1){
+//            checkHourWord = 0;
+//            h = data.indexOf("시");
+//
+//            if(checkDateWord == 1){
+//                saveHourData = Integer.parseInt(data.substring(d+3, h));
+//            }else if(checkDateWord == 0){
+//                saveHourData = Integer.parseInt(data.substring(d+2, h));
+//            }else{
+//                saveHourData = Integer.parseInt(data.substring(d, h));
+//            }
+//            Log.d("HSH", "시, 변수 h값 =" + h);
+//            Log.d("HSH", "시, DB저장값 =" + saveHourData);
+//        }
+//
+//        if(data.indexOf("분 뒤") > -1){
+//            mi = data.indexOf("분 뒤");
+//            checkMinuteWord = 1;
+//
+//            if(checkHourWord == 1){
+//                saveMinuteData = sysMinute + Integer.parseInt(data.substring(h+3, mi));
+//            }else if(checkHourWord == 0){
+//                saveMinuteData = sysMinute + Integer.parseInt(data.substring(h+2, mi));
+//            }else{
+//                saveMinuteData = sysMinute + Integer.parseInt(data.substring(h, mi));
+//            }
+//
+//            while(saveMinuteData >= 60){
+//                saveMinuteData = saveMinuteData - 60;
+//                saveHourData = saveHourData + 1;
+//            }
+//            Log.d("HSH", "분 뒤, saveMinuteData 값 =" + saveMinuteData);
+//
+//
+//            Log.d("HSH", "분 뒤, 변수 mi값 =" + mi);
+//            Log.d("HSH", "분 뒤, DB저장값 =" + saveHourData +": "+ saveMinuteData);
+//        }else if(data.indexOf("분") > -1){
+//            mi = data.indexOf("분");
+//            checkMinuteWord = 0;
+//
+//            if(checkHourWord == 1){
+//                saveMinuteData = Integer.parseInt(data.substring(h+3, mi));
+//            }else if(checkHourWord == 0){
+//                saveMinuteData = Integer.parseInt(data.substring(h+2, mi));
+//            }else{
+//                saveMinuteData = Integer.parseInt(data.substring(h, mi));
+//            }
+//
+//            Log.d("HSH", "분, 변수 mi값 =" + mi);
+//            Log.d("HSH", "분, DB저장값 =" + saveMinuteData);
+//        }
+//
+//        if(data.indexOf("부터") > -1){
+//            from = data.indexOf("부터");
+//
+//            if (data.indexOf("년 뒤") > -1) {
+//                checkYearWord = 1;
+//                y = data.indexOf("년 뒤");
+//                saveEndYearData = sysYear + Integer.parseInt(data.substring(from + 3, y));
+//
+//            }else if(data.indexOf("년") > -1){
+//                checkYearWord = 0;
+//                y = data.indexOf("년");
+//                saveEndYearData = Integer.parseInt(data.substring(from + 3, y));
+//
+//            }
+//
+//            if (data.indexOf("달 뒤") > -1){
+//                checkMonthWord = 1;
+//                m = data.indexOf("달 뒤");
+//                if(checkYearWord == 1){
+//                    saveEndMonthData = sysMonth + Integer.parseInt(data.substring(y+3, m));
+//                }else if(checkYearWord == 0){
+//                    saveEndMonthData = sysMonth + Integer.parseInt(data.substring(y+2, m));
+//                }else{
+//                    saveEndMonthData = sysMonth + Integer.parseInt(data.substring(from + 3, m));
+//                }
+//            }else if(data.indexOf("월") > -1){
+//                checkMonthWord = 0;
+//                m = data.indexOf("월");
+//
+//                if(checkYearWord == 1){
+//                    saveEndMonthData = Integer.parseInt(data.substring(y+3, m));
+//                }else if(checkYearWord == 0){
+//                    saveEndMonthData = Integer.parseInt(data.substring(y+2, m));
+//                }else{
+//                    saveEndMonthData = Integer.parseInt(data.substring(from + 3, m));
+//                }
+//            }
+//
+//            if(data.indexOf("일 뒤") > -1){
+//                checkDateWord = 1;
+//                d = data.indexOf("일 뒤");
+//
+//                if(checkMonthWord == 1){
+//                    saveEndDateData = sysDate + Integer.parseInt(data.substring(m+3, d));
+//                }else if(checkMonthWord == 0){
+//                    saveEndDateData = sysDate +Integer.parseInt(data.substring(m+2, d));
+//                }else{
+//                    saveEndDateData = sysDate + Integer.parseInt(data.substring(from+3, d));
+//                }
+//
+//            }else if(data.indexOf("요일") > -1){
+//
+//            }else if(data.indexOf("일") > -1){
+//                checkDateWord = 0;
+//                d = data.indexOf("일");
+//
+//                if(checkMonthWord == 1){
+//                    saveEndDateData = Integer.parseInt(data.substring(m+3, d));
+//                }else if(checkMonthWord == 0){
+//                    saveEndDateData = Integer.parseInt(data.substring(m+2, d));
+//                }else{
+//                    saveEndDateData = Integer.parseInt(data.substring(from+3, d));
+//                }
+//            }
+//
+//            if(data.indexOf("시간 뒤") > -1){
+//                h = data.indexOf("시간 뒤");
+//                saveEndHourData = sysHour + Integer.parseInt(data.substring(from+3, h));
+//            }else if(data.indexOf("시간") > -1){
+//                h = data.indexOf("시간");
+//                checkHourWord = 1;
+//                saveEndHourData = sysHour + Integer.parseInt(data.substring(from+3, h));
+//            }else if(data.indexOf("시") > -1){
+//                checkHourWord = 0;
+//                h = data.indexOf("시");
+//
+//                if(checkDateWord == 1){
+//                    saveEndHourData = Integer.parseInt(data.substring(d+3, h));
+//                }else if(checkDateWord == 0){
+//                    saveEndHourData = Integer.parseInt(data.substring(d+2, h));
+//                }else{
+//                    saveEndHourData = Integer.parseInt(data.substring(from+3, h));
+//                }
+//
+//            }
+//
+//            if(data.indexOf("분 뒤") > -1){
+//                mi = data.indexOf("분 뒤");
+//                checkMinuteWord = 1;
+//
+//                if(checkHourWord == 1){
+//                    saveEndMinuteData = sysMinute + Integer.parseInt(data.substring(h+3, mi));
+//                }else if(checkHourWord == 0){
+//                    saveEndMinuteData = sysMinute + Integer.parseInt(data.substring(h+2, mi));
+//                }else{
+//                    saveEndMinuteData = sysMinute + Integer.parseInt(data.substring(from+3, mi));
+//                }
+//
+//                while(saveEndMinuteData >= 60){
+//                    saveEndMinuteData = saveEndMinuteData - 60;
+//                    saveEndHourData = saveEndHourData + 1;
+//                }
+//
+//            }else if(data.indexOf("분") > -1){
+//                mi = data.indexOf("분");
+//                checkMinuteWord = 0;
+//
+//                if(checkHourWord == 1){
+//                    saveEndMinuteData = Integer.parseInt(data.substring(h+3, mi));
+//                }else if(checkHourWord == 0){
+//                    saveEndMinuteData = Integer.parseInt(data.substring(h+2, mi));
+//                }else{
+//                    saveEndMinuteData = Integer.parseInt(data.substring(from+3, mi));
+//                }
+//
+//            }
+//
+//        }
+//        else if(data.indexOf("부터") == -1){
+//            saveEndYearData = saveYearData;
+//            saveEndMonthData = saveMonthData;
+//            saveEndDateData = saveDateData;
+//            saveEndHourData = saveHourData;
+//            saveEndMinuteData = saveMinuteData;
+//        }
+//
+//        if(data.indexOf("까지") > -1) {
+//            checkUntilWord = 1;
+//            until = data.indexOf("까지");
+//        }else if(data.indexOf("에") > -1){
+//            checkUntilWord = 0;
+//            until = data.indexOf("에");
+//        }
+//
+//        if(data.indexOf("일정 추가해 줘") > -1){
+//            add = data.indexOf("추가해 줘");
+//            if(checkUntilWord == 1){
+//                saveTitleData = data.substring(until+3, add);
+//            }else if(checkUntilWord == 0){
+//                saveTitleData = data.substring(until+2, add);
+//
+//            }
+//        }else if(data.indexOf("추가해 줘") > -1){
+//            add = data.indexOf("추가해 줘");
+//            if(checkUntilWord == 1){
+//                saveTitleData = data.substring(until+3, add);
+//            }else if(checkUntilWord == 0){
+//                saveTitleData = data.substring(until+2, add);
+//
+//            }
+//        }
+//
+//
+//        Log.d("HSH", "최종 DB 저장값 = " + saveYearData +"년 "+ saveMonthData +"월 "+ saveDateData+"일 "
+//                + saveHourData+"시 "+ saveMinuteData + "분 " + "내용 : " + saveTitleData);
+//
+//        Log.d("HSH", "최종 DB End 저장값 = " + saveEndYearData +"년 "+ saveEndMonthData +"월 "+ saveEndDateData+"일 "
+//                + saveEndHourData+"시 "+ saveEndMinuteData + "분 ");
+//
+//        String saveStartTime = Integer.toString(saveHourData) + Integer.toString(saveMinuteData);
+//        String saveEndTime = Integer.toString(saveEndHourData) + Integer.toString(saveEndMinuteData);
+//
+//        Log.v("stt", "saveStartTime" + saveStartTime + "\n" + "saveEndTime" + saveEndTime);
+//
+//        int saveStartTimeint = Integer.parseInt(saveStartTime);
+//        int saveEndTimeint = Integer.parseInt(saveEndTime);
 
 
         Calender_DB inputCalData = new Calender_DB();
@@ -1552,7 +1569,37 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
 //        Log.v("stt", );
 
     }
+
+    private void reloadrecyclerview(String YearData, String monthData, String dayData) {
+        List<Calender_DB> calender_like_data = calender_dao.loadAllDataByYears(
+                Integer.parseInt(YearData),
+                Integer.parseInt(monthData),
+                Integer.parseInt(dayData)
+        );
+
+        list_itemAdapter.removeAllItem();
+
+        for (int i = 0; i < calender_like_data.size(); i++) {
+            List_Item calList = new List_Item();
+            String startTime = String.format("%04d", calender_like_data.get(i).getStart_time());
+            String valueStartTime = startTime.substring(0,2) + " : " + startTime.substring(2, startTime.length());
+            String EndTime = String.format("%04d", calender_like_data.get(i).getEnd_time());
+            String valueEndTime = EndTime.substring(0,2) + " : " + EndTime.substring(2, EndTime.length());
+
+            calList.setTime(valueStartTime + "~ \n" + valueEndTime);
+            calList.setTitle(calender_like_data.get(i).get_titles());
+            calList.setText(calender_like_data.get(i).get_subtitle());
+
+            list_itemAdapter.addItem(calList);
+//                        list_itemAdapter.addItem(calList); //두개 써있어서 하나 주석 해둠
+        }
+        list_itemAdapter.notifyDataSetChanged();
+        recyclerView.startLayoutAnimation();
+    }
+
 }
+
+
 
 
 

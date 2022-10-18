@@ -5,7 +5,13 @@
     android:layout_height="match_parent"
     android:background="@color/test"
     android:orientation="vertical">
-
+    <ImageButton
+        android:id="@+id/easy_calendar_back"
+        android:src="@drawable/arrow_left_line"
+        android:backgroundTint="@android:color/transparent"
+        android:scaleType="fitCenter"
+        android:layout_width="50dp"
+        android:layout_height="50dp"/>
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -28,7 +34,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/easy_recycler_view"
                 android:layout_width="match_parent"
-                android:layout_height="208dp"
+                android:layout_height="match_parent"
                 android:layoutAnimation="@anim/item_layout_animation"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -40,44 +46,61 @@
 
             </androidx.recyclerview.widget.RecyclerView>
 
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="30dp">
+            </FrameLayout>
+
+            <ImageButton
+                android:id="@+id/calendar_easy_nolist_add"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:background="@android:color/transparent"
+                android:scaleType="fitCenter"
+                android:src="@drawable/img_add_schedule"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.586"
+                android:visibility="visible"
+                android:layout_gravity="center"/>
+
+            <TextView
+                android:id="@+id/calendar_easy_nolist_add_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="일정을 추가해보세요!"
+                android:textColor="#5A88FF"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/main_basic_nolist_add"
+                app:layout_constraintVertical_bias="0.055"
+                android:visibility="visible"
+                android:layout_gravity="center"/>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="30dp">
+            </FrameLayout>
+
+
         </LinearLayout>
+
+
+
     </ScrollView>
 
-    <ImageButton
-        android:id="@+id/calendar_easy_nolist_add"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:background="@android:color/transparent"
-        android:scaleType="fitCenter"
-        android:src="@drawable/img_add_schedule"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.586"
-        android:visibility="gone"
-        android:layout_gravity="center"/>
 
-    <TextView
-        android:id="@+id/calendar_easy_nolist_add_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="일정을 추가해보세요!"
-        android:textColor="#5A88FF"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/main_basic_nolist_add"
-        app:layout_constraintVertical_bias="0.055"
-        android:visibility="gone"
-        android:layout_gravity="center"/>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="horizontal">-->
 
 <!--        <Button-->
 <!--            android:id="@+id/easy_Addcal_btn"-->
@@ -99,7 +122,15 @@
 <!--            android:text="Button"-->
 <!--            android:textColor="@color/test1" />-->
 
-    </LinearLayout>
+
+<!--    </LinearLayout>-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/textView5"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_weight="1"-->
+<!--        android:text="TextView" />-->
 
 
 </LinearLayout>
