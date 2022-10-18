@@ -2,7 +2,6 @@ package com.example.calender.Main_Easy;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
-import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
@@ -12,7 +11,6 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.ContextThemeWrapper;
 import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -22,7 +20,6 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.TimePicker;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -505,6 +502,7 @@ public class Main_Easy extends AppCompatActivity {
                     case R.id.main_easy_floating_voice:
                         Custom_STT custom_stt = new Custom_STT(Main_Easy.this);
                         int inputday = ((UidCode) Main_Easy.this.getApplication()).getStatic_day();
+                        custom_stt.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                         custom_stt.show();
                         break;
 
@@ -539,10 +537,40 @@ public class Main_Easy extends AppCompatActivity {
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view_easy);
         list_itemAdapter_easy = new List_ItemAdapter_Easy();
-        recyclerView.setAdapter(list_itemAdapter_easy);
 
-        //화면 클리어
-        list_itemAdapter_easy.removeAllItem();
+        // 일정 리스트 눌러서 뜨는 다이얼로그
+        list_itemAdapter_easy.setOnItemClickListener(new List_ItemAdapter_Easy.OnItemClickListener() {
+            @Override
+//            public void onItemClicked(int position, String data) {
+            public void onItemClicked(View v, int position) {
+
+                final EditText edit_schedule = new EditText(Main_Easy.this);
+                AlertDialog.Builder dialog = new AlertDialog.Builder(new ContextThemeWrapper(Main_Easy.this, R.style.AlertDialogTheme));
+                dialog.setTitle("일정 제목");
+                dialog.setView(edit_schedule);
+                dialog.setView(edit_schedule);
+
+                // 완료 버튼
+                dialog.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+
+                // 편집 버튼
+                dialog.setNegativeButton("편집(개발중)",new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+
+                dialog.show();
+
+            }
+        });
+
+
+        recyclerView.setAdapter(list_itemAdapter_easy);
 
         Date currentTime = Calendar.getInstance().getTime();
         SimpleDateFormat yearFormat = new SimpleDateFormat("yyyy", Locale.getDefault());
@@ -558,145 +586,8 @@ public class Main_Easy extends AppCompatActivity {
                 Integer.parseInt(dayData)
         );
 
-        // 일정 리스트 눌러서 뜨는 다이얼로그
-        list_itemAdapter_easy.setOnItemClickListener(new List_ItemAdapter_Easy.OnItemClickListener() {
-            @Override
-            public void onItemClicked(View v, int pos) {
-
-                AlertDialog.Builder dialog = new AlertDialog.Builder(new ContextThemeWrapper(Main_Easy.this, R.style.AlertDialogTheme));
-                LayoutInflater inflater= getLayoutInflater();
-                View view = inflater.inflate(R.layout.schedule_basic, null);
-                dialog.setView(view);
-
-                final EditText schedule_title = (EditText) view.findViewById(R.id.schedule_basic_title_ed);
-                final TextView schedule_start_time = (TextView) view.findViewById(R.id.schedule_basic_start_time_ed);
-                final TextView schedule_end_time = (TextView) view.findViewById(R.id.schedule_basic_end_time_ed);
-                final EditText schedule_text = (EditText) view.findViewById(R.id.schedule_basic_text_ed);
-
-                String startTime = String.format("%04d", calender_like_data.get(pos).getStart_time());
-                String valueStartTime = startTime.substring(0,2) + " : " + startTime.substring(2, startTime.length());
-                String EndTime = String.format("%04d", calender_like_data.get(pos).getEnd_time());
-                String valueEndTime = EndTime.substring(0,2) + " : " + EndTime.substring(2, EndTime.length());
-
-                schedule_title.setText(calender_like_data.get(pos).get_titles());
-                schedule_start_time.setText(valueStartTime);
-                schedule_end_time.setText(valueEndTime);
-                schedule_text.setText(calender_like_data.get(pos).get_subtitle());
-
-                final int startHour=Integer.parseInt(startTime.substring(0,2)), startMinute=Integer.parseInt(startTime.substring(2, startTime.length()));
-                final int endHour=Integer.parseInt(EndTime.substring(0,2)), endMinute=Integer.parseInt(EndTime.substring(2, startTime.length()));
-
-                schedule_start_time.setOnClickListener(new View.OnClickListener() { // 일정 시작 시간 타임피커
-                    @Override
-                    public void onClick(View view) {
-                        TimePickerDialog timePickerDialog = new TimePickerDialog
-                                (Main_Easy.this, android.R.style.Theme_Holo_Light_Dialog, new TimePickerDialog.OnTimeSetListener() {
-                                    @Override
-                                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                                        String startHour = String.format("%02d",hourOfDay);
-                                        String startMinute = String.format("%02d",minute);
-                                        schedule_start_time.setText(startHour + " : " + startMinute);
-                                    }
-                                },startHour, startMinute, true);
-
-                        // 타임피커 설정(확인) 버튼
-                        timePickerDialog.setButton(TimePickerDialog.BUTTON_POSITIVE, "설정", new DialogInterface.OnClickListener() {
-                            @Override public void onClick(DialogInterface dialogInterface, int i) {
-
-                            }
-                        });
-                        // 타임피커 취소 버튼
-                        timePickerDialog.setButton(TimePickerDialog.BUTTON_NEGATIVE, "취소", new DialogInterface.OnClickListener() {
-                            @Override public void onClick(DialogInterface dialogInterface, int i) {
-
-                            }
-                        });
-                        timePickerDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT)); // 타임피커 다이얼로그 뒷배경 여백 투명하게
-                        timePickerDialog.show();
-                    }
-                });
-
-                schedule_end_time.setOnClickListener(new View.OnClickListener() { // 일정 끝나는 시간 타임피커
-                    @Override
-                    public void onClick(View view) {
-                        TimePickerDialog timePickerDialog = new TimePickerDialog
-                                (Main_Easy.this, android.R.style.Theme_Holo_Light_Dialog,new TimePickerDialog.OnTimeSetListener() {
-                                    @Override
-                                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                                        String endHour = String.format("%02d",hourOfDay);
-                                        String endMinute = String.format("%02d",minute);
-                                        schedule_end_time.setText(endHour + " : " + endMinute);
-                                    }
-                                },endHour, endMinute, true);
-
-                        // 타임피커 설정(확인) 버튼
-                        timePickerDialog.setButton(TimePickerDialog.BUTTON_POSITIVE, "설정", new DialogInterface.OnClickListener() {
-                            @Override public void onClick(DialogInterface dialogInterface, int i) {
-
-                            }
-                        });
-                        // 타임피커 취소 버튼
-                        timePickerDialog.setButton(TimePickerDialog.BUTTON_NEGATIVE, "취소", new DialogInterface.OnClickListener() {
-                            @Override public void onClick(DialogInterface dialogInterface, int i) {
-
-                            }
-                        });
-                        timePickerDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT)); // 타임피커 다이얼로그 뒷배경 여백 투명하게
-                        timePickerDialog.show();
-                    }
-                });
-
-                // 저장 버튼
-                dialog.setPositiveButton("저장(개발중)", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        List<Calender_DB> loadDb = calender_dao.getAllData();
-
-                        int scheduleKey = calender_like_data.get(pos).getNum();
-                        int dbpos = Integer.parseInt(null);
-                        String start = String.format("%04d",startHour+startMinute);
-                        Log.v("start start start",start+"");
-                        Log.v("num",calender_like_data.get(pos).getNum()+"");
-
-//                        for (int i = 0; i < loadDb.size(); i++){
-//                            if (scheduleKey == loadDb.get(i).getNum()) {
-//                                loadDb.get(i).setStart_time(Integer.parseInt(start));
-//
-//                            }
-//                        }
-//                        if (dbpos != Integer.parseInt(null)){
-//                            Calender_DB calender_db = new Calender_DB();
-//                            calender_db.setStart_time();
-//                            calender_dao.updateData(loadDb);
-//
-//                        }
-                    }
-                });
-
-                // 삭제 버튼
-                dialog.setNegativeButton("삭제",new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        calender_dao.deleteCalendar(calender_like_data.get(pos).getNum());
-                    }
-                });
-                dialog.show();
-
-            }
-        });
-
-
-//        Date currentTime = Calendar.getInstance().getTime();
-//        SimpleDateFormat yearFormat = new SimpleDateFormat("yyyy", Locale.getDefault());
-//        SimpleDateFormat monthFormat = new SimpleDateFormat("MM", Locale.getDefault());
-//        SimpleDateFormat dayFormat = new SimpleDateFormat("dd", Locale.getDefault());
-//        String YearData = yearFormat.format(currentTime);
-//        String monthData = monthFormat.format(currentTime);
-//        String dayData = dayFormat.format(currentTime);
-
-//        List<Calender_DB> calender_like_data = calender_dao.loadAllDataByYears(
-//                Integer.parseInt(YearData),
-//                Integer.parseInt(monthData),
-//                Integer.parseInt(dayData)
-//        );
+        //화면 클리어
+        list_itemAdapter_easy.removeAllItem();
 
         // -------------------------------------------------------- DB 데이터 넣는곳
         if (calender_like_data.isEmpty()) {

@@ -2,6 +2,7 @@ package com.example.calender.Calendar_Easy;
 
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -27,12 +28,16 @@ import com.example.calender.Main_Easy.List_ItemAdapter_Easy;
 import com.example.calender.R;
 import com.example.calender.StaticUidCode.UidCode;
 import com.example.calender.addschedule.AddSchedule;
+import com.example.calender.calendarSource.Calendar_Basic_Scheduled;
+import com.example.calender.calendarSource.SaturdayDecorator;
+import com.example.calender.calendarSource.SundayDecorator;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 
 import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
+import java.util.Collections;
 import java.util.List;
 
 public class Calendar_Easy extends AppCompatActivity {
@@ -77,7 +82,7 @@ public class Calendar_Easy extends AppCompatActivity {
         final int[] _day = {0};
         final int[] appData = {0};  // DB 내에 있는 데이터의 사이즈
 
-        addcal_btn = (Button) findViewById(R.id.easy_Addcal_btn);
+//        addcal_btn = (Button) findViewById(R.id.easy_Addcal_btn);
 
         //<editor-fold desc="기본 뷰 세팅 코드">
         calendarView = (MaterialCalendarView) findViewById(R.id.easy_calendarView);
@@ -97,6 +102,27 @@ public class Calendar_Easy extends AppCompatActivity {
         calender_dao = dbController.calender_dao();
 
         List<Calender_DB> calender_dbs = calender_dao.getAllData();
+        // 일정 있는 날에 빨간 점 표시
+        for (int i = 0; i < calender_dbs.size(); i++){
+            int calS_years = calender_dbs.get(i).getStart_years();
+            int calS_months = calender_dbs.get(i).getStart_month();
+            int calS_days = calender_dbs.get(i).getStart_day();
+
+            int calE_years = calender_dbs.get(i).getEnd_years();
+            int calE_months = calender_dbs.get(i).getEnd_month();
+            int calE_days = calender_dbs.get(i).getEnd_day();
+            calendarView.setDateTextAppearance(R.style.CalendarDateTextAppearanceeasy);
+            calendarView.addDecorators(
+                    new SundayDecorator(),
+                    new SaturdayDecorator(),
+                    new Calendar_Basic_Scheduled(Color.RED, Collections.singleton(CalendarDay.from(
+                            calS_years,
+                            calS_months-1,
+                            calS_days)))
+            );
+
+        }
+
         //</editor-fold>
 /*
         //<editor-fold desc="달력 꾸미기">

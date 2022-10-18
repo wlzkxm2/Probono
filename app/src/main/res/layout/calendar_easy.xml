@@ -20,8 +20,8 @@
                 android:id="@+id/easy_calendarView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:mcv_selectionColor="#5A88FF"
-                app:mcv_showOtherDates="all"
+                app:mcv_selectionColor="@color/calendarsel"
+                app:mcv_showOtherDates="none"
                 app:mcv_arrowColor="@color/test1">
             </com.prolificinteractive.materialcalendarview.MaterialCalendarView>
 
@@ -79,35 +79,27 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/easy_Addcal_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Button"
-            android:textColor="@color/test1"
-            android:textColorHighlight="#000000"
-            android:textColorHint="#000000"
-            android:textColorLink="#000000" />
+<!--        <Button-->
+<!--            android:id="@+id/easy_Addcal_btn"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_weight="1"-->
+<!--            android:text="Button"-->
+<!--            android:textColor="@color/test1"-->
+<!--            android:textColorHighlight="#000000"-->
+<!--            android:textColorHint="#000000"-->
+<!--            android:textColorLink="#000000" />-->
 
-        <Button
-            android:id="@+id/easy_button8"
-            style="@android:style/Widget.Material.Light.Button.Toggle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Button"
-            android:textColor="@color/test1" />
+<!--        <Button-->
+<!--            android:id="@+id/easy_button8"-->
+<!--            style="@android:style/Widget.Material.Light.Button.Toggle"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_weight="1"-->
+<!--            android:text="Button"-->
+<!--            android:textColor="@color/test1" />-->
 
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="TextView" />
-
 
 
 </LinearLayout>

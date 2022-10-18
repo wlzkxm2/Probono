@@ -24,7 +24,8 @@ public class FileUploadUtils {
                 .build();
 
         Request request = new Request.Builder()
-                .url("http://210.103.48.199:3306/upload")
+//                .url("http://210.103.48.199:3306/upload")
+                .url("http://13.125.150.245:8081/testService")
                 .post(requestBody)
                 .build();
 
@@ -43,4 +44,3 @@ public class FileUploadUtils {
 
     }
 }
-
