@@ -27,11 +27,11 @@ public class List_ItemAdapter extends RecyclerView.Adapter<List_ItemAdapter.View
     }
 
     // OnItemClickListener 참조 변수 선언
-    private OnItemClickListener itemClickListener;
+    private OnItemClickListener mListener = null;
 
     // OnItemClickListener 전달 메소드
     public void setOnItemClickListener (OnItemClickListener listener) {
-        this.itemClickListener = listener;
+        this.mListener = listener;
     }
     //======================================================================
 
@@ -45,10 +45,10 @@ public class List_ItemAdapter extends RecyclerView.Adapter<List_ItemAdapter.View
         void onItemClick(View v, int pos);
     }
 
-    private OnItemLongClickListener mListener = null;
+    private OnItemLongClickListener mListener_long = null;
 
     public void setOnitemLongClickListener(OnItemLongClickListener listener){
-        this.mListener = listener;
+        this.mListener_long = listener;
     }
 
     @NonNull
@@ -120,8 +120,8 @@ public class List_ItemAdapter extends RecyclerView.Adapter<List_ItemAdapter.View
                 public boolean onLongClick(View v) {
                     int pos = getAdapterPosition();
                     if(pos != RecyclerView.NO_POSITION){
-                        if(mListener != null){
-                            mListener.onItemClick(v, pos);
+                        if(mListener_long != null){
+                            mListener_long.onItemClick(v, pos);
                         }
                     }
                     return true;
@@ -133,11 +133,10 @@ public class List_ItemAdapter extends RecyclerView.Adapter<List_ItemAdapter.View
                 public void onClick(View v) {
                     int pos = getAdapterPosition();
                     if(pos != RecyclerView.NO_POSITION){
-                        if(itemClickListener != null){
-                            itemClickListener.onItemClicked(v, pos);
+                        if(mListener != null){
+                            mListener.onItemClicked(v, pos);
                         }
                     }
-                    return;
                 }
             });
         }

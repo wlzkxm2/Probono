@@ -79,6 +79,12 @@
                 android:visibility="visible"
                 android:layout_gravity="center"/>
 
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="30dp">
+            </FrameLayout>
+
+
         </LinearLayout>
     </ScrollView>
 
