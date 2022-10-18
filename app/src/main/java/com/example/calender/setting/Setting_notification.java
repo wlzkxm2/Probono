@@ -158,7 +158,7 @@ public class Setting_notification extends AppCompatActivity {
                 //알림에서 보이는 줄임
                 builder.setContentText(valueStartTime + " ~ " + valueEndTime + "\n" + calender_like_data.get(i).get_titles()+ "\n" + calender_like_data.get(i).get_subtitle());
                 //calender_like_data.get(i).get_titles() 이부분이 데이터 갖고 오는거임
-                
+
             } else {
                 builder.setContentText("오늘 일정이 없습니다");
             }
