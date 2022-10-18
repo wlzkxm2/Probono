@@ -148,6 +148,8 @@ public class MainActivity extends AppCompatActivity {
             calender_db.set_mainActTitle("제목을 추가해보세요");
             calender_db.set_mainActTime(0);
             calender_db.set_mainActDTitle("목표를 추가해보세요");
+            calender_db.set_calanderCategory(0);
+            calender_db.set_finishedQuest(false);
             calender_dao.insertAll(calender_db);
 
             // 로그인한 사용자의 정보를 받기위한 데이터값
