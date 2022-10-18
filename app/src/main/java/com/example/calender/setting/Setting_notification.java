@@ -142,6 +142,7 @@ public class Setting_notification extends AppCompatActivity {
 
 //        builder.setContentTitle("오늘의 일정");
         if(calender_db.get_titles() != "null"){
+            //알림에서 보이는 줄임
             builder.setContentText(valueStartTime + " ~ " + valueEndTime + "\n" + calender_db.get_titles() + "\n" + calender_db.get_subtitle());
         }else{
             builder.setContentText("오늘 일정이 없습니다");

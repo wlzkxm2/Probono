@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.os.PowerManager;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -53,6 +54,8 @@ public class UserProfile extends AppCompatActivity implements View.OnClickListen
     TextView syncUpload, syncDownload;
 
     File tempSelectFile;
+
+    Button userLogout;
 
     private Calender_DBSet database;
 
@@ -102,6 +105,8 @@ public class UserProfile extends AppCompatActivity implements View.OnClickListen
         syncUpload = (TextView) findViewById(R.id.uploadFile);
         syncDownload = (TextView) findViewById(R.id.downloadFile);
 
+        userLogout = (Button) findViewById(R.id.btn_userlogout);
+
         List<UserDB> callUserInfo = user_dao.getAllData();
 
         userId = callUserInfo.get(0).getId().toString();
@@ -115,6 +120,7 @@ public class UserProfile extends AppCompatActivity implements View.OnClickListen
 
         syncUpload.setOnClickListener(this);
         syncDownload.setOnClickListener(this);
+        userLogout.setOnClickListener(this);
 
     }
 
@@ -157,6 +163,11 @@ public class UserProfile extends AppCompatActivity implements View.OnClickListen
                 }catch (Exception e){
 
                 }
+                break;
+
+            case R.id.btn_userlogout:
+                user_dao.deleteAll(1);
+                finish();
                 break;
         }
     }
@@ -215,7 +226,8 @@ public class UserProfile extends AppCompatActivity implements View.OnClickListen
         }
 
         // 웹브라우저에 링크를 입력하면 다운되는 함수
-        final String fileURL = "http://210.103.48.199:3306/api/download";
+        final String fileURL = "http://13.125.150.245:8081/CloudDownload";
+//        final String fileURL = "http://210.103.48.199:3306/api/download";
         path = new File(getFilesDir() + folderName);
         outputFile = new File(path, "sDB.txt"); // 파일명을 포함한 경로
 
@@ -392,7 +404,8 @@ public class UserProfile extends AppCompatActivity implements View.OnClickListen
             try {
 
                 String str;
-                URL url = new URL("http://210.103.48.199:3306/upload");
+//                URL url = new URL("http://210.103.48.199:3306/upload");
+                URL url = new URL("http://13.125.150.245:8081/testService");
 //                URL url = new URL("http://118.235.12.28:80/android");
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
@@ -440,7 +453,8 @@ public class UserProfile extends AppCompatActivity implements View.OnClickListen
             try {
 
                 String str;
-                URL url = new URL("http://210.103.48.199:3306/api/datacheak");
+//                URL url = new URL("http://210.103.48.199:3306/api/datacheak");
+                URL url = new URL("http://13.125.150.245:8081/api/datacheak");
 //                URL url = new URL("http://118.235.12.28:80/android");
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");

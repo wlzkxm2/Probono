@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/test"
     >
 
     <ScrollView
@@ -32,7 +33,7 @@
                 android:layout_marginBottom="15dp"
                 android:gravity="center"
                 android:text="@string/Register"
-                android:textColor="#222222"
+                android:textColor="@color/test1"
                 android:textSize="30sp" />
 
             <!--아이디 쪽이다-->
@@ -50,7 +51,6 @@
                 android:ems="10"
                 android:hint="@string/ID_insert"
                 android:inputType="text"
-                android:text=""
                 android:textColorHint="#AAAAAA" />
 
             <!--비밀번호 쪽이다-->
@@ -66,8 +66,9 @@
                 style="@android:style/Widget.Material.Button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/exam"
                 android:text="@string/id_duplicate_check"
-                android:textColor="@color/test1" />
+                android:textColor="@color/appdark" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -266,7 +267,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/exam"
                 android:text="@string/register_complete"
-                android:textColor="#2196F3"
+                android:textColor="@color/appdark"
                 android:textSize="20sp" />
 
 

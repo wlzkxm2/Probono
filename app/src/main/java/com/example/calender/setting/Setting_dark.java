@@ -2,6 +2,7 @@ package com.example.calender.setting;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,6 +27,9 @@ public class Setting_dark extends AppCompatActivity {
         mod_btn = findViewById(R.id.light_btn);
         mod_btn1 = findViewById(R.id.dark_btn);
         mod_btn2= findViewById(R.id.sys_btn);
+        darkback =  findViewById(R.id.dark_back);
+
+
         mod_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -53,8 +57,6 @@ public class Setting_dark extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "시스템 테마로 적용됬습니다", Toast.LENGTH_SHORT).show();
             }
         });
-        darkback = (Button) findViewById(R.id.dark_back);
-
 
         cl = new View.OnClickListener() {  //뒤로가기 버튼 누르면 화면 종료되도록 설정
             @Override

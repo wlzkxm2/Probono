@@ -2,6 +2,7 @@ package com.example.calender.Main_Easy;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+
 import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.content.DialogInterface;
@@ -13,7 +14,6 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.ContextThemeWrapper;
 import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
@@ -25,7 +25,6 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.TimePicker;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -860,6 +859,7 @@ public class Main_Easy extends AppCompatActivity {
                     case R.id.main_easy_floating_voice:
                         Custom_STT custom_stt = new Custom_STT(Main_Easy.this);
                         int inputday = ((UidCode) Main_Easy.this.getApplication()).getStatic_day();
+                        custom_stt.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                         custom_stt.show();
                         break;
 
@@ -896,24 +896,6 @@ public class Main_Easy extends AppCompatActivity {
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view_easy);
         list_itemAdapter_easy = new List_ItemAdapter_Easy();
-        recyclerView.setAdapter(list_itemAdapter_easy);
-
-        //화면 클리어
-        list_itemAdapter_easy.removeAllItem();
-
-        Date currentTime = Calendar.getInstance().getTime();
-        SimpleDateFormat yearFormat = new SimpleDateFormat("yyyy", Locale.getDefault());
-        SimpleDateFormat monthFormat = new SimpleDateFormat("MM", Locale.getDefault());
-        SimpleDateFormat dayFormat = new SimpleDateFormat("dd", Locale.getDefault());
-        String YearData = yearFormat.format(currentTime);
-        String monthData = monthFormat.format(currentTime);
-        String dayData = dayFormat.format(currentTime);
-
-        List<Calender_DB> calender_like_data = calender_dao.loadAllDataByYears(
-                Integer.parseInt(YearData),
-                Integer.parseInt(monthData),
-                Integer.parseInt(dayData)
-        );
 
         // 주간달력 날짜 선택 시
         singleAdapter.setOnItemClickListener(new List_ItemAdapter_Easy.OnItemClickListener() {
@@ -953,6 +935,7 @@ public class Main_Easy extends AppCompatActivity {
         // 일정 리스트 눌러서 뜨는 다이얼로그
         list_itemAdapter_easy.setOnItemClickListener(new List_ItemAdapter_Easy.OnItemClickListener() {
             @Override
+
             public void onItemClicked(View v, int pos) {
                 AlertDialog.Builder dialog = new AlertDialog.Builder(new ContextThemeWrapper(Main_Easy.this, R.style.AlertDialogTheme));
                 LayoutInflater inflater= getLayoutInflater();
@@ -1070,12 +1053,14 @@ public class Main_Easy extends AppCompatActivity {
                             }
                         }
                         reloadrecyclerview(YearData,month.getText().toString(),select_day);
+
                     }
                 });
 
-                // 삭제 버튼
-                dialog.setNegativeButton("삭제",new DialogInterface.OnClickListener() {
+                // 편집 버튼
+                dialog.setNegativeButton("편집(개발중)",new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
+
                         calender_dao.deleteCalendar(calender_like_data.get(pos).getNum());
                         reloadrecyclerview(YearData,month.getText().toString(),select_day);
                         Toast.makeText(getApplicationContext(), "calender_like_data.get(pos).getNum() : " + calender_like_data.get(pos).getNum(), Toast.LENGTH_SHORT).show();
@@ -1114,11 +1099,11 @@ public class Main_Easy extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "취소", Toast.LENGTH_SHORT).show();
                     }
                 });
-
                 dialog.show();
 
             }
         });
+
 
 
 //        Date currentTime = Calendar.getInstance().getTime();
@@ -1134,6 +1119,7 @@ public class Main_Easy extends AppCompatActivity {
 //                Integer.parseInt(monthData),
 //                Integer.parseInt(dayData)
 //        );
+
 
 
         // -------------------------------------------------------- DB 데이터 넣는곳

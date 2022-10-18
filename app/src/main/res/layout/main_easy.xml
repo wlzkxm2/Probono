@@ -154,19 +154,19 @@
         app:layout_constraintVertical_bias="0.399"
         app:srcCompat="@drawable/ic_tts_big" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view_easy"
-        app:layout_constraintHorizontal_weight="1"
-        android:layout_width="match_parent"
-        android:layout_height="320dp"
-        android:layoutAnimation="@anim/item_layout_animation"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.834" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view_easy"
+            android:layout_width="match_parent"
+            android:layout_height="320dp"
+            android:layoutAnimation="@anim/item_layout_animation"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.834" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/main_easy_floating_voice"

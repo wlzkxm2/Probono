@@ -10,7 +10,7 @@
         android:id="@+id/add_schedule_basic_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="일정 제목"
+        android:text="@string/topic"
         android:singleLine="false"
         android:textColor="#5A88FF"
         android:ellipsize="end"
@@ -20,7 +20,7 @@
         android:id="@+id/add_schedule_basic_title_ed"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="일정 제목이 설정되지 않았습니다"
+        android:hint="@string/add_schedule"
         android:ellipsize="end"
         android:singleLine="true"
         />
@@ -30,7 +30,7 @@
         android:id="@+id/add_schedule_basic_day"
         android:layout_width="match_parent"
         android:layout_height="30dp"
-        android:text="일정 기간"
+        android:text="@string/list_date"
         android:textColor="#5A88FF"
         android:singleLine="false"
         />
@@ -42,9 +42,9 @@
             android:id="@+id/add_schedule_basic_start_day_ed"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="시작"
+            android:hint="@string/start"
             android:textSize="20dp"
-            android:textColor="@color/black"
+            android:textColor="@color/test1"
             android:singleLine="false"/>
 
         <TextView
@@ -57,9 +57,9 @@
             android:id="@+id/add_schedule_basic_end_day_ed"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="종료"
+            android:hint="@string/end"
             android:textSize="20dp"
-            android:textColor="@color/black"
+            android:textColor="@color/test1"
             android:singleLine="false"/>
 
 
@@ -70,7 +70,7 @@
         android:id="@+id/add_schedule_basic_time"
         android:layout_width="match_parent"
         android:layout_height="30dp"
-        android:text="일정 시간"
+        android:text="@string/list_time"
         android:textColor="#5A88FF"
         android:singleLine="false"
         />
@@ -79,7 +79,7 @@
         android:id="@+id/add_schedule_basic_allday"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="하루종일" />
+        android:text="@string/allday" />
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
@@ -89,9 +89,9 @@
             android:id="@+id/add_schedule_basic_start_time_ed"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="시작"
+            android:hint="@string/start"
             android:textSize="20dp"
-            android:textColor="@color/black"
+            android:textColor="@color/test1"
             android:singleLine="false"/>
 
         <TextView
@@ -105,9 +105,9 @@
             android:id="@+id/add_schedule_basic_end_time_ed"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="종료"
+            android:hint="@string/end"
             android:textSize="20dp"
-            android:textColor="@color/black"
+            android:textColor="@color/test1"
             android:singleLine="false"/>
 
 
@@ -117,7 +117,7 @@
         android:id="@+id/add_schedule_basic_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="일정 내용"
+        android:text="@string/list_content"
         android:textColor="#5A88FF"
         android:singleLine="false"
         />
@@ -126,7 +126,7 @@
         android:id="@+id/add_schedule_basic_text_ed"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="일정 내용이 등록되지 않았습니다"
+        android:hint="@string/list_content_not"
         android:singleLine="false"/>
 
 
