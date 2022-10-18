@@ -196,7 +196,7 @@ public class login extends AppCompatActivity {
         protected String doInBackground(String... strings) {
             try {
                 String str;
-                URL url = new URL("http://210.103.48.199:3306/android/login");
+                URL url = new URL("http://13.125.150.245:8081/android/login");
 
 //                URL url = new URL("http://118.235.12.28:80/andrigister");
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
