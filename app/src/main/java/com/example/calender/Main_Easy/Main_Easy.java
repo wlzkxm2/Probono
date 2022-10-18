@@ -926,9 +926,15 @@ public class Main_Easy extends AppCompatActivity {
                 setSelect_day(Integer.toString(pos+1));
                 Log.v("-------select_day","select ------------------------"+select_day);
 
-                Log.v("체크용임ㅁㅁㅁㅁㅁㅁㅁㅁㅁ",calender_like_data.get(0).start_day+"------------------");
+//                Log.v("체크용임ㅁㅁㅁㅁㅁㅁㅁㅁㅁ",calender_like_data.get(0).start_day+"------------------");
+                List<Calender_DB> calender_like_data = calender_dao.loadAllDataByYears(
+                        Integer.parseInt(YearData),
+                        Integer.parseInt(month.getText().toString()),
+                        Integer.parseInt(Integer.toString(pos+1))
+                );
 
-                if (dayData != select_day) {
+
+                if (calender_like_data.isEmpty()) {
                     nolist_add.setVisibility(View.VISIBLE);
                     nolist_add_text.setVisibility(View.VISIBLE);
                     nolist_add.setOnClickListener(new View.OnClickListener() {
@@ -1143,8 +1149,8 @@ public class Main_Easy extends AppCompatActivity {
             });
 
         } else {
-            nolist_add.setVisibility(View.GONE);
-            nolist_add_text.setVisibility(View.GONE);
+//            nolist_add.setVisibility(View.GONE);
+//            nolist_add_text.setVisibility(View.GONE);
             for (int i = 0; i < calender_like_data.size(); i++) {
                 List_Item calList = new List_Item();
                 String startTime = String.format("%04d", calender_like_data.get(i).getStart_time());
