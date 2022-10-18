@@ -303,7 +303,6 @@ public class Calender_Basic_Frag extends Fragment {
                         reloadrecyclerview(Integer.toString(((UidCode) getActivity().getApplication()).getStatic_year())
                                 ,Integer.toString(((UidCode) getActivity().getApplication()).getStatic_month()),
                                 Integer.toString(((UidCode) getActivity().getApplication()).getStatic_day()));
-
                     }
                 });
 

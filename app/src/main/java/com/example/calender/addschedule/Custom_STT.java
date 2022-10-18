@@ -24,6 +24,7 @@ import com.example.calender.DataBase.Calender_DB;
 import com.example.calender.DataBase.Calender_DBSet;
 import com.example.calender.DataBase.Calender_Dao;
 import com.example.calender.Main_Basic.Main_Basic_Frag;
+import com.example.calender.Main_Easy.Main_Easy;
 import com.example.calender.R;
 import com.example.calender.StaticUidCode.UidCode;
 
@@ -608,6 +609,9 @@ public class Custom_STT extends Dialog {
 
             // 입력한 일정을 DB에 추가
             calender_dao.insertAll(inputCalData);
+
+//            Main_Easy main_easy = new Main_Easy();
+//            main_easy.reloadrecyclerview("2022","10","18");
 
         }
 
