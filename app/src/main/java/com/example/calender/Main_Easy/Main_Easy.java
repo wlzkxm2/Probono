@@ -948,19 +948,6 @@ public class Main_Easy extends AppCompatActivity {
 
         recyclerView.setAdapter(list_itemAdapter_easy);
 
-        Date currentTime = Calendar.getInstance().getTime();
-        SimpleDateFormat yearFormat = new SimpleDateFormat("yyyy", Locale.getDefault());
-        SimpleDateFormat monthFormat = new SimpleDateFormat("MM", Locale.getDefault());
-        SimpleDateFormat dayFormat = new SimpleDateFormat("dd", Locale.getDefault());
-        String YearData = yearFormat.format(currentTime);
-        String monthData = monthFormat.format(currentTime);
-        String dayData = dayFormat.format(currentTime);
-
-        List<Calender_DB> calender_like_data = calender_dao.loadAllDataByYears(
-                Integer.parseInt(YearData),
-                Integer.parseInt(monthData),
-                Integer.parseInt(dayData)
-        );
 
         // 주간달력 날짜 선택 시
         singleAdapter.setOnItemClickListener(new List_ItemAdapter_Easy.OnItemClickListener() {
