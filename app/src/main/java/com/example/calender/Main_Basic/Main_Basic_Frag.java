@@ -1589,6 +1589,7 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
             calList.setTime(valueStartTime + "~ \n" + valueEndTime);
             calList.setTitle(calender_like_data.get(i).get_titles());
             calList.setText(calender_like_data.get(i).get_subtitle());
+            calList.setBackgroundColor(calender_like_data.get(i).get_calanderCategory());
 
             list_itemAdapter.addItem(calList);
 //                        list_itemAdapter.addItem(calList); //두개 써있어서 하나 주석 해둠

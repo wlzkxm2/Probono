@@ -3,6 +3,7 @@ package com.example.calender.Main_Basic;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -57,6 +58,7 @@ public class List_ItemAdapter extends RecyclerView.Adapter<List_ItemAdapter.View
 
         LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
         View itemView = inflater.inflate(R.layout.item_layout, viewGroup, false);
+
 
         context = viewGroup.getContext();
 
@@ -146,6 +148,7 @@ public class List_ItemAdapter extends RecyclerView.Adapter<List_ItemAdapter.View
             time.setText(item.getTime());
             title.setText(item.getTitle());
             text.setText(item.getText());
+            Log.v("currentdaysTest", "BackgroundColor : " + item.getBackgroundColor());
         }
     }
 }
