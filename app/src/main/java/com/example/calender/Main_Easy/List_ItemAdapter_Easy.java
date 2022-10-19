@@ -179,6 +179,19 @@ public class List_ItemAdapter_Easy extends RecyclerView.Adapter<List_ItemAdapter
 
             time.setText(item.getTime());
             title.setText(item.getTitle());
+            switch (item.getBackgroundcolor()){
+                case 0:
+                    itemView.setBackgroundResource(R.drawable.layout_cardv_bg);
+                    break;
+                case 1:
+                    itemView.setBackgroundResource(R.drawable.layout_cardv_bg_red);
+                    break;
+                case 2:
+                    itemView.setBackgroundResource(R.drawable.layout_cardv_bg_green);
+                    break;
+
+
+            }
         }
     }
 }

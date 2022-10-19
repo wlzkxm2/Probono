@@ -117,6 +117,7 @@ public class Calendar_Easy extends AppCompatActivity {
             calList.setTime(valueStartTime + "~ \n" + valueEndTime);
             calList.setTitle(calender_like_data.get(i).get_titles());
             calList.setText(calender_like_data.get(i).get_subtitle());
+            calList.setBackgroundcolor(calender_like_data.get(i).get_calanderCategory());
 
             list_itemAdapter_easy.addItem(calList);
 //                        list_itemAdapter.addItem(calList); //두개 써있어서 하나 주석 해둠
@@ -768,6 +769,7 @@ public class Calendar_Easy extends AppCompatActivity {
                         calList.setTime(valueStartTime + "~ \n" + valueEndTime);
                         calList.setTitle(calender_like_data.get(i).get_titles());
                         calList.setText(calender_like_data.get(i).get_subtitle());
+                        calList.setBackgroundcolor(calender_like_data.get(i).get_calanderCategory());
 
                         list_itemAdapter_easy.addItem(calList);
 //                        list_itemAdapter.addItem(calList); //두개 써있어서 하나 주석 해둠

@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +14,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -112,14 +115,16 @@ public class List_ItemAdapter extends RecyclerView.Adapter<List_ItemAdapter.View
         TextView title;
         TextView text;
         CheckBox checkBox;
+        ImageView dialColor;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-
             time = itemView.findViewById(R.id.schedule_time);
             title = itemView.findViewById(R.id.schedule_title);
 //            text = itemView.findViewById(R.id.schedule_text);
             checkBox = itemView.findViewById(R.id.checkBox);
+
+
 
             itemView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
@@ -169,10 +174,23 @@ public class List_ItemAdapter extends RecyclerView.Adapter<List_ItemAdapter.View
 
 
         public void setItem(List_Item item){
-
             time.setText(item.getTime());
             title.setText(item.getTitle());
+            Log.v("HSH","listItem "+ item.getBackgroundcolor());
 //            text.setText(item.getText());
+//            itemView.setBackgroundResource(R.drawable.layout_cardv_bg);
+            switch (item.getBackgroundcolor()){
+                case 0:
+                    itemView.setBackgroundResource(R.drawable.layout_cardv_bg);
+                    break;
+                case 1:
+                    itemView.setBackgroundResource(R.drawable.layout_cardv_bg_red);
+                    break;
+                case 2:
+                    itemView.setBackgroundResource(R.drawable.layout_cardv_bg_green);
+                    break;
+
+            }
         }
     }
 }

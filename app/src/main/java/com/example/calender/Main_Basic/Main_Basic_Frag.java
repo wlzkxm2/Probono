@@ -7,10 +7,15 @@ import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
+import android.graphics.drawable.StateListDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.speech.tts.TextToSpeech;
+import android.text.Layout;
 import android.util.Log;
 import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
@@ -23,6 +28,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -60,6 +66,8 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
     int startYears = 0,startMonths = 0,startDays = 0, endYears = 0,endMonths = 0,endDays = 0,
             startMinute = 0,endHour = 0,endMinute = 0, startHour = 0, startDate = 0;
     int startLoaclHour = 0, startLoaclMinute = 0, endLoaclHour = 0, endLoaclMinute = 0;
+
+    int radioState = 0;// 0파,1빨,2초
 
     // TTS 버튼
     private ImageButton main_basic_TTS_btn;
@@ -113,6 +121,8 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
     Animation fade_in, fade_out;
 
     View.OnClickListener cl;
+
+    View itemLayout;
 
 
     // 현재 시간 실시간으로 구해오기
@@ -353,6 +363,7 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
         final EditText schedule_text = (EditText) view.findViewById(R.id.add_schedule_basic_text_ed);
         final CheckBox allDayCheck = (CheckBox) view.findViewById(R.id.add_schedule_basic_allday);
         final TextView dot = (TextView) view.findViewById(R.id.add_schedule_basic_dot);
+        final RadioGroup radioGroup = (RadioGroup) view.findViewById(R.id.radioGroup);
 
         if(startYears < 2000 || endYears < 2000){
             startYears = Integer.parseInt(yearFormat.format(today));
@@ -532,6 +543,19 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
             }
         });
 
+        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                if (checkedId == R.id.rbtn_blue){
+                    radioState = 0;
+                }else if(checkedId == R.id.rbtn_red){
+                    radioState = 1;
+                }else if(checkedId == R.id.rbtn_green){
+                    radioState = 2;
+                }
+            }
+        });
+
         // 저장 버튼
         dialog.setPositiveButton("등록", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
@@ -545,6 +569,7 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
                 int saveEndDays = endDays;
                 int saveStartTime =  (startHour * 100) + (startMinute);
                 int saveEndTime = (endHour * 100) + (endMinute);
+                int saveRadioState = radioState;
                 String title = schedule_title.getText().toString();
                 String subtitle = schedule_text.getText().toString();
                 boolean scheduleLoof = allDayCheck.isChecked();
@@ -556,10 +581,10 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
 
                 // 그대로 데이터베이스에 연동하면됨
                 // for 시작날~끝난날까지 DB삽입
-                Log.d("MyTag",String.valueOf(saveStartYears) + "년" + String.valueOf(saveStartMonths) + "월" + String.valueOf(saveStartDays) + "일");
-                Log.d("MyTag",String.valueOf(saveEndYears) + "년" + String.valueOf(saveEndMonths) + "월" + String.valueOf(saveEndDays) + "일");
-                Log.d("MyTag",saveStartTime + " 부터 " +saveEndTime + " 까지");
-                Log.d("MyTag",title + " / " +subtitle);
+//                Log.d("MyTag",String.valueOf(saveStartYears) + "년" + String.valueOf(saveStartMonths) + "월" + String.valueOf(saveStartDays) + "일");
+//                Log.d("MyTag",String.valueOf(saveEndYears) + "년" + String.valueOf(saveEndMonths) + "월" + String.valueOf(saveEndDays) + "일");
+//                Log.d("MyTag",saveStartTime + " 부터 " +saveEndTime + " 까지");
+//                Log.d("MyTag",title + " / " +subtitle);
 
                 Calender_DB inputCalData = new Calender_DB();
                 // 일정 시작일
@@ -577,6 +602,9 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
                 // 일정 내용 추가
                 inputCalData.set_titles(title);
                 inputCalData.set_subtitle(subtitle);
+
+                //일정 카테고리 색상 추가
+                inputCalData.set_calanderCategory(saveRadioState);
 
                 // 입력한 일정을 DB에 추가
                 calender_dao.insertAll(inputCalData);
@@ -737,11 +765,6 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
         );
         int appData = calender_like_data.size();
 
-//        Toast.makeText(getActivity().getApplication(), YearData + "-" + monthData + "-" + dayData, Toast.LENGTH_SHORT).show();
-
-//        Log.v("HSH", Integer.toString(((UidCode) getActivity().getApplication()).getStatic_day()));
-
-//        list_itemAdapter.removeAllItem();
 
         // 일정 리스트 눌러서 뜨는 다이얼로그
         list_itemAdapter.setOnItemClickListener(new List_ItemAdapter.OnItemClickListener() {
@@ -873,19 +896,6 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
                         reloadrecyclerview(YearData,monthData,dayData);
                         Toast.makeText(getActivity().getApplicationContext(), "calender_like_data.get(pos).getNum() : " + calender_like_data.get(pos).getNum(), Toast.LENGTH_SHORT).show();
 
-//                        if (calender_like_data.isEmpty()) {
-//                            nolist_add.setVisibility(View.VISIBLE);
-//                            nolist_add_text.setVisibility(View.VISIBLE);
-//                            nolist_add.setOnClickListener(new View.OnClickListener() {
-//                                @Override
-//                                public void onClick(View v) {
-//                                    edit();
-//                                    recyclerView.invalidate();
-//                                    recyclerView.getAdapter().notifyDataSetChanged();
-//                                }
-//                            });
-//                        }
-
                     }
                 });
                 Log.v("일정 순서","현재 클릭한 일정 순번 : "+(pos+1)+"번째");
@@ -922,6 +932,8 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
                 calList.setTime(valueStartTime + "~" + valueEndTime);
                 calList.setTitle(calender_like_data.get(i).get_titles());
                 calList.setText(calender_like_data.get(i).get_subtitle());
+                calList.setBackgroundcolor(calender_like_data.get(i).get_calanderCategory());
+
 
 //                Toast.makeText(getActivity().getApplicationContext(), calender_like_data.get(i).get_titles(), Toast.LENGTH_SHORT).show();
 
@@ -1229,6 +1241,7 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
 
     }
 
+
     private void reloadrecyclerview(String YearData, String monthData, String dayData) {
         List<Calender_DB> calender_like_data = calender_dao.loadAllDataByYears(
                 Integer.parseInt(YearData),
@@ -1244,10 +1257,15 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
             String valueStartTime = startTime.substring(0,2) + " : " + startTime.substring(2, startTime.length());
             String EndTime = String.format("%04d", calender_like_data.get(i).getEnd_time());
             String valueEndTime = EndTime.substring(0,2) + " : " + EndTime.substring(2, EndTime.length());
+            int radioState = calender_like_data.get(i).get_calanderCategory();
+
+
 
             calList.setTime(valueStartTime + "~ \n" + valueEndTime);
             calList.setTitle(calender_like_data.get(i).get_titles());
             calList.setText(calender_like_data.get(i).get_subtitle());
+            calList.setBackgroundcolor(calender_like_data.get(i).get_calanderCategory());
+
 
             list_itemAdapter.addItem(calList);
 //                        list_itemAdapter.addItem(calList); //두개 써있어서 하나 주석 해둠
