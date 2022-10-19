@@ -4,40 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-<<<<<<< HEAD
-=======
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="0dp"
-        app:cardCornerRadius="0dp"
-        app:cardElevation="0dp">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-
-            //일정 시간
-
-            <TextView
-                android:id="@+id/schedule_time"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="right"
-                android:padding="20dp"
-                android:text="14:00"
-                android:textColor="@color/test1"
-                android:textSize="15sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/imageView6"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/imageView6"
-                app:layout_constraintVertical_bias="0.526" />
->>>>>>> 18924cf86878053ab6c7b356679aabb3f278812a
-
     <View
         android:id="@+id/imageView6"
         android:layout_width="326dp"
@@ -53,7 +19,6 @@
                 android:id="@+id/schedule_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-<<<<<<< HEAD
                 android:layout_marginStart="42dp"
                 android:layout_marginTop="21dp"
                 android:text="TextView"
