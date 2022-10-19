@@ -1,11 +1,15 @@
 package com.example.calender.Main_Easy;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -37,6 +41,7 @@ public class List_ItemAdapter_Easy extends RecyclerView.Adapter<List_ItemAdapter
     int lastPosition = -1;
 
     Context context;
+    CheckBox checkBox;
 
     static String TAG = "Adapter";
 
@@ -55,7 +60,8 @@ public class List_ItemAdapter_Easy extends RecyclerView.Adapter<List_ItemAdapter
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
 
         LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
-        View itemView = inflater.inflate(R.layout.item_layout_easy, viewGroup, false);
+        View itemView = inflater.inflate(R.layout.item_layout, viewGroup, false);
+
 
         context = viewGroup.getContext();
 
@@ -114,12 +120,14 @@ public class List_ItemAdapter_Easy extends RecyclerView.Adapter<List_ItemAdapter
 
         TextView time;
         TextView title;
+        CheckBox checkBox;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             time = itemView.findViewById(R.id.schedule_time);
             title = itemView.findViewById(R.id.schedule_title);
+            checkBox = itemView.findViewById(R.id.checkBox);
 
             itemView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
@@ -131,6 +139,25 @@ public class List_ItemAdapter_Easy extends RecyclerView.Adapter<List_ItemAdapter
                         }
                     }
                     return true;
+                }
+            });
+
+            //체크박스 클릭상태시 일정 제목과 시간에 취소선,색변경
+            checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    if(buttonView.isChecked()){
+                        title.setPaintFlags(title.getPaintFlags()| Paint.STRIKE_THRU_TEXT_FLAG);
+                        title.setTextColor(Color.parseColor("#767676"));
+                        time.setPaintFlags(time.getPaintFlags()| Paint.STRIKE_THRU_TEXT_FLAG);
+                        time.setTextColor(Color.parseColor("#767676"));
+
+                    }else{
+                        title.setPaintFlags(0);
+                        title.setTextColor(Color.parseColor("#191919"));
+                        time.setPaintFlags(0);
+                        time.setTextColor(Color.parseColor("#191919"));
+                    }
                 }
             });
 
@@ -152,6 +179,19 @@ public class List_ItemAdapter_Easy extends RecyclerView.Adapter<List_ItemAdapter
 
             time.setText(item.getTime());
             title.setText(item.getTitle());
+            switch (item.getBackgroundcolor()){
+                case 0:
+                    itemView.setBackgroundResource(R.drawable.layout_cardv_bg);
+                    break;
+                case 1:
+                    itemView.setBackgroundResource(R.drawable.layout_cardv_bg_red);
+                    break;
+                case 2:
+                    itemView.setBackgroundResource(R.drawable.layout_cardv_bg_green);
+                    break;
+
+
+            }
         }
     }
 }

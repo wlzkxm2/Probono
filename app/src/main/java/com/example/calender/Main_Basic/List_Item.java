@@ -4,7 +4,9 @@ public class List_Item {
     String time;
     String title;
     String text;
-    int backgroundColor;
+    int Backgroundcolor;
+
+
 
     public String getTime() {
         return time;
@@ -30,11 +32,12 @@ public class List_Item {
         this.text = text;
     }
 
-    public int getBackgroundColor() {
-        return backgroundColor;
+    public int getBackgroundcolor() {
+        return Backgroundcolor;
     }
 
-    public void setBackgroundColor(int backgroundColor) {
-        this.backgroundColor = backgroundColor;
+    public void setBackgroundcolor(int text) {
+        this.Backgroundcolor = text;
+
     }
 }

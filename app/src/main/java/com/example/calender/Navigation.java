@@ -30,6 +30,7 @@ public class Navigation extends AppCompatActivity {
     private BottomNavigationView bottomNavigationView;
     private FragmentManager fm;
     private FragmentTransaction ft;
+//    private Main_Basic_Frag main_basic_frag;
     private Main_Basic_Frag main_basic_frag;
     private Calender_Basic_Frag calender_basic_frag;
     private Setting_main setting_main;
