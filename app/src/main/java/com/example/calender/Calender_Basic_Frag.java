@@ -105,6 +105,54 @@ public class Calender_Basic_Frag extends Fragment {
         }
         list_itemAdapter.notifyDataSetChanged();
         recyclerView.startLayoutAnimation();
+
+        //<editor-fold desc="DB 기본 세팅 코드">
+        Calender_DBSet dbController = Room.databaseBuilder(getActivity().getApplicationContext(), Calender_DBSet.class, "CalenderDB")
+                .fallbackToDestructiveMigration()
+                .allowMainThreadQueries()
+                .build();
+
+        calender_dao = dbController.calender_dao();
+
+        List<Calender_DB> calender_dbs = calender_dao.getAllData();
+
+        // 일정 있는 날에 빨간 점 표시
+        for (int i = 0; i < calender_dbs.size(); i++){
+            int calS_years = calender_dbs.get(i).getStart_years();
+            int calS_months = calender_dbs.get(i).getStart_month();
+            int calS_days = calender_dbs.get(i).getStart_day();
+
+            int calE_years = calender_dbs.get(i).getEnd_years();
+            int calE_months = calender_dbs.get(i).getEnd_month();
+            int calE_days = calender_dbs.get(i).getEnd_day();
+//            calendarView.setDateTextAppearance(R.style.CalendarDateTextAppearance);
+
+            for (int j = 0; j < calender_dbs.size(); j++) {
+                int currentYears, currentMonths, currentDays;
+                int adddays = 0;
+
+                currentYears = calE_years - calS_years;     // 몇년
+                currentMonths = calE_months - calS_months ;     // 몇개월
+                currentDays = calE_days - calS_days;        // 몇일
+
+                for (int k = 0; k < currentDays+1; k++) {
+                    Log.v("currentdaysTest", "currentDays : " + currentDays);
+                    calendarView.setDateTextAppearance(R.style.CalendarDateTextAppearance);
+                    calendarView.addDecorators(
+                            new SundayDecorator(),
+                            new SaturdayDecorator(),
+                            new Calendar_Basic_Scheduled(Color.RED, Collections.singleton(CalendarDay.from(
+                                    calS_years,
+                                    calS_months-1,
+                                    calS_days + adddays)))
+                    );
+                    adddays++;
+                }
+
+            }
+
+
+        }
     }
 
     @Nullable
@@ -158,15 +206,40 @@ public class Calender_Basic_Frag extends Fragment {
             int calE_years = calender_dbs.get(i).getEnd_years();
             int calE_months = calender_dbs.get(i).getEnd_month();
             int calE_days = calender_dbs.get(i).getEnd_day();
-            calendarView.setDateTextAppearance(R.style.CalendarDateTextAppearance);
-            calendarView.addDecorators(
-                    new SundayDecorator(),
-                    new SaturdayDecorator(),
-                    new Calendar_Basic_Scheduled(Color.RED, Collections.singleton(CalendarDay.from(
-                            calS_years,
-                            calS_months-1,
-                            calS_days)))
-            );
+
+            for (int j = 0; j < calender_dbs.size(); j++) {
+                int currentYears, currentMonths, currentDays;
+                int adddays = 0;
+
+                currentYears = calE_years - calS_years;     // 몇년
+                currentMonths = calE_months - calS_months ;     // 몇개월
+                currentDays = calE_days - calS_days;        // 몇일
+
+                for (int k = 0; k < currentDays+1; k++) {
+                    Log.v("currentdaysTest", "currentDays : " + currentDays);
+                    calendarView.setDateTextAppearance(R.style.CalendarDateTextAppearance);
+                    calendarView.addDecorators(
+                            new SundayDecorator(),
+                            new SaturdayDecorator(),
+                            new Calendar_Basic_Scheduled(Color.RED, Collections.singleton(CalendarDay.from(
+                                    calS_years,
+                                    calS_months-1,
+                                    calS_days + adddays)))
+                    );
+                    adddays++;
+                }
+
+            }
+
+//            calendarView.setDateTextAppearance(R.style.CalendarDateTextAppearance);
+//            calendarView.addDecorators(
+//                    new SundayDecorator(),
+//                    new SaturdayDecorator(),
+//                    new Calendar_Basic_Scheduled(Color.RED, Collections.singleton(CalendarDay.from(
+//                            calS_years,
+//                            calS_months-1,
+//                            calS_days)))
+//            );
 
         }
 
@@ -313,10 +386,10 @@ public class Calender_Basic_Frag extends Fragment {
                                 Integer.toString(((UidCode) getActivity().getApplication()).getStatic_day()));
 
                         Toast.makeText(getActivity().getApplicationContext(), "calender_like_data.get(pos).getNum() : " + calender_like_data.get(pos).getNum(), Toast.LENGTH_SHORT).show();
-
+                        reloadrecyclerview(YearData,monthData,dayData);
                     }
                 });
-//                reloadrecyclerview(YearData,monthData,dayData);
+
                 dialog.show();
             }
         });

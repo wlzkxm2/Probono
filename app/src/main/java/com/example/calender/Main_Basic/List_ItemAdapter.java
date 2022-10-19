@@ -65,6 +65,7 @@ public class List_ItemAdapter extends RecyclerView.Adapter<List_ItemAdapter.View
         LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
         View itemView = inflater.inflate(R.layout.item_layout, viewGroup, false);
 
+
         context = viewGroup.getContext();
 
         //===== 일정 리스트 클릭 이벤트 구현을 위해 추가된 코드 =====================
@@ -191,6 +192,7 @@ public class List_ItemAdapter extends RecyclerView.Adapter<List_ItemAdapter.View
                     break;
 
             }
+
         }
     }
 }

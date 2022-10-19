@@ -7,6 +7,7 @@ public class List_Item {
     int Backgroundcolor;
 
 
+
     public String getTime() {
         return time;
     }
@@ -37,5 +38,6 @@ public class List_Item {
 
     public void setBackgroundcolor(int text) {
         this.Backgroundcolor = text;
+
     }
 }
