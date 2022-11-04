@@ -640,6 +640,7 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
         View view = inflater.inflate(R.layout.new_main_basic, container, false);
 
 
+
         // TTS 버튼
         main_basic_TTS_btn = view.findViewById(R.id.main_easy_tts1);
 
@@ -660,7 +661,6 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
         // 메인 DB호출
         List<Calender_DB> Maindata = calender_dao.getAllData();
 
-
         //일정 없는날 등록하는 버튼
         nolist_add = view.findViewById(R.id.main_basic_nolist_add);
         nolist_add_text = view.findViewById(R.id.main_basic_nolist_add_text);
@@ -676,8 +676,17 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
 
         // 디데이 다이얼로그
         d_day = (TextView) view.findViewById(R.id.main_basic_dday);
-
         d_day_text = (TextView) view.findViewById(R.id.main_basic_dday_text);
+
+
+//        List<Calender_DB> d_day_DB = calender_dao.loadMainData(1);
+//        if (d_day_DB.get(0).get_mainActTime() == 0) {
+//            d_day.setText("D-Day");
+//        }
+//
+//        Log.v("디데이 설정 값",d_day_DB.get(0).get_mainActTime()+"");
+
+
 
 //        Log.v("mainflag", "Maindata : " + Maindata.get(0).get_mainActDTitle());
 //        d_day_text.setText("default");
@@ -1198,7 +1207,13 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
         final String strCount = (String.format(strFormat, result));
         Log.v("MainDays", strCount);
 
-        d_day.setText(strCount);
+        List<Calender_DB> d_day_DB = calender_dao.loadMainData(1);
+        if (d_day_DB.get(0).get_mainActTime() == 0) {
+            d_day.setText("D-Day");
+        } else {
+            d_day.setText(strCount);
+        }
+        //디데이데이
     }
 
     public void inputData(String data) {
@@ -1274,6 +1289,8 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
         }
         list_itemAdapter.notifyDataSetChanged();
         recyclerView.startLayoutAnimation();
+
+
     }
 
 }
