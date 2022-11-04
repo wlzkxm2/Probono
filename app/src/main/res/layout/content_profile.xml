@@ -125,6 +125,7 @@
             android:id="@+id/btn_userlogout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/example1"
             android:text="로그아웃" />
 
         <View style="@style/proifleDetailsView" />

@@ -6,6 +6,7 @@ import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -50,7 +51,6 @@ import com.example.calender.Main_Basic.List_ItemAdapter;
 import com.example.calender.R;
 import com.example.calender.StaticUidCode.UidCode;
 import com.example.calender.UserProfile;
-import com.example.calender.addschedule.AddSchedule;
 import com.example.calender.addschedule.Custom_STT;
 import com.example.calender.login;
 import com.example.calender.setting.Setting_main_easy;
@@ -136,7 +136,7 @@ public class Main_Easy extends AppCompatActivity {
             SimpleDateFormat formatter = new SimpleDateFormat(
                     "k시 m분");
             String dateString = formatter.format(rightNow);
-            now.setText(dateString);
+//            now.setText(dateString);
 
         }
     };
@@ -166,14 +166,14 @@ public class Main_Easy extends AppCompatActivity {
 //    }
 
     // DatePickerDialog띄우기, 종료일 저장, 기존에 입력한 값이 있으면 해당 데이터 설정후 띄우기
-    private DatePickerDialog.OnDateSetListener endDateSetListener = new DatePickerDialog.OnDateSetListener() {
-        @Override
-        public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-//            edit_endDateBtn.setText(year + "년 " + (monthOfYear + 1) + "월 " + dayOfMonth + "일");
-            ddayValue = ddayResult_int(dateEndY, dateEndM, dateEndD);
-            d_day.setText(getDday(year, monthOfYear, dayOfMonth));
-        }
-    };
+//    private DatePickerDialog.OnDateSetListener endDateSetListener = new DatePickerDialog.OnDateSetListener() {
+//        @Override
+//        public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+////            edit_endDateBtn.setText(year + "년 " + (monthOfYear + 1) + "월 " + dayOfMonth + "일");
+//            ddayValue = ddayResult_int(dateEndY, dateEndM, dateEndD);
+//            d_day.setText(getDday(year, monthOfYear, dayOfMonth));
+//        }
+//    };
 
     // 설정한 디데이 year, mMonthOfYear : 설정한 디데이 MonthOfYear, mDayOfMonth : 설정한 디데이 DayOfMonth
     private String getDday(int mYear, int mMonthOfYear, int mDayOfMonth) {
@@ -215,40 +215,40 @@ public class Main_Easy extends AppCompatActivity {
         return strCount;
     }
 
-    // 디데이 값 계산
-    public int onCalculatorDate(int dateEndY, int dateEndM, int dateEndD) {
-        try {
-            Calendar today = Calendar.getInstance(); //현재 오늘 날짜
-            Calendar dday = Calendar.getInstance();
-
-            //시작일, 종료일 데이터 저장
-            Calendar calendar = Calendar.getInstance();
-            int cyear = calendar.get(Calendar.YEAR);
-            int cmonth = (calendar.get(Calendar.MONTH) + 1);
-            int cday = calendar.get(Calendar.DAY_OF_MONTH);
-
-            today.set(cyear, cmonth, cday);
-            dday.set(dateEndY, dateEndM, dateEndD);// D-day의 날짜를 입력합니다.
-
-            long day = dday.getTimeInMillis() / 86400000;
-            // 각각 날의 시간 값을 얻어온 다음
-            //( 1일의 값(86400000 = 24시간 * 60분 * 60초 * 1000(1초값) ) )
-
-            long tday = today.getTimeInMillis() / 86400000;
-            long count = tday - day; // 오늘 날짜에서 dday 날짜를 빼주게 됩니다.
-            return (int) count; // 날짜는 하루 + 시켜줘야합니다.
-        } catch (Exception e) {
-            e.printStackTrace();
-            return -1;
-        }
-    }
-
-    // 디데이 값 계산한 결과값 출력
-    public int ddayResult_int(int dateEndY, int dateEndM, int dateEndD) {
-        int result = 0;
-        result = onCalculatorDate(dateEndY, dateEndM, dateEndD);
-        return result;
-    }
+//    // 디데이 값 계산
+//    public int onCalculatorDate(int dateEndY, int dateEndM, int dateEndD) {
+//        try {
+//            Calendar today = Calendar.getInstance(); //현재 오늘 날짜
+//            Calendar dday = Calendar.getInstance();
+//
+//            //시작일, 종료일 데이터 저장
+//            Calendar calendar = Calendar.getInstance();
+//            int cyear = calendar.get(Calendar.YEAR);
+//            int cmonth = (calendar.get(Calendar.MONTH) + 1);
+//            int cday = calendar.get(Calendar.DAY_OF_MONTH);
+//
+//            today.set(cyear, cmonth, cday);
+//            dday.set(dateEndY, dateEndM, dateEndD);// D-day의 날짜를 입력합니다.
+//
+//            long day = dday.getTimeInMillis() / 86400000;
+//            // 각각 날의 시간 값을 얻어온 다음
+//            //( 1일의 값(86400000 = 24시간 * 60분 * 60초 * 1000(1초값) ) )
+//
+//            long tday = today.getTimeInMillis() / 86400000;
+//            long count = tday - day; // 오늘 날짜에서 dday 날짜를 빼주게 됩니다.
+//            return (int) count; // 날짜는 하루 + 시켜줘야합니다.
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            return -1;
+//        }
+//    }
+//
+//    // 디데이 값 계산한 결과값 출력
+//    public int ddayResult_int(int dateEndY, int dateEndM, int dateEndD) {
+//        int result = 0;
+//        result = onCalculatorDate(dateEndY, dateEndM, dateEndD);
+//        return result;
+//    }
 
 
     // onResume 까지 현재 시간 실시간으로 구해오기
@@ -361,6 +361,7 @@ public class Main_Easy extends AppCompatActivity {
             calList.setTime(valueStartTime + "~ \n" + valueEndTime);
             calList.setTitle(calender_like_data.get(i).get_titles());
             calList.setText(calender_like_data.get(i).get_subtitle());
+            calList.setBackgroundcolor(calender_like_data.get(i).get_calanderCategory());
 
             list_itemAdapter_easy.addItem(calList);
 //                        list_itemAdapter.addItem(calList); //두개 써있어서 하나 주석 해둠
@@ -658,6 +659,7 @@ public class Main_Easy extends AppCompatActivity {
                 reloadrecyclerview(YearData,month.getText().toString(),select_day);
 
 
+
             }
         });
 
@@ -748,14 +750,14 @@ public class Main_Easy extends AppCompatActivity {
         Locale.setDefault(Locale.KOREAN);
 
         // 디데이 다이얼로그
-        d_day = (TextView) findViewById(R.id.main_easy_dday);
-        d_day_text = (TextView) findViewById(R.id.main_easy_dday_text);
+//        d_day = (TextView) findViewById(R.id.main_easy_dday);
+//        d_day_text = (TextView) findViewById(R.id.main_easy_dday_text);
 
         // 달력 주간 달력 이동 버튼
         next = (ImageButton) findViewById(R.id.main_easy_next);
         previous = (ImageButton) findViewById(R.id.main_easy_previous);
 
-        now = (TextView) findViewById(R.id.main_easy_now);
+//        now = (TextView) findViewById(R.id.main_easy_now);
 //        now.setText(getTime()); // 현재 시간
         MainTimerTask timerTask = new MainTimerTask();
         mTimer = new Timer();
@@ -812,35 +814,35 @@ public class Main_Easy extends AppCompatActivity {
                         month.setText(c);
                         main_easy_calendar_adapter.removeArrayData();
                         getDay();
-                        Log.v("주간달력","현재 Month : "+Integer.parseInt(month.getText().toString()));
+//                        Log.v("주간달력","현재 Month : "+Integer.parseInt(month.getText().toString()));
                         break;
-                    case R.id.main_easy_dday: // 디데이 날짜
-                        new DatePickerDialog(Main_Easy.this, endDateSetListener, (currentYear), (currentMonth), currentDay).show();
-                        break;
-                    case R.id.main_easy_dday_text: // 디데이 내용
-                        final EditText edit_dday_text = new EditText(Main_Easy.this);
-                        AlertDialog.Builder dialog = new AlertDialog.Builder(new ContextThemeWrapper(Main_Easy.this, R.style.AlertDialogTheme));
-                        dialog.setTitle("목표 D-day 일정을 입력해주세요");
-                        dialog.setView(edit_dday_text);
-                        dialog.setView(edit_dday_text);
-                        edit_dday_text.setText(d_day_text.getText()); // D-day 내용
-
-                        // 완료 버튼
-                        dialog.setPositiveButton("완료", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                String getText = edit_dday_text.getText().toString();
-                                d_day_text.setText(getText);
-                            }
-                        });
-
-                        // 취소 버튼
-                        dialog.setNegativeButton("취소",new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.cancel();
-                            }
-                        });
-                        dialog.show();
-                        break;
+//                    case R.id.main_easy_dday: // 디데이 날짜
+//                        new DatePickerDialog(Main_Easy.this, endDateSetListener, (currentYear), (currentMonth), currentDay).show();
+//                        break;
+//                    case R.id.main_easy_dday_text: // 디데이 내용
+//                        final EditText edit_dday_text = new EditText(Main_Easy.this);
+//                        AlertDialog.Builder dialog = new AlertDialog.Builder(new ContextThemeWrapper(Main_Easy.this, R.style.AlertDialogTheme));
+//                        dialog.setTitle("목표 D-day 일정을 입력해주세요");
+//                        dialog.setView(edit_dday_text);
+//                        dialog.setView(edit_dday_text);
+//                        edit_dday_text.setText(d_day_text.getText()); // D-day 내용
+//
+//                        // 완료 버튼
+//                        dialog.setPositiveButton("완료", new DialogInterface.OnClickListener() {
+//                            public void onClick(DialogInterface dialog, int which) {
+//                                String getText = edit_dday_text.getText().toString();
+//                                d_day_text.setText(getText);
+//                            }
+//                        });
+//
+//                        // 취소 버튼
+//                        dialog.setNegativeButton("취소",new DialogInterface.OnClickListener() {
+//                            public void onClick(DialogInterface dialog, int which) {
+//                                dialog.cancel();
+//                            }
+//                        });
+//                        dialog.show();
+//                        break;
                     case R.id.main_easy_drawer_btn: // 드로어 버튼
                         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout) ;
                         if (!drawer.isDrawerOpen(Gravity.LEFT)) {
@@ -870,7 +872,14 @@ public class Main_Easy extends AppCompatActivity {
                         startActivity(k);
                         break;
                     case R.id.main_easy_game:
-                        Toast.makeText(Main_Easy.this,"미구현 기능입니다.",Toast.LENGTH_SHORT).show();
+                        String gamePackage = "com.TheEasy.Kiosk";
+                        PackageManager pkg = Main_Easy.this.getApplication().getPackageManager();
+                        try{
+                            pkg.getApplicationInfo(gamePackage, PackageManager.GET_META_DATA);
+                            startActivity((pkg.getLaunchIntentForPackage(gamePackage)));
+                        }catch (Exception e){
+                            Toast.makeText(Main_Easy.this.getApplication(), "해당 앱이 없습니다 설치해주세요", Toast.LENGTH_SHORT).show();
+                        }
                         break;
                     case R.id.main_easy_floating_voice:
                         Custom_STT custom_stt = new Custom_STT(Main_Easy.this);
@@ -886,8 +895,8 @@ public class Main_Easy extends AppCompatActivity {
         };
         next.setOnClickListener(cl);
         previous.setOnClickListener(cl);
-        d_day.setOnClickListener(cl);
-        d_day_text.setOnClickListener(cl);
+//        d_day.setOnClickListener(cl);
+//        d_day_text.setOnClickListener(cl);
         drawer_btn.setOnClickListener(cl);
         drawer_user_setting.setOnClickListener(cl);
         drawer_calendar.setOnClickListener(cl);
@@ -948,7 +957,6 @@ public class Main_Easy extends AppCompatActivity {
 
 
         recyclerView.setAdapter(list_itemAdapter_easy);
-
 //        Date currentTime = Calendar.getInstance().getTime();
 //        SimpleDateFormat yearFormat = new SimpleDateFormat("yyyy", Locale.getDefault());
 //        SimpleDateFormat monthFormat = new SimpleDateFormat("MM", Locale.getDefault());
@@ -1212,6 +1220,7 @@ public class Main_Easy extends AppCompatActivity {
                 calList.setTime(valueStartTime + "~ \n" + valueEndTime);
                 calList.setTitle(calender_like_data.get(i).get_titles());
                 calList.setText(calender_like_data.get(i).get_subtitle());
+                calList.setBackgroundcolor(calender_like_data.get(i).get_calanderCategory());
 
                 list_itemAdapter_easy.addItem(calList);
             }

@@ -6,6 +6,8 @@ import androidx.fragment.app.Fragment;
 import androidx.room.Room;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.example.calender.DataBase.Calender_DBSet;
 import com.example.calender.DataBase.Calender_Dao;
@@ -112,10 +115,20 @@ public class Setting_main extends Fragment {
         //게임 버튼을 눌렀을떄 작동 되는 부분
             @Override
             public void onClick(View view) {
-//                Intent intent = new Intent(getActivity(), Setting_dark.class);
-//                startActivity(intent);
+                String gamePackage = "com.TheEasy.Kiosk";
+                PackageManager pkg = getActivity().getPackageManager();
+                try{
+                    pkg.getApplicationInfo(gamePackage, PackageManager.GET_META_DATA);
+                    startActivity((pkg.getLaunchIntentForPackage(gamePackage)));
+                }catch (Exception e){
+                    Toast.makeText(getActivity(), "해당 앱이 없습니다 설치해주세요", Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
         return view;
     }
+
+
+
 }

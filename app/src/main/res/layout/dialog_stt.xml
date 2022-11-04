@@ -69,25 +69,25 @@
                 android:textSize="10dp" />
 
             <Button
-                android:id="@+id/btn_stt_cancel"
+                android:id="@+id/btn_Save"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="4dp"
                 android:background="@drawable/exam"
                 android:scaleType="center"
-                android:text="@string/cancel"
+                android:text="@string/save"
                 android:textColor="@color/test1"
                 android:textSize="10dp" />
 
             <Button
-                android:id="@+id/btn_Save"
+                android:id="@+id/btn_stt_cancel"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="4dp"
                 android:layout_weight="1"
                 android:background="@drawable/exam"
                 android:scaleType="center"
-                android:text="@string/save"
+                android:text="@string/cancel"
                 android:textColor="@color/test1"
                 android:textSize="10dp" />
 

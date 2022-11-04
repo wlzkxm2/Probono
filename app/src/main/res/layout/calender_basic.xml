@@ -28,7 +28,7 @@
             </com.prolificinteractive.materialcalendarview.MaterialCalendarView>
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycler_view"
+                android:id="@+id/recycler_view_easy"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layoutAnimation="@anim/item_layout_animation"

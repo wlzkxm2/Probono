@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="200dp"
     android:layout_height="match_parent"
@@ -128,6 +130,52 @@
         android:layout_height="wrap_content"
         android:hint="@string/list_content_not"
         android:singleLine="false"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp">
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="일정 색상:"
+            android:textColor="@color/test1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toEndOf="@+id/textView5"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <RadioButton
+                android:id="@+id/rbtn_blue"
+                android:layout_width="43dp"
+                android:layout_height="36dp"
+                android:background="@drawable/selector_radio_button"
+                android:button="@null" />
+
+            <RadioButton
+                android:id="@+id/rbtn_red"
+                android:layout_width="48dp"
+                android:layout_height="36dp"
+                android:background="@drawable/selector_radio_button_red"
+                android:button="@null" />
+
+            <RadioButton
+                android:id="@+id/rbtn_green"
+                android:layout_width="48dp"
+                android:layout_height="36dp"
+                android:background="@drawable/selector_radio_button_green"
+                android:button="@null" />
+        </RadioGroup>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </LinearLayout>

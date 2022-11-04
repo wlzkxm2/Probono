@@ -22,6 +22,7 @@ import com.example.calender.DataBase.Calender_DBSet;
 import com.example.calender.DataBase.Calender_Dao;
 import com.example.calender.DataBase.User_DBset;
 import com.example.calender.DataBase.User_Dao;
+import com.example.calender.Main_Basic.List_Item;
 import com.example.calender.R;
 
 import java.text.SimpleDateFormat;
@@ -111,6 +112,7 @@ public class Setting_notification extends AppCompatActivity {
                 Integer.parseInt(YearData),
                 Integer.parseInt(monthData),
                 Integer.parseInt(dayData)
+
         );
 
 //        System.out.println(nowTime);
@@ -135,19 +137,32 @@ public class Setting_notification extends AppCompatActivity {
 
         Log.v("notification", "calender_db.set_titles" + calender_db.get_titles());
 
-        String startTime = String.format("%04d", calender_db.getStart_time());
-        String valueStartTime = startTime.substring(0,2) + " : " + startTime.substring(2, startTime.length());
-        String EndTime = String.format("%04d", calender_db.getEnd_time());
-        String valueEndTime = EndTime.substring(0,2) + " : " + EndTime.substring(2, EndTime.length());
+//        String startTime = String.format("%04d", calender_db.getStart_time());
+//        String valueStartTime = startTime.substring(0,2) + " : " + startTime.substring(2, startTime.length());
+//        String EndTime = String.format("%04d", calender_db.getEnd_time());
+//        String valueEndTime = EndTime.substring(0,2) + " : " + EndTime.substring(2, EndTime.length());
+        //데이터 받아오는 곳임
+        for (int i = 0; i < calender_like_data.size(); i++) {
+            List_Item calList = new List_Item();
+            String startTime = String.format("%04d", calender_like_data.get(i).getStart_time());
+            String valueStartTime = startTime.substring(0, 2) + " : " + startTime.substring(2, startTime.length());
+            String EndTime = String.format("%04d", calender_like_data.get(i).getEnd_time());
+            String valueEndTime = EndTime.substring(0, 2) + " : " + EndTime.substring(2, EndTime.length());
+
+            calList.setTime(valueStartTime + "~ \n" + valueEndTime);
+            calList.setTitle(calender_like_data.get(i).get_titles());
+            calList.setText(calender_like_data.get(i).get_subtitle());
 
 //        builder.setContentTitle("오늘의 일정");
-        if(calender_db.get_titles() != "null"){
-            //알림에서 보이는 줄임
-            builder.setContentText(valueStartTime + " ~ " + valueEndTime + "\n" + calender_db.get_titles() + "\n" + calender_db.get_subtitle());
-        }else{
-            builder.setContentText("오늘 일정이 없습니다");
-        }
+            if (calender_db.get_titles() != "null") {
+                //알림에서 보이는 줄임
+                builder.setContentText(valueStartTime + " ~ " + valueEndTime + "\n" + calender_like_data.get(i).get_titles()+ "\n" + calender_like_data.get(i).get_subtitle());
+                //calender_like_data.get(i).get_titles() 이부분이 데이터 갖고 오는거임
 
+            } else {
+                builder.setContentText("오늘 일정이 없습니다");
+            }
+        }
         builder.setContentTitle("오늘의 일정");
 //        builder.setContentText(calender_db.get_titles().toString());
 
