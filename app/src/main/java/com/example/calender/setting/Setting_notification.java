@@ -148,7 +148,10 @@ public class Setting_notification extends AppCompatActivity {
             String valueStartTime = startTime.substring(0, 2) + " : " + startTime.substring(2, startTime.length());
             String EndTime = String.format("%04d", calender_like_data.get(i).getEnd_time());
             String valueEndTime = EndTime.substring(0, 2) + " : " + EndTime.substring(2, EndTime.length());
-
+            String time = new SimpleDateFormat("HHMM").format(new Date(System.currentTimeMillis()));
+            int mao1 = Integer.parseInt(startTime);
+            int mao2 = Integer.parseInt(EndTime);
+            int mao3 = Integer.parseInt(time);
             calList.setTime(valueStartTime + "~ \n" + valueEndTime);
             calList.setTitle(calender_like_data.get(i).get_titles());
             calList.setText(calender_like_data.get(i).get_subtitle());
@@ -156,7 +159,14 @@ public class Setting_notification extends AppCompatActivity {
 //        builder.setContentTitle("오늘의 일정");
             if (calender_db.get_titles() != "null") {
                 //알림에서 보이는 줄임
-                builder.setContentText(valueStartTime + " ~ " + valueEndTime + "\n" + calender_like_data.get(i).get_titles()+ "\n" + calender_like_data.get(i).get_subtitle());
+                if(mao3-mao1<=30){
+                    //Log.v("d",time);
+                    builder.setContentText(valueStartTime + " ~ " + valueEndTime + "\n" + calender_like_data.get(i).get_titles()+ "\n" + calender_like_data.get(i).get_subtitle());
+                }
+                else{
+                    builder.setContentText("test");
+                }
+                //builder.setContentText(valueStartTime + " ~ " + valueEndTime + "\n" + calender_like_data.get(i).get_titles()+ "\n" + calender_like_data.get(i).get_subtitle());
                 //calender_like_data.get(i).get_titles() 이부분이 데이터 갖고 오는거임
 
             } else {
