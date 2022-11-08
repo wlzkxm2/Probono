@@ -127,7 +127,6 @@ public class Main_Easy extends AppCompatActivity {
     String today=getToday();
 
     // 현재 시간 실시간으로 구해오기
-
     private Handler mHandler = new Handler();
 
     private Runnable mUpdateTimeTask = new Runnable() {
@@ -343,7 +342,7 @@ public class Main_Easy extends AppCompatActivity {
         overridePendingTransition(0, 0);//인텐트 효과 없애기
     }
 
-    private void reloadrecyclerview(String YearData, String monthData, String dayData) {
+    public void reloadrecyclerview(String YearData, String monthData, String dayData) {
         List<Calender_DB> calender_like_data = calender_dao.loadAllDataByYears(
                 Integer.parseInt(YearData),
                 Integer.parseInt(monthData),
@@ -887,6 +886,8 @@ public class Main_Easy extends AppCompatActivity {
                         int inputday = ((UidCode) Main_Easy.this.getApplication()).getStatic_day();
                         custom_stt.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                         custom_stt.show();
+
+                        reloadrecyclerview(YearData,monthData,dayData);
                         break;
 
                 }
@@ -956,7 +957,19 @@ public class Main_Easy extends AppCompatActivity {
 
 
         recyclerView.setAdapter(list_itemAdapter_easy);
-
+//        Date currentTime = Calendar.getInstance().getTime();
+//        SimpleDateFormat yearFormat = new SimpleDateFormat("yyyy", Locale.getDefault());
+//        SimpleDateFormat monthFormat = new SimpleDateFormat("MM", Locale.getDefault());
+//        SimpleDateFormat dayFormat = new SimpleDateFormat("dd", Locale.getDefault());
+//        String YearData = yearFormat.format(currentTime);
+//        String monthData = monthFormat.format(currentTime);
+//        String dayData = dayFormat.format(currentTime);
+//
+//        List<Calender_DB> calender_like_data = calender_dao.loadAllDataByYears(
+//                Integer.parseInt(YearData),
+//                Integer.parseInt(monthData),
+//                Integer.parseInt(dayData)
+//        );
 
         // 주간달력 날짜 선택 시
         singleAdapter.setOnItemClickListener(new List_ItemAdapter_Easy.OnItemClickListener() {
@@ -1118,15 +1131,13 @@ public class Main_Easy extends AppCompatActivity {
                     }
                 });
 
-                // 편집 버튼
-                dialog.setNegativeButton("편집(개발중)",new DialogInterface.OnClickListener() {
+                // 삭제 버튼
+                dialog.setNegativeButton("삭제",new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
 
                         calender_dao.deleteCalendar(calender_like_data.get(pos).getNum());
                         reloadrecyclerview(YearData,month.getText().toString(),select_day);
                         Toast.makeText(getApplicationContext(), "calender_like_data.get(pos).getNum() : " + calender_like_data.get(pos).getNum(), Toast.LENGTH_SHORT).show();
-
-                        refresh();
 
                     }
                 });
@@ -1148,7 +1159,6 @@ public class Main_Easy extends AppCompatActivity {
 
                         calender_dao.deleteCalendar(calender_like_data.get(pos).getNum());
                         reloadrecyclerview(YearData,month.getText().toString(),select_day);
-                        refresh();
                         Toast.makeText(getApplicationContext(), "calender_like_data.get(pos).getNum() : " + calender_like_data.get(pos).getNum(), Toast.LENGTH_SHORT).show();
                         Toast.makeText(getApplicationContext(), "삭제확인", Toast.LENGTH_SHORT).show();
                     }

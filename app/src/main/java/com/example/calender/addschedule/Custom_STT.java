@@ -24,12 +24,17 @@ import com.example.calender.DataBase.Calender_DB;
 import com.example.calender.DataBase.Calender_DBSet;
 import com.example.calender.DataBase.Calender_Dao;
 import com.example.calender.Main_Basic.Main_Basic_Frag;
+import com.example.calender.Main_Easy.Main_Easy;
 import com.example.calender.R;
 import com.example.calender.StaticUidCode.UidCode;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.regex.Pattern;
 
@@ -608,6 +613,13 @@ public class Custom_STT extends Dialog {
 
             // 입력한 일정을 DB에 추가
             calender_dao.insertAll(inputCalData);
+
+//            Main_Easy main_easy = new Main_Easy();
+//            main_easy.reloadrecyclerview("2022","10","18");
+
+//            Main_Basic_Frag main_basic_frag = new Main_Basic_Frag();
+//            main_basic_frag.reloadrecyclerview(YearData,monthData,dayData);
+
 
         }
 

@@ -146,7 +146,7 @@ public class MainActivity extends AppCompatActivity {
             calender_db.set_titles(null);
             calender_db.set_subtitle(null);
             calender_db.set_mainActTitle("님 안녕하세요!");
-            calender_db.set_mainActTime(1);
+            calender_db.set_mainActTime(0);
             calender_db.set_mainActDTitle("목표를 추가해보세요");
             calender_db.set_calanderCategory(0);
             calender_db.set_finishedQuest(false);
