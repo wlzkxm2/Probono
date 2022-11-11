@@ -6,6 +6,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -148,19 +149,51 @@ public class Setting_notification extends AppCompatActivity {
             String valueStartTime = startTime.substring(0, 2) + " : " + startTime.substring(2, startTime.length());
             String EndTime = String.format("%04d", calender_like_data.get(i).getEnd_time());
             String valueEndTime = EndTime.substring(0, 2) + " : " + EndTime.substring(2, EndTime.length());
-            String time = new SimpleDateFormat("HHMM").format(new Date(System.currentTimeMillis()));
-            int mao1 = Integer.parseInt(startTime);
-            int mao2 = Integer.parseInt(EndTime);
-            int mao3 = Integer.parseInt(time);
+            String time = new SimpleDateFormat("hhmm").format(new Date(System.currentTimeMillis()));
+            //시간들의 시간 분을 나눔
+            String mao=startTime.substring(0,2);
+            String mao1=startTime.substring(2,4);
+            String mao8=time.substring(0,2);
+            String mao9=time.substring(2,4);
+
+//            System.out.println(time);
+//            System.out.println(mao);
+//            System.out.println(mao1);
+            //스트링값을 int 값들로 변환
+            int mao2=Integer.parseInt(mao);
+            int mao3=Integer.parseInt(mao1);
+            int mao10=Integer.parseInt(mao8);
+            int mao11=Integer.parseInt(mao9);
+            //시간들을  밀리초로 계산
+            int mao5=(mao2*3600000);
+            int mao6=(mao3*60000);
+            int mao7=(mao5+mao6);
+
+            int mao12=(mao10*3600000);
+            int mao13=(mao11*60000);
+            int mao14=(mao12+mao13);
+
+//            System.out.println(mao7);
+//            System.out.println(mao14);
+            //시간차 값 계산
+            int mao15=(mao7-mao14);
+            int Starttime = Integer.parseInt(startTime);
+            int Currenttime = Integer.parseInt(time);
+            int mao4 = Math.abs(Starttime-Currenttime);
+
             calList.setTime(valueStartTime + "~ \n" + valueEndTime);
             calList.setTitle(calender_like_data.get(i).get_titles());
             calList.setText(calender_like_data.get(i).get_subtitle());
 
+            System.out.println(Starttime);
+            System.out.println(mao15);
 //        builder.setContentTitle("오늘의 일정");
-            if (calender_db.get_titles() != "null") {
+            if (calList.getTitle() != "null") {
                 //알림에서 보이는 줄임
-                if(mao3-mao1<=30){
+                if(mao15<=1800000&&mao4>=1){
                     //Log.v("d",time);
+                    Vibrator vibrator = (Vibrator)getSystemService(VIBRATOR_SERVICE);
+                    vibrator.vibrate(500); // 0.5초간 진동
                     builder.setContentText(valueStartTime + " ~ " + valueEndTime + "\n" + calender_like_data.get(i).get_titles()+ "\n" + calender_like_data.get(i).get_subtitle());
                 }
                 else{
