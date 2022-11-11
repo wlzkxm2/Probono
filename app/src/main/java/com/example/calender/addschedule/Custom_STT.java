@@ -174,7 +174,6 @@ public class Custom_STT extends Dialog {
                 public void run() {
                     if(sw_auto.isChecked()){
                         StopRecord();
-                        //TODO newText에 있는 값 DB로 보내기
                         dismiss();
                     }else{
                         StopRecord();
@@ -635,9 +634,15 @@ public class Custom_STT extends Dialog {
 
     //녹음 중지
     void StopRecord() {
-        recording = false;
-        sttBackground.setBackgroundColor(Color.parseColor("#FF5232"));
-        speechRecognizer.stopListening();   //녹음 중지
-        Toast.makeText(context, "음성 기록을 중지합니다.", Toast.LENGTH_SHORT).show();
+        if(speechRecognizer == null){
+            recording = false;
+            Toast.makeText(context, "음성 기록을 중지합니다.", Toast.LENGTH_SHORT).show();
+            dismiss();
+        }else if(speechRecognizer != null){
+            speechRecognizer.stopListening();   //녹음 중지
+            recording = false;
+            sttBackground.setBackgroundColor(Color.parseColor("#FF5232"));
+            Toast.makeText(context, "음성 기록을 중지합니다.", Toast.LENGTH_SHORT).show();
+        }
     }
 }
