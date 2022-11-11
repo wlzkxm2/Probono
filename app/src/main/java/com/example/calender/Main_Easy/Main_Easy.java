@@ -1289,12 +1289,7 @@ public class Main_Easy extends AppCompatActivity {
 
             System.exit(0);
 
-
-
-
         }
-
     }
-
 }
 

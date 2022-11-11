@@ -774,6 +774,58 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
                 Integer.parseInt(dayData)
         );
 
+        Log.v("체크",getArguments()+"");
+
+        Bundle check = this.getArguments();
+
+
+        // 이쪽이다
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+
+                while (true){
+
+                    if (calender_like_data.size() != list_itemAdapter.getItemCount()) {
+                        Log.v("체크","리스트 최신화 필요");
+                        Log.v("체크","리스트 갯수 : "+list_itemAdapter.getItemCount()+"");
+                        reloadrecyclerview(YearData,monthData,dayData);
+//                        now_like_data = calender_like_data.size();
+                    } else {
+                        Log.v("체크","리스트 최신화 필요 없음");
+                        Log.v("체크","리스트 갯수 : "+list_itemAdapter.getItemCount()+"");
+
+                    }
+                    try {
+                        Thread.sleep(3000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
+
+//                    if (check != null) {
+//                        //넘어온 메시지 변수에 담기
+//                        refresh = getArguments().getString("message");
+//                        Log.v("체크","데이터 받음 : "+refresh);
+//                        reloadrecyclerview(YearData,monthData,dayData);
+//                    } else {
+//
+//                   }
+
+//                    if (refresh == "0") {
+//                        Log.v("체크","데이터 받은거 없음. 리프레시 안함 ㅅㄱ");
+//                    } else if (getArguments().getString("message") == "1") {
+//                        //넘어온 메시지 변수에 담기
+//                        refresh = getArguments().getString("message");
+//                        Log.v("체크","데이터 받음 : "+refresh);
+//                        reloadrecyclerview(YearData,monthData,dayData);
+//                    }
+
+                }
+            }
+        });
+
+        thread.start();
 
         int appData = calender_like_data.size();
 
@@ -957,69 +1009,6 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
 
         list_itemAdapter.notifyDataSetChanged();
         recyclerView.startLayoutAnimation();
-
-        Log.v("체크",getArguments()+"");
-
-        Bundle check = this.getArguments();
-
-        // 이쪽이다
-        Thread thread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                int now_like_data = calender_like_data.size();
-                while (true){
-
-
-                    try {
-
-                        
-                        Thread.sleep(3000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-
-//                    try {
-//
-//                        if (now_like_data != calender_like_data.size()){
-//                            Log.v("체크","데이터 받음 : "+refresh);
-//                            reloadrecyclerview(YearData,monthData,dayData);
-//                            now_like_data = calender_like_data.size();
-//                        } else {
-//                            Log.v("체크","리스트 갯수"+calender_like_data.size());
-//                            Log.v("체크","필ㅇ요없음"+ now_like_data +"/"+calender_like_data.size());
-//                            Log.v("체크",list_itemAdapter.getItemCount()+"");
-//
-//                        }
-//                        Thread.sleep(3000);
-//                    } catch (InterruptedException e) {
-//                        e.printStackTrace();
-//                    }
-
-
-//                    if (check != null) {
-//                        //넘어온 메시지 변수에 담기
-//                        refresh = getArguments().getString("message");
-//                        Log.v("체크","데이터 받음 : "+refresh);
-//                        reloadrecyclerview(YearData,monthData,dayData);
-//                    } else {
-//
-//                   }
-
-//                    if (refresh == "0") {
-//                        Log.v("체크","데이터 받은거 없음. 리프레시 안함 ㅅㄱ");
-//                    } else if (getArguments().getString("message") == "1") {
-//                        //넘어온 메시지 변수에 담기
-//                        refresh = getArguments().getString("message");
-//                        Log.v("체크","데이터 받음 : "+refresh);
-//                        reloadrecyclerview(YearData,monthData,dayData);
-//                    }
-
-                }
-            }
-        });
-
-        thread.start();
-
 
 //        new Handler().postDelayed(new Runnable() {
 //            @Override

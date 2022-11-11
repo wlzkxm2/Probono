@@ -621,14 +621,15 @@ public class Custom_STT extends Dialog {
 //            main_basic_frag.reloadrecyclerview(YearData,monthData,dayData);
 
 
-            //2. 데이터 담기
-            bundle.putString("message","1");
+//            //2. 데이터 담기
+//            bundle.putString("message","1");
+//
+//            //3. 프래그먼트 선언
+//            Main_Basic_Frag main_basic_frag = new Main_Basic_Frag();
+//
+//            //4. 프래그먼트에 데이터 넘기기
+//            main_basic_frag.setArguments(bundle);
 
-            //3. 프래그먼트 선언
-            Main_Basic_Frag main_basic_frag = new Main_Basic_Frag();
-
-            //4. 프래그먼트에 데이터 넘기기
-            main_basic_frag.setArguments(bundle);
 
             Log.v("체크","데이터 넘어감 ㅅㄱ");
 
