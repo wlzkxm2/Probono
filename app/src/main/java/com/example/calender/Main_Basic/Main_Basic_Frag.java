@@ -45,6 +45,10 @@ import com.example.calender.DataBase.Calender_DBSet;
 import com.example.calender.DataBase.Calender_Dao;
 import com.example.calender.DataBase.User_DBset;
 import com.example.calender.DataBase.User_Dao;
+import com.example.calender.MainActivity;
+import com.example.calender.Main_Easy.List_ItemAdapter_Easy;
+import com.example.calender.Main_Easy.Main_Easy;
+import com.example.calender.Navigation;
 import com.example.calender.R;
 import com.example.calender.StaticUidCode.UidCode;
 import com.example.calender.addschedule.Custom_STT;
@@ -123,7 +127,6 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
     View.OnClickListener cl;
 
     View itemLayout;
-
 
     // 현재 시간 실시간으로 구해오기
 
@@ -636,9 +639,10 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.new_main_basic, container, false);
 
+
+
         // TTS 버튼
         main_basic_TTS_btn = view.findViewById(R.id.main_easy_tts1);
-
 
         Calender_DBSet dbController = Room.databaseBuilder(getActivity().getApplicationContext(), Calender_DBSet.class, "CalenderDB")
                 .fallbackToDestructiveMigration()
@@ -657,7 +661,6 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
         // 메인 DB호출
         List<Calender_DB> Maindata = calender_dao.getAllData();
 
-
         //일정 없는날 등록하는 버튼
         nolist_add = view.findViewById(R.id.main_basic_nolist_add);
         nolist_add_text = view.findViewById(R.id.main_basic_nolist_add_text);
@@ -673,15 +676,22 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
 
         // 디데이 다이얼로그
         d_day = (TextView) view.findViewById(R.id.main_basic_dday);
-
         d_day_text = (TextView) view.findViewById(R.id.main_basic_dday_text);
+
+
+//        List<Calender_DB> d_day_DB = calender_dao.loadMainData(1);
+//        if (d_day_DB.get(0).get_mainActTime() == 0) {
+//            d_day.setText("D-Day");
+//        }
+//
+//        Log.v("디데이 설정 값",d_day_DB.get(0).get_mainActTime()+"");
+
+
 
 //        Log.v("mainflag", "Maindata : " + Maindata.get(0).get_mainActDTitle());
 //        d_day_text.setText("default");
         if(!Maindata.get(0).get_mainActDTitle().isEmpty())
             d_day_text.setText(Maindata.get(0)._mainActDTitle);
-//            d_day_text.setText(getString(R.string.add_goal));//메인화면 목표쪽타이틀임
-
         d_day.setOnClickListener(this);
         d_day_text.setOnClickListener(this);
 
@@ -694,7 +704,6 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
             maintitle_txt.setText(""); // 초기 제목
         }else{
             maintitle_txt.setText(Maindata.get(0).get_mainActTitle());
-//            maintitle_txt.setText(getString(R.string.add_schedule));
         }
 
         // 현재 시간
@@ -1075,13 +1084,13 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
                 recyclerView.invalidate();
                 break;
             case R.id.floating_voice:
-                toggleFab();
+                    toggleFab();
 //                Toast.makeText(this, "일정 음성 등록 팝업", Toast.LENGTH_SHORT).show();
-                Custom_STT custom_stt = new Custom_STT(getActivity());
-                custom_stt.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                //테마 라운드 처리기능
-                int inputday = ((UidCode) getActivity().getApplication()).getStatic_day();
-                custom_stt.show();
+                    Custom_STT custom_stt = new Custom_STT(getActivity());
+                    custom_stt.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                    //테마 라운드 처리기능
+                    int inputday = ((UidCode) getActivity().getApplication()).getStatic_day();
+                    custom_stt.show();
 //                Toast.makeText(getActivity(),"일정 음성 등록 팝업",Toast.LENGTH_SHORT).show();
                 break;
         }
@@ -1198,7 +1207,13 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
         final String strCount = (String.format(strFormat, result));
         Log.v("MainDays", strCount);
 
-        d_day.setText(strCount);
+        List<Calender_DB> d_day_DB = calender_dao.loadMainData(1);
+        if (d_day_DB.get(0).get_mainActTime() == 0) {
+            d_day.setText("D-Day");
+        } else {
+            d_day.setText(strCount);
+        }
+        //디데이데이
     }
 
     public void inputData(String data) {
@@ -1241,6 +1256,7 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
 
 
     private void reloadrecyclerview(String YearData, String monthData, String dayData) {
+
         List<Calender_DB> calender_like_data = calender_dao.loadAllDataByYears(
                 Integer.parseInt(YearData),
                 Integer.parseInt(monthData),
@@ -1271,6 +1287,8 @@ public class Main_Basic_Frag extends Fragment implements View.OnClickListener, T
         }
         list_itemAdapter.notifyDataSetChanged();
         recyclerView.startLayoutAnimation();
+
+
     }
 
 }

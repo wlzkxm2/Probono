@@ -336,11 +336,9 @@ public class Calendar_Easy extends AppCompatActivity {
 
                             }
                         }
-
                         reloadrecyclerview(Integer.toString(((UidCode) getApplication()).getStatic_year())
                                 ,Integer.toString(((UidCode) getApplication()).getStatic_month()),
                                 Integer.toString(((UidCode) getApplication()).getStatic_day()));
-
                     }
                 });
 
@@ -349,9 +347,7 @@ public class Calendar_Easy extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         calender_dao.deleteCalendar(calender_like_data.get(pos).getNum());
                         reloadrecyclerview(YearData,monthData,dayData);
-
                         Toast.makeText(getApplicationContext(), "calender_like_data.get(pos).getNum() : " + calender_like_data.get(pos).getNum(), Toast.LENGTH_SHORT).show();
-
                     }
                 });
 //                reloadrecyclerview(YearData,monthData,dayData);
@@ -437,7 +433,6 @@ public class Calendar_Easy extends AppCompatActivity {
                 Log.v("HSH", Integer.toString(((UidCode) getApplication()).getStatic_year()));
                 Log.v("HSH", Integer.toString(((UidCode) getApplication()).getStatic_month()));
                 Log.v("HSH", Integer.toString(((UidCode) getApplication()).getStatic_day()));
-
 
                 list_itemAdapter_easy.removeAllItem();
 
@@ -741,6 +736,7 @@ public class Calendar_Easy extends AppCompatActivity {
                                             ,Integer.toString(((UidCode) getApplication()).getStatic_month()),
                                             Integer.toString(((UidCode) getApplication()).getStatic_day()));
 
+
                                 }
                             });
 
@@ -802,7 +798,6 @@ public class Calendar_Easy extends AppCompatActivity {
 
                         calender_dao.deleteCalendar(calender_like_data.get(pos).getNum());
                         reloadrecyclerview(YearData,monthData,dayData);
-
                         Toast.makeText(getApplicationContext(), "calender_like_data.get(pos).getNum() : " + calender_like_data.get(pos).getNum(), Toast.LENGTH_SHORT).show();
                         Toast.makeText(getApplicationContext(), "삭제확인", Toast.LENGTH_SHORT).show();
                     }
