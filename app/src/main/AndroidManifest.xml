@@ -134,9 +134,16 @@
         <activity android:name=".login"/>
         <activity android:name=".setting.Setting_main_easy"/>
         <activity android:name=".UserProfile"/>
+        <activity android:name=".setting.alarm"/>
 
 
-
+        <receiver android:name=".setting.AlarmRecevier"
+            android:enabled="true"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

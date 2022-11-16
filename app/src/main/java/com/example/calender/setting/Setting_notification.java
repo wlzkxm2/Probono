@@ -190,7 +190,7 @@ public class Setting_notification extends AppCompatActivity {
 //        builder.setContentTitle("오늘의 일정");
             if (calList.getTitle() != "null") {
                 //알림에서 보이는 줄임
-                if(mao15<=1800000&&mao4>=1){
+                if(mao15<=1800000&&mao15>=1){
                     //Log.v("d",time);
                     Vibrator vibrator = (Vibrator)getSystemService(VIBRATOR_SERVICE);
                     vibrator.vibrate(500); // 0.5초간 진동
