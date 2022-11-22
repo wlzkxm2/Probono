@@ -50,7 +50,7 @@
             android:layout_marginBottom="114dp"
             android:background="#ffffff"
             android:scaleType="fitCenter"
-            app:srcCompat="@drawable/normal" />
+            app:srcCompat="@drawable/mains" />
 
         <ImageButton
             android:id="@+id/easybtn"
@@ -64,7 +64,7 @@
             android:layout_marginBottom="117dp"
             android:background="@drawable/edge"
             android:scaleType="fitCenter"
-            app:srcCompat="@drawable/easy" />
+            app:srcCompat="@drawable/mains_easy" />
 
         <TextView
             android:id="@+id/textView3"
