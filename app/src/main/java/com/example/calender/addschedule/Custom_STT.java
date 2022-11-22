@@ -24,12 +24,17 @@ import com.example.calender.DataBase.Calender_DB;
 import com.example.calender.DataBase.Calender_DBSet;
 import com.example.calender.DataBase.Calender_Dao;
 import com.example.calender.Main_Basic.Main_Basic_Frag;
+import com.example.calender.Main_Easy.Main_Easy;
 import com.example.calender.R;
 import com.example.calender.StaticUidCode.UidCode;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.regex.Pattern;
 
@@ -174,7 +179,6 @@ public class Custom_STT extends Dialog {
                 public void run() {
                     if(sw_auto.isChecked()){
                         StopRecord();
-                        //TODO newText에 있는 값 DB로 보내기
                         dismiss();
                     }else{
                         StopRecord();
@@ -609,6 +613,13 @@ public class Custom_STT extends Dialog {
             // 입력한 일정을 DB에 추가
             calender_dao.insertAll(inputCalData);
 
+//            Main_Easy main_easy = new Main_Easy();
+//            main_easy.reloadrecyclerview("2022","10","18");
+
+//            Main_Basic_Frag main_basic_frag = new Main_Basic_Frag();
+//            main_basic_frag.reloadrecyclerview(YearData,monthData,dayData);
+
+
         }
 
         @Override
@@ -635,9 +646,15 @@ public class Custom_STT extends Dialog {
 
     //녹음 중지
     void StopRecord() {
-        recording = false;
-        sttBackground.setBackgroundColor(Color.parseColor("#FF5232"));
-        speechRecognizer.stopListening();   //녹음 중지
-        Toast.makeText(context, "음성 기록을 중지합니다.", Toast.LENGTH_SHORT).show();
+        if(speechRecognizer == null){
+            recording = false;
+            Toast.makeText(context, "음성 기록을 중지합니다.", Toast.LENGTH_SHORT).show();
+            dismiss();
+        }else if(speechRecognizer != null){
+            speechRecognizer.stopListening();   //녹음 중지
+            recording = false;
+            sttBackground.setBackgroundColor(Color.parseColor("#FF5232"));
+            Toast.makeText(context, "음성 기록을 중지합니다.", Toast.LENGTH_SHORT).show();
+        }
     }
 }

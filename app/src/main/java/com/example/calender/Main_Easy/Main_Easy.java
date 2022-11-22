@@ -127,7 +127,6 @@ public class Main_Easy extends AppCompatActivity {
     String today=getToday();
 
     // 현재 시간 실시간으로 구해오기
-
     private Handler mHandler = new Handler();
 
     private Runnable mUpdateTimeTask = new Runnable() {
@@ -199,8 +198,6 @@ public class Main_Easy extends AppCompatActivity {
         // db에 지정한 시간 데이터를 저장
         calender_dao.MainActDayupdate(1, dday);
 
-
-
         // 출력 시 d-day 에 맞게 표시
         String strFormat;
         if (result > 0) {
@@ -250,7 +247,6 @@ public class Main_Easy extends AppCompatActivity {
 //        result = onCalculatorDate(dateEndY, dateEndM, dateEndD);
 //        return result;
 //    }
-
 
     // onResume 까지 현재 시간 실시간으로 구해오기
 
@@ -343,7 +339,7 @@ public class Main_Easy extends AppCompatActivity {
         overridePendingTransition(0, 0);//인텐트 효과 없애기
     }
 
-    private void reloadrecyclerview(String YearData, String monthData, String dayData) {
+    public void reloadrecyclerview(String YearData, String monthData, String dayData) {
         List<Calender_DB> calender_like_data = calender_dao.loadAllDataByYears(
                 Integer.parseInt(YearData),
                 Integer.parseInt(monthData),
@@ -448,7 +444,6 @@ public class Main_Easy extends AppCompatActivity {
 //                final int startScheduleHour=Integer.parseInt(startTime.substring(0,2)), startScheduleMinute=Integer.parseInt(startTime.substring(2, startTime.length()));
 //                final int endScheduleHour=Integer.parseInt(EndTime.substring(0,2)), endScheduleMinute=Integer.parseInt(EndTime.substring(2, startTime.length()));
 
-
         GregorianCalendar gregorianCalendar = new GregorianCalendar();
 
         // 일정시간 하루종일 체크
@@ -466,7 +461,6 @@ public class Main_Easy extends AppCompatActivity {
                 }
             }
         });
-
 
         // 일정 시작 날짜
         schedule_start_day.setOnClickListener(new View.OnClickListener() {
@@ -618,7 +612,6 @@ public class Main_Easy extends AppCompatActivity {
                     saveEndTime = 2359;
                 }
 
-
                 // 그대로 데이터베이스에 연동하면됨
                 // for 시작날~끝난날까지 DB삽입
                 Log.d("MyTag",String.valueOf(saveStartYears) + "년" + String.valueOf(saveStartMonths) + "월" + String.valueOf(saveStartDays) + "일");
@@ -658,9 +651,6 @@ public class Main_Easy extends AppCompatActivity {
                 Log.v("간편모드 등록", " 등록된 일정 내용 : "+subtitle);
 
                 reloadrecyclerview(YearData,month.getText().toString(),select_day);
-
-
-
             }
         });
 
@@ -740,7 +730,6 @@ public class Main_Easy extends AppCompatActivity {
 //            drawer_user_img.setVisibility(View.INVISIBLE); // 사용자 사진 표시
 //        }
 
-
         //시작일, 종료일 데이터 저장
         calendar = Calendar.getInstance();
         currentYear = calendar.get(Calendar.YEAR);
@@ -780,8 +769,6 @@ public class Main_Easy extends AppCompatActivity {
                 Integer.parseInt(monthData),
                 Integer.parseInt(dayData)
         );
-
-
 
         cl = new View.OnClickListener() {
             @Override
@@ -887,6 +874,8 @@ public class Main_Easy extends AppCompatActivity {
                         int inputday = ((UidCode) Main_Easy.this.getApplication()).getStatic_day();
                         custom_stt.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                         custom_stt.show();
+
+                        reloadrecyclerview(YearData,monthData,dayData);
                         break;
 
                 }
@@ -913,8 +902,6 @@ public class Main_Easy extends AppCompatActivity {
         LinearLayoutManager layoutManager = (LinearLayoutManager) calendar_recyclerView.getLayoutManager();
 
         layoutManager.scrollToPositionWithOffset(Integer.parseInt(getToday())-1, singleAdapter.getItemCount()/2);
-
-
 
 //                layoutManager.scrollToPositionWithOffset(Integer.parseInt(today)-1, 270);
 
@@ -954,9 +941,7 @@ public class Main_Easy extends AppCompatActivity {
             }
         });
 
-
         recyclerView.setAdapter(list_itemAdapter_easy);
-
 
         // 주간달력 날짜 선택 시
         singleAdapter.setOnItemClickListener(new List_ItemAdapter_Easy.OnItemClickListener() {
@@ -975,7 +960,6 @@ public class Main_Easy extends AppCompatActivity {
                         Integer.parseInt(month.getText().toString()),
                         Integer.parseInt(Integer.toString(pos+1))
                 );
-
 
                 if (calender_like_data.isEmpty()) {
                     nolist_add.setVisibility(View.VISIBLE);
@@ -1008,7 +992,6 @@ public class Main_Easy extends AppCompatActivity {
                 final TextView schedule_end_time = (TextView) view.findViewById(R.id.schedule_basic_end_time_ed);
                 final EditText schedule_text = (EditText) view.findViewById(R.id.schedule_basic_text_ed);
 
-
                 List<Calender_DB> calender_like_data = calender_dao.loadAllDataByYears(
                         Integer.parseInt(YearData),
                         Integer.parseInt(month.getText().toString()),
@@ -1024,8 +1007,6 @@ public class Main_Easy extends AppCompatActivity {
                 schedule_start_time.setText(valueStartTime);
                 schedule_end_time.setText(valueEndTime);
                 schedule_text.setText(calender_like_data.get(pos).get_subtitle());
-
-
 
                 final int startHour=Integer.parseInt(startTime.substring(0,2)), startMinute=Integer.parseInt(startTime.substring(2, startTime.length()));
                 final int endHour=Integer.parseInt(EndTime.substring(0,2)), endMinute=Integer.parseInt(EndTime.substring(2, startTime.length()));
@@ -1097,8 +1078,8 @@ public class Main_Easy extends AppCompatActivity {
                         Calender_DB calender_db = new Calender_DB();
 
                         int scheduleKey = calender_like_data.get(pos).getNum();
-                        Log.v("선택한 일정의 일정시작 시간",startHour+startMinute+"");
-                        Log.v("선택한 일정의 num",calender_like_data.get(pos).getNum()+"");
+//                        Log.v("선택한 일정의 일정시작 시간",startHour+startMinute+"");
+//                        Log.v("선택한 일정의 num",calender_like_data.get(pos).getNum()+"");
 
                         for (int i = 0; i < loadDb.size(); i++){
                             if (scheduleKey == loadDb.get(i).getNum()) {
@@ -1118,15 +1099,13 @@ public class Main_Easy extends AppCompatActivity {
                     }
                 });
 
-                // 편집 버튼
-                dialog.setNegativeButton("편집(개발중)",new DialogInterface.OnClickListener() {
+                // 삭제 버튼
+                dialog.setNegativeButton("삭제",new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
 
                         calender_dao.deleteCalendar(calender_like_data.get(pos).getNum());
                         reloadrecyclerview(YearData,month.getText().toString(),select_day);
                         Toast.makeText(getApplicationContext(), "calender_like_data.get(pos).getNum() : " + calender_like_data.get(pos).getNum(), Toast.LENGTH_SHORT).show();
-
-                        refresh();
 
                     }
                 });
@@ -1148,7 +1127,6 @@ public class Main_Easy extends AppCompatActivity {
 
                         calender_dao.deleteCalendar(calender_like_data.get(pos).getNum());
                         reloadrecyclerview(YearData,month.getText().toString(),select_day);
-                        refresh();
                         Toast.makeText(getApplicationContext(), "calender_like_data.get(pos).getNum() : " + calender_like_data.get(pos).getNum(), Toast.LENGTH_SHORT).show();
                         Toast.makeText(getApplicationContext(), "삭제확인", Toast.LENGTH_SHORT).show();
                     }
@@ -1216,10 +1194,6 @@ public class Main_Easy extends AppCompatActivity {
             }
         }
 
-
-
-
-
         //샘플 데이터 생성
 //        for (int i = 0; i < listDB; i++) {
 //            List_Item list_item = new List_Item();
@@ -1231,7 +1205,6 @@ public class Main_Easy extends AppCompatActivity {
 
         //적용
         list_itemAdapter_easy.notifyDataSetChanged();
-
 
     }
 
@@ -1279,12 +1252,8 @@ public class Main_Easy extends AppCompatActivity {
 
             System.exit(0);
 
-
-
-
         }
 
     }
 
 }
-

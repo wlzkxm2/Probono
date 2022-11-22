@@ -126,7 +126,6 @@ public class List_ItemAdapter extends RecyclerView.Adapter<List_ItemAdapter.View
             checkBox = itemView.findViewById(R.id.checkBox);
 
 
-
             itemView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v) {

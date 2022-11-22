@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CalendarView;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -207,6 +208,17 @@ public class Calender_Basic_Frag extends Fragment {
             int calE_months = calender_dbs.get(i).getEnd_month();
             int calE_days = calender_dbs.get(i).getEnd_day();
 
+            calendarView.setDateTextAppearance(R.style.CalendarDateTextAppearance);
+            calendarView.addDecorators(
+                    new SundayDecorator(),
+                    new SaturdayDecorator(),
+                    new Calendar_Basic_Scheduled(Color.RED, Collections.singleton(CalendarDay.from(
+                            calS_years,
+                            calS_months-1,
+                            calS_days)))
+
+            );
+
             for (int j = 0; j < calender_dbs.size(); j++) {
                 int currentYears, currentMonths, currentDays;
                 int adddays = 0;
@@ -373,7 +385,6 @@ public class Calender_Basic_Frag extends Fragment {
                         reloadrecyclerview(Integer.toString(((UidCode) getActivity().getApplication()).getStatic_year())
                                 ,Integer.toString(((UidCode) getActivity().getApplication()).getStatic_month()),
                                 Integer.toString(((UidCode) getActivity().getApplication()).getStatic_day()));
-
                     }
                 });
 
@@ -765,6 +776,7 @@ public class Calender_Basic_Frag extends Fragment {
                                     reloadrecyclerview(Integer.toString(((UidCode) getActivity().getApplication()).getStatic_year())
                                             ,Integer.toString(((UidCode) getActivity().getApplication()).getStatic_month()),
                                             Integer.toString(((UidCode) getActivity().getApplication()).getStatic_day()));
+
 
                                 }
                             });
