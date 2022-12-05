@@ -38,7 +38,7 @@ public class NotificationHelper extends ContextWrapper {
             channel1.enableVibration(true);
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            channel1.setLightColor(R.color.white);
+            channel1.setLightColor(R.drawable.the_easy_logo);
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             channel1.setLockscreenVisibility(Notification.VISIBILITY_PRIVATE);
@@ -59,7 +59,7 @@ public class NotificationHelper extends ContextWrapper {
             channel2.enableVibration(true);
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            channel2.setLightColor(R.color.white);
+            channel2.setLightColor(R.drawable.the_easy_logo);
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             channel2.setLockscreenVisibility(Notification.VISIBILITY_PRIVATE);

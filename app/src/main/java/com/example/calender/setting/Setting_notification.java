@@ -102,9 +102,10 @@ public class Setting_notification extends AppCompatActivity {
         Toast.makeText(this, timeText, Toast.LENGTH_SHORT).show();
     }
 
-    private void startAlarm(Calendar c){
+    private void startAlarm(Calendar c, String db_title){
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(this, AlertReceiver.class);
+        intent.putExtra("101", db_title);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 1, intent, PendingIntent.FLAG_MUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
 
         if(c.before((Calendar.getInstance()))){
@@ -150,7 +151,7 @@ public class Setting_notification extends AppCompatActivity {
 
         );
 
-        List<Calender_DB> load_All_data = calender_dao.getAllData();
+//        List<Calender_DB> load_All_data = calender_dao.getAllData();
 
 //        Log.v("showNoti", nowTime + "");
 /*
@@ -186,8 +187,8 @@ public class Setting_notification extends AppCompatActivity {
 
         for(int i = 0; i < calender_like_data.size(); i++){
             // 일정 시간을 출력
-            int calStartTime = calender_like_data.get(i).getStart_time();
-            String calStartTimestr = Integer.toString(calStartTime);
+//            int calStartTime = calender_like_data.get(i).getStart_time();
+            String calStartTimestr = String.format("%04d", calender_like_data.get(i).getStart_time());
             // 시간
             String SHour = calStartTimestr.substring(0,2);
             // 분
@@ -201,7 +202,7 @@ public class Setting_notification extends AppCompatActivity {
 
             Calendar realTime = Calendar.getInstance();
             realTime.set(Calendar.HOUR_OF_DAY, Integer.parseInt(hourstr));
-            realTime.set(Calendar.MINUTE, Integer.parseInt(minutestr) + 29);
+            realTime.set(Calendar.MINUTE, Integer.parseInt(minutestr) + 2);
             realTime.set(Calendar.SECOND, 0);
 
 
@@ -216,12 +217,11 @@ public class Setting_notification extends AppCompatActivity {
                 Calendar setAlram = Calendar.getInstance();
 //                setAlram.set(Calendar.DAY_OF_MONTH);
                 setAlram.set(Calendar.HOUR_OF_DAY, Integer.parseInt(SHour));
-                setAlram.set(Calendar.MINUTE, Integer.parseInt(Sminute) - 30);
+                setAlram.set(Calendar.MINUTE, Integer.parseInt(Sminute) - 2);
                 setAlram.set(Calendar.SECOND, 0);
 
                 updateTimeText(setAlram);
-                startAlarm(setAlram);
-                break;
+                startAlarm(setAlram, calender_like_data.get(i).get_titles());
             }
         }
 
