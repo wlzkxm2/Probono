@@ -40,28 +40,28 @@
 
         <ImageButton
             android:id="@+id/normalbtn"
-            android:layout_width="140dp"
-            android:layout_height="240dp"
+            android:layout_width="124dp"
+            android:layout_height="202dp"
             android:layout_alignBottom="@+id/imageView7"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="18dp"
-            android:layout_marginTop="47dp"
-            android:layout_marginBottom="114dp"
-            android:background="#ffffff"
+            android:layout_marginStart="26dp"
+            android:layout_marginTop="72dp"
+            android:layout_marginBottom="106dp"
+            android:background="@color/test"
             android:scaleType="fitCenter"
             app:srcCompat="@drawable/mains" />
 
         <ImageButton
             android:id="@+id/easybtn"
-            android:layout_width="151dp"
-            android:layout_height="242dp"
+            android:layout_width="124dp"
+            android:layout_height="202dp"
             android:layout_alignBottom="@+id/imageView7"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginTop="47dp"
-            android:layout_marginEnd="18dp"
-            android:layout_marginBottom="117dp"
+            android:layout_marginTop="72dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginBottom="106dp"
             android:background="@drawable/edge"
             android:scaleType="fitCenter"
             app:srcCompat="@drawable/mains_easy" />
@@ -85,49 +85,49 @@
 
     <!--    설정 버튼 화면 쪽이다-->
 
-        <Button
-            android:id="@+id/account_settingbtn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:layout_marginStart="5sp"
-            android:layout_marginEnd="5sp"
+    <Button
+        android:id="@+id/account_settingbtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="5sp"
+        android:layout_marginEnd="5sp"
 
-            android:background="@drawable/example1"
-            android:drawableStart="@drawable/ic_user_line"
-            android:text="@string/account"
-            android:textAlignment="textStart"
-            android:textSize="20sp"
-            android:textColor="@color/test1" />
+        android:background="@drawable/example1"
+        android:drawableStart="@drawable/ic_user_line"
+        android:text="@string/account"
+        android:textAlignment="textStart"
+        android:textSize="20sp"
+        android:textColor="@color/test1" />
 
-        <Button
-            android:id="@+id/notificationsetting_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:layout_marginStart="5sp"
-            android:layout_marginEnd="5sp"
+    <Button
+        android:id="@+id/notificationsetting_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="5sp"
+        android:layout_marginEnd="5sp"
 
-            android:background="@drawable/example1"
-            android:drawableStart="@drawable/ic_notification_line"
-            android:text="@string/notification"
-            android:textAlignment="textStart"
-            android:textColor="@color/test1"
-            android:textSize="20sp" />
-        <!--언어 설정 버튼이다-->
-        <Button
-            android:id="@+id/darkmodesetting_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:layout_marginStart="5sp"
-            android:layout_marginEnd="5sp"
+        android:background="@drawable/example1"
+        android:drawableStart="@drawable/ic_notification_line"
+        android:text="@string/notification"
+        android:textAlignment="textStart"
+        android:textColor="@color/test1"
+        android:textSize="20sp" />
+    <!--언어 설정 버튼이다-->
+    <Button
+        android:id="@+id/darkmodesetting_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="5sp"
+        android:layout_marginEnd="5sp"
 
-            android:textColor="@color/test1"
-            android:textSize="20sp"
-            android:background="@drawable/example1"
-            android:drawableStart="@drawable/ic_contrast_2_line"
-            android:textAlignment="textStart"
-            android:text="@string/darkmode"/>
+        android:textColor="@color/test1"
+        android:textSize="20sp"
+        android:background="@drawable/example1"
+        android:drawableStart="@drawable/ic_contrast_2_line"
+        android:textAlignment="textStart"
+        android:text="@string/darkmode"/>
 
 </LinearLayout>
