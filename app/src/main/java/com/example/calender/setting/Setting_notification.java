@@ -1,23 +1,28 @@
 package com.example.calender.setting;
 
+import android.app.AlarmManager;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Vibrator;
+import android.os.Debug;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.Switch;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
 import androidx.room.Room;
 
+import com.example.calender.AlramManager.AlertReceiver;
 import com.example.calender.DataBase.Calender_DB;
 import com.example.calender.DataBase.Calender_DBSet;
 import com.example.calender.DataBase.Calender_Dao;
@@ -26,6 +31,7 @@ import com.example.calender.DataBase.User_Dao;
 import com.example.calender.Main_Basic.List_Item;
 import com.example.calender.R;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -89,11 +95,37 @@ public class Setting_notification extends AppCompatActivity {
 
     }
 
+    private void updateTimeText(Calendar c){
+        String timeText = "Alarm set for : ";
+        timeText += DateFormat.getTimeInstance(DateFormat.SHORT).format(c.getTime());
+
+        Toast.makeText(this, timeText, Toast.LENGTH_SHORT).show();
+    }
+
+    private void startAlarm(Calendar c){
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        Intent intent = new Intent(this, AlertReceiver.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 1, intent, PendingIntent.FLAG_MUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
+
+        if(c.before((Calendar.getInstance()))){
+            c.add(Calendar.DATE, 1);
+        }
+        alarmManager.setExact(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(), pendingIntent);
+        //alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(), 1*60*1000 ,  pendingIntent);
+
+    }
+
+    private void cancelAlarm(){
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        Intent intent = new Intent(this, AlertReceiver.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 1, intent, PendingIntent.FLAG_MUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
+
+        alarmManager.cancel(pendingIntent);
+        Toast.makeText(this, "알람 취소", Toast.LENGTH_SHORT).show();
+    }
+
     private void showNoti(){
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "default");
-
-        builder.setSmallIcon(R.drawable.notiicons);
-
+        // 오늘의 시간을 받아옴
         Date currentTime = Calendar.getInstance().getTime();
         SimpleDateFormat yearFormat = new SimpleDateFormat("yyyy", Locale.getDefault());
         SimpleDateFormat monthFormat = new SimpleDateFormat("MM", Locale.getDefault());
@@ -109,6 +141,8 @@ public class Setting_notification extends AppCompatActivity {
         String Time = hourstr+minutestr;
         int nowTime = Integer.parseInt(Time);
 
+
+        // 오늘 날짜 알람
         List<Calender_DB> calender_like_data = calender_dao.loadAllDataByYears(
                 Integer.parseInt(YearData),
                 Integer.parseInt(monthData),
@@ -116,112 +150,81 @@ public class Setting_notification extends AppCompatActivity {
 
         );
 
-//        System.out.println(nowTime);
+        List<Calender_DB> load_All_data = calender_dao.getAllData();
 
-        Calender_DB calender_db = new Calender_DB();
-        calender_db.setStart_time(nowTime);
+//        Log.v("showNoti", nowTime + "");
+/*
+        for(int i = 1; i < load_All_data.size(); i++){
+            int calStartTime = load_All_data.get(i).getStart_time();
+
+            int calYear = load_All_data.get(i).getStart_years();
+            int calMonth = load_All_data.get(i).getStart_month();
+            int calDays = load_All_data.get(i).getStart_day();
+
+            String calStartTimestr = Integer.toString(calStartTime);
+            //1200 구조로 되어있는 단어를 12 와 00으로 나눔
+            String SHour = calStartTimestr.substring(0,2);
+            String SMinute = calStartTimestr.substring(2, calStartTimestr.length());
+
+            Calendar setTime = Calendar.getInstance();
+
+            // 날짜 삽입
+            setTime.set(Calendar.YEAR, calYear);        // 일정상 년도
+            setTime.set(Calendar.MONTH, calMonth);      // 일정상 월
+            setTime.set(Calendar.DATE, calDays);        // 일정상 일
+
+            setTime.set(Calendar.HOUR_OF_DAY, Integer.parseInt(hourstr));   // 일정 시간
+            setTime.set(Calendar.MINUTE, Integer.parseInt(minutestr));      // 일정 분
+            setTime.set(Calendar.SECOND, 0);
+
+            Calendar realTime = Calendar.getInstance();
+            realTime.set(Calendar.HOUR_OF_DAY, Integer.parseInt(hourstr));
+            realTime.set(Calendar.MINUTE, Integer.parseInt(minutestr) + 29);        //
+            realTime.set(Calendar.SECOND, 0);
+        }
+ */
 
         for(int i = 0; i < calender_like_data.size(); i++){
-            if(calender_like_data.get(i).getStart_time() >= calender_db.getStart_time()){
-                calender_db.set_titles(calender_like_data.get(i).get_titles());
-                calender_db.set_subtitle(calender_like_data.get(i).get_subtitle());
-                calender_db.setStart_time(calender_like_data.get(i).getStart_time());
-                calender_db.setEnd_time(calender_like_data.get(i).getEnd_time());
+            // 일정 시간을 출력
+            int calStartTime = calender_like_data.get(i).getStart_time();
+            String calStartTimestr = Integer.toString(calStartTime);
+            // 시간
+            String SHour = calStartTimestr.substring(0,2);
+            // 분
+            String Sminute = calStartTimestr.substring(2, calStartTimestr.length());
 
-                Log.v("notification", calender_like_data.get(i).get_titles());
-                Log.v("notification", "calender_db.set_titles" + calender_db.get_titles());
+            // 캘린더 형으로 변환
+            Calendar dbTime = Calendar.getInstance();
+            dbTime.set(Calendar.HOUR_OF_DAY, Integer.parseInt(SHour));
+            dbTime.set(Calendar.MINUTE, Integer.parseInt(Sminute));
+            dbTime.set(Calendar.SECOND, 0);
 
+            Calendar realTime = Calendar.getInstance();
+            realTime.set(Calendar.HOUR_OF_DAY, Integer.parseInt(hourstr));
+            realTime.set(Calendar.MINUTE, Integer.parseInt(minutestr) + 29);
+            realTime.set(Calendar.SECOND, 0);
+
+
+            // c.getTime()      현재 시간을 출력
+
+            // 현재 시간보다 저장된 시간이 뒤일때
+            if(realTime.before(dbTime)){
+                Log.v("showNoti", "dbTime" + dbTime.getTime() + "");
+                Log.v("showNoti", "realTime" + realTime.getTime() + "");
+                Log.v("showNoti", "calender_like_data.get(i).get_titles()" + calender_like_data.get(i).get_titles() + "");
+
+                Calendar setAlram = Calendar.getInstance();
+//                setAlram.set(Calendar.DAY_OF_MONTH);
+                setAlram.set(Calendar.HOUR_OF_DAY, Integer.parseInt(SHour));
+                setAlram.set(Calendar.MINUTE, Integer.parseInt(Sminute) - 30);
+                setAlram.set(Calendar.SECOND, 0);
+
+                updateTimeText(setAlram);
+                startAlarm(setAlram);
+                break;
             }
         }
 
-
-
-        Log.v("notification", "calender_db.set_titles" + calender_db.get_titles());
-
-//        String startTime = String.format("%04d", calender_db.getStart_time());
-//        String valueStartTime = startTime.substring(0,2) + " : " + startTime.substring(2, startTime.length());
-//        String EndTime = String.format("%04d", calender_db.getEnd_time());
-//        String valueEndTime = EndTime.substring(0,2) + " : " + EndTime.substring(2, EndTime.length());
-        //데이터 받아오는 곳임
-        for (int i = 0; i < calender_like_data.size(); i++) {
-            List_Item calList = new List_Item();
-            String startTime = String.format("%04d", calender_like_data.get(i).getStart_time());
-            String valueStartTime = startTime.substring(0, 2) + " : " + startTime.substring(2, startTime.length());
-            String EndTime = String.format("%04d", calender_like_data.get(i).getEnd_time());
-            String valueEndTime = EndTime.substring(0, 2) + " : " + EndTime.substring(2, EndTime.length());
-            String time = new SimpleDateFormat("hhmm").format(new Date(System.currentTimeMillis()));
-            //시간들의 시간 분을 나눔
-            String mao=startTime.substring(0,2);
-            String mao1=startTime.substring(2,4);
-            String mao8=time.substring(0,2);
-            String mao9=time.substring(2,4);
-
-//            System.out.println(time);
-//            System.out.println(mao);
-//            System.out.println(mao1);
-            //스트링값을 int 값들로 변환
-            int mao2=Integer.parseInt(mao);
-            int mao3=Integer.parseInt(mao1);
-            int mao10=Integer.parseInt(mao8);
-            int mao11=Integer.parseInt(mao9);
-            //시간들을  밀리초로 계산
-            int mao5=(mao2*3600000);
-            int mao6=(mao3*60000);
-            int mao7=(mao5+mao6);
-
-            int mao12=(mao10*3600000);
-            int mao13=(mao11*60000);
-            int mao14=(mao12+mao13);
-
-//            System.out.println(mao7);
-//            System.out.println(mao14);
-            //시간차 값 계산
-            int mao15=(mao7-mao14);
-            int Starttime = Integer.parseInt(startTime);
-            int Currenttime = Integer.parseInt(time);
-            int mao4 = Math.abs(Starttime-Currenttime);
-
-            calList.setTime(valueStartTime + "~ \n" + valueEndTime);
-            calList.setTitle(calender_like_data.get(i).get_titles());
-            calList.setText(calender_like_data.get(i).get_subtitle());
-
-            System.out.println(Starttime);
-            System.out.println(mao15);
-//        builder.setContentTitle("오늘의 일정");
-            if (calList.getTitle() != "null") {
-                //알림에서 보이는 줄임
-                if(mao15<=1800000&&mao15>=1){
-                    //Log.v("d",time);
-                    Vibrator vibrator = (Vibrator)getSystemService(VIBRATOR_SERVICE);
-                    vibrator.vibrate(500); // 0.5초간 진동
-                    builder.setContentText(valueStartTime + " ~ " + valueEndTime + "\n" + calender_like_data.get(i).get_titles()+ "\n" + calender_like_data.get(i).get_subtitle());
-                }
-                else{
-                    builder.setContentText("test");
-                }
-                //builder.setContentText(valueStartTime + " ~ " + valueEndTime + "\n" + calender_like_data.get(i).get_titles()+ "\n" + calender_like_data.get(i).get_subtitle());
-                //calender_like_data.get(i).get_titles() 이부분이 데이터 갖고 오는거임
-
-            } else {
-                builder.setContentText("오늘 일정이 없습니다");
-            }
-        }
-        builder.setContentTitle("오늘의 일정");
-//        builder.setContentText(calender_db.get_titles().toString());
-
-        builder.setColor(Color.parseColor("#5A88FF"));
-        // 사용자가 탭을 클릭하면 자동 제거
-        builder.setAutoCancel(true);
-
-        // 알림 표시
-        NotificationManager notificationManager = (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            notificationManager.createNotificationChannel(new NotificationChannel("default", "기본 채널", NotificationManager.IMPORTANCE_DEFAULT));
-        }
-
-        // id값은
-        // 정의해야하는 각 알림의 고유한 int값
-        notificationManager.notify(1, builder.build());
     }
 
     private void deleteNoti(){
