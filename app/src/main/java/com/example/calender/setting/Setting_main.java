@@ -107,7 +107,7 @@ public class Setting_main extends Fragment {
 
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), alarm.class);
+                Intent intent = new Intent(getActivity(), Setting_dark.class);
                 startActivity(intent);
             }
         });

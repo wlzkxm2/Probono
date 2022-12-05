@@ -6,10 +6,12 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Debug;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -45,7 +47,8 @@ public class Setting_notification extends AppCompatActivity {
 
     Calender_Dao calender_dao;
     User_Dao user_dao;
-
+    SharedPreferences.Editor prefEditor;
+    SharedPreferences prefs;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,19 +70,30 @@ public class Setting_notification extends AppCompatActivity {
 
         back = (Button) findViewById(R.id.back_noti);
         notisw=(Switch) findViewById(R.id.noti_switch) ;
+
+        prefEditor= PreferenceManager.getDefaultSharedPreferences(getBaseContext()).edit();
+        prefs=PreferenceManager.getDefaultSharedPreferences(getBaseContext());
         //(notisw).setChecked(true);
         (notisw).setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     //True이면 할 일
                     showNoti();
+                    prefEditor.putString("checked","yes");
+                    prefEditor.apply();
                 }else{
                     //False이면 할 일
                     deleteNoti();
+                    prefEditor.putString("checked","false");
+                    prefEditor.apply();
                 }
             }
         });
-
+        if(prefs.getString("checked","no").equals("yes")){
+            notisw.setChecked(true);
+        }else{
+            notisw.setChecked(false);
+        }
 
         cl = new View.OnClickListener() {  //뒤로가기 버튼 누르면 화면 종료되도록 설정
             @Override
