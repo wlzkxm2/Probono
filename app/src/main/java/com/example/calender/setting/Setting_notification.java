@@ -150,7 +150,39 @@ public class Setting_notification extends AppCompatActivity {
 
         );
 
-        Log.v("showNoti", nowTime + "");
+        List<Calender_DB> load_All_data = calender_dao.getAllData();
+
+//        Log.v("showNoti", nowTime + "");
+/*
+        for(int i = 1; i < load_All_data.size(); i++){
+            int calStartTime = load_All_data.get(i).getStart_time();
+
+            int calYear = load_All_data.get(i).getStart_years();
+            int calMonth = load_All_data.get(i).getStart_month();
+            int calDays = load_All_data.get(i).getStart_day();
+
+            String calStartTimestr = Integer.toString(calStartTime);
+            //1200 구조로 되어있는 단어를 12 와 00으로 나눔
+            String SHour = calStartTimestr.substring(0,2);
+            String SMinute = calStartTimestr.substring(2, calStartTimestr.length());
+
+            Calendar setTime = Calendar.getInstance();
+
+            // 날짜 삽입
+            setTime.set(Calendar.YEAR, calYear);        // 일정상 년도
+            setTime.set(Calendar.MONTH, calMonth);      // 일정상 월
+            setTime.set(Calendar.DATE, calDays);        // 일정상 일
+
+            setTime.set(Calendar.HOUR_OF_DAY, Integer.parseInt(hourstr));   // 일정 시간
+            setTime.set(Calendar.MINUTE, Integer.parseInt(minutestr));      // 일정 분
+            setTime.set(Calendar.SECOND, 0);
+
+            Calendar realTime = Calendar.getInstance();
+            realTime.set(Calendar.HOUR_OF_DAY, Integer.parseInt(hourstr));
+            realTime.set(Calendar.MINUTE, Integer.parseInt(minutestr) + 29);        //
+            realTime.set(Calendar.SECOND, 0);
+        }
+ */
 
         for(int i = 0; i < calender_like_data.size(); i++){
             // 일정 시간을 출력
@@ -182,6 +214,7 @@ public class Setting_notification extends AppCompatActivity {
                 Log.v("showNoti", "calender_like_data.get(i).get_titles()" + calender_like_data.get(i).get_titles() + "");
 
                 Calendar setAlram = Calendar.getInstance();
+//                setAlram.set(Calendar.DAY_OF_MONTH);
                 setAlram.set(Calendar.HOUR_OF_DAY, Integer.parseInt(SHour));
                 setAlram.set(Calendar.MINUTE, Integer.parseInt(Sminute) - 30);
                 setAlram.set(Calendar.SECOND, 0);
