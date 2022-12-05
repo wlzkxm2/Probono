@@ -79,7 +79,7 @@ public class Setting_notification extends AppCompatActivity {
                 if (isChecked) {
                     //True이면 할 일
                     showNoti();
-                    prefEditor.putString("checked","yes");
+                    prefEditor.putString("checked","yes");//알림상태 저장
                     prefEditor.apply();
                 }else{
                     //False이면 할 일
@@ -91,6 +91,7 @@ public class Setting_notification extends AppCompatActivity {
         });
         if(prefs.getString("checked","no").equals("yes")){
             notisw.setChecked(true);
+            //알림상태 저장하는 함수
         }else{
             notisw.setChecked(false);
         }
