@@ -49,4 +49,4 @@
             android:background="@drawable/example1"
             android:textSize="25sp"/>
 
-    </LinearLayout>
+</LinearLayout>

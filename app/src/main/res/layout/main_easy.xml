@@ -17,7 +17,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:clickable="true"
-            app:backgroundTint="#ffffff"
+            app:backgroundTint="@color/test2"
             app:fabSize="normal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -177,7 +177,7 @@
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="32dp"
                     android:text="오늘의 일정"
-                    android:textColor="#191919"
+                    android:textColor="@color/test1"
                     android:textSize="28sp"
                     android:textStyle="normal" />
 
@@ -188,7 +188,7 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="32dp"
                     android:text="(0/0)"
-                    android:textColor="#191919"
+                    android:textColor="@color/test1"
                     android:textSize="28sp"
                     android:textStyle="normal" />
 
